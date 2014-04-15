@@ -26,7 +26,6 @@ public:
 
 	void ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
 
-
 protected:
 
     
@@ -35,10 +34,10 @@ private:
     CCSize _visibleSize;
     CCPoint _origin;
 	CCArray *_targets;
-	CCArray *_projectiles;
     
 	int _projectilesDestroyed;
     int _projectilesRemain;
+    
 	void addTarget();
 	void spriteMoveFinished(cocos2d::CCNode* sender);
 	void gameLogic(float dt);

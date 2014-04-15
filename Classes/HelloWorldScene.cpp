@@ -12,17 +12,10 @@ HelloWorld::~HelloWorld()
 		_targets->release();
 		_targets = NULL;
 	}
-
-	if (_projectiles)
-	{
-		_projectiles->release();
-		_projectiles = NULL;
-	}
 }
 
 HelloWorld::HelloWorld()
 :_targets(NULL)
-,_projectiles(NULL)
 ,_projectilesDestroyed(0)
 ,_projectilesRemain(15)
 {
@@ -59,8 +52,6 @@ bool HelloWorld::init()
 
     CCLOG("Hello visibleSize.width: %f, height: %f",_visibleSize.width,_visibleSize.height);
     CCLOG("Hello origin.x: %f, origin.y: %f",_origin.x,_origin.y);
-
-	_projectiles = new CCArray;
 
     // プレイヤーを作成する
     makePlayer();
@@ -140,15 +131,18 @@ void HelloWorld::spriteMoveFinished(CCNode* sender)
         this->gameOver(sprite);
         return;
     }
-	_projectiles->removeObject(sprite);
 }
 
 void HelloWorld::ccTouchesEnded(CCSet* touches, CCEvent* event)
 {
-    pushBall(touches);
+    //現在ボールが飛んでいなければボールを出す
+    if (!this->getChildByTag(TAG_BALL)) {
+        pushBall(touches);
+    }
 
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("pew-pew-lei.wav");
 }
+
 void HelloWorld::pushBall(CCSet* touches)
 {
     //ボールを出す
@@ -159,54 +153,47 @@ void HelloWorld::pushBall(CCSet* touches)
 
 	CCLog("++++++++after  x:%f, y:%f", location.x, location.y);
 
-
-    CCSprite *projectile = CCSprite::create("Projectile.png", CCRectMake(0, 0, size, size));
+    CCSprite *ball = CCSprite::create("Projectile.png", CCRectMake(0, 0, size, size));
 
     //    CCSprite* projectile = CCSprite::createWithSpriteFrameName("Projectile.png");//テクスチャアトラスを使用
 
-	projectile->setPosition( ccp(_visibleSize.width / 2,
+	ball->setPosition( ccp(_visibleSize.width / 2,
                                  this->getChildByTag(TAG_PLAYER)->getContentSize().height) );
-
-	this->addChild(projectile);
+	ball->setTag(TAG_BALL);
+	this->addChild(ball);
 
 	CCPoint realDest = ccp(location.x, _visibleSize.height);
 
-	float offRealX = location.x - projectile->getPosition().x;
-	float offRealY = _visibleSize.height - projectile->getPosition().y;
+	float offRealX = location.x - ball->getPosition().x;
+	float offRealY = _visibleSize.height - ball->getPosition().y;
 	float length = sqrtf((offRealX * offRealX) + (offRealY*offRealY));
 	float velocity = 1200/1; // 1200pixels/1sec
 	float realMoveDuration = length/velocity;
 
-	projectile->runAction( CCSequence::create(CCMoveTo::create(realMoveDuration, realDest),
+	ball->runAction( CCSequence::create(CCMoveTo::create(realMoveDuration, realDest),
                                               CCCallFuncN::create(this,
                                                                   callfuncN_selector(HelloWorld::spriteMoveFinished)),
                                               NULL) );
-
-	projectile->setTag(TAG_BALL);
-	_projectiles->addObject(projectile);
 }
 
 void HelloWorld::updateGame(float dt)
 {
-	CCArray *projectilesToDelete = new CCArray;
-    CCObject* it = NULL;
     CCObject* jt = NULL;
 
-    CCARRAY_FOREACH(_projectiles, it)
-	{
-		CCSprite *projectile = dynamic_cast<CCSprite*>(it);
-		CCRect projectileRect = CCRectMake(
-                                           projectile->getPosition().x - (projectile->getContentSize().width/2),
-                                           projectile->getPosition().y - (projectile->getContentSize().height/2),
-                                           projectile->getContentSize().width,
-                                           projectile->getContentSize().height);
+    CCNode *ball = this->getChildByTag(TAG_BALL);
+    if (ball) {
+		CCRect ballRect = CCRectMake(
+                                    ball->getPosition().x - (ball->getContentSize().width/2),
+                                    ball->getPosition().y - (ball->getContentSize().height/2),
+                                    ball->getContentSize().width,
+                                    ball->getContentSize().height);
 
-		CCArray* targetsToDelete = new CCArray;
+        CCArray* targetsToDelete = new CCArray;
 
         CCARRAY_FOREACH(_targets, jt)
 		{
 			CCSprite *target = dynamic_cast<CCSprite*>(jt);
-//            CCLOG("updateGame target.x: %f, target.y: %f, tag: %d",target->getContentSize().width, target->getContentSize().height, target->getTag());
+            //            CCLOG("updateGame target.x: %f, target.y: %f, tag: %d",target->getContentSize().width, target->getContentSize().height, target->getTag());
 
 			CCRect targetRect = CCRectMake(
                                            target->getPosition().x - (target->getContentSize().width/2),
@@ -215,7 +202,7 @@ void HelloWorld::updateGame(float dt)
                                            target->getContentSize().height);
 
             //衝突判定
-            if (projectileRect.intersectsRect(targetRect))
+            if (ballRect.intersectsRect(targetRect))
 			{
 				targetsToDelete->addObject(target);
 			}
@@ -229,81 +216,13 @@ void HelloWorld::updateGame(float dt)
 
 			_projectilesDestroyed++;
 		}
-        
-		if (targetsToDelete->count() > 0)
-		{
-			projectilesToDelete->addObject(projectile);
-		}
+
 		targetsToDelete->release();
-	}
-    
-    CCARRAY_FOREACH(projectilesToDelete, it)
-	{
-		CCSprite* projectile = dynamic_cast<CCSprite*>(it);
-		_projectiles->removeObject(projectile);
-		this->removeChild(projectile, true);
-	}
-	projectilesToDelete->release();
+
+        //壁の当たり判定
+    }
 }
 
-//void HelloWorld::updateGame(float dt)
-//{
-//	CCArray *projectilesToDelete = new CCArray;
-//    CCObject* it = NULL;
-//    CCObject* jt = NULL;
-//
-//	// for (it = _projectiles->begin(); it != _projectiles->end(); it++)
-//    CCARRAY_FOREACH(_projectiles, it)
-//	{
-//		CCSprite *projectile = dynamic_cast<CCSprite*>(it);
-//		CCRect projectileRect = CCRectMake(
-//                                           projectile->getPosition().x - (projectile->getContentSize().width/2),
-//                                           projectile->getPosition().y - (projectile->getContentSize().height/2),
-//                                           projectile->getContentSize().width,
-//                                           projectile->getContentSize().height);
-//
-//		CCArray* targetsToDelete =new CCArray;
-//
-//		// for (jt = _targets->begin(); jt != _targets->end(); jt++)
-//        CCARRAY_FOREACH(_targets, jt)
-//		{
-//			CCSprite *target = dynamic_cast<CCSprite*>(jt);
-//			CCRect targetRect = CCRectMake(
-//                                           target->getPosition().x - (target->getContentSize().width/2),
-//                                           target->getPosition().y - (target->getContentSize().height/2),
-//                                           target->getContentSize().width,
-//                                           target->getContentSize().height);
-//
-//            if (projectileRect.intersectsRect(targetRect))
-//			{
-//				targetsToDelete->addObject(target);
-//			}
-//		}
-//
-//        CCARRAY_FOREACH(targetsToDelete, jt)
-//		{
-//			CCSprite *target = dynamic_cast<CCSprite*>(jt);
-//			_targets->removeObject(target);
-//			this->removeChild(target, true);
-//
-//			_projectilesDestroyed++;
-//		}
-//
-//		if (targetsToDelete->count() > 0)
-//		{
-//			projectilesToDelete->addObject(projectile);
-//		}
-//		targetsToDelete->release();
-//	}
-//
-//    CCARRAY_FOREACH(projectilesToDelete, it)
-//	{
-//		CCSprite* projectile = dynamic_cast<CCSprite*>(it);
-//		_projectiles->removeObject(projectile);
-//		this->removeChild(projectile, true);
-//	}
-//	projectilesToDelete->release();
-//}
 
 void HelloWorld::gameOver(CCSprite *sprite)
 {
