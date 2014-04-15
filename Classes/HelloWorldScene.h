@@ -45,6 +45,7 @@ private:
 	void updateGame(float dt);
     void makeBlock();
     void makePlayer();
+    void pushBall(CCSet* touches);
     void gameOver(CCSprite *sprite);
 };
 

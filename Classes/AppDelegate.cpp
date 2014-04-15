@@ -24,7 +24,16 @@ bool AppDelegate::applicationDidFinishLaunching() {
     pDirector->setOpenGLView(pEGLView);
 
     //デザインサイズの設定
-    pEGLView->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, kResolutionNoBorder);
+    CCLOG("applicationDidFinishLaunching1");
+    pEGLView->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, kResolutionFixedWidth);
+
+    //検証用
+//    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+//    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+//
+//    CCLOG("AppDelegate designResolutionSize.width: %f, height: %f",designResolutionSize.width,designResolutionSize.height);
+//    CCLOG("AppDelegate visibleSize.width: %f, height: %f",visibleSize.width,visibleSize.height);
+//    CCLOG("AppDelegate origin.x: %f, origin.y: %f",origin.x,origin.y);
 
     CCSize flameSize = pEGLView->getFrameSize();
 
@@ -44,7 +53,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     CCFileUtils::sharedFileUtils()->setSearchPaths(searchPaths);
 
 
-    //テクスチャアトラスを使用する
+    //テクスチャアトラスを使用する あとでやる
 //    CCSpriteFrameCache* frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
 //    frameCache->addSpriteFramesWithFile("simpleGame.plist");
 
@@ -65,18 +74,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
     return true;
 }
 
-// This function will be called when the app is inactive. When comes a phone call,it's be invoked too
 void AppDelegate::applicationDidEnterBackground() {
     CCDirector::sharedDirector()->stopAnimation();
-
-    // if you use SimpleAudioEngine, it must be pause
     CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 }
 
-// this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground() {
     CCDirector::sharedDirector()->startAnimation();
-
-    // if you use SimpleAudioEngine, it must resume here
     CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }
