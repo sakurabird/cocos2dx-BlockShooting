@@ -166,7 +166,9 @@
 		1AFCDA8216D4A25900906EA6 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1AFCDA8116D4A25900906EA6 /* RootViewController.mm */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		2132FD3A18FD944900E31121 /* bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2132FD3918FD944900E31121 /* bar.png */; };
 		214FB2D118FD4158003ABBB2 /* block.png in Resources */ = {isa = PBXBuildFile; fileRef = 214FB2D018FD4158003ABBB2 /* block.png */; };
+		21A37F0B18FE4C9E00DFE626 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 21A37F0A18FE4C9E00DFE626 /* ball.png */; };
 		21A5B7DC18E9B31400241A7C /* arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21A5B7CD18E9B31400241A7C /* arial.ttf */; };
 		21A5B7DD18E9B31400241A7C /* Marker Felt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21A5B7CE18E9B31400241A7C /* Marker Felt.ttf */; };
 		21A5B7DE18E9B31400241A7C /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 21A5B7D018E9B31400241A7C /* CloseNormal.png */; };
@@ -599,7 +601,9 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* BrockShooting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrockShooting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2132FD3918FD944900E31121 /* bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar.png; sourceTree = "<group>"; };
 		214FB2D018FD4158003ABBB2 /* block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block.png; sourceTree = "<group>"; };
+		21A37F0A18FE4C9E00DFE626 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
 		21A5B7CD18E9B31400241A7C /* arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = arial.ttf; sourceTree = "<group>"; };
 		21A5B7CE18E9B31400241A7C /* Marker Felt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Marker Felt.ttf"; sourceTree = "<group>"; };
 		21A5B7D018E9B31400241A7C /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseNormal.png; sourceTree = "<group>"; };
@@ -1779,6 +1783,8 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				21A37F0A18FE4C9E00DFE626 /* ball.png */,
+				2132FD3918FD944900E31121 /* bar.png */,
 				214FB2D018FD4158003ABBB2 /* block.png */,
 				21A5B7CC18E9B31400241A7C /* fonts */,
 				21A5B7CF18E9B31400241A7C /* hd */,
@@ -1865,6 +1871,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7855E0E1153FEF240059DD9A /* Default.png in Resources */,
+				2132FD3A18FD944900E31121 /* bar.png in Resources */,
 				D4EF949A15BD2D8B00D803EB /* Icon-57.png in Resources */,
 				21A5B7E618E9B31400241A7C /* Player.png in Resources */,
 				21A5B7DF18E9B31400241A7C /* CloseSelected.png in Resources */,
@@ -1877,6 +1884,7 @@
 				15A3D9961682F7F9002FB0C5 /* CMakeLists.txt in Resources */,
 				21A5B7E318E9B31400241A7C /* app.icf in Resources */,
 				21A5B7E018E9B31400241A7C /* Player.png in Resources */,
+				21A37F0B18FE4C9E00DFE626 /* ball.png in Resources */,
 				214FB2D118FD4158003ABBB2 /* block.png in Resources */,
 				21A5B7DD18E9B31400241A7C /* Marker Felt.ttf in Resources */,
 				21A5B7E218E9B31400241A7C /* Target.png in Resources */,

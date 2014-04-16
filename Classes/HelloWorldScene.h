@@ -5,7 +5,7 @@
 
 #include "SimpleAudioEngine.h"
 
-#define TAG_PLAYER 1001
+#define TAG_BAR 1001
 #define TAG_BALL 1002
 
 using namespace cocos2d;
@@ -27,24 +27,31 @@ public:
 	void ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
 
 protected:
-
-    
+    // ブロックの列数・行数
+    int _column = 12;
+    int _row = 10;
 
 private:
     CCSize _visibleSize;
     CCPoint _origin;
 	CCArray *_targets;
-    
-	int _projectilesDestroyed;
-    int _projectilesRemain;
+
+    // 速度
+    double _vx = 10;
+    double _vy = 10;
+
+	int _blocksDestroyed;
+    int _ballsRemain;
     
 	void addTarget();
 	void spriteMoveFinished(cocos2d::CCNode* sender);
 	void gameLogic(float dt);
 	void updateGame(float dt);
+    void makeBar();
     void makeBlock();
-    void makePlayer();
     void pushBall(CCSet* touches);
+    void updateBlocks();
+    void updateWalls();
     void gameOver(CCSprite *sprite);
 };
 
