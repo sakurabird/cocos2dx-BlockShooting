@@ -7,12 +7,14 @@
 
 using namespace cocos2d;
 
+// TODO CCSpriteBatchNode
+
+
 #define BLOCK_COLUMN 15
 #define BLOCK_ROW 13
 
 class HelloWorld : public cocos2d::CCLayerColor
 {
-    // TODO CCSpriteBatchNode
 public:
 	HelloWorld();
 	~HelloWorld();
@@ -33,10 +35,6 @@ public:
 
 protected:
 
-    // ボール速度
-    double _vx = 10;
-    double _vy = 10;
-
     //残りボール数をあらわす変数＆アクセサ
     CC_SYNTHESIZE(int, m_ballRemain, BallRemain);
 
@@ -48,10 +46,6 @@ private:
     void initForVariables();
 
 	void addTarget();
-
-    void spriteMoveFinished(cocos2d::CCNode* sender);
-
-    void gameLogic(float dt);
 
     void updateGame(float dt);
 
@@ -69,7 +63,9 @@ private:
 
     void updateBar();
 
-    void gameOver(CCSprite *sprite);
+    void onBallLost(cocos2d::CCNode* sender);
+
+    void gameOver();
 };
 
 #endif  // __HELLOWORLD_SCENE_H__

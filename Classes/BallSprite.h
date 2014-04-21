@@ -17,11 +17,18 @@
 
 #define TAG_BALL 1002
 
-#define BALL_REMAIN 5
+#define BALL_REMAIN 3
 
 class BallSprite : public cocos2d::CCSprite
 {
 protected:
+
+    //x方向の速度をあらわす変数＆アクセサ
+    CC_SYNTHESIZE(int, m_vx, VelocityX);
+    //y方向の速度をあらわす変数＆アクセサ
+    CC_SYNTHESIZE(int, m_vy, VelocityY);
+
+    void initVelocity();
 
 public:
 

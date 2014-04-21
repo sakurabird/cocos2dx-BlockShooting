@@ -17,8 +17,6 @@ HelloWorld::~HelloWorld()
 }
 
 HelloWorld::HelloWorld()
-:_targets(NULL)
-,_blocksDestroyed(0)
 {
 }
 
@@ -76,7 +74,10 @@ void HelloWorld::initForVariables()
     CCLOG("Hello visibleSize.width: %f, height: %f",_visibleSize.width,_visibleSize.height);
     CCLOG("Hello origin.x: %f, origin.y: %f",_origin.x,_origin.y);
 
-    setBallRemain(BALL_REMAIN);
+    _targets = NULL;
+    _blocksDestroyed = 0;
+
+    this->setBallRemain(BALL_REMAIN);
 }
 void HelloWorld::makeBar()
 {
@@ -126,17 +127,18 @@ void HelloWorld::makeBlock()
 
 }
 
-void HelloWorld::spriteMoveFinished(CCNode* sender)
+void HelloWorld::onBallLost(CCNode* sender)
 {
     //奈落に落ちたボールを削除
-	BallSprite *ball = (BallSprite*)sender;
+    BallSprite *ball = dynamic_cast<BallSprite*>(sender);
 	this->removeChild(ball, true);
 
-    int remain = getBallRemain() - 1;
-    setBallRemain(remain);
+    int remain = this->getBallRemain() - 1;
+    this->setBallRemain(remain);
+
     //ゲームオーバー判定
     if (remain <= 0) {
-        this->gameOver(ball);
+        this->gameOver();
         return;
     }
 }
@@ -175,22 +177,6 @@ void HelloWorld::ccTouchEnded(CCTouch *touch, CCEvent* event)
 
 void HelloWorld::pushBall(CCTouch *touch)
 {
-    _vx = 18;
-    _vy = 18;
-    if (rand() % 2 == 0){
-        _vx *= -1;
-    }
-    int v = rand() % 10;
-    if (v > 0) {
-        float z = v * 0.1;
-        _vx += z;
-    }
-    v = rand() % 10;
-    if (v > 0) {
-        float z = v * 0.1;
-        _vy += z;
-    }
-
     float size = _visibleSize.width / 17.0;
     BallSprite* ball = BallSprite::createWithBallSize(size);
     //    CCSprite* projectile = CCSprite::createWithSpriteFrameName("Projectile.png");//テクスチャアトラスを使用
@@ -200,7 +186,6 @@ void HelloWorld::pushBall(CCTouch *touch)
                             this->getChildByTag(TAG_BAR)->getPositionY()
                            + this->getChildByTag(TAG_BAR)->getContentSize().height) );
 	this->addChild(ball);
-
 }
 
 void HelloWorld::moveBar(CCTouch* touch)
@@ -217,6 +202,10 @@ void HelloWorld::moveBar(CCTouch* touch)
 void HelloWorld::updateGame(float dt)
 {
 
+    if (_blocksDestroyed >= BLOCK_COLUMN * BLOCK_ROW) {
+        //クリア
+        this->gameOver();
+    }
     //壁の当たり判定
     updateWalls();
 
@@ -229,32 +218,20 @@ void HelloWorld::updateGame(float dt)
 
 void HelloWorld::updateBlocks()
 {
-    CCNode *ball = this->getChildByTag(TAG_BALL);
-
+    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(TAG_BALL));
     if (!ball) {
         return;
     }
+    CCRect ballRect = ball->boundingBox();
 
     CCObject* jt = NULL;
-
-    CCRect ballRect = CCRectMake(
-                                 ball->getPosition().x - (ball->getContentSize().width / 2),
-                                 ball->getPosition().y - (ball->getContentSize().height / 2),
-                                 ball->getContentSize().width,
-                                 ball->getContentSize().height);
-
     CCArray* targetsToDelete = new CCArray;
 
     CCARRAY_FOREACH(_targets, jt)
     {
         CCSprite *target = dynamic_cast<CCSprite*>(jt);
         //            CCLOG("updateGame target.x: %f, target.y: %f, tag: %d",target->getContentSize().width, target->getContentSize().height, target->getTag());
-
-        CCRect targetRect = CCRectMake(
-                                       target->getPosition().x - (target->getContentSize().width / 2),
-                                       target->getPosition().y - (target->getContentSize().height / 2),
-                                       target->getContentSize().width,
-                                       target->getContentSize().height);
+        CCRect targetRect = target->boundingBox();
 
         //衝突判定
         if (ballRect.intersectsRect(targetRect))
@@ -279,73 +256,76 @@ void HelloWorld::updateBlocks()
 
 void HelloWorld::updateWalls()
 {
-    CCNode *ball = this->getChildByTag(TAG_BALL);
-
+    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(TAG_BALL));
     if (!ball) {
         return;
     }
 
-
     CCPoint ballPoint = ball->getPosition();
 //    CCLog("updateWalls ball x:%f, y:%f", ballPoint.x, ballPoint.y);
+    float vx = ball->getVelocityX();
+    float vy = ball->getVelocityY();
 
     // ボールの移動
-    ball->setPosition(ball->getPositionX() + _vx, ball->getPositionY() + _vy);
+    ball->setPosition(ccp(ball->getPositionX() + vx, ball->getPositionY() + vy));
+
     // 壁に当たった時の処理、速度を入れ替える
-    if(ballPoint.x > _visibleSize.width - ball->getContentSize().width / 2){
-        _vx *= -1;
+    if(ballPoint.x > _visibleSize.width - ball->getContentSize().width / 2)
+    {
+        vx *= -1;
+        ball->setVelocityX(vx);
         ball->setPositionX(_visibleSize.width - ball->getContentSize().width / 2 );
-    }else if( ballPoint.x < 0 ){
-        _vx *= -1;
+    }
+    else if( ballPoint.x < 0 )
+    {
+        vx *= -1;
+        ball->setVelocityX(vx);
         ball->setPositionX(0);
     }
 
-    if( ballPoint.y < 0 ){
-        spriteMoveFinished(ball);
+    if( ballPoint.y < 0 )
+    {
+        //ユーザーがボールを奈落に落とした
+        onBallLost(ball);
         return;
-    }else if( ballPoint.y > _visibleSize.height - ball->getContentSize().height /2 ){
-        _vy *= -1;
+
+    }else if( ballPoint.y > _visibleSize.height - ball->getContentSize().height /2 )
+    {
+        vy *= -1;
+        ball->setVelocityY(vy);
         ball->setPositionY(_visibleSize.height - ball->getContentSize().height);
     }
 }
 
 void HelloWorld::updateBar()
 {
-    CCNode *ball = this->getChildByTag(TAG_BALL);
-
+    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(TAG_BALL));
     if (!ball) {
         return;
     }
-    CCRect ballRect = CCRectMake(
-                                ball->getPosition().x - (ball->getContentSize().width / 2),
-                                ball->getPosition().y - (ball->getContentSize().height / 2),
-                                ball->getContentSize().width,
-                                ball->getContentSize().height);
+    CCRect ballRect = ball->boundingBox();
 
-    CCNode *bar = this->getChildByTag(TAG_BAR);
+    BarSprite *bar = dynamic_cast<BarSprite*>(this->getChildByTag(TAG_BAR));
     if (!bar) {
         CCLog("updateBar null");
         return;
     }
-
-    CCRect barRect = CCRectMake(
-                                   bar->getPosition().x - (bar->getContentSize().width / 2),
-                                   bar->getPosition().y - (bar->getContentSize().height / 2),
-                                   bar->getContentSize().width,
-                                   bar->getContentSize().height);
+    CCRect barRect = bar->boundingBox();
 
     //衝突判定
     if (ballRect.intersectsRect(barRect))
     {
-        _vy *= -1;
-        ball->setPosition(ball->getPositionX() + _vx, ball->getPositionY() + _vy);
+        float vx = ball->getVelocityX();
+        float vy = ball->getVelocityY();
+        vy *= -1;
+        ball->setVelocityY(vy);
+        ball->setPosition(ccp(ball->getPositionX() + vx, ball->getPositionY() + vy));
     }
 
 }
-void HelloWorld::gameOver(CCSprite *sprite)
+void HelloWorld::gameOver()
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->end();
-    _targets->removeObject(sprite);
 
 	this->unschedule( schedule_selector(HelloWorld::updateGame) );
 

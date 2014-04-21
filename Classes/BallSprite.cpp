@@ -12,6 +12,8 @@ using namespace cocos2d;
 
 BallSprite::BallSprite()
 {
+    setVelocityX(10);
+    setVelocityY(10);
 }
 
 BallSprite::~BallSprite()
@@ -41,9 +43,30 @@ bool BallSprite::initWithBallSize(float size)
         return false;
     }
 
-    CCSprite::
-
     CCSprite::setTag(TAG_BALL);
 
+    initVelocity();
+
     return true;
+}
+
+void BallSprite::initVelocity()
+{
+    float vx = 18;
+    float vy = 18;
+    if (rand() % 2 == 0){
+        vx *= -1;
+    }
+    int v = rand() % 10;
+    if (v > 0) {
+        float z = v * 0.1;
+        vx += z;
+    }
+    v = rand() % 10;
+    if (v > 0) {
+        float z = v * 0.1;
+        vy += z;
+    }
+    setVelocityX(vx);
+    setVelocityY(vy);
 }
