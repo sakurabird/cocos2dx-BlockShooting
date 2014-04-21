@@ -2,6 +2,8 @@
 #include "GameOverScene.h"
 #include "SimpleAudioEngine.h"
 #include "AppMacros.h"
+#include "BallSprite.h"
+#include "BarSprite.h"
 
 HelloWorld::~HelloWorld()
 {
@@ -17,7 +19,6 @@ HelloWorld::~HelloWorld()
 HelloWorld::HelloWorld()
 :_targets(NULL)
 ,_blocksDestroyed(0)
-,_ballsRemain(3)
 {
 }
 
@@ -47,19 +48,18 @@ bool HelloWorld::init()
         return false;
     }
 
-    _visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-    _origin = CCDirector::sharedDirector()->getVisibleOrigin();
+    srand((unsigned int)time(NULL));
 
-    CCLOG("Hello visibleSize.width: %f, height: %f",_visibleSize.width,_visibleSize.height);
-    CCLOG("Hello origin.x: %f, origin.y: %f",_origin.x,_origin.y);
+    setTouchEnabled(true);
+    setTouchMode(kCCTouchesOneByOne);
+
+    initForVariables();
 
     // バーを作成する
     makeBar();
 
     //ブロックを作成する
     makeBlock();
-
-	this->setTouchEnabled(true);
 
 	this->schedule( schedule_selector(HelloWorld::updateGame) );
 
@@ -68,21 +68,29 @@ bool HelloWorld::init()
     return true;
 }
 
+void HelloWorld::initForVariables()
+{
+    _visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    _origin = CCDirector::sharedDirector()->getVisibleOrigin();
+
+    CCLOG("Hello visibleSize.width: %f, height: %f",_visibleSize.width,_visibleSize.height);
+    CCLOG("Hello origin.x: %f, origin.y: %f",_origin.x,_origin.y);
+
+    setBallRemain(BALL_REMAIN);
+}
 void HelloWorld::makeBar()
 {
-    float w = _visibleSize.width / 7;
+    float w = _visibleSize.width / 4;
     float h = w / 4;
     float marginBottom = _visibleSize.height / 15;
     CCLOG("Hello bar.w: %f, height: %f",w,h);
-    CCSprite *bar = CCSprite::create("bar.png", CCRectMake(0, 0, w, h) );
+
+    BarSprite* bar = BarSprite::createWithBarSize(w, h);
 
     //        CCSprite* player = CCSprite::createWithSpriteFrameName("Player.png");//テクスチャアトラスを使用
 
-    CCLOG("Hello bar.width: %f, height: %f",bar->getContentSize().width,bar->getContentSize().height);
-
     bar->setPosition( ccp(_visibleSize.width / 2,
                              _origin.y + bar->getContentSize().height / 2 + marginBottom) );
-    bar->setTag(TAG_BAR);
     this->addChild(bar);
 }
 
@@ -92,7 +100,7 @@ void HelloWorld::makeBlock()
 	_targets = new CCArray;
 
     float size = _visibleSize.width / 14.0;
-    float margin = (_visibleSize.width - (size * _column)) / (_column + 1);
+    float margin = (_visibleSize.width - (size * BLOCK_COLUMN)) / (BLOCK_COLUMN + 1);
     CCLOG("Hello block.size: %f, margin: %f",size, margin);
 
     CCSprite *target = NULL;
@@ -100,9 +108,9 @@ void HelloWorld::makeBlock()
     int tag = 0;
     int y = _visibleSize.height - (this->getChildByTag(TAG_BAR)->getPositionY());
 
-    for (int i = 0; i < _row; i++) {
+    for (int i = 0; i < BLOCK_ROW; i++) {
         int x = margin;
-        for (int j = 0; j < _column; j++) {
+        for (int j = 0; j < BLOCK_COLUMN; j++) {
             target = CCSprite::create("block.png", CCRectMake(0, 0, size, size) );
             target->setPosition(ccp(x + target->getContentSize().width * 0.5,
                                 y + target->getContentSize().height * 0.5));
@@ -120,94 +128,90 @@ void HelloWorld::makeBlock()
 
 void HelloWorld::spriteMoveFinished(CCNode* sender)
 {
-	CCSprite *sprite = (CCSprite *)sender;
-	this->removeChild(sprite, true);
+    //奈落に落ちたボールを削除
+	BallSprite *ball = (BallSprite*)sender;
+	this->removeChild(ball, true);
 
-    _ballsRemain--;
+    int remain = getBallRemain() - 1;
+    setBallRemain(remain);
     //ゲームオーバー判定
-    if (_ballsRemain <= 0) {
-        this->gameOver(sprite);
+    if (remain <= 0) {
+        this->gameOver(ball);
         return;
     }
 }
 
-void HelloWorld::ccTouchesEnded(CCSet* touches, CCEvent* event)
+bool HelloWorld::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
     //現在ボールが飛んでいなければボールを出す
     if (!this->getChildByTag(TAG_BALL)) {
-        pushBall(touches);
+        pushBall(touch);
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("pew-pew-lei.wav");
     }
 
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("pew-pew-lei.wav");
+	CCPoint location = touch->getLocation();
+    CCSprite *bar = dynamic_cast<CCSprite*>(this->getChildByTag(TAG_BAR));
+
+    if (!bar) {
+        CCLog("ccTouchBegan bar null");
+        return false;
+    }
+    //バーがタップされた場合のみタップイベントを有効にする
+    CCLog("ccTouchBegan bar touched? %c",bar->boundingBox().containsPoint(location));
+    return bar->boundingBox().containsPoint(location);
+
 }
 
-void HelloWorld::pushBall(CCSet* touches)
+void HelloWorld::ccTouchMoved(CCTouch *touch, CCEvent *event)
 {
-    _vx = 10;
-    _vy = 10;
+    // バーを動かす
+    moveBar(touch);
 
-    //ボールを出す
+}
+
+void HelloWorld::ccTouchEnded(CCTouch *touch, CCEvent* event)
+{
+}
+
+void HelloWorld::pushBall(CCTouch *touch)
+{
+    _vx = 18;
+    _vy = 18;
+    if (rand() % 2 == 0){
+        _vx *= -1;
+    }
+    int v = rand() % 10;
+    if (v > 0) {
+        float z = v * 0.1;
+        _vx += z;
+    }
+    v = rand() % 10;
+    if (v > 0) {
+        float z = v * 0.1;
+        _vy += z;
+    }
+
     float size = _visibleSize.width / 17.0;
-
-	CCTouch* touch = (CCTouch*)( touches->anyObject() ); //マルチタップなので配列になっている
-	CCPoint location = touch->getLocation();
-
-//	CCLog("++++++++after  x:%f, y:%f", location.x, location.y);
-
-    CCSprite *ball = CCSprite::create("ball.png", CCRectMake(0, 0, size, size));
-
+    BallSprite* ball = BallSprite::createWithBallSize(size);
     //    CCSprite* projectile = CCSprite::createWithSpriteFrameName("Projectile.png");//テクスチャアトラスを使用
 
-//	// Determinie offset of location to projectile
-//	float offX = location.x - ball->getPosition().x;
-//	float offY = location.y - ball->getPosition().y;
-
-//	// Bail out if we are shooting down or backwards
-//	if (offX <= 0) return;
-
-	ball->setPosition( ccp(_visibleSize.width / 2,
+    CCNode *bar = this->getChildByTag(TAG_BAR);
+	ball->setPosition( ccp(bar->getPositionX(),
                             this->getChildByTag(TAG_BAR)->getPositionY()
                            + this->getChildByTag(TAG_BAR)->getContentSize().height) );
-	ball->setTag(TAG_BALL);
 	this->addChild(ball);
 
+}
 
-
-//	// Determine where we wish to shoot the projectile to
-//    float realX = offX - (_origin.x + _visibleSize.width) / 2;
-//    realX = realX + (_origin.x + _visibleSize.width) / 2;
-//	float ratio = offY / offX;
-//	float realY = (realX * ratio) + ball->getPosition().y;
-//	CCPoint realDest = ccp(realX, realY);
-//
-//	// Determine the length of how far we're shooting
-//	float offRealX = realX - ball->getPosition().x;
-//	float offRealY = realY - ball->getPosition().y;
-//	float length = sqrtf((offRealX * offRealX) + (offRealY * offRealY));
-//	float velocity = 1300/1;
-//	float realMoveDuration = length/velocity;
-//
-//	// Move projectile to actual endpoint
-//	ball->runAction( CCSequence::create(
-//                                              CCMoveTo::create(realMoveDuration, realDest),
-//                                              CCCallFuncN::create(this,
-//                                                                  callfuncN_selector(HelloWorld::spriteMoveFinished)),
-//                                              NULL) );
-
-
-
-//	CCPoint realDest = ccp(location.x, _visibleSize.height);
-//
-//	float offRealX = location.x - ball->getPosition().x;
-//	float offRealY = _visibleSize.height - ball->getPosition().y;
-//	float length = sqrtf((offRealX * offRealX) + (offRealY*offRealY));
-//	float velocity = 1300/1; // 1200pixels/1sec
-//	float realMoveDuration = length/velocity;
-//
-//	ball->runAction( CCSequence::create(CCMoveTo::create(realMoveDuration, realDest),
-//                                        CCCallFuncN::create(this,
-//                                                            callfuncN_selector(HelloWorld::spriteMoveFinished)),
-//                                        NULL) );
+void HelloWorld::moveBar(CCTouch* touch)
+{
+	CCPoint location = touch->getLocation();
+    CCSprite *bar = dynamic_cast<CCSprite*>(this->getChildByTag(TAG_BAR));
+    if (!bar) {
+        CCLog("moveBar null");
+        return;
+    }
+    bar->setPositionX(location.x);
 }
 
 void HelloWorld::updateGame(float dt)
@@ -218,6 +222,9 @@ void HelloWorld::updateGame(float dt)
 
     // ブロックの当たり判定
     updateBlocks();
+
+    // バーの当たり判定
+    updateBar();
 }
 
 void HelloWorld::updateBlocks()
@@ -280,7 +287,7 @@ void HelloWorld::updateWalls()
 
 
     CCPoint ballPoint = ball->getPosition();
-    CCLog("updateWalls ball x:%f, y:%f", ballPoint.x, ballPoint.y);
+//    CCLog("updateWalls ball x:%f, y:%f", ballPoint.x, ballPoint.y);
 
     // ボールの移動
     ball->setPosition(ball->getPositionX() + _vx, ball->getPositionY() + _vy);
@@ -302,10 +309,45 @@ void HelloWorld::updateWalls()
     }
 }
 
+void HelloWorld::updateBar()
+{
+    CCNode *ball = this->getChildByTag(TAG_BALL);
+
+    if (!ball) {
+        return;
+    }
+    CCRect ballRect = CCRectMake(
+                                ball->getPosition().x - (ball->getContentSize().width / 2),
+                                ball->getPosition().y - (ball->getContentSize().height / 2),
+                                ball->getContentSize().width,
+                                ball->getContentSize().height);
+
+    CCNode *bar = this->getChildByTag(TAG_BAR);
+    if (!bar) {
+        CCLog("updateBar null");
+        return;
+    }
+
+    CCRect barRect = CCRectMake(
+                                   bar->getPosition().x - (bar->getContentSize().width / 2),
+                                   bar->getPosition().y - (bar->getContentSize().height / 2),
+                                   bar->getContentSize().width,
+                                   bar->getContentSize().height);
+
+    //衝突判定
+    if (ballRect.intersectsRect(barRect))
+    {
+        _vy *= -1;
+        ball->setPosition(ball->getPositionX() + _vx, ball->getPositionY() + _vy);
+    }
+
+}
 void HelloWorld::gameOver(CCSprite *sprite)
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->end();
     _targets->removeObject(sprite);
+
+	this->unschedule( schedule_selector(HelloWorld::updateGame) );
 
     GameOverScene *gameOverScene = GameOverScene::create();
     GameOverLayer *gameOverLayer = gameOverScene->getLayer();
@@ -316,5 +358,6 @@ void HelloWorld::gameOver(CCSprite *sprite)
 
 void HelloWorld::registerWithTouchDispatcher()
 {
-    CCDirector::sharedDirector()->getTouchDispatcher()->addStandardDelegate(this,0);
+	CCDirector* pDirector = CCDirector::sharedDirector();
+	pDirector->getTouchDispatcher()->addTargetedDelegate(this, kCCMenuHandlerPriority + 1, true);
 }

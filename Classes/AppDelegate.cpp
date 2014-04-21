@@ -27,14 +27,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
     CCLOG("applicationDidFinishLaunching1");
     pEGLView->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, kResolutionFixedWidth);
 
-    //検証用
-//    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-//    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
-//
-//    CCLOG("AppDelegate designResolutionSize.width: %f, height: %f",designResolutionSize.width,designResolutionSize.height);
-//    CCLOG("AppDelegate visibleSize.width: %f, height: %f",visibleSize.width,visibleSize.height);
-//    CCLOG("AppDelegate origin.x: %f, origin.y: %f",origin.x,origin.y);
-
     CCSize flameSize = pEGLView->getFrameSize();
 
     std::vector<std::string> searchPaths;

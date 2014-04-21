@@ -95,11 +95,8 @@ bool TopScene::init()
 
 void TopScene::tapStartButton()
 {
-    CCLOG("tapStartButton 1!");
     CCScene* scene = (CCScene*)HelloWorld::create();
-    CCLOG("tapStartButton 2!");
     CCDirector::sharedDirector()->replaceScene(scene);
-    CCLOG("tapStartButton 3!");
 }
 
 void TopScene::menuCloseCallback(CCObject* pSender)

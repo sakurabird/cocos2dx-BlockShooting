@@ -5,16 +5,20 @@
 
 #include "SimpleAudioEngine.h"
 
-#define TAG_BAR 1001
-#define TAG_BALL 1002
-
 using namespace cocos2d;
+
+#define BLOCK_COLUMN 15
+#define BLOCK_ROW 13
 
 class HelloWorld : public cocos2d::CCLayerColor
 {
+    // TODO CCSpriteBatchNode
 public:
 	HelloWorld();
 	~HelloWorld();
+
+    CCSize _visibleSize;
+    CCPoint _origin;
 
 	virtual bool init();
 
@@ -22,36 +26,49 @@ public:
 
 	CREATE_FUNC(HelloWorld);
 
-	void registerWithTouchDispatcher();
-
-	void ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
+    virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);
+    virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);
+    virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);
+    virtual void registerWithTouchDispatcher();
 
 protected:
-    // ブロックの列数・行数
-    int _column = 12;
-    int _row = 10;
 
-private:
-    CCSize _visibleSize;
-    CCPoint _origin;
-	CCArray *_targets;
-
-    // 速度
+    // ボール速度
     double _vx = 10;
     double _vy = 10;
 
+    //残りボール数をあらわす変数＆アクセサ
+    CC_SYNTHESIZE(int, m_ballRemain, BallRemain);
+
+private:
+	CCArray *_targets;
+
 	int _blocksDestroyed;
-    int _ballsRemain;
-    
+
+    void initForVariables();
+
 	void addTarget();
-	void spriteMoveFinished(cocos2d::CCNode* sender);
-	void gameLogic(float dt);
-	void updateGame(float dt);
+
+    void spriteMoveFinished(cocos2d::CCNode* sender);
+
+    void gameLogic(float dt);
+
+    void updateGame(float dt);
+
     void makeBar();
+
     void makeBlock();
-    void pushBall(CCSet* touches);
+
+    void pushBall(CCTouch *touch);
+
+    void moveBar(CCTouch* touch);
+
     void updateBlocks();
+
     void updateWalls();
+
+    void updateBar();
+
     void gameOver(CCSprite *sprite);
 };
 
