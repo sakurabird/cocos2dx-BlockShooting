@@ -1,5 +1,5 @@
 #include "TopScene.h"
-#include "HelloWorldScene.h"
+#include "GameScene.h"
 #include "GHelper.h"
 
 using namespace cocos2d;
@@ -92,7 +92,7 @@ bool TopScene::init()
 
 void TopScene::tapStartButton()
 {
-    CCScene* scene = (CCScene*)HelloWorld::create();
+    CCScene* scene = (CCScene*)GameScene::create();
     CCDirector::sharedDirector()->replaceScene(scene);
 }
 

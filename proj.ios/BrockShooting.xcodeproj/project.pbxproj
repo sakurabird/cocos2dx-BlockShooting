@@ -162,7 +162,6 @@
 		1AC3624B16D4A1E8000847F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC3624516D4A1E8000847F2 /* main.m */; };
 		1ACB3244164770DE00914215 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACB3243164770DE00914215 /* libcurl.a */; };
 		1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */; };
-		1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */; };
 		1AFCDA8216D4A25900906EA6 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1AFCDA8116D4A25900906EA6 /* RootViewController.mm */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -172,6 +171,8 @@
 		2118762119069B6500EFFC9B /* f264.png in Resources */ = {isa = PBXBuildFile; fileRef = 2118761C19069B6500EFFC9B /* f264.png */; };
 		2118762219069B6500EFFC9B /* f321.png in Resources */ = {isa = PBXBuildFile; fileRef = 2118761D19069B6500EFFC9B /* f321.png */; };
 		2118762319069B6500EFFC9B /* f323.png in Resources */ = {isa = PBXBuildFile; fileRef = 2118761E19069B6500EFFC9B /* f323.png */; };
+		2118762519069F2C00EFFC9B /* f016.png in Resources */ = {isa = PBXBuildFile; fileRef = 2118762419069F2C00EFFC9B /* f016.png */; };
+		2118762B1906A06600EFFC9B /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211876291906A06600EFFC9B /* GameScene.cpp */; };
 		2132FD3A18FD944900E31121 /* bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2132FD3918FD944900E31121 /* bar.png */; };
 		2133F2171905503C0033FD6A /* BarSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133F2151905503C0033FD6A /* BarSprite.cpp */; };
 		214FB2D118FD4158003ABBB2 /* block.png in Resources */ = {isa = PBXBuildFile; fileRef = 214FB2D018FD4158003ABBB2 /* block.png */; };
@@ -602,8 +603,6 @@
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = ../Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		1AFAF8B416D35DE700DB1158 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../Classes/AppDelegate.h; sourceTree = "<group>"; };
-		1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = ../Classes/HelloWorldScene.cpp; sourceTree = "<group>"; };
-		1AFAF8B616D35DE700DB1158 /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = ../Classes/HelloWorldScene.h; sourceTree = "<group>"; };
 		1AFCDA8016D4A25900906EA6 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = SOURCE_ROOT; };
 		1AFCDA8116D4A25900906EA6 /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = SOURCE_ROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -616,6 +615,9 @@
 		2118761C19069B6500EFFC9B /* f264.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = f264.png; path = bg/f264.png; sourceTree = "<group>"; };
 		2118761D19069B6500EFFC9B /* f321.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = f321.png; path = bg/f321.png; sourceTree = "<group>"; };
 		2118761E19069B6500EFFC9B /* f323.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = f323.png; path = bg/f323.png; sourceTree = "<group>"; };
+		2118762419069F2C00EFFC9B /* f016.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = f016.png; path = bg/f016.png; sourceTree = "<group>"; };
+		211876291906A06600EFFC9B /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/GameScene.cpp; sourceTree = "<group>"; };
+		2118762A1906A06600EFFC9B /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = ../Classes/GameScene.h; sourceTree = "<group>"; };
 		2132FD3918FD944900E31121 /* bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar.png; sourceTree = "<group>"; };
 		2133F2151905503C0033FD6A /* BarSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BarSprite.cpp; path = ../Classes/BarSprite.cpp; sourceTree = "<group>"; };
 		2133F2161905503C0033FD6A /* BarSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarSprite.h; path = ../Classes/BarSprite.h; sourceTree = "<group>"; };
@@ -1315,13 +1317,13 @@
 				21A5B7EE18E9B32600241A7C /* GameOverScene.h */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
-				1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */,
-				1AFAF8B616D35DE700DB1158 /* HelloWorldScene.h */,
 				21CE3F5E18FA5D0900D39B42 /* AppMacros.h */,
 				215A3B4219051BA6005D231B /* BallSprite.h */,
 				215A3B4B19054917005D231B /* BallSprite.cpp */,
 				211876151906405C00EFFC9B /* BlockSprite.cpp */,
 				211876161906405C00EFFC9B /* BlockSprite.h */,
+				211876291906A06600EFFC9B /* GameScene.cpp */,
+				2118762A1906A06600EFFC9B /* GameScene.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1810,6 +1812,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2118762419069F2C00EFFC9B /* f016.png */,
 				2118761A19069B6500EFFC9B /* f216.png */,
 				2118761B19069B6500EFFC9B /* f245.png */,
 				2118761C19069B6500EFFC9B /* f264.png */,
@@ -1928,6 +1931,7 @@
 				2118761F19069B6500EFFC9B /* f216.png in Resources */,
 				21A5B7E418E9B31400241A7C /* CloseNormal.png in Resources */,
 				21A5B7E718E9B31400241A7C /* Projectile.png in Resources */,
+				2118762519069F2C00EFFC9B /* f016.png in Resources */,
 				21A5B7E818E9B31400241A7C /* Target.png in Resources */,
 				21A5B7DC18E9B31400241A7C /* arial.ttf in Resources */,
 				21A5B7E518E9B31400241A7C /* CloseSelected.png in Resources */,
@@ -2011,6 +2015,7 @@
 				15A3D9A61682F7F9002FB0C5 /* cpBody.c in Sources */,
 				15A3D9A71682F7F9002FB0C5 /* cpCollision.c in Sources */,
 				15A3D9A81682F7F9002FB0C5 /* cpHashSet.c in Sources */,
+				2118762B1906A06600EFFC9B /* GameScene.cpp in Sources */,
 				15A3D9A91682F7F9002FB0C5 /* cpPolyShape.c in Sources */,
 				15A3D9AA1682F7F9002FB0C5 /* cpShape.c in Sources */,
 				15A3D9AB1682F7F9002FB0C5 /* cpSpace.c in Sources */,
@@ -2080,7 +2085,6 @@
 				15A3DAEF1682F8A6002FB0C5 /* SimpleAudioEngine_objc.m in Sources */,
 				1A27573F1697CF2B00504026 /* CCEditBoxImplAndroid.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
-				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
 				1AC3624916D4A1E8000847F2 /* AppController.mm in Sources */,
 				1AC3624B16D4A1E8000847F2 /* main.m in Sources */,
 				1AFCDA8216D4A25900906EA6 /* RootViewController.mm in Sources */,

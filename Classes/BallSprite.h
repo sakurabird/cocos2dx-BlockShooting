@@ -33,9 +33,9 @@ public:
     BallSprite();
     virtual ~BallSprite();
 
-    static BallSprite* createWithBallSize(float size);
+    static BallSprite* createWithBallScale(float size);
 
-    virtual bool initWithBallSize(float size);
+    virtual bool initWithBallScale(float scale);
 };
 
 #endif /* defined(__BrockShooting__BallSprite__) */

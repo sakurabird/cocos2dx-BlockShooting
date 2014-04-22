@@ -12,19 +12,16 @@ using namespace cocos2d;
 
 BallSprite::BallSprite()
 {
-    setVelocityX(10);
-    setVelocityY(10);
 }
 
 BallSprite::~BallSprite()
 {
 }
 
-
-BallSprite* BallSprite::createWithBallSize(float size)
+BallSprite* BallSprite::createWithBallScale(float scale)
 {
     BallSprite *pRet = new BallSprite();
-    if (pRet && pRet->initWithBallSize(size))
+    if (pRet && pRet->initWithBallScale(scale))
     {
         pRet->autorelease();
         return pRet;
@@ -37,13 +34,15 @@ BallSprite* BallSprite::createWithBallSize(float size)
 }
 
 
-bool BallSprite::initWithBallSize(float size)
+bool BallSprite::initWithBallScale(float scale)
 {
-    if (!CCSprite::initWithFile(PNG_BALL, CCRectMake(0, 0, size, size))) {
+    if (!CCSprite::initWithFile(PNG_BALL)) {
         return false;
     }
 
     CCSprite::setTag(TAG_BALL);
+
+    CCSprite::setScale(scale);
 
     initVelocity();
 

@@ -1,4 +1,12 @@
-#include "HelloWorldScene.h"
+//
+//  GameScene.cpp
+//  BrockShooting
+//
+//  Created by sakura on 2014/04/22.
+//
+//
+
+#include "GameScene.h"
 #include "GameOverScene.h"
 #include "SimpleAudioEngine.h"
 #include "AppMacros.h"
@@ -6,9 +14,9 @@
 #include "BarSprite.h"
 #include "BlockSprite.h"
 
-HelloWorld::~HelloWorld()
+GameScene::~GameScene()
 {
-    CCLOG("~HelloWorld!");
+    CCLOG("~GameScene!");
 
 	if (_targets)
 	{
@@ -17,11 +25,11 @@ HelloWorld::~HelloWorld()
 	}
 }
 
-HelloWorld::HelloWorld()
+GameScene::GameScene()
 {
 }
 
-CCScene* HelloWorld::scene()
+CCScene* GameScene::scene()
 {
 	CCScene * scene = NULL;
 	do
@@ -29,7 +37,7 @@ CCScene* HelloWorld::scene()
 		scene = CCScene::create();
 		CC_BREAK_IF(! scene);
 
-		HelloWorld *layer = HelloWorld::create();
+		GameScene *layer = GameScene::create();
 		CC_BREAK_IF(! layer);
 
 		scene->addChild(layer);
@@ -37,12 +45,12 @@ CCScene* HelloWorld::scene()
 	return scene;
 }
 
-bool HelloWorld::init()
+bool GameScene::init()
 {
     if (!CCLayer::init()) {
         return false;
     }
-    
+
     if (!CCLayerColor::initWithColor( ccc4(255,255,255,255) )) {
         return false;
     }
@@ -52,7 +60,7 @@ bool HelloWorld::init()
     setTouchEnabled(true);
     setTouchMode(kCCTouchesOneByOne);
 
-    // バックキー・メニューキーイベントを取得する
+    // Android バックキー・メニューキーイベントを取得する
     setKeypadEnabled(true);
 
     initForVariables();
@@ -65,14 +73,15 @@ bool HelloWorld::init()
     //ブロックを作成する
     makeBlock();
 
-	this->schedule( schedule_selector(HelloWorld::updateGame) );
+	this->schedule( schedule_selector(GameScene::updateGame) );
 
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("background-music-aac.wav", true);
 
     return true;
 }
 
-void HelloWorld::updateGame(float dt)
+//ゲームループ
+void GameScene::updateGame(float dt)
 {
 
     if (_blocksDestroyed >= BLOCK_COLUMN * BLOCK_ROW) {
@@ -90,7 +99,7 @@ void HelloWorld::updateGame(float dt)
     updateBar();
 }
 
-void HelloWorld::initForVariables()
+void GameScene::initForVariables()
 {
     _visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     _origin = CCDirector::sharedDirector()->getVisibleOrigin();
@@ -104,10 +113,10 @@ void HelloWorld::initForVariables()
     this->setBallRemain(BALL_REMAIN);
 }
 
-void HelloWorld::makeBar()
+void GameScene::makeBar()
 {
     float w = _visibleSize.width / 4;
-    float h = w / 4;
+    float h = w / 6;
     float marginBottom = _visibleSize.height / 15;
     CCLOG("Hello bar.w: %f, height: %f",w,h);
 
@@ -116,22 +125,21 @@ void HelloWorld::makeBar()
     //        CCSprite* player = CCSprite::createWithSpriteFrameName("Player.png");//テクスチャアトラスを使用
 
     bar->setPosition( ccp(_visibleSize.width / 2,
-                             _origin.y + bar->getContentSize().height / 2 + marginBottom) );
+                          _origin.y + bar->getContentSize().height / 2 + marginBottom) );
     this->addChild(bar);
 }
 
 
-void HelloWorld::makeBlock()
+void GameScene::makeBlock()
 {
 	_targets = new CCArray;
 
-    float size = _visibleSize.width / 16.0;
     float width = _visibleSize.width / 16.0;
     float height = width * 0.75;
-    float margin = (_visibleSize.width - (size * BLOCK_COLUMN)) / (BLOCK_COLUMN + 1);
-    CCLOG("Hello block.size: %f, margin: %f",size, margin);
+    float margin = (_visibleSize.width - (width * BLOCK_COLUMN)) / (BLOCK_COLUMN + 1);
+    CCLOG("Hello block.size: %f, margin: %f",width, margin);
 
-//    CCSprite *block = NULL;
+    //    CCSprite *block = NULL;
     BlockSprite *block = NULL;
 
     int number = 0;
@@ -144,7 +152,7 @@ void HelloWorld::makeBlock()
         {
             block  = BlockSprite::createWithBlockSize(width, height, number++);
             block->setPosition(ccp(x + block->getContentSize().width * 0.5,
-                                y + block->getContentSize().height * 0.5));
+                                   y + block->getContentSize().height * 0.5));
             this->addChild(block);
             _targets->addObject(block);
 
@@ -156,21 +164,20 @@ void HelloWorld::makeBlock()
 
 }
 
-void HelloWorld::showBackground()
+void GameScene::showBackground()
 {
-    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-
     // 背景を生成
     m_background = CCSprite::create(PNG_BACKGROUND);
+//    m_background = CCSprite::create(PNG_BACKGROUND,
+//                                    CCRectMake(0, 0, _visibleSize.width, _visibleSize.height));
     if (!m_background) {
-        CCLOG("Hello background null");
         return;
     }
-    m_background->setPosition(ccp(winSize.width / 2, winSize.height / 2));
+    m_background->setPosition(ccp(_visibleSize.width / 2, _visibleSize.height / 2));
     addChild(m_background, kZOrderBackground, kTagBackground);
 }
 
-void HelloWorld::onBallLost(CCNode* sender)
+void GameScene::onBallLost(CCNode* sender)
 {
     //奈落に落ちたボールを削除
     BallSprite *ball = dynamic_cast<BallSprite*>(sender);
@@ -186,7 +193,7 @@ void HelloWorld::onBallLost(CCNode* sender)
     }
 }
 
-bool HelloWorld::ccTouchBegan(CCTouch *touch, CCEvent *event)
+bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
     //現在ボールが飛んでいなければボールを出す
     if (!this->getChildByTag(TAG_BALL)) {
@@ -205,31 +212,28 @@ bool HelloWorld::ccTouchBegan(CCTouch *touch, CCEvent *event)
 
 }
 
-void HelloWorld::ccTouchMoved(CCTouch *touch, CCEvent *event)
+void GameScene::ccTouchMoved(CCTouch *touch, CCEvent *event)
 {
     // バーを動かす
     moveBar(touch);
 
 }
 
-void HelloWorld::ccTouchEnded(CCTouch *touch, CCEvent* event)
+void GameScene::ccTouchEnded(CCTouch *touch, CCEvent* event)
 {
 }
 
-void HelloWorld::pushBall(CCTouch *touch)
+void GameScene::pushBall(CCTouch *touch)
 {
-    float size = _visibleSize.width / 17.0;
-    BallSprite* ball = BallSprite::createWithBallSize(size);
+    BallSprite* ball = BallSprite::createWithBallScale(0.6f);
     //    CCSprite* projectile = CCSprite::createWithSpriteFrameName("Projectile.png");//テクスチャアトラスを使用
 
     CCNode *bar = this->getChildByTag(TAG_BAR);
-	ball->setPosition( ccp(bar->getPositionX(),
-                            this->getChildByTag(TAG_BAR)->getPositionY()
-                           + this->getChildByTag(TAG_BAR)->getContentSize().height) );
+	ball->setPosition( ccp(bar->getPositionX(), bar->getPositionY()+ bar->getContentSize().height) );
 	this->addChild(ball);
 }
 
-void HelloWorld::moveBar(CCTouch* touch)
+void GameScene::moveBar(CCTouch* touch)
 {
 	CCPoint location = touch->getLocation();
     CCSprite *bar = dynamic_cast<CCSprite*>(this->getChildByTag(TAG_BAR));
@@ -240,7 +244,7 @@ void HelloWorld::moveBar(CCTouch* touch)
     bar->setPositionX(location.x);
 }
 
-void HelloWorld::updateBlocks()
+void GameScene::updateBlocks()
 {
     BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(TAG_BALL));
     if (!ball) {
@@ -276,8 +280,10 @@ void HelloWorld::updateBlocks()
     targetsToDelete->release();
 }
 
-void HelloWorld::updateWalls()
+void GameScene::updateWalls()
 {
+    const float gosa = 0.05;
+
     BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(TAG_BALL));
     if (!ball) {
         return;
@@ -293,13 +299,13 @@ void HelloWorld::updateWalls()
     // 壁に当たった時の処理、速度を入れ替える
     if(ballPoint.x > _visibleSize.width - ball->getContentSize().width / 2)
     {
-        vx *= -1;
+        vx = vx * -1 + gosa;
         ball->setVelocityX(vx);
         ball->setPositionX(_visibleSize.width - ball->getContentSize().width / 2 );
     }
     else if( ballPoint.x < 0 )
     {
-        vx *= -1;
+        vx = vx * -1 + gosa;
         ball->setVelocityX(vx);
         ball->setPositionX(0);
     }
@@ -312,13 +318,13 @@ void HelloWorld::updateWalls()
 
     }else if( ballPoint.y > _visibleSize.height - ball->getContentSize().height /2 )
     {
-        vy *= -1;
+        vy = vy * -1 + gosa;
         ball->setVelocityY(vy);
         ball->setPositionY(_visibleSize.height - ball->getContentSize().height);
     }
 }
 
-void HelloWorld::updateBar()
+void GameScene::updateBar()
 {
     BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(TAG_BALL));
     if (!ball) {
@@ -328,7 +334,6 @@ void HelloWorld::updateBar()
 
     BarSprite *bar = dynamic_cast<BarSprite*>(this->getChildByTag(TAG_BAR));
     if (!bar) {
-        CCLog("updateBar null");
         return;
     }
     CCRect barRect = bar->boundingBox();
@@ -338,34 +343,45 @@ void HelloWorld::updateBar()
     {
         float vx = ball->getVelocityX();
         float vy = ball->getVelocityY();
-        vy *= -1;
+
+        if ( ballRect.getMaxX() < barRect.getMinX() ||
+            barRect.getMaxX() < ballRect.getMinX()) {
+            vx *= -1;
+        }
+        else
+        if ( ballRect.getMaxY() < barRect.getMinY() ||
+            barRect.getMaxY() < ballRect.getMaxY()) {
+            vy *= -1;
+        }
+
+        ball->setVelocityX(vx);
         ball->setVelocityY(vy);
         ball->setPosition(ccp(ball->getPositionX() + vx, ball->getPositionY() + vy));
     }
 }
 
-void HelloWorld::gameOver()
+void GameScene::gameOver()
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->end();
 
-	this->unschedule( schedule_selector(HelloWorld::updateGame) );
+	this->unschedule( schedule_selector(GameScene::updateGame) );
 
     GameOverScene *gameOverScene = GameOverScene::create();
     GameOverLayer *gameOverLayer = gameOverScene->getLayer();
-    
+
     gameOverLayer->setResult(_blocksDestroyed);
 
     CCDirector::sharedDirector()->replaceScene(gameOverScene);
 }
 
-void HelloWorld::registerWithTouchDispatcher()
+void GameScene::registerWithTouchDispatcher()
 {
 	CCDirector* pDirector = CCDirector::sharedDirector();
 	pDirector->getTouchDispatcher()->addTargetedDelegate(this, kCCMenuHandlerPriority + 1, true);
 }
 
 // Androidバックキーイベント
-void HelloWorld::keyBackClicked()
+void GameScene::keyBackClicked()
 {
     CCDirector::sharedDirector()->end();
 }

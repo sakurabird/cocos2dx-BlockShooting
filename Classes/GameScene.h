@@ -1,5 +1,14 @@
-#ifndef __HELLOWORLD_SCENE_H__
-#define __HELLOWORLD_SCENE_H__
+//
+//  GameScene.h
+//  BrockShooting
+//
+//  Created by sakura on 2014/04/22.
+//
+//
+
+#ifndef __BrockShooting__GameScene__
+#define __BrockShooting__GameScene__
+
 
 #include "cocos2d.h"
 
@@ -9,11 +18,11 @@ using namespace cocos2d;
 
 // TODO CCSpriteBatchNode
 
-class HelloWorld : public cocos2d::CCLayerColor
+class GameScene : public cocos2d::CCLayerColor
 {
 public:
-	HelloWorld();
-	~HelloWorld();
+	GameScene();
+	~GameScene();
 
     CCSize _visibleSize;
     CCPoint _origin;
@@ -22,7 +31,7 @@ public:
 
 	static cocos2d::CCScene* scene();
 
-	CREATE_FUNC(HelloWorld);
+	CREATE_FUNC(GameScene);
 
     virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);
     virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);
@@ -64,10 +73,10 @@ private:
     void updateWalls();
 
     void updateBar();
-
+    
     void onBallLost(cocos2d::CCNode* sender);
-
+    
     void gameOver();
 };
 
-#endif  // __HELLOWORLD_SCENE_H__
+#endif /* defined(__BrockShooting__GameScene__) */

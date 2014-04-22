@@ -1,6 +1,6 @@
 
 #include "GameOverScene.h"
-#include "HelloWorldScene.h"
+#include "GameScene.h"
 
 using namespace cocos2d;
 
@@ -132,7 +132,7 @@ void GameOverLayer::setResult(int score)
 
 void GameOverLayer::gameOverDone()
 {
-	CCDirector::sharedDirector()->replaceScene( HelloWorld::scene() );
+	CCDirector::sharedDirector()->replaceScene( GameScene::scene() );
 }
 
 void GameOverLayer::menuCloseCallback(CCObject* pSender)

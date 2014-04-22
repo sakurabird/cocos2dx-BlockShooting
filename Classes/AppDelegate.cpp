@@ -55,6 +55,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     pDirector->setAnimationInterval(1.0 / 60);
 
+    // 画像が画面の高さにフィットして表示される設定
+    pDirector->setContentScaleFactor(768.0f / pDirector->getWinSize().height);
+
     CCScene *pScene = TopScene::scene();
 
     //椋梨さんの作られたGHelper
