@@ -52,6 +52,7 @@ bool BallSprite::initWithBallSize(float size)
 
 void BallSprite::initVelocity()
 {
+    //ランダムで少し速度を変える
     float vx = 18;
     float vy = 18;
     if (rand() % 2 == 0){
@@ -67,6 +68,7 @@ void BallSprite::initVelocity()
         float z = v * 0.1;
         vy += z;
     }
+    
     setVelocityX(vx);
     setVelocityY(vy);
 }

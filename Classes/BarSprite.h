@@ -14,8 +14,6 @@
 
 #define PNG_BAR "bar.png"
 
-#define TAG_BAR 1001
-
 class BarSprite : public cocos2d::CCSprite
 {
 protected:

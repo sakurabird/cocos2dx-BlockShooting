@@ -9,10 +9,6 @@ using namespace cocos2d;
 
 // TODO CCSpriteBatchNode
 
-
-#define BLOCK_COLUMN 15
-#define BLOCK_ROW 13
-
 class HelloWorld : public cocos2d::CCLayerColor
 {
 public:
@@ -33,6 +29,9 @@ public:
     virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);
     virtual void registerWithTouchDispatcher();
 
+    //Androidのバックキー処理
+    virtual void keyBackClicked();
+
 protected:
 
     //残りボール数をあらわす変数＆アクセサ
@@ -40,6 +39,9 @@ protected:
 
 private:
 	CCArray *_targets;
+
+    cocos2d::CCSprite *m_background;
+    void showBackground();
 
 	int _blocksDestroyed;
 

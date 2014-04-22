@@ -15,8 +15,6 @@
 
 #define PNG_BALL "ball.png"
 
-#define TAG_BALL 1002
-
 #define BALL_REMAIN 3
 
 class BallSprite : public cocos2d::CCSprite
