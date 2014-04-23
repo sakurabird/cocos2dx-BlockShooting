@@ -17,6 +17,8 @@
 
 #define BALL_REMAIN 3
 
+#define BALL_FRICTION 1.005
+
 class BallSprite : public cocos2d::CCSprite
 {
 protected:
@@ -28,6 +30,10 @@ protected:
 
     void initVelocity();
 
+    void bounceBall(cocos2d::CCSize visibleSize);
+
+    void bounceBall(cocos2d::CCRect rect);
+    
 public:
 
     BallSprite();

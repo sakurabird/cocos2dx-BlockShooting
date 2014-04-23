@@ -76,6 +76,8 @@ private:
     
     void onBallLost(cocos2d::CCNode* sender);
     
+    void win();
+
     void gameOver();
 };
 

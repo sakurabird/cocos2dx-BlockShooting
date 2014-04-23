@@ -13,6 +13,10 @@
 #include "BallSprite.h"
 #include "BarSprite.h"
 #include "BlockSprite.h"
+enum
+{
+    kTagLayer = 1234,
+};
 
 GameScene::~GameScene()
 {
@@ -83,12 +87,11 @@ bool GameScene::init()
 //ゲームループ
 void GameScene::updateGame(float dt)
 {
-
     if (_blocksDestroyed >= BLOCK_COLUMN * BLOCK_ROW) {
-        //クリア
-        this->gameOver();
+        this->win();
         return;
     }
+
     //壁の当たり判定
     updateWalls();
 
@@ -168,13 +171,25 @@ void GameScene::showBackground()
 {
     // 背景を生成
     m_background = CCSprite::create(PNG_BACKGROUND);
-//    m_background = CCSprite::create(PNG_BACKGROUND,
-//                                    CCRectMake(0, 0, _visibleSize.width, _visibleSize.height));
     if (!m_background) {
         return;
     }
+
     m_background->setPosition(ccp(_visibleSize.width / 2, _visibleSize.height / 2));
     addChild(m_background, kZOrderBackground, kTagBackground);
+
+    //画像をぼやかすレイヤーを加える
+    CCLayerColor* layer = CCLayerColor::create( ccc4(255, 255, 255, 100) );
+    layer->setCascadeColorEnabled(false);
+    addChild(layer, 100, kTagLayer);
+//
+//    layer->runAction(
+//                      CCRepeatForever::create(
+//                                    CCSequence::create(
+//                                                       CCTintTo::create(35, 255, 0, 255),
+//                                                       CCTintTo::create(25, 255, 255, 255),
+//                                                       CCDelayTime::create(1),
+//                                                                 NULL)));
 }
 
 void GameScene::onBallLost(CCNode* sender)
@@ -264,6 +279,9 @@ void GameScene::updateBlocks()
         //衝突判定
         if (ballRect.intersectsRect(targetRect))
         {
+            // ボールは跳ね返す
+            ball->bounceBall(targetRect);
+
             targetsToDelete->addObject(target);
         }
     }
@@ -282,8 +300,6 @@ void GameScene::updateBlocks()
 
 void GameScene::updateWalls()
 {
-    const float gosa = 0.05;
-
     BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(TAG_BALL));
     if (!ball) {
         return;
@@ -296,32 +312,14 @@ void GameScene::updateWalls()
     // ボールの移動
     ball->setPosition(ccp(ball->getPositionX() + vx, ball->getPositionY() + vy));
 
-    // 壁に当たった時の処理、速度を入れ替える
-    if(ballPoint.x > _visibleSize.width - ball->getContentSize().width / 2)
-    {
-        vx = vx * -1 + gosa;
-        ball->setVelocityX(vx);
-        ball->setPositionX(_visibleSize.width - ball->getContentSize().width / 2 );
-    }
-    else if( ballPoint.x < 0 )
-    {
-        vx = vx * -1 + gosa;
-        ball->setVelocityX(vx);
-        ball->setPositionX(0);
-    }
-
     if( ballPoint.y < 0 )
     {
         //ユーザーがボールを奈落に落とした
         onBallLost(ball);
         return;
-
-    }else if( ballPoint.y > _visibleSize.height - ball->getContentSize().height /2 )
-    {
-        vy = vy * -1 + gosa;
-        ball->setVelocityY(vy);
-        ball->setPositionY(_visibleSize.height - ball->getContentSize().height);
     }
+    //衝突判定
+    ball->bounceBall(_visibleSize);
 }
 
 void GameScene::updateBar()
@@ -341,25 +339,26 @@ void GameScene::updateBar()
     //衝突判定
     if (ballRect.intersectsRect(barRect))
     {
-        float vx = ball->getVelocityX();
-        float vy = ball->getVelocityY();
-
-        if ( ballRect.getMaxX() < barRect.getMinX() ||
-            barRect.getMaxX() < ballRect.getMinX()) {
-            vx *= -1;
-        }
-        else
-        if ( ballRect.getMaxY() < barRect.getMinY() ||
-            barRect.getMaxY() < ballRect.getMaxY()) {
-            vy *= -1;
-        }
-
-        ball->setVelocityX(vx);
-        ball->setVelocityY(vy);
-        ball->setPosition(ccp(ball->getPositionX() + vx, ball->getPositionY() + vy));
+        // ボールは跳ね返す
+        ball->bounceBall(barRect);
     }
 }
 
+void GameScene::win()
+{
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->end();
+
+	this->unschedule( schedule_selector(GameScene::updateGame) );
+
+    BallSprite* ball = dynamic_cast<BallSprite*>(this->getChildByTag(TAG_BALL));
+    this->removeChild(ball, true);
+
+    BarSprite* bar = dynamic_cast<BarSprite*>(this->getChildByTag(TAG_BAR));
+    this->removeChild(bar, true);
+
+    CCLayer* layer = dynamic_cast<CCLayer*>(this->getChildByTag(kTagLayer));
+    this->removeChild(layer, true);
+}
 void GameScene::gameOver()
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->end();

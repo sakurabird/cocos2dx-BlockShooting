@@ -14,8 +14,8 @@
 
 #define PNG_BLOCK "block.png"
 
-#define BLOCK_COLUMN 15
-#define BLOCK_ROW 25
+#define BLOCK_COLUMN 10
+#define BLOCK_ROW 10
 
 class BlockSprite : public cocos2d::CCSprite
 {
