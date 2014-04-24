@@ -54,6 +54,10 @@ private:
 
 	int _blocksDestroyed;
 
+    void showStartLabel();
+
+    void tapStartButton();
+    
     void initForVariables();
 
 	void addTarget();

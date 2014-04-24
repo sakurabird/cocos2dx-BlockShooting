@@ -15,6 +15,7 @@
 #include "BlockSprite.h"
 enum
 {
+    kTagStartLabel,
     kTagLayer = 1234,
 };
 
@@ -77,7 +78,8 @@ bool GameScene::init()
     //ブロックを作成する
     makeBlock();
 
-	this->schedule( schedule_selector(GameScene::updateGame) );
+    //スタートラベルの表示
+    showStartLabel();
 
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("background-music-aac.wav", true);
 
@@ -100,6 +102,26 @@ void GameScene::updateGame(float dt)
 
     // バーの当たり判定
     updateBar();
+}
+
+void GameScene::showStartLabel()
+{
+    CCLabelTTF* startLabel = CCLabelTTF::create("タッチしてスタート!", "Arial", 50.0);
+    startLabel->setColor(ccc3(0,0,0));
+    CCMenuItemLabel* startItem = CCMenuItemLabel::create(startLabel, this, menu_selector(GameScene::tapStartButton));
+    startItem->setPosition(ccp(_visibleSize.width * 0.5, _visibleSize.height * 0.2));
+
+    CCMenu* menu = CCMenu::create(startItem, NULL);
+    menu->setPosition(CCPointZero);
+    menu->setTag(kTagStartLabel);
+    this->addChild(menu);
+}
+
+void GameScene::tapStartButton()
+{
+	this->schedule( schedule_selector(GameScene::updateGame) );
+    CCNode* lavel = dynamic_cast<CCNode*>(this->getChildByTag(kTagStartLabel));
+    this->removeChild(lavel, true);
 }
 
 void GameScene::initForVariables()
@@ -146,7 +168,8 @@ void GameScene::makeBlock()
     BlockSprite *block = NULL;
 
     int number = 0;
-    int y = _visibleSize.height - (this->getChildByTag(TAG_BAR)->getPositionY());
+//    int y = _visibleSize.height - (this->getChildByTag(TAG_BAR)->getPositionY());
+    int y = _visibleSize.height * 0.7;
 
     for (int i = 0; i < BLOCK_ROW; i++)
     {
@@ -161,9 +184,10 @@ void GameScene::makeBlock()
 
             x += block->getContentSize().width + margin;
         }
-        y -= block->getContentSize().height + margin;
+        y -= block->getContentSize().height + margin * 2;
     }
 
+    //残りボールがゼロでない時はバーの上にボールを表示する
 
 }
 
@@ -214,6 +238,7 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
     //現在ボールが飛んでいなければボールを出す
     if (!this->getChildByTag(TAG_BALL)) {
+        tapStartButton();
         pushBall(touch);
         CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("pew-pew-lei.wav");
     }
