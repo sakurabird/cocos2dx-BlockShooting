@@ -7,12 +7,14 @@
 //
 
 #include "GameScene.h"
-#include "GameOverScene.h"
 #include "SimpleAudioEngine.h"
 #include "AppMacros.h"
+#include "GHelper.h"
 #include "BallSprite.h"
 #include "BarSprite.h"
 #include "BlockSprite.h"
+#include "GameOverScene.h"
+
 enum
 {
     kTagStartLabel,
@@ -56,7 +58,7 @@ bool GameScene::init()
         return false;
     }
 
-    if (!CCLayerColor::initWithColor( ccc4(255,255,255,255) )) {
+    if (!CCLayerColor::initWithColor( ccc4(0,0,0,0) )) {
         return false;
     }
 
@@ -142,15 +144,14 @@ void GameScene::makeBar()
 {
     float w = _visibleSize.width / 4;
     float h = w / 6;
-    float marginBottom = _visibleSize.height / 15;
+//    float marginBottom = _visibleSize.height / 15;
     CCLOG("Hello bar.w: %f, height: %f",w,h);
 
     BarSprite* bar = BarSprite::createWithBarSize(w, h);
 
     //        CCSprite* player = CCSprite::createWithSpriteFrameName("Player.png");//テクスチャアトラスを使用
 
-    bar->setPosition( ccp(_visibleSize.width / 2,
-                          _origin.y + bar->getContentSize().height / 2 + marginBottom) );
+    bar->setPosition(GHelper::convI720toCC(_visibleSize.width / 2, _visibleSize.height * 0.85));
     this->addChild(bar);
 }
 
@@ -168,17 +169,17 @@ void GameScene::makeBlock()
     BlockSprite *block = NULL;
 
     int number = 0;
-//    int y = _visibleSize.height - (this->getChildByTag(TAG_BAR)->getPositionY());
-    int y = _visibleSize.height * 0.7;
+    int y = _visibleSize.height * 0.4;
 
     for (int i = 0; i < BLOCK_ROW; i++)
     {
-        int x = margin;
+        int x = 0;
         for (int j = 0; j < BLOCK_COLUMN; j++)
         {
             block  = BlockSprite::createWithBlockSize(width, height, number++);
-            block->setPosition(ccp(x + block->getContentSize().width * 0.5,
-                                   y + block->getContentSize().height * 0.5));
+            block->setPosition(GHelper::convI720toCC(x + block->getContentSize().width / 2,
+                                                     y + block->getContentSize().height / 2));
+
             this->addChild(block);
             _targets->addObject(block);
 
@@ -201,13 +202,15 @@ void GameScene::showBackground()
         return;
     }
 
-    m_background->setPosition(ccp(_visibleSize.width / 2, _visibleSize.height / 2));
+    m_background->setPosition(GHelper::convI720toCC(_visibleSize.width / 2, _visibleSize.height / 2));
     addChild(m_background, kZOrderBackground, kTagBackground);
 
     //画像をぼやかすレイヤーを加える
     CCLayerColor* layer = CCLayerColor::create( ccc4(255, 255, 255, 100) );
     layer->setCascadeColorEnabled(false);
-    addChild(layer, 100, kTagLayer);
+//    addChild(layer, 100, kTagLayer);
+
+
 //
 //    layer->runAction(
 //                      CCRepeatForever::create(
