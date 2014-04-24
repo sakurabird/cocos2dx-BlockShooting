@@ -8,7 +8,7 @@
 
 #include "BallSprite.h"
 
-using namespace cocos2d;
+USING_NS_CC;
 
 BallSprite::BallSprite()
 {

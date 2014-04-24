@@ -170,7 +170,9 @@ void GameScene::makeBlock()
 void GameScene::showBackground()
 {
     // 背景を生成
-    m_background = CCSprite::create(PNG_BACKGROUND);
+    int n = rand() % PNG_BG_MAX;
+    CCString* fileName = CCString::createWithFormat("bg/bg%d.png",n);
+    m_background = CCSprite::create(fileName->getCString());
     if (!m_background) {
         return;
     }

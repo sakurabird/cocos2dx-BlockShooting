@@ -2,7 +2,7 @@
 #include "GameScene.h"
 #include "GHelper.h"
 
-using namespace cocos2d;
+USING_NS_CC;
 
 
 TopScene::~TopScene()

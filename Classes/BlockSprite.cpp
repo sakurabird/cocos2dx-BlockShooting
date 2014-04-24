@@ -8,7 +8,7 @@
 
 #include "BlockSprite.h"
 
-using namespace cocos2d;
+USING_NS_CC;
 
 BlockSprite::BlockSprite()
 {
