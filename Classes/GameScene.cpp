@@ -20,6 +20,7 @@ enum
     kTagStartLabel,
     kTagLayer = 1234,
 };
+static const char s_stars1[]              = "stars.png";
 
 GameScene::~GameScene()
 {
@@ -192,7 +193,7 @@ void GameScene::makeBlock()
         y -= block->getContentSize().height + margin * 2;
     }
 
-    //残りボールがゼロでない時はバーの上にボールを表示する
+    //残りボールがゼロでない時はバーの上にボールを表示する TODO
 
 }
 
@@ -243,6 +244,10 @@ void GameScene::onBallLost(CCNode* sender)
 
 bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
+    if (_blocksDestroyed >= BLOCK_COLUMN * BLOCK_ROW) {
+        return false;
+    }
+
     //現在ボールが飛んでいなければボールを出す
     if (!this->getChildByTag(TAG_BALL)) {
         tapStartButton();
@@ -392,6 +397,16 @@ void GameScene::win()
 
     CCLayer* layer = dynamic_cast<CCLayer*>(this->getChildByTag(kTagLayer));
     this->removeChild(layer, true);
+
+    CCParticleSystem* emitter = CCParticleExplosion::create();
+    emitter->retain();
+    this->addChild(emitter, 3);
+
+    emitter->setTexture( CCTextureCache::sharedTextureCache()->addImage(s_stars1) );
+
+    emitter->setAutoRemoveOnFinish(true);
+
+    emitter->setPosition( ccp(_visibleSize.width / 2, _visibleSize.height / 2) );
 }
 
 void GameScene::gameOver()

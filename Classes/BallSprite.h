@@ -15,7 +15,7 @@
 
 #define PNG_BALL "ball.png"
 
-#define BALL_REMAIN 3
+#define BALL_REMAIN 5
 
 #define BALL_FRICTION 1.005
 

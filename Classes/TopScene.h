@@ -28,6 +28,9 @@ public:
 
 
 private:
+
+    void makeLabel();
+    
 	void tapStartButton();
 };
 

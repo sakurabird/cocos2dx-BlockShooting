@@ -173,6 +173,7 @@
 		2133F2171905503C0033FD6A /* BarSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133F2151905503C0033FD6A /* BarSprite.cpp */; };
 		214FB2D118FD4158003ABBB2 /* block.png in Resources */ = {isa = PBXBuildFile; fileRef = 214FB2D018FD4158003ABBB2 /* block.png */; };
 		215A3B4E19054917005D231B /* BallSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A3B4B19054917005D231B /* BallSprite.cpp */; };
+		215E2321190A34B3004138C3 /* stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 215E2320190A34B3004138C3 /* stars.png */; };
 		21A37F0B18FE4C9E00DFE626 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 21A37F0A18FE4C9E00DFE626 /* ball.png */; };
 		21A5B7DC18E9B31400241A7C /* arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21A5B7CD18E9B31400241A7C /* arial.ttf */; };
 		21A5B7DD18E9B31400241A7C /* Marker Felt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21A5B7CE18E9B31400241A7C /* Marker Felt.ttf */; };
@@ -617,6 +618,7 @@
 		215A3B4119051358005D231B /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = ../../nyangame/Classes/Config.h; sourceTree = "<group>"; };
 		215A3B4219051BA6005D231B /* BallSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BallSprite.h; path = ../Classes/BallSprite.h; sourceTree = "<group>"; };
 		215A3B4B19054917005D231B /* BallSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BallSprite.cpp; path = ../Classes/BallSprite.cpp; sourceTree = "<group>"; };
+		215E2320190A34B3004138C3 /* stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stars.png; sourceTree = "<group>"; };
 		21A37F0A18FE4C9E00DFE626 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
 		21A5B7CD18E9B31400241A7C /* arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = arial.ttf; sourceTree = "<group>"; };
 		21A5B7CE18E9B31400241A7C /* Marker Felt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Marker Felt.ttf"; sourceTree = "<group>"; };
@@ -1804,6 +1806,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				215E2320190A34B3004138C3 /* stars.png */,
 				212881291907ED4E004F7969 /* bg */,
 				212881271907B4FF004F7969 /* clear.png */,
 				21A37F0A18FE4C9E00DFE626 /* ball.png */,
@@ -1912,6 +1915,7 @@
 				214FB2D118FD4158003ABBB2 /* block.png in Resources */,
 				21A5B7DD18E9B31400241A7C /* Marker Felt.ttf in Resources */,
 				21A5B7E218E9B31400241A7C /* Target.png in Resources */,
+				215E2321190A34B3004138C3 /* stars.png in Resources */,
 				2128812A1907ED4E004F7969 /* bg in Resources */,
 				21A5B7E118E9B31400241A7C /* Projectile.png in Resources */,
 				21A5B7E418E9B31400241A7C /* CloseNormal.png in Resources */,
