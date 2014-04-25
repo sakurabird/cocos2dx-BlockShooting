@@ -83,6 +83,10 @@ bool GameScene::init()
     //スタートラベルの表示
     showStartLabel();
 
+    makeRetryButton();
+
+    makeCloseButton();
+
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("background-music-aac.wav", true);
 
     return true;
@@ -389,6 +393,7 @@ void GameScene::win()
     CCLayer* layer = dynamic_cast<CCLayer*>(this->getChildByTag(kTagLayer));
     this->removeChild(layer, true);
 }
+
 void GameScene::gameOver()
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->end();
@@ -403,12 +408,81 @@ void GameScene::gameOver()
     CCDirector::sharedDirector()->replaceScene(gameOverScene);
 }
 
+void GameScene::makeRetryButton()
+{
+    //リトライボタンを作成する
+    CCLabelTTF* retryLabel = CCLabelTTF::create("Retry", "Arial", 50.0);
+    // tapRetryButton関数が呼ばれるようにする
+    CCMenuItemLabel* retryItem = CCMenuItemLabel::create(retryLabel, this, menu_selector(GameScene::tapRetryButton));
+    if (!retryItem) {
+        return;
+    }
+    retryItem->setPosition(GHelper::convI720toCC(_visibleSize.width * 0.7, 20));
+
+    //メニューを作成する
+    CCMenu* menu = CCMenu::create(retryItem, NULL);
+    if (!menu) {
+        return;
+    }
+    //上でリトライボタンの位置を設定したためここはCCPointZeroとする必要がある
+    menu->setPosition(CCPointZero);
+    this->addChild(menu);
+}
+
+//リトライボタンタップ時の処理
+void GameScene::tapRetryButton(CCNode *node)
+{
+    //ゲームのシーンを新しく用意します
+    CCScene* gameScene = (CCScene*)GameScene::create();
+    CCDirector::sharedDirector()->replaceScene(gameScene);
+}
+
+
+void GameScene::makeCloseButton()
+{
+    CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
+                                                          "CloseNormal.png",
+                                                          "CloseSelected.png",
+                                                          this,
+                                                          menu_selector(GameScene::menuCloseCallback));
+
+    //        CCSprite* closeNormal = CCSprite::createWithSpriteFrameName("CloseNormal.png");
+    //        CCSprite* closeSelected = CCSprite::createWithSpriteFrameName("CloseSelected.png");
+    //        CCMenuItemSprite *pCloseItem = CCMenuItemSprite::create(closeNormal,
+    //                                                                closeSelected,
+    //                                                                this,
+    //                                                                menu_selector(TopScene::menuCloseCallback));
+
+    if (!pCloseItem) {
+        return;
+    }
+    pCloseItem->setPosition(GHelper::convI720toCC(_visibleSize.width * 0.9, 20));
+    CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
+    pMenu->setPosition(CCPointZero);
+    if (!pMenu) {
+        return;
+    }
+    this->addChild(pMenu, 1);
+}
+
+void GameScene::menuCloseCallback(CCObject* pSender)
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+	CCMessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
+
+#else
+    CCDirector::sharedDirector()->end();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    exit(0);
+#endif
+#endif
+}
+
 void GameScene::registerWithTouchDispatcher()
 {
 	CCDirector* pDirector = CCDirector::sharedDirector();
 	pDirector->getTouchDispatcher()->addTargetedDelegate(this, kCCMenuHandlerPriority + 1, true);
 }
-
 // Androidバックキーイベント
 void GameScene::keyBackClicked()
 {

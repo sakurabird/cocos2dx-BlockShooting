@@ -83,6 +83,14 @@ private:
     void win();
 
     void gameOver();
+
+    void makeRetryButton();
+
+    void tapRetryButton(CCNode *node);
+
+    void makeCloseButton();
+
+    virtual void menuCloseCallback(cocos2d::CCObject* pSender);
 };
 
 #endif /* defined(__BrockShooting__GameScene__) */
