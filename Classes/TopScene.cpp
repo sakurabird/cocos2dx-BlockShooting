@@ -62,12 +62,17 @@ void TopScene::makeLabel()
     CCMenuItemLabel* item1 = CCMenuItemLabel::create(startLabel1, this, menu_selector(TopScene::tapStartButton));
     item1->runAction(buttonAnimation());
 
-    //Quitボタン
-    CCLabelBMFont* startLabel2 = CCLabelBMFont::create("Quit", FONT_WHITE, 30);
+    //Settingボタン
+    CCLabelBMFont* startLabel2 = CCLabelBMFont::create("Setting", FONT_WHITE, 30);
     startLabel2->setScale(0.7);
     CCMenuItemLabel* item2 = CCMenuItemLabel::create(startLabel2, this, menu_selector(TopScene::menuCloseCallback));
 
-    CCMenu* menu = CCMenu::create( item1, item2, NULL );
+    //Quitボタン
+    CCLabelBMFont* startLabel3 = CCLabelBMFont::create("Quit", FONT_WHITE, 30);
+    startLabel3->setScale(0.7);
+    CCMenuItemLabel* item3 = CCMenuItemLabel::create(startLabel3, this, menu_selector(TopScene::menuCloseCallback));
+
+    CCMenu* menu = CCMenu::create( item1, item2, item3, NULL );
     menu->alignItemsVerticallyWithPadding(30.0);
 
     // 画面表示時のアクション
@@ -114,7 +119,12 @@ CCFiniteTimeAction* TopScene::buttonAnimation()
 void TopScene::tapStartButton()
 {
     CCScene* scene = (CCScene*)GameScene::create();
-    CCDirector::sharedDirector()->replaceScene(scene);
+    CCTransitionSplitRows* tran = CCTransitionSplitRows::create(1, scene);
+    CCDirector::sharedDirector()->replaceScene(tran);
+}
+
+void TopScene::tapSettingButton()
+{
 }
 
 void TopScene::menuCloseCallback(CCObject* pSender)

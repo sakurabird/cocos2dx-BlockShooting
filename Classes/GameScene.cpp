@@ -15,8 +15,6 @@
 #include "BlockSprite.h"
 #include "GameOverScene.h"
 
-static const char s_stars1[]              = "stars.png";
-
 GameScene::~GameScene()
 {
     CCLOG("~GameScene!");
@@ -397,10 +395,7 @@ void GameScene::win()
     emitter->retain();
     this->addChild(emitter, 1);
 
-//    emitter->setTexture( CCTextureCache::sharedTextureCache()->addImage(s_stars1) );
-    emitter->setTexture( CCTextureCache::sharedTextureCache()->addImage(PNG_BALL) );
-    emitter->setTexture( CCTextureCache::sharedTextureCache()->addImage(PNG_BAR) );
-    emitter->setTexture( CCTextureCache::sharedTextureCache()->addImage(s_stars1) );
+    emitter->setTexture( CCTextureCache::sharedTextureCache()->addImage(PNG_RECT1) );
 
     emitter->setAutoRemoveOnFinish(true);
 

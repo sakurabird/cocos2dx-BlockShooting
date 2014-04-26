@@ -34,6 +34,8 @@ private:
     static cocos2d::CCFiniteTimeAction* buttonAnimation();
     
 	void tapStartButton();
+
+    void tapSettingButton();
 };
 
 #endif /* defined(__BrockShooting__TopScene__) */
