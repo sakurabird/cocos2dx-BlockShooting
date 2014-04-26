@@ -1,0 +1,12 @@
+info face="Wawati SC" size=64 bold=0 italic=0 charset="" unicode=0 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=2,2
+common lineHeight=90 base=68 scaleW=256 scaleH=128 pages=1 packed=0
+page id=0 file="title.png"
+chars count=8
+char id=32     x=150   y=65    width=0     height=0     xoffset=0     yoffset=71    xadvance=21    page=0 chnl=0 letter=""
+char id=12367  x=2     y=65    width=43    height=53    xoffset=14    yoffset=17    xadvance=64    page=0 chnl=0 letter=""
+char id=12375  x=182   y=2     width=45    height=54    xoffset=15    yoffset=16    xadvance=64    page=0 chnl=0 letter=""
+char id=12378  x=2     y=2     width=59    height=61    xoffset=9     yoffset=13    xadvance=64    page=0 chnl=0 letter=""
+char id=12463  x=63    y=2     width=54    height=61    xoffset=9     yoffset=13    xadvance=64    page=0 chnl=0 letter=""
+char id=12483  x=99    y=65    width=49    height=43    xoffset=12    yoffset=27    xadvance=64    page=0 chnl=0 letter=""
+char id=12502  x=119   y=2     width=61    height=59    xoffset=10    yoffset=11    xadvance=64    page=0 chnl=0 letter=""
+char id=12525  x=47    y=65    width=50    height=43    xoffset=11    yoffset=23    xadvance=64    page=0 chnl=0 letter=""

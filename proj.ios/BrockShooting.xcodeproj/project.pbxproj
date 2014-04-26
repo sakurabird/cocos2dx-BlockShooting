@@ -168,12 +168,14 @@
 		211876171906405C00EFFC9B /* BlockSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211876151906405C00EFFC9B /* BlockSprite.cpp */; };
 		2118762B1906A06600EFFC9B /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211876291906A06600EFFC9B /* GameScene.cpp */; };
 		212881281907B4FF004F7969 /* clear.png in Resources */ = {isa = PBXBuildFile; fileRef = 212881271907B4FF004F7969 /* clear.png */; };
-		2128812A1907ED4E004F7969 /* bg in Resources */ = {isa = PBXBuildFile; fileRef = 212881291907ED4E004F7969 /* bg */; };
 		2132FD3A18FD944900E31121 /* bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2132FD3918FD944900E31121 /* bar.png */; };
 		2133F2171905503C0033FD6A /* BarSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133F2151905503C0033FD6A /* BarSprite.cpp */; };
 		214FB2D118FD4158003ABBB2 /* block.png in Resources */ = {isa = PBXBuildFile; fileRef = 214FB2D018FD4158003ABBB2 /* block.png */; };
 		215A3B4E19054917005D231B /* BallSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A3B4B19054917005D231B /* BallSprite.cpp */; };
 		215E2321190A34B3004138C3 /* stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 215E2320190A34B3004138C3 /* stars.png */; };
+		215E23E9190B7111004138C3 /* title.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 215E23E8190B7111004138C3 /* title.fnt */; };
+		215E23EB190B711A004138C3 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 215E23EA190B711A004138C3 /* title.png */; };
+		215E23ED190B713A004138C3 /* bg in Resources */ = {isa = PBXBuildFile; fileRef = 215E23EC190B713A004138C3 /* bg */; };
 		21A37F0B18FE4C9E00DFE626 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 21A37F0A18FE4C9E00DFE626 /* ball.png */; };
 		21A5B7DC18E9B31400241A7C /* arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21A5B7CD18E9B31400241A7C /* arial.ttf */; };
 		21A5B7DD18E9B31400241A7C /* Marker Felt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21A5B7CE18E9B31400241A7C /* Marker Felt.ttf */; };
@@ -610,7 +612,6 @@
 		211876291906A06600EFFC9B /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/GameScene.cpp; sourceTree = "<group>"; };
 		2118762A1906A06600EFFC9B /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = ../Classes/GameScene.h; sourceTree = "<group>"; };
 		212881271907B4FF004F7969 /* clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clear.png; sourceTree = "<group>"; };
-		212881291907ED4E004F7969 /* bg */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bg; sourceTree = "<group>"; };
 		2132FD3918FD944900E31121 /* bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar.png; sourceTree = "<group>"; };
 		2133F2151905503C0033FD6A /* BarSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BarSprite.cpp; path = ../Classes/BarSprite.cpp; sourceTree = "<group>"; };
 		2133F2161905503C0033FD6A /* BarSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarSprite.h; path = ../Classes/BarSprite.h; sourceTree = "<group>"; };
@@ -619,6 +620,9 @@
 		215A3B4219051BA6005D231B /* BallSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BallSprite.h; path = ../Classes/BallSprite.h; sourceTree = "<group>"; };
 		215A3B4B19054917005D231B /* BallSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BallSprite.cpp; path = ../Classes/BallSprite.cpp; sourceTree = "<group>"; };
 		215E2320190A34B3004138C3 /* stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stars.png; sourceTree = "<group>"; };
+		215E23E8190B7111004138C3 /* title.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = title.fnt; sourceTree = "<group>"; };
+		215E23EA190B711A004138C3 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
+		215E23EC190B713A004138C3 /* bg */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bg; sourceTree = "<group>"; };
 		21A37F0A18FE4C9E00DFE626 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
 		21A5B7CD18E9B31400241A7C /* arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = arial.ttf; sourceTree = "<group>"; };
 		21A5B7CE18E9B31400241A7C /* Marker Felt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Marker Felt.ttf"; sourceTree = "<group>"; };
@@ -1427,6 +1431,8 @@
 		21A5B7CC18E9B31400241A7C /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				215E23EA190B711A004138C3 /* title.png */,
+				215E23E8190B7111004138C3 /* title.fnt */,
 				21A5B7CD18E9B31400241A7C /* arial.ttf */,
 				21A5B7CE18E9B31400241A7C /* Marker Felt.ttf */,
 			);
@@ -1806,8 +1812,8 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				215E23EC190B713A004138C3 /* bg */,
 				215E2320190A34B3004138C3 /* stars.png */,
-				212881291907ED4E004F7969 /* bg */,
 				212881271907B4FF004F7969 /* clear.png */,
 				21A37F0A18FE4C9E00DFE626 /* ball.png */,
 				2132FD3918FD944900E31121 /* bar.png */,
@@ -1914,11 +1920,13 @@
 				21A37F0B18FE4C9E00DFE626 /* ball.png in Resources */,
 				214FB2D118FD4158003ABBB2 /* block.png in Resources */,
 				21A5B7DD18E9B31400241A7C /* Marker Felt.ttf in Resources */,
+				215E23E9190B7111004138C3 /* title.fnt in Resources */,
 				21A5B7E218E9B31400241A7C /* Target.png in Resources */,
+				215E23ED190B713A004138C3 /* bg in Resources */,
 				215E2321190A34B3004138C3 /* stars.png in Resources */,
-				2128812A1907ED4E004F7969 /* bg in Resources */,
 				21A5B7E118E9B31400241A7C /* Projectile.png in Resources */,
 				21A5B7E418E9B31400241A7C /* CloseNormal.png in Resources */,
+				215E23EB190B711A004138C3 /* title.png in Resources */,
 				21A5B7E718E9B31400241A7C /* Projectile.png in Resources */,
 				21A5B7E818E9B31400241A7C /* Target.png in Resources */,
 				21A5B7DC18E9B31400241A7C /* arial.ttf in Resources */,

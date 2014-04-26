@@ -47,6 +47,11 @@ bool TopScene::init()
 
 void TopScene::makeLabel()
 {
+    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    CCLabelBMFont* title = CCLabelBMFont::create("ブロックくずし", "title.fnt");
+    title->setPosition(ccp(visibleSize.width / 2, visibleSize.height * 0.8));
+    addChild(title);
+
     CCLabelTTF* startLabel1 = CCLabelTTF::create("ゲームスタート!", "Arial", 45.0);
     startLabel1->setColor(ccc3(255,192,203));
     CCMenuItemLabel* item1 = CCMenuItemLabel::create(startLabel1, this, menu_selector(TopScene::tapStartButton));
@@ -83,7 +88,6 @@ void TopScene::makeLabel()
                          );
         i++;
     }
-
 
     addChild( menu );
 }

@@ -200,7 +200,7 @@ void GameScene::makeBlock()
 void GameScene::showBackground()
 {
     // 背景を生成
-    int n = rand() % PNG_BG_MAX;
+    int n = rand() % PNG_BG_MAX + 1;
     CCString* fileName = CCString::createWithFormat("bg/bg%d.png",n);
     m_background = CCSprite::create(fileName->getCString());
     if (!m_background) {
@@ -279,7 +279,7 @@ void GameScene::ccTouchEnded(CCTouch *touch, CCEvent* event)
 
 void GameScene::pushBall(CCTouch *touch)
 {
-    BallSprite* ball = BallSprite::createWithBallScale(0.6f);
+    BallSprite* ball = BallSprite::createWithBallScale(1);
     //    CCSprite* projectile = CCSprite::createWithSpriteFrameName("Projectile.png");//テクスチャアトラスを使用
 
     CCNode *bar = this->getChildByTag(TAG_BAR);
@@ -400,8 +400,11 @@ void GameScene::win()
 
     CCParticleSystem* emitter = CCParticleExplosion::create();
     emitter->retain();
-    this->addChild(emitter, 3);
+    this->addChild(emitter, 1);
 
+//    emitter->setTexture( CCTextureCache::sharedTextureCache()->addImage(s_stars1) );
+    emitter->setTexture( CCTextureCache::sharedTextureCache()->addImage(PNG_BALL) );
+    emitter->setTexture( CCTextureCache::sharedTextureCache()->addImage(PNG_BAR) );
     emitter->setTexture( CCTextureCache::sharedTextureCache()->addImage(s_stars1) );
 
     emitter->setAutoRemoveOnFinish(true);
