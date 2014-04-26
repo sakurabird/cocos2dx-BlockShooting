@@ -30,6 +30,8 @@ public:
 private:
 
     void makeLabel();
+
+    static cocos2d::CCFiniteTimeAction* buttonAnimation();
     
 	void tapStartButton();
 };

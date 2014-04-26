@@ -41,7 +41,7 @@ bool BlockSprite::initWithBlockSize(float width, float height, int number)
         return false;
     }
 
-    CCSprite::setTag(TAG_BLOCK);
+    CCSprite::setTag(kTagBlock);
 
     setNumber(number);
 

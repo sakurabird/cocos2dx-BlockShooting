@@ -15,11 +15,6 @@
 #include "BlockSprite.h"
 #include "GameOverScene.h"
 
-enum
-{
-    kTagStartLabel,
-    kTagLayer = 1234,
-};
 static const char s_stars1[]              = "stars.png";
 
 GameScene::~GameScene()
@@ -249,14 +244,14 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
     }
 
     //現在ボールが飛んでいなければボールを出す
-    if (!this->getChildByTag(TAG_BALL)) {
+    if (!this->getChildByTag(kTagBall)) {
         tapStartButton();
         pushBall(touch);
         CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("pew-pew-lei.wav");
     }
 
 	CCPoint location = touch->getLocation();
-    CCSprite *bar = dynamic_cast<CCSprite*>(this->getChildByTag(TAG_BAR));
+    CCSprite *bar = dynamic_cast<CCSprite*>(this->getChildByTag(kTagBar));
 
     if (!bar) {
         return false;
@@ -282,7 +277,7 @@ void GameScene::pushBall(CCTouch *touch)
     BallSprite* ball = BallSprite::createWithBallScale(1);
     //    CCSprite* projectile = CCSprite::createWithSpriteFrameName("Projectile.png");//テクスチャアトラスを使用
 
-    CCNode *bar = this->getChildByTag(TAG_BAR);
+    CCNode *bar = this->getChildByTag(kTagBar);
 	ball->setPosition( ccp(bar->getPositionX(), bar->getPositionY()+ bar->getContentSize().height) );
 	this->addChild(ball);
 }
@@ -290,7 +285,7 @@ void GameScene::pushBall(CCTouch *touch)
 void GameScene::moveBar(CCTouch* touch)
 {
 	CCPoint location = touch->getLocation();
-    CCSprite *bar = dynamic_cast<CCSprite*>(this->getChildByTag(TAG_BAR));
+    CCSprite *bar = dynamic_cast<CCSprite*>(this->getChildByTag(kTagBar));
     if (!bar) {
         CCLog("moveBar null");
         return;
@@ -300,7 +295,7 @@ void GameScene::moveBar(CCTouch* touch)
 
 void GameScene::updateBlocks()
 {
-    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(TAG_BALL));
+    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
     if (!ball) {
         return;
     }
@@ -339,7 +334,7 @@ void GameScene::updateBlocks()
 
 void GameScene::updateWalls()
 {
-    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(TAG_BALL));
+    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
     if (!ball) {
         return;
     }
@@ -363,13 +358,13 @@ void GameScene::updateWalls()
 
 void GameScene::updateBar()
 {
-    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(TAG_BALL));
+    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
     if (!ball) {
         return;
     }
     CCRect ballRect = ball->boundingBox();
 
-    BarSprite *bar = dynamic_cast<BarSprite*>(this->getChildByTag(TAG_BAR));
+    BarSprite *bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
     if (!bar) {
         return;
     }
@@ -389,10 +384,10 @@ void GameScene::win()
 
 	this->unschedule( schedule_selector(GameScene::updateGame) );
 
-    BallSprite* ball = dynamic_cast<BallSprite*>(this->getChildByTag(TAG_BALL));
+    BallSprite* ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
     this->removeChild(ball, true);
 
-    BarSprite* bar = dynamic_cast<BarSprite*>(this->getChildByTag(TAG_BAR));
+    BarSprite* bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
     this->removeChild(bar, true);
 
     CCLayer* layer = dynamic_cast<CCLayer*>(this->getChildByTag(kTagLayer));

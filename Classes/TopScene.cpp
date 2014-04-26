@@ -1,4 +1,5 @@
 #include "TopScene.h"
+#include "Config.h"
 #include "GameScene.h"
 #include "GHelper.h"
 
@@ -48,22 +49,28 @@ bool TopScene::init()
 void TopScene::makeLabel()
 {
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-    CCLabelBMFont* title = CCLabelBMFont::create("ブロックくずし", "title.fnt");
-    title->setPosition(ccp(visibleSize.width / 2, visibleSize.height * 0.8));
+
+    //タイトル
+    CCLabelBMFont* title = CCLabelBMFont::create("Block Shooting!", FONT_TITLE);
+    title->setScale(1.0);
+    title->setPosition( ccp(visibleSize.width / 2, visibleSize.height * 0.8));
     addChild(title);
 
-    CCLabelTTF* startLabel1 = CCLabelTTF::create("ゲームスタート!", "Arial", 45.0);
-    startLabel1->setColor(ccc3(255,192,203));
+    //Playボタン
+    CCLabelBMFont* startLabel1 = CCLabelBMFont::create("Play", FONT_ORANGE, 30);
+    startLabel1->setScale(0.7);
     CCMenuItemLabel* item1 = CCMenuItemLabel::create(startLabel1, this, menu_selector(TopScene::tapStartButton));
+    item1->runAction(buttonAnimation());
 
-    CCLabelTTF* startLabel2 = CCLabelTTF::create("Quit", "Arial", 45.0);
-    startLabel1->setColor(ccc3(255,192,203));
+    //Quitボタン
+    CCLabelBMFont* startLabel2 = CCLabelBMFont::create("Quit", FONT_WHITE, 30);
+    startLabel2->setScale(0.7);
     CCMenuItemLabel* item2 = CCMenuItemLabel::create(startLabel2, this, menu_selector(TopScene::menuCloseCallback));
 
     CCMenu* menu = CCMenu::create( item1, item2, NULL );
     menu->alignItemsVerticallyWithPadding(30.0);
 
-    // elastic effect
+    // 画面表示時のアクション
     CCSize s = CCDirector::sharedDirector()->getWinSize();
 
     int i=0;
@@ -90,6 +97,18 @@ void TopScene::makeLabel()
     }
 
     addChild( menu );
+}
+
+CCFiniteTimeAction* TopScene::buttonAnimation()
+{
+    //Playボタンのアニメーション
+    CCDelayTime* delay1 = CCDelayTime::create(2);
+    CCScaleTo* scaleUp = CCScaleTo::create(0.3, 1.1);
+    CCScaleTo* scaleDown = CCScaleTo::create(0.3, 1);
+    CCSequence* seq = CCSequence::create(delay1, scaleUp, scaleDown, NULL);
+    CCRepeatForever* repeat = CCRepeatForever::create(seq);
+    
+    return repeat;
 }
 
 void TopScene::tapStartButton()

@@ -40,7 +40,7 @@ bool BallSprite::initWithBallScale(float scale)
         return false;
     }
 
-    CCSprite::setTag(TAG_BALL);
+    CCSprite::setTag(kTagBall);
 
     CCSprite::setScale(scale);
 

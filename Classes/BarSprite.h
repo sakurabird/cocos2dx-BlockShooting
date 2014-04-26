@@ -12,8 +12,6 @@
 #include "cocos2d.h"
 #include "Config.h"
 
-#define PNG_BAR "bar.png"
-
 class BarSprite : public cocos2d::CCSprite
 {
 protected:

@@ -12,8 +12,6 @@
 #include "cocos2d.h"
 #include "Config.h"
 
-#define PNG_BLOCK "block.png"
-
 #define BLOCK_COLUMN 12
 #define BLOCK_ROW 7
 
