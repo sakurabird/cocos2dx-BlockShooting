@@ -21,11 +21,7 @@ GameScene::~GameScene()
 {
     CCLOG("~GameScene!");
 
-	if (m_blocks)
-	{
-		m_blocks->release();
-		m_blocks = NULL;
-	}
+    releaseObject();
 }
 
 GameScene::GameScene()
@@ -73,6 +69,9 @@ bool GameScene::init()
     initForVariables();
 
     showBackground();
+
+    //ボールを作成する
+    createBalls();
 
     // バーを作成する
     makeBar();
@@ -128,9 +127,80 @@ void GameScene::initForVariables()
     CCLOG("Hello origin.x: %f, origin.y: %f",_origin.x,_origin.y);
 
     m_blocks = NULL;
+    m_balls = NULL;
     m_blocksDestroyed = 0;
+    m_score = 0;
 
     this->setBallRemain(BALL_REMAIN);
+}
+
+void GameScene::createBalls()
+{
+	m_balls = new CCArray;
+
+    for (int i = 0; i < BALL_REMAIN; i++)
+    {
+        BallSprite* ball = BallSprite::createWithBallScale(1);
+        //    CCSprite* projectile = CCSprite::createWithSpriteFrameName("Projectile.png");//テクスチャアトラスを使用
+        m_balls->addObject(ball);
+    }
+
+    //残りボール数
+    CCLabelBMFont* label1 = CCLabelBMFont::create("Balls:", FONT_WHITE);
+    label1->setScale(0.5);
+    label1->setPosition(GHelper::convI720toCC(_visibleSize.width  * 0.1, _visibleSize.height * 0.01));
+    label1->setTag(kTagBallRemainLabel);
+    this->addChild(label1);
+
+
+    //スコア
+    CCLabelBMFont* label2 = CCLabelBMFont::create("Score:", FONT_WHITE);
+    label2->setScale(0.5);
+    label2->setPosition(label1->getPositionX(),
+                        label1->getPositionY() - label1->getContentSize().height * 0.5);
+    label2->setTag(kTagScoreLabel);
+    this->addChild(label2);
+
+    showBallRemain();
+    showScore();
+}
+
+void GameScene::showBallRemain()
+{
+    //残りボール数
+    CCLabelBMFont* remain = dynamic_cast<CCLabelBMFont*>(this->getChildByTag(kTagBallRemainCount));
+    if (remain) {
+        this->removeChild(remain);
+    }
+
+    CCLabelBMFont* label = dynamic_cast<CCLabelBMFont*>(this->getChildByTag(kTagBallRemainLabel));
+
+    CCString* ballRemain = CCString::createWithFormat("%d", m_ballRemain);
+    remain = CCLabelBMFont::create(ballRemain->getCString(), FONT_ORANGE);
+    remain->setScale(0.5);
+    remain->setPosition(label->getPositionX() + label->getContentSize().width * 0.5,
+                        label->getPositionY());
+    remain->setTag(kTagBallRemainCount);
+    this->addChild(remain);
+}
+
+void GameScene::showScore()
+{
+    //スコア
+    CCLabelBMFont* score = dynamic_cast<CCLabelBMFont*>(this->getChildByTag(kTagScore));
+    if (score) {
+        this->removeChild(score);
+    }
+
+    CCLabelBMFont* label = dynamic_cast<CCLabelBMFont*>(this->getChildByTag(kTagScoreLabel));
+
+    CCString* gameScore = CCString::createWithFormat("%d", getScore());
+    score = CCLabelBMFont::create(gameScore->getCString(), FONT_ORANGE);
+    score->setScale(0.5);
+    score->setPosition(label->getPositionX() + label->getContentSize().width * 0.5,
+                       label->getPositionY());
+    score->setTag(kTagScore);
+    this->addChild(score);
 }
 
 void GameScene::makeBar()
@@ -223,6 +293,8 @@ void GameScene::onBallLost(CCNode* sender)
     int remain = this->getBallRemain() - 1;
     this->setBallRemain(remain);
 
+    showBallRemain();
+
     //ゲームオーバー判定
     if (remain <= 0) {
         this->gameOver();
@@ -314,6 +386,10 @@ void GameScene::updateBlocks()
             ball->bounceBall(blockRect);
 
             blocksToDelete->addObject(block);
+
+            //スコア加算
+            m_score += 100;
+            showScore();
         }
     }
 
@@ -471,6 +547,21 @@ void GameScene::makeCloseButton()
         return;
     }
     this->addChild(pMenu, 1);
+}
+
+void GameScene::releaseObject()
+{
+	if (m_blocks)
+	{
+		m_blocks->release();
+		m_blocks = NULL;
+	}
+
+	if (m_balls)
+	{
+		m_balls->release();
+		m_balls = NULL;
+	}
 }
 
 void GameScene::menuCloseCallback(CCObject* pSender)

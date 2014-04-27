@@ -43,26 +43,37 @@ public:
 
 protected:
 
+
+private:
     //残りボール数をあらわす変数＆アクセサ
     CC_SYNTHESIZE(int, m_ballRemain, BallRemain);
 
-private:
-	CCArray *m_blocks;
+    CC_SYNTHESIZE(int, m_score, Score);
+
+    CC_SYNTHESIZE(CCArray*, m_balls, Balls);
+
+    CCArray *m_blocks;
 
     cocos2d::CCSprite *m_background;
 
 	int m_blocksDestroyed;
 
 
+    void releaseObject();
+
+    void initForVariables();
+
+    void updateGame(float dt);
+
+    void createBalls();
+
     void showBackground();
 
     void showStartLabel();
 
-    void initForVariables();
+    void showBallRemain();
 
-	void addTarget();
-
-    void updateGame(float dt);
+    void showScore();
 
     void makeBar();
 
