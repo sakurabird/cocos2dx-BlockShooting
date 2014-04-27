@@ -47,17 +47,17 @@ protected:
     CC_SYNTHESIZE(int, m_ballRemain, BallRemain);
 
 private:
-	CCArray *_targets;
+	CCArray *m_blocks;
 
     cocos2d::CCSprite *m_background;
-    void showBackground();
 
-	int _blocksDestroyed;
+	int m_blocksDestroyed;
+
+
+    void showBackground();
 
     void showStartLabel();
 
-    void tapStartButton();
-    
     void initForVariables();
 
 	void addTarget();

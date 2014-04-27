@@ -21,10 +21,10 @@ GameScene::~GameScene()
 {
     CCLOG("~GameScene!");
 
-	if (_targets)
+	if (m_blocks)
 	{
-		_targets->release();
-		_targets = NULL;
+		m_blocks->release();
+		m_blocks = NULL;
 	}
 }
 
@@ -87,13 +87,16 @@ bool GameScene::init()
 
     makeCloseButton();
 
+    //ゲームループ開始
+	this->schedule( schedule_selector(GameScene::updateGame) );
+
     return true;
 }
 
 //ゲームループ
 void GameScene::updateGame(float dt)
 {
-    if (_blocksDestroyed >= BLOCK_COLUMN * BLOCK_ROW) {
+    if (m_blocksDestroyed >= BLOCK_COLUMN * BLOCK_ROW) {
         this->win();
         return;
     }
@@ -110,22 +113,10 @@ void GameScene::updateGame(float dt)
 
 void GameScene::showStartLabel()
 {
-    CCLabelTTF* startLabel = CCLabelTTF::create("タッチしてスタート!", "Arial", 50.0);
-    startLabel->setColor(ccc3(0,0,0));
-    CCMenuItemLabel* startItem = CCMenuItemLabel::create(startLabel, this, menu_selector(GameScene::tapStartButton));
-    startItem->setPosition(ccp(_visibleSize.width * 0.5, _visibleSize.height * 0.2));
-
-    CCMenu* menu = CCMenu::create(startItem, NULL);
-    menu->setPosition(CCPointZero);
-    menu->setTag(kTagStartLabel);
-    this->addChild(menu);
-}
-
-void GameScene::tapStartButton()
-{
-	this->schedule( schedule_selector(GameScene::updateGame) );
-    CCNode* lavel = dynamic_cast<CCNode*>(this->getChildByTag(kTagStartLabel));
-    this->removeChild(lavel, true);
+    CCLabelBMFont* startLabel = CCLabelBMFont::create("タッチしてスタート!", FONT_TOUCH);
+    startLabel->setPosition(ccp(_visibleSize.width * 0.5, _visibleSize.height * 0.5));
+    startLabel->setTag(kTagStartLabel);
+    this->addChild(startLabel);
 }
 
 void GameScene::initForVariables()
@@ -136,8 +127,8 @@ void GameScene::initForVariables()
     CCLOG("Hello visibleSize.width: %f, height: %f",_visibleSize.width,_visibleSize.height);
     CCLOG("Hello origin.x: %f, origin.y: %f",_origin.x,_origin.y);
 
-    _targets = NULL;
-    _blocksDestroyed = 0;
+    m_blocks = NULL;
+    m_blocksDestroyed = 0;
 
     this->setBallRemain(BALL_REMAIN);
 }
@@ -160,7 +151,7 @@ void GameScene::makeBar()
 
 void GameScene::makeBlock()
 {
-	_targets = new CCArray;
+	m_blocks = new CCArray;
 
     float width = _visibleSize.width / 16.0;
     float height = width * 0.75;
@@ -183,7 +174,7 @@ void GameScene::makeBlock()
                                                      y + block->getContentSize().height / 2));
 
             this->addChild(block);
-            _targets->addObject(block);
+            m_blocks->addObject(block);
 
             x += block->getContentSize().width + margin;
         }
@@ -241,13 +232,17 @@ void GameScene::onBallLost(CCNode* sender)
 
 bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
-    if (_blocksDestroyed >= BLOCK_COLUMN * BLOCK_ROW) {
+    if (m_blocksDestroyed >= BLOCK_COLUMN * BLOCK_ROW) {
         return false;
+    }
+
+    CCNode* lavel = dynamic_cast<CCNode*>(this->getChildByTag(kTagStartLabel));
+    if (lavel) {
+        this->removeChild(lavel, true);
     }
 
     //現在ボールが飛んでいなければボールを出す
     if (!this->getChildByTag(kTagBall)) {
-        tapStartButton();
         pushBall(touch);
         CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("pew-pew-lei.wav");
     }
@@ -304,34 +299,34 @@ void GameScene::updateBlocks()
     CCRect ballRect = ball->boundingBox();
 
     CCObject* jt = NULL;
-    CCArray* targetsToDelete = new CCArray;
+    CCArray* blocksToDelete = new CCArray;
 
-    CCARRAY_FOREACH(_targets, jt)
+    CCARRAY_FOREACH(m_blocks, jt)
     {
-        CCSprite *target = dynamic_cast<CCSprite*>(jt);
+        CCSprite* block = dynamic_cast<CCSprite*>(jt);
         //            CCLOG("updateGame target.x: %f, target.y: %f, tag: %d",target->getContentSize().width, target->getContentSize().height, target->getTag());
-        CCRect targetRect = target->boundingBox();
+        CCRect blockRect = block->boundingBox();
 
         //衝突判定
-        if (ballRect.intersectsRect(targetRect))
+        if (ballRect.intersectsRect(blockRect))
         {
             // ボールは跳ね返す
-            ball->bounceBall(targetRect);
+            ball->bounceBall(blockRect);
 
-            targetsToDelete->addObject(target);
+            blocksToDelete->addObject(block);
         }
     }
 
     // 当たったブロックを消す
-    CCARRAY_FOREACH(targetsToDelete, jt)
+    CCARRAY_FOREACH(blocksToDelete, jt)
     {
-        CCSprite *target = dynamic_cast<CCSprite*>(jt);
-        _targets->removeObject(target);
-        this->removeChild(target, true);
+        CCSprite *block = dynamic_cast<CCSprite*>(jt);
+        m_blocks->removeObject(block);
+        this->removeChild(block, true);
 
-        _blocksDestroyed++;
+        m_blocksDestroyed++;
     }
-    targetsToDelete->release();
+    blocksToDelete->release();
 }
 
 void GameScene::updateWalls()
@@ -382,6 +377,7 @@ void GameScene::updateBar()
 
 void GameScene::win()
 {
+    //クリア時の処理
     CocosDenshion::SimpleAudioEngine::sharedEngine()->end();
 
 	this->unschedule( schedule_selector(GameScene::updateGame) );
@@ -415,7 +411,7 @@ void GameScene::gameOver()
     GameOverScene *gameOverScene = GameOverScene::create();
     GameOverLayer *gameOverLayer = gameOverScene->getLayer();
 
-    gameOverLayer->setResult(_blocksDestroyed);
+    gameOverLayer->setResult(m_blocksDestroyed);
 
     CCDirector::sharedDirector()->replaceScene(gameOverScene);
 }
@@ -495,6 +491,7 @@ void GameScene::registerWithTouchDispatcher()
 	CCDirector* pDirector = CCDirector::sharedDirector();
 	pDirector->getTouchDispatcher()->addTargetedDelegate(this, kCCMenuHandlerPriority + 1, true);
 }
+
 // Androidバックキーイベント
 void GameScene::keyBackClicked()
 {
