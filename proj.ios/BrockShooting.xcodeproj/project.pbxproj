@@ -167,6 +167,8 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		211876171906405C00EFFC9B /* BlockSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211876151906405C00EFFC9B /* BlockSprite.cpp */; };
 		2118762B1906A06600EFFC9B /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211876291906A06600EFFC9B /* GameScene.cpp */; };
+		2130A400190C9DAC009E3286 /* CCPlaySE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130A3FE190C9DAC009E3286 /* CCPlaySE.cpp */; };
+		2130A402190CB519009E3286 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = 2130A401190CB519009E3286 /* sounds */; };
 		2133F2171905503C0033FD6A /* BarSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133F2151905503C0033FD6A /* BarSprite.cpp */; };
 		215A3B4E19054917005D231B /* BallSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A3B4B19054917005D231B /* BallSprite.cpp */; };
 		215E23ED190B713A004138C3 /* bg in Resources */ = {isa = PBXBuildFile; fileRef = 215E23EC190B713A004138C3 /* bg */; };
@@ -628,6 +630,9 @@
 		211876161906405C00EFFC9B /* BlockSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlockSprite.h; path = ../Classes/BlockSprite.h; sourceTree = "<group>"; };
 		211876291906A06600EFFC9B /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/GameScene.cpp; sourceTree = "<group>"; };
 		2118762A1906A06600EFFC9B /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = ../Classes/GameScene.h; sourceTree = "<group>"; };
+		2130A3FE190C9DAC009E3286 /* CCPlaySE.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCPlaySE.cpp; path = ../Classes/CCPlaySE.cpp; sourceTree = "<group>"; };
+		2130A3FF190C9DAC009E3286 /* CCPlaySE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCPlaySE.h; path = ../Classes/CCPlaySE.h; sourceTree = "<group>"; };
+		2130A401190CB519009E3286 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
 		2133F2151905503C0033FD6A /* BarSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BarSprite.cpp; path = ../Classes/BarSprite.cpp; sourceTree = "<group>"; };
 		2133F2161905503C0033FD6A /* BarSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarSprite.h; path = ../Classes/BarSprite.h; sourceTree = "<group>"; };
 		215A3B4119051358005D231B /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = ../../nyangame/Classes/Config.h; sourceTree = "<group>"; };
@@ -1338,6 +1343,8 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2130A3FE190C9DAC009E3286 /* CCPlaySE.cpp */,
+				2130A3FF190C9DAC009E3286 /* CCPlaySE.h */,
 				2133F2151905503C0033FD6A /* BarSprite.cpp */,
 				2133F2161905503C0033FD6A /* BarSprite.h */,
 				215A3B4119051358005D231B /* Config.h */,
@@ -1862,6 +1869,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2130A401190CB519009E3286 /* sounds */,
 				215E241E190BE527004138C3 /* rect1.png */,
 				215E241F190BE527004138C3 /* bar.png */,
 				215E2420190BE527004138C3 /* clear.png */,
@@ -1962,6 +1970,7 @@
 				21A5B7DF18E9B31400241A7C /* CloseSelected.png in Resources */,
 				215E240A190BB6DD004138C3 /* fontViolet.fnt in Resources */,
 				D4EF949C15BD2D8E00D803EB /* Icon-114.png in Resources */,
+				2130A402190CB519009E3286 /* sounds in Resources */,
 				215E240D190BB6DD004138C3 /* fontWhite.png in Resources */,
 				21A5B7DE18E9B31400241A7C /* CloseNormal.png in Resources */,
 				D4EF949E15BD2D9600D803EB /* Icon-72.png in Resources */,
@@ -2146,6 +2155,7 @@
 				15A3DAEC1682F8A6002FB0C5 /* CDOpenALSupport.m in Sources */,
 				15A3DAED1682F8A6002FB0C5 /* CocosDenshion.m in Sources */,
 				15A3DAEE1682F8A6002FB0C5 /* SimpleAudioEngine.mm in Sources */,
+				2130A400190C9DAC009E3286 /* CCPlaySE.cpp in Sources */,
 				15A3DAEF1682F8A6002FB0C5 /* SimpleAudioEngine_objc.m in Sources */,
 				1A27573F1697CF2B00504026 /* CCEditBoxImplAndroid.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,

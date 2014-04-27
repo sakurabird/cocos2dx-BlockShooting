@@ -15,6 +15,8 @@
 #include "BlockSprite.h"
 #include "GameOverScene.h"
 
+using namespace CocosDenshion;
+
 GameScene::~GameScene()
 {
     CCLOG("~GameScene!");
@@ -64,6 +66,10 @@ bool GameScene::init()
     // Android バックキー・メニューキーイベントを取得する
     setKeypadEnabled(true);
 
+    // BGM再生
+    if (!SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
+        SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MP3_BG, true);
+
     initForVariables();
 
     showBackground();
@@ -80,8 +86,6 @@ bool GameScene::init()
     makeRetryButton();
 
     makeCloseButton();
-
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("background-music-aac.wav", true);
 
     return true;
 }
@@ -440,9 +444,9 @@ void GameScene::makeRetryButton()
 //リトライボタンタップ時の処理
 void GameScene::tapRetryButton(CCNode *node)
 {
-    //ゲームのシーンを新しく用意します
     CCScene* gameScene = (CCScene*)GameScene::create();
-    CCDirector::sharedDirector()->replaceScene(gameScene);
+    CCTransitionTurnOffTiles* tran = CCTransitionTurnOffTiles::create(1, gameScene);
+    CCDirector::sharedDirector()->replaceScene(tran);
 }
 
 

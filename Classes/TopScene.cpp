@@ -2,9 +2,10 @@
 #include "Config.h"
 #include "GameScene.h"
 #include "GHelper.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
-
+using namespace CocosDenshion;
 
 TopScene::~TopScene()
 {
@@ -40,6 +41,9 @@ bool TopScene::init()
     if (!CCLayerColor::initWithColor( ccc4(0,0,0,0) )) {
         return false;
     }
+    // BGM再生
+    if (!SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
+        SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MP3_BG, true);
 
     makeLabel();
 
