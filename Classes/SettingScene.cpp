@@ -9,6 +9,7 @@
 #include "SettingScene.h"
 #include "TopScene.h"
 #include "Config.h"
+#include "UserSettings.h"
 #include "GHelper.h"
 #include "SimpleAudioEngine.h"
 
@@ -33,7 +34,7 @@ CCScene* SettingScene::scene()
 		SettingScene *layer = SettingScene::create();
 		CC_BREAK_IF(! layer);
 
-		scene->addChild(layer);
+		scene->addChild(layer, 100, kTagLayer);
 	} while (0);
 	return scene;
 }
@@ -47,54 +48,94 @@ bool SettingScene::init()
     if (!CCLayerColor::initWithColor( ccc4(0,0,0,0) )) {
         return false;
     }
+    _visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+
     // BGM再生
     if (!SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
         SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MP3_BG, true);
 
-    makeLabel();
+    makeMusicButton();
+    makeSEButton();
+    makeBackButton();
 
     return  true;
 }
 
-void SettingScene::makeLabel()
+void SettingScene::makeMusicButton()
 {
-    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    CCNode* b = this->getChildByTag(kTagMusicButtton);
+    if (b) {
+        this->removeChild(b, true);
+    }
 
-    //タイトル
-    CCLabelBMFont* title = CCLabelBMFont::create("Setting", FONT_ORANGE);
-    title->setScale(1.0);
-    title->setPosition( ccp(visibleSize.width / 2, visibleSize.height * 0.8));
-    addChild(title);
+    CCString* fileName = NULL;
 
     //BackGround Music on/off
-    CCLabelBMFont* label1 = CCLabelBMFont::create("BackgroundMusic", FONT_WHITE, 30);
-    label1->setScale(0.5);
-    label1->setAlignment(kCCTextAlignmentLeft);
-    label1->setPosition(ccp(visibleSize.width * 0.3, visibleSize.height * 0.75));
-    addChild(label1);
+    if (UserSettings::getMusicSetting())
+    {
+        fileName = CCString::create(PNG_MUSIC_OFF);
+    }else{
+        fileName = CCString::create(PNG_MUSIC_ON);
+    }
 
-    //Sound Effect on/off
-    CCLabelBMFont* label2 = CCLabelBMFont::create("SoundEffect", FONT_WHITE, 30);
-    label2->setScale(0.5);
-    label2->setAlignment(kCCTextAlignmentLeft);
-    label2->setPosition(ccp(visibleSize.width * 0.3, visibleSize.height * 0.5));
-    addChild(label2);
+    CCMenuItemImage* button1 = CCMenuItemImage::create(fileName->getCString(), fileName->getCString(), this, menu_selector(SettingScene::onTapMusicOnOFFButton));
+    button1->setPosition(ccp(_visibleSize.width / 2, _visibleSize.height * 0.55));
 
-    //Backボタン
-    CCLabelBMFont* label3 = CCLabelBMFont::create("Back", FONT_VIOLET, 30);
-    label3->setScale(0.5);
-    label3->setAlignment(kCCTextAlignmentLeft);
-//    CCMenuItemLabel* item = CCMenuItemLabel::create(label3, this, menu_selector(SettingScene::tapReturnButton));
-
-//    CCMenu* menu = CCMenu::create(item);
-    label3->setPosition(ccp(visibleSize.width * 0.3, visibleSize.height * 0.2));
-    addChild(label3);
+    CCMenu* menu = CCMenu::create(button1, NULL);
+    menu->setPosition(CCPointZero);
+    this->addChild(menu, kTagMusicButtton);
 }
 
-void SettingScene::tapReturnButton()
+void SettingScene::makeSEButton()
 {
-    CCScene* scene = (CCScene*)TopScene::create();
-//    CCDirector::sharedDirector()->popScene();
-    CCDirector::sharedDirector()->replaceScene(scene);
+    CCNode* b = this->getChildByTag(kTagSEButtton);
+    if (b) {
+        this->removeChild(b, true);
+    }
+
+    CCString* fileName = NULL;
+
+    //Sound Effect on/off
+    if (UserSettings::getSESetting())
+    {
+        fileName = CCString::create(PNG_SE_OFF);
+    }else{
+        fileName = CCString::create(PNG_SE_ON);
+    }
+
+    CCMenuItemImage* button = CCMenuItemImage::create(fileName->getCString(), fileName->getCString(), this, menu_selector(SettingScene::onTapSEOnOFFButton));
+    button->setPosition(ccp(_visibleSize.width / 2, _visibleSize.height * 0.45));
+    CCMenu* menu = CCMenu::create(button, NULL);
+    menu->setPosition(CCPointZero);
+    this->addChild(menu, kTagSEButtton);
+}
+
+void SettingScene::makeBackButton()
+{
+    //Backボタン
+    CCLabelBMFont* label = CCLabelBMFont::create("Back", FONT_VIOLET, 30);
+    label->setScale(0.5);
+    CCMenuItemLabel* item = CCMenuItemLabel::create(label, this, menu_selector(SettingScene::onTapReturnButton));
+    item->setPosition(ccp(_visibleSize.width * 0.8, _visibleSize.height * 0.25));
+    CCMenu* menu = CCMenu::create(item, NULL);
+    menu->setPosition(CCPointZero);
+    this->addChild(menu, kTagSEButtton);
+}
+
+void SettingScene::onTapMusicOnOFFButton()
+{
+    UserSettings::setMusicSetting(!UserSettings::getMusicSetting());
+    makeMusicButton();
+}
+
+void SettingScene::onTapSEOnOFFButton()
+{
+    UserSettings::setSESetting(!UserSettings::getSESetting());
+    makeSEButton();
+}
+
+void SettingScene::onTapReturnButton()
+{
+    CCDirector::sharedDirector()->popScene();
 }
 

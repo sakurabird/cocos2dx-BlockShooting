@@ -213,6 +213,7 @@
 		21A5B7EF18E9B32600241A7C /* TopScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A5B7E918E9B32600241A7C /* TopScene.cpp */; };
 		21A5B7F018E9B32600241A7C /* GameOverScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A5B7EA18E9B32600241A7C /* GameOverScene.cpp */; };
 		21A5B7F118E9B32600241A7C /* GHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A5B7EB18E9B32600241A7C /* GHelper.cpp */; };
+		21B716D319198E7100BD8414 /* UserSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B716D119198E7100BD8414 /* UserSettings.cpp */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		375BD4C31868411B0024609E /* ObjectFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 375BD4BB1868411B0024609E /* ObjectFactory.cpp */; };
 		375BD4C41868411B0024609E /* TriggerBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 375BD4BD1868411B0024609E /* TriggerBase.cpp */; };
@@ -685,6 +686,8 @@
 		21A5B7EC18E9B32600241A7C /* GHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHelper.h; path = ../Classes/GHelper.h; sourceTree = "<group>"; };
 		21A5B7ED18E9B32600241A7C /* TopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopScene.h; path = ../Classes/TopScene.h; sourceTree = "<group>"; };
 		21A5B7EE18E9B32600241A7C /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOverScene.h; path = ../Classes/GameOverScene.h; sourceTree = "<group>"; };
+		21B716D119198E7100BD8414 /* UserSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UserSettings.cpp; path = ../Classes/UserSettings.cpp; sourceTree = "<group>"; };
+		21B716D219198E7100BD8414 /* UserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserSettings.h; path = ../Classes/UserSettings.h; sourceTree = "<group>"; };
 		21CE3F5E18FA5D0900D39B42 /* AppMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppMacros.h; path = ../Classes/AppMacros.h; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		373B911F18788FB000198F86 /* CCComBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCComBase.h; sourceTree = "<group>"; };
@@ -1368,6 +1371,8 @@
 				2118762A1906A06600EFFC9B /* GameScene.h */,
 				21079E7B190D2B6E009E8E20 /* SettingScene.cpp */,
 				21079E7C190D2B6E009E8E20 /* SettingScene.h */,
+				21B716D119198E7100BD8414 /* UserSettings.cpp */,
+				21B716D219198E7100BD8414 /* UserSettings.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -2204,6 +2209,7 @@
 				379BB9A117F03F3700829B88 /* CCDecorativeDisplay.cpp in Sources */,
 				379BB9A217F03F3700829B88 /* CCDisplayFactory.cpp in Sources */,
 				379BB9A317F03F3700829B88 /* CCDisplayManager.cpp in Sources */,
+				21B716D319198E7100BD8414 /* UserSettings.cpp in Sources */,
 				379BB9A417F03F3700829B88 /* CCSkin.cpp in Sources */,
 				379BB9A517F03F3700829B88 /* CCColliderDetector.cpp in Sources */,
 				379BB9A617F03F3700829B88 /* CCArmatureDataManager.cpp in Sources */,

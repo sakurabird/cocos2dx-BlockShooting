@@ -267,21 +267,6 @@ void GameScene::showBackground()
 
     m_background->setPosition(GHelper::convI720toCC(_visibleSize.width / 2, _visibleSize.height / 2));
     addChild(m_background, kZOrderBackground, kTagBackground);
-
-//    //画像をぼやかすレイヤーを加える
-//    CCLayerColor* layer = CCLayerColor::create( ccc4(255, 255, 255, 100) );
-//    layer->setCascadeColorEnabled(false);
-//    addChild(layer, 100, kTagLayer);
-
-
-//
-//    layer->runAction(
-//                      CCRepeatForever::create(
-//                                    CCSequence::create(
-//                                                       CCTintTo::create(35, 255, 0, 255),
-//                                                       CCTintTo::create(25, 255, 255, 255),
-//                                                       CCDelayTime::create(1),
-//                                                                 NULL)));
 }
 
 void GameScene::onBallLost(CCNode* sender)
@@ -463,9 +448,6 @@ void GameScene::win()
 
     BarSprite* bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
     this->removeChild(bar, true);
-
-    CCLayer* layer = dynamic_cast<CCLayer*>(this->getChildByTag(kTagLayer));
-    this->removeChild(layer, true);
 
     CCParticleSystem* emitter = CCParticleExplosion::create();
     emitter->retain();

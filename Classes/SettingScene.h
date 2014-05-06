@@ -25,12 +25,20 @@ public:
 
 	CREATE_FUNC(SettingScene);
 
+    CCSize _visibleSize;
+
 
 private:
 
-    void makeLabel();
+    void makeMusicButton();
+    void makeSEButton();
+    void makeBackButton();
 
-	void tapReturnButton();
+	void onTapMusicOnOFFButton();
+
+    void onTapSEOnOFFButton();
+
+    void onTapReturnButton();
 };
 
 
