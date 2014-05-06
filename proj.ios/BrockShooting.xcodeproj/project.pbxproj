@@ -165,6 +165,7 @@
 		1AFCDA8216D4A25900906EA6 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1AFCDA8116D4A25900906EA6 /* RootViewController.mm */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		21079E7D190D2B6E009E8E20 /* SettingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21079E7B190D2B6E009E8E20 /* SettingScene.cpp */; };
 		211876171906405C00EFFC9B /* BlockSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211876151906405C00EFFC9B /* BlockSprite.cpp */; };
 		2118762B1906A06600EFFC9B /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211876291906A06600EFFC9B /* GameScene.cpp */; };
 		2130A400190C9DAC009E3286 /* CCPlaySE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130A3FE190C9DAC009E3286 /* CCPlaySE.cpp */; };
@@ -626,6 +627,8 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* BrockShooting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrockShooting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		21079E7B190D2B6E009E8E20 /* SettingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SettingScene.cpp; path = ../Classes/SettingScene.cpp; sourceTree = "<group>"; };
+		21079E7C190D2B6E009E8E20 /* SettingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingScene.h; path = ../Classes/SettingScene.h; sourceTree = "<group>"; };
 		211876151906405C00EFFC9B /* BlockSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BlockSprite.cpp; path = ../Classes/BlockSprite.cpp; sourceTree = "<group>"; };
 		211876161906405C00EFFC9B /* BlockSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlockSprite.h; path = ../Classes/BlockSprite.h; sourceTree = "<group>"; };
 		211876291906A06600EFFC9B /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/GameScene.cpp; sourceTree = "<group>"; };
@@ -1363,6 +1366,8 @@
 				211876161906405C00EFFC9B /* BlockSprite.h */,
 				211876291906A06600EFFC9B /* GameScene.cpp */,
 				2118762A1906A06600EFFC9B /* GameScene.h */,
+				21079E7B190D2B6E009E8E20 /* SettingScene.cpp */,
+				21079E7C190D2B6E009E8E20 /* SettingScene.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -2129,6 +2134,7 @@
 				15A3DA491682F826002FB0C5 /* CCControl.cpp in Sources */,
 				15A3DA4A1682F826002FB0C5 /* CCControlButton.cpp in Sources */,
 				15A3DA4B1682F826002FB0C5 /* CCControlColourPicker.cpp in Sources */,
+				21079E7D190D2B6E009E8E20 /* SettingScene.cpp in Sources */,
 				15A3DA4C1682F826002FB0C5 /* CCControlHuePicker.cpp in Sources */,
 				375BD50F1868454E0024609E /* CCActionFrame.cpp in Sources */,
 				15A3DA4D1682F826002FB0C5 /* CCControlPotentiometer.cpp in Sources */,

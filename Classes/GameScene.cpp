@@ -268,9 +268,9 @@ void GameScene::showBackground()
     m_background->setPosition(GHelper::convI720toCC(_visibleSize.width / 2, _visibleSize.height / 2));
     addChild(m_background, kZOrderBackground, kTagBackground);
 
-    //画像をぼやかすレイヤーを加える
-    CCLayerColor* layer = CCLayerColor::create( ccc4(255, 255, 255, 100) );
-    layer->setCascadeColorEnabled(false);
+//    //画像をぼやかすレイヤーを加える
+//    CCLayerColor* layer = CCLayerColor::create( ccc4(255, 255, 255, 100) );
+//    layer->setCascadeColorEnabled(false);
 //    addChild(layer, 100, kTagLayer);
 
 
@@ -454,7 +454,7 @@ void GameScene::updateBar()
 void GameScene::win()
 {
     //クリア時の処理
-    CocosDenshion::SimpleAudioEngine::sharedEngine()->end();
+//    CocosDenshion::SimpleAudioEngine::sharedEngine()->end();
 
 	this->unschedule( schedule_selector(GameScene::updateGame) );
 
@@ -480,7 +480,7 @@ void GameScene::win()
 
 void GameScene::gameOver()
 {
-    CocosDenshion::SimpleAudioEngine::sharedEngine()->end();
+//    CocosDenshion::SimpleAudioEngine::sharedEngine()->end();
 
 	this->unschedule( schedule_selector(GameScene::updateGame) );
 

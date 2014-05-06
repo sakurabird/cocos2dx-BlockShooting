@@ -1,6 +1,8 @@
 #include "TopScene.h"
 #include "Config.h"
 #include "GameScene.h"
+#include "SettingScene.h"
+#include "GameOverScene.h"
 #include "GHelper.h"
 #include "SimpleAudioEngine.h"
 
@@ -69,7 +71,7 @@ void TopScene::makeLabel()
     //Settingボタン
     CCLabelBMFont* startLabel2 = CCLabelBMFont::create("Setting", FONT_WHITE, 30);
     startLabel2->setScale(0.7);
-    CCMenuItemLabel* item2 = CCMenuItemLabel::create(startLabel2, this, menu_selector(TopScene::menuCloseCallback));
+    CCMenuItemLabel* item2 = CCMenuItemLabel::create(startLabel2, this, menu_selector(TopScene::tapSettingButton));
 
     //Quitボタン
     CCLabelBMFont* startLabel3 = CCLabelBMFont::create("Quit", FONT_WHITE, 30);
@@ -129,6 +131,8 @@ void TopScene::tapStartButton()
 
 void TopScene::tapSettingButton()
 {
+    CCScene* scene = (CCScene*)SettingScene::create();
+    CCDirector::sharedDirector()->pushScene(scene);
 }
 
 void TopScene::menuCloseCallback(CCObject* pSender)
