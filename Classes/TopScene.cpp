@@ -1,5 +1,6 @@
 #include "TopScene.h"
 #include "Config.h"
+#include "UserSettings.h"
 #include "GameScene.h"
 #include "SettingScene.h"
 #include "GameOverScene.h"
@@ -44,7 +45,8 @@ bool TopScene::init()
         return false;
     }
     // BGM再生
-    if (!SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
+    if (UserSettings::getMusicSetting() &&
+        !SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
         SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MP3_BG, true);
 
     makeLabel();

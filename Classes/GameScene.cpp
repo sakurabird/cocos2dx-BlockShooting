@@ -7,6 +7,7 @@
 //
 
 #include "GameScene.h"
+#include "UserSettings.h"
 #include "SimpleAudioEngine.h"
 #include "AppMacros.h"
 #include "GHelper.h"
@@ -63,7 +64,8 @@ bool GameScene::init()
     setKeypadEnabled(true);
 
     // BGM再生
-    if (!SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
+    if (UserSettings::getMusicSetting() &&
+        !SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
         SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MP3_BG, true);
 
     initForVariables();

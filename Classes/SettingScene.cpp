@@ -51,7 +51,8 @@ bool SettingScene::init()
     _visibleSize = CCDirector::sharedDirector()->getVisibleSize();
 
     // BGM再生
-    if (!SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
+    if (UserSettings::getMusicSetting() &&
+        !SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
         SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MP3_BG, true);
 
     makeMusicButton();
@@ -125,13 +126,33 @@ void SettingScene::makeBackButton()
 void SettingScene::onTapMusicOnOFFButton()
 {
     UserSettings::setMusicSetting(!UserSettings::getMusicSetting());
+
     makeMusicButton();
+
+    if (UserSettings::getMusicSetting()){
+
+        if (!SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying()) {
+            SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MP3_BG, true);
+        }
+    }else{
+
+        if (SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying()) {
+            SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
+        }
+    }
 }
 
 void SettingScene::onTapSEOnOFFButton()
 {
     UserSettings::setSESetting(!UserSettings::getSESetting());
+
     makeSEButton();
+
+
+    if (!UserSettings::getSESetting()){
+
+        SimpleAudioEngine::sharedEngine()->stopAllEffects();
+    }
 }
 
 void SettingScene::onTapReturnButton()
