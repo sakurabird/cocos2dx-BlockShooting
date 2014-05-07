@@ -445,7 +445,8 @@ void GameScene::updateBar()
 void GameScene::win()
 {
     //クリア時の処理
-//    CocosDenshion::SimpleAudioEngine::sharedEngine()->end();
+    if (UserSettings::getSESetting())
+        SimpleAudioEngine::sharedEngine()->playEffect(MP3_CLEAR);
 
 	this->unschedule( schedule_selector(GameScene::updateGame) );
 
@@ -468,7 +469,8 @@ void GameScene::win()
 
 void GameScene::gameOver()
 {
-//    CocosDenshion::SimpleAudioEngine::sharedEngine()->end();
+    if (UserSettings::getSESetting())
+        SimpleAudioEngine::sharedEngine()->playEffect(MP3_GAMEOVER);
 
 	this->unschedule( schedule_selector(GameScene::updateGame) );
 

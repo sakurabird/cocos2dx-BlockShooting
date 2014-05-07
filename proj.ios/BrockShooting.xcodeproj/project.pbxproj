@@ -166,6 +166,10 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		21079E7D190D2B6E009E8E20 /* SettingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21079E7B190D2B6E009E8E20 /* SettingScene.cpp */; };
+		210E9B13191A2F360010EA31 /* fontBig2.png in Resources */ = {isa = PBXBuildFile; fileRef = 210E9B0F191A2F360010EA31 /* fontBig2.png */; };
+		210E9B14191A2F360010EA31 /* fontBig2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 210E9B10191A2F360010EA31 /* fontBig2.fnt */; };
+		210E9B15191A2F360010EA31 /* fontBig1.png in Resources */ = {isa = PBXBuildFile; fileRef = 210E9B11191A2F360010EA31 /* fontBig1.png */; };
+		210E9B16191A2F360010EA31 /* fontBig1.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 210E9B12191A2F360010EA31 /* fontBig1.fnt */; };
 		211876171906405C00EFFC9B /* BlockSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211876151906405C00EFFC9B /* BlockSprite.cpp */; };
 		2118762B1906A06600EFFC9B /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211876291906A06600EFFC9B /* GameScene.cpp */; };
 		2130A400190C9DAC009E3286 /* CCPlaySE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130A3FE190C9DAC009E3286 /* CCPlaySE.cpp */; };
@@ -625,6 +629,10 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		21079E7B190D2B6E009E8E20 /* SettingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SettingScene.cpp; path = ../Classes/SettingScene.cpp; sourceTree = "<group>"; };
 		21079E7C190D2B6E009E8E20 /* SettingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingScene.h; path = ../Classes/SettingScene.h; sourceTree = "<group>"; };
+		210E9B0F191A2F360010EA31 /* fontBig2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontBig2.png; sourceTree = "<group>"; };
+		210E9B10191A2F360010EA31 /* fontBig2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontBig2.fnt; sourceTree = "<group>"; };
+		210E9B11191A2F360010EA31 /* fontBig1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontBig1.png; sourceTree = "<group>"; };
+		210E9B12191A2F360010EA31 /* fontBig1.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontBig1.fnt; sourceTree = "<group>"; };
 		211876151906405C00EFFC9B /* BlockSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BlockSprite.cpp; path = ../Classes/BlockSprite.cpp; sourceTree = "<group>"; };
 		211876161906405C00EFFC9B /* BlockSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlockSprite.h; path = ../Classes/BlockSprite.h; sourceTree = "<group>"; };
 		211876291906A06600EFFC9B /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/GameScene.cpp; sourceTree = "<group>"; };
@@ -1472,6 +1480,10 @@
 		21A5B7CC18E9B31400241A7C /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				210E9B0F191A2F360010EA31 /* fontBig2.png */,
+				210E9B10191A2F360010EA31 /* fontBig2.fnt */,
+				210E9B11191A2F360010EA31 /* fontBig1.png */,
+				210E9B12191A2F360010EA31 /* fontBig1.fnt */,
 				215E2410190BDC4C004138C3 /* fontTouch.fnt */,
 				215E2411190BDC4C004138C3 /* fontTouch.png */,
 				215E23F4190BB6DD004138C3 /* fontBlue.fnt */,
@@ -1965,10 +1977,12 @@
 				21A5B7DF18E9B31400241A7C /* CloseSelected.png in Resources */,
 				215E240A190BB6DD004138C3 /* fontViolet.fnt in Resources */,
 				D4EF949C15BD2D8E00D803EB /* Icon-114.png in Resources */,
+				210E9B14191A2F360010EA31 /* fontBig2.fnt in Resources */,
 				215E240D190BB6DD004138C3 /* fontWhite.png in Resources */,
 				21A5B7DE18E9B31400241A7C /* CloseNormal.png in Resources */,
 				D4EF949E15BD2D9600D803EB /* Icon-72.png in Resources */,
 				D4EF94A015BD2D9800D803EB /* Icon-144.png in Resources */,
+				210E9B13191A2F360010EA31 /* fontBig2.png in Resources */,
 				215E240C190BB6DD004138C3 /* fontWhite.fnt in Resources */,
 				215E240F190BB6DD004138C3 /* fontYellow.png in Resources */,
 				D41A0AD1160F154A004552AE /* Default-568h@2x.png in Resources */,
@@ -1988,6 +2002,7 @@
 				215E2402190BB6DD004138C3 /* fontBlue.fnt in Resources */,
 				21A5B7E218E9B31400241A7C /* Target.png in Resources */,
 				215E23ED190B713A004138C3 /* bg in Resources */,
+				210E9B16191A2F360010EA31 /* fontBig1.fnt in Resources */,
 				215E2413190BDC4C004138C3 /* fontTouch.png in Resources */,
 				215E241D190BE369004138C3 /* image in Resources */,
 				21A5B7E118E9B31400241A7C /* Projectile.png in Resources */,
@@ -1997,6 +2012,7 @@
 				215E23F2190BB070004138C3 /* title.fnt in Resources */,
 				21A5B7DC18E9B31400241A7C /* arial.ttf in Resources */,
 				21A5B7E518E9B31400241A7C /* CloseSelected.png in Resources */,
+				210E9B15191A2F360010EA31 /* fontBig1.png in Resources */,
 				215E240E190BB6DD004138C3 /* fontYellow.fnt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

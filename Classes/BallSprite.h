@@ -13,7 +13,7 @@
 #include "cocos2d.h"
 #include "Config.h"
 
-#define BALL_REMAIN 15
+#define BALL_REMAIN 3
 
 #define BALL_FRICTION 1.005
 
