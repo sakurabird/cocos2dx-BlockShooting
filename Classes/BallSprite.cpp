@@ -7,8 +7,11 @@
 //
 
 #include "BallSprite.h"
+#include "SimpleAudioEngine.h"
+#include "UserSettings.h"
 
 USING_NS_CC;
+using namespace CocosDenshion;
 
 BallSprite::BallSprite()
 {
@@ -72,6 +75,7 @@ void BallSprite::initVelocity()
     setVelocityY(vy);
 }
 
+//壁に当たった時の処理
 void BallSprite::bounceBall(CCSize visibleSize)
 {
     CCPoint ballPoint = getPosition();
@@ -79,15 +83,19 @@ void BallSprite::bounceBall(CCSize visibleSize)
     float vx = getVelocityX();
     float vy = getVelocityY();
 
-    // 壁に当たった時の処理、速度を入れ替える
+    // 当たった時の処理、速度を入れ替える
     if(ballPoint.x > visibleSize.width - getContentSize().width / 2)
     {
+        if (UserSettings::getSESetting())
+            SimpleAudioEngine::sharedEngine()->playEffect(MP3_BOUNDWALL);
         vx = vx * -1 * BALL_FRICTION;
         setVelocityX(vx);
         setPositionX(visibleSize.width - getContentSize().width / 2 );
     }
     else if( ballPoint.x < 0 )
     {
+        if (UserSettings::getSESetting())
+            SimpleAudioEngine::sharedEngine()->playEffect(MP3_BOUNDWALL);
         vx = vx * -1 * BALL_FRICTION;
         setVelocityX(vx);
         setPositionX(0);
@@ -95,26 +103,54 @@ void BallSprite::bounceBall(CCSize visibleSize)
 
     if( ballPoint.y > visibleSize.height - getContentSize().height /2 )
     {
+        if (UserSettings::getSESetting())
+            SimpleAudioEngine::sharedEngine()->playEffect(MP3_BOUNDWALL);
         vy = vy * -1 * BALL_FRICTION;
         setVelocityY(vy);
         setPositionY(visibleSize.height - getContentSize().height);
     }
 }
 
-void BallSprite::bounceBall(cocos2d::CCRect rect)
+//バーやブロックに当たった時の処理
+void BallSprite::bounceBall(cocos2d::CCRect rect, kTag tag)
 {
-    //バーやブロックに当たった時の処理
     CCRect ballRect = boundingBox();
 
     float vx = getVelocityX();
     float vy = getVelocityY();
 
+    // 当たった時の処理、速度を入れ替える
     if ( ballRect.getMaxX() < rect.getMinX() ||
         rect.getMaxX() < ballRect.getMinX()) {
+
+        if (UserSettings::getSESetting()){
+            switch (tag) {
+                case kTagBar:
+                    SimpleAudioEngine::sharedEngine()->playEffect(MP3_BOUNDBAR);
+                    break;
+                case kTagBlock:
+                    SimpleAudioEngine::sharedEngine()->playEffect(MP3_HITBLOCK);
+                    break;
+                default:
+                    break;
+            }
+        }
         vx = vx * -1 * BALL_FRICTION;
     }
     if ( ballRect.getMaxY() < rect.getMinY() ||
         rect.getMaxY() < ballRect.getMaxY()) {
+        if (UserSettings::getSESetting()){
+            switch (tag) {
+                case kTagBar:
+                    SimpleAudioEngine::sharedEngine()->playEffect(MP3_BOUNDBAR);
+                    break;
+                case kTagBlock:
+                    SimpleAudioEngine::sharedEngine()->playEffect(MP3_HITBLOCK);
+                    break;
+                default:
+                    break;
+            }
+        }
         vy = vy * -1 * BALL_FRICTION;
     }
 

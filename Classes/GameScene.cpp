@@ -9,6 +9,7 @@
 #include "GameScene.h"
 #include "UserSettings.h"
 #include "SimpleAudioEngine.h"
+#include "CCPlaySE.h"
 #include "AppMacros.h"
 #include "GHelper.h"
 #include "BallSprite.h"
@@ -18,15 +19,15 @@
 
 using namespace CocosDenshion;
 
+GameScene::GameScene()
+{
+}
+
 GameScene::~GameScene()
 {
     CCLOG("~GameScene!");
 
     releaseObject();
-}
-
-GameScene::GameScene()
-{
 }
 
 CCScene* GameScene::scene()
@@ -209,8 +210,7 @@ void GameScene::makeBar()
 {
     float w = _visibleSize.width / 4;
     float h = w / 6;
-//    float marginBottom = _visibleSize.height / 15;
-    CCLOG("Hello bar.w: %f, height: %f",w,h);
+//    CCLOG("bar.w: %f, height: %f",w,h);
 
     BarSprite* bar = BarSprite::createWithBarSize(w, h);
 
@@ -228,7 +228,7 @@ void GameScene::makeBlock()
     float width = _visibleSize.width / 16.0;
     float height = width * 0.75;
     float margin = (_visibleSize.width - (width * BLOCK_COLUMN)) / (BLOCK_COLUMN + 1);
-    CCLOG("Hello block.size: %f, margin: %f",width, margin);
+//    CCLOG("block.size: %f, margin: %f",width, margin);
 
     //    CCSprite *block = NULL;
     BlockSprite *block = NULL;
@@ -273,6 +273,9 @@ void GameScene::showBackground()
 
 void GameScene::onBallLost(CCNode* sender)
 {
+    if (UserSettings::getSESetting())
+        SimpleAudioEngine::sharedEngine()->playEffect(MP3_BALLLOST);
+    
     //奈落に落ちたボールを削除
     BallSprite *ball = dynamic_cast<BallSprite*>(sender);
 	this->removeChild(ball, true);
@@ -303,7 +306,8 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
     //現在ボールが飛んでいなければボールを出す
     if (!this->getChildByTag(kTagBall)) {
         pushBall(touch);
-        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("pew-pew-lei.wav");
+        if (UserSettings::getSESetting())
+            SimpleAudioEngine::sharedEngine()->playEffect(MP3_BALLPUSH);
     }
 
 	CCPoint location = touch->getLocation();
@@ -370,7 +374,7 @@ void GameScene::updateBlocks()
         if (ballRect.intersectsRect(blockRect))
         {
             // ボールは跳ね返す
-            ball->bounceBall(blockRect);
+            ball->bounceBall(blockRect, kTagBlock);
 
             blocksToDelete->addObject(block);
 
@@ -434,7 +438,7 @@ void GameScene::updateBar()
     if (ballRect.intersectsRect(barRect))
     {
         // ボールは跳ね返す
-        ball->bounceBall(barRect);
+        ball->bounceBall(barRect, kTagBar);
     }
 }
 

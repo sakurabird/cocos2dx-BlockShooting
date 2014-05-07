@@ -30,7 +30,7 @@ protected:
 
     void bounceBall(cocos2d::CCSize visibleSize);
 
-    void bounceBall(cocos2d::CCRect rect);
+    void bounceBall(cocos2d::CCRect rect, kTag);
     
 public:
 
