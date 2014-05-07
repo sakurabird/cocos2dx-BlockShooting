@@ -16,6 +16,7 @@
 #include "BarSprite.h"
 #include "BlockSprite.h"
 #include "GameOverScene.h"
+#include "Animations.h"
 
 using namespace CocosDenshion;
 
@@ -450,21 +451,29 @@ void GameScene::win()
 
 	this->unschedule( schedule_selector(GameScene::updateGame) );
 
+    //ボールとバーのオブジェクトを取り除く
     BallSprite* ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
     this->removeChild(ball, true);
 
     BarSprite* bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
     this->removeChild(bar, true);
 
+    //パーティクル表示
     CCParticleSystem* emitter = CCParticleExplosion::create();
     emitter->retain();
-    this->addChild(emitter, 1);
+    this->addChild(emitter, kZOrderEmmit);
 
     emitter->setTexture( CCTextureCache::sharedTextureCache()->addImage(PNG_RECT1) );
 
     emitter->setAutoRemoveOnFinish(true);
 
     emitter->setPosition( ccp(_visibleSize.width / 2, _visibleSize.height / 2) );
+
+    //クリアのラベル表示
+    CCLabelBMFont* label = CCLabelBMFont::create("CLEAR!", FONT_BIG1);
+    label->setPosition( ccp(_visibleSize.width / 2, _visibleSize.height * 0.5));
+    label->runAction(Animation::gameClearAction());
+    addChild(label, kZOrderLabel);
 }
 
 void GameScene::gameOver()

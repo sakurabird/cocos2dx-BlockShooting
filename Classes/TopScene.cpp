@@ -1,6 +1,7 @@
 #include "TopScene.h"
 #include "Config.h"
 #include "UserSettings.h"
+#include "Animations.h"
 #include "GameScene.h"
 #include "SettingScene.h"
 #include "GameOverScene.h"
@@ -68,7 +69,7 @@ void TopScene::makeLabel()
     CCLabelBMFont* startLabel1 = CCLabelBMFont::create("Play", FONT_ORANGE, 30);
     startLabel1->setScale(0.7);
     CCMenuItemLabel* item1 = CCMenuItemLabel::create(startLabel1, this, menu_selector(TopScene::tapStartButton));
-    item1->runAction(buttonAnimation());
+    item1->runAction(Animation::topLavelAction());
 
     //Settingボタン
     CCLabelBMFont* startLabel2 = CCLabelBMFont::create("Setting", FONT_WHITE, 30);
@@ -110,18 +111,6 @@ void TopScene::makeLabel()
     }
 
     addChild( menu );
-}
-
-CCFiniteTimeAction* TopScene::buttonAnimation()
-{
-    //Playボタンのアニメーション
-    CCDelayTime* delay1 = CCDelayTime::create(2);
-    CCScaleTo* scaleUp = CCScaleTo::create(0.3, 1.1);
-    CCScaleTo* scaleDown = CCScaleTo::create(0.3, 1);
-    CCSequence* seq = CCSequence::create(delay1, scaleUp, scaleDown, NULL);
-    CCRepeatForever* repeat = CCRepeatForever::create(seq);
-    
-    return repeat;
 }
 
 void TopScene::tapStartButton()

@@ -170,6 +170,7 @@
 		210E9B14191A2F360010EA31 /* fontBig2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 210E9B10191A2F360010EA31 /* fontBig2.fnt */; };
 		210E9B15191A2F360010EA31 /* fontBig1.png in Resources */ = {isa = PBXBuildFile; fileRef = 210E9B11191A2F360010EA31 /* fontBig1.png */; };
 		210E9B16191A2F360010EA31 /* fontBig1.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 210E9B12191A2F360010EA31 /* fontBig1.fnt */; };
+		210E9B19191A306A0010EA31 /* Animations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210E9B17191A306A0010EA31 /* Animations.cpp */; };
 		211876171906405C00EFFC9B /* BlockSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211876151906405C00EFFC9B /* BlockSprite.cpp */; };
 		2118762B1906A06600EFFC9B /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211876291906A06600EFFC9B /* GameScene.cpp */; };
 		2130A400190C9DAC009E3286 /* CCPlaySE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130A3FE190C9DAC009E3286 /* CCPlaySE.cpp */; };
@@ -633,6 +634,8 @@
 		210E9B10191A2F360010EA31 /* fontBig2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontBig2.fnt; sourceTree = "<group>"; };
 		210E9B11191A2F360010EA31 /* fontBig1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontBig1.png; sourceTree = "<group>"; };
 		210E9B12191A2F360010EA31 /* fontBig1.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontBig1.fnt; sourceTree = "<group>"; };
+		210E9B17191A306A0010EA31 /* Animations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Animations.cpp; path = ../Classes/Animations.cpp; sourceTree = "<group>"; };
+		210E9B18191A306A0010EA31 /* Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Animations.h; path = ../Classes/Animations.h; sourceTree = "<group>"; };
 		211876151906405C00EFFC9B /* BlockSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BlockSprite.cpp; path = ../Classes/BlockSprite.cpp; sourceTree = "<group>"; };
 		211876161906405C00EFFC9B /* BlockSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlockSprite.h; path = ../Classes/BlockSprite.h; sourceTree = "<group>"; };
 		211876291906A06600EFFC9B /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/GameScene.cpp; sourceTree = "<group>"; };
@@ -1371,6 +1374,8 @@
 				21079E7C190D2B6E009E8E20 /* SettingScene.h */,
 				21B716D119198E7100BD8414 /* UserSettings.cpp */,
 				21B716D219198E7100BD8414 /* UserSettings.h */,
+				210E9B17191A306A0010EA31 /* Animations.cpp */,
+				210E9B18191A306A0010EA31 /* Animations.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -2086,6 +2091,7 @@
 				15A3D99E1682F7F9002FB0C5 /* cpRatchetJoint.c in Sources */,
 				15A3D99F1682F7F9002FB0C5 /* cpRotaryLimitJoint.c in Sources */,
 				15A3D9A01682F7F9002FB0C5 /* cpSimpleMotor.c in Sources */,
+				210E9B19191A306A0010EA31 /* Animations.cpp in Sources */,
 				15A3D9A11682F7F9002FB0C5 /* cpSlideJoint.c in Sources */,
 				15A3D9A21682F7F9002FB0C5 /* cpArbiter.c in Sources */,
 				15A3D9A31682F7F9002FB0C5 /* cpArray.c in Sources */,
