@@ -77,13 +77,13 @@ private:
 
     void makeBlock();
 
-    void pushBall(CCTouch *touch);
+    void setBall();
 
     void moveBar(CCTouch* touch);
 
     void updateBlocks();
 
-    void updateWalls();
+    void updateBall();
 
     void updateBar();
     

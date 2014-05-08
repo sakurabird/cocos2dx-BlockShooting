@@ -20,6 +20,8 @@
 
 using namespace CocosDenshion;
 
+bool isBallActive;
+
 GameScene::GameScene()
 :m_blocks(NULL)
 ,m_balls(NULL)
@@ -92,6 +94,8 @@ bool GameScene::init()
 
     makeHomeButton();
 
+    setBall();
+
     //ゲームループ開始
 	this->schedule( schedule_selector(GameScene::updateGame) );
 
@@ -106,8 +110,8 @@ void GameScene::updateGame(float dt)
         return;
     }
 
-    //壁の当たり判定
-    updateWalls();
+    //ボール移動
+    updateBall();
 
     // ブロックの当たり判定
     updateBlocks();
@@ -133,6 +137,8 @@ void GameScene::initForVariables()
     CCLOG("Hello origin.x: %f, origin.y: %f",_origin.x,_origin.y);
 
     this->setBallRemain(BALL_REMAIN);
+
+    isBallActive = false;
 }
 
 void GameScene::createBalls()
@@ -164,6 +170,19 @@ void GameScene::createBalls()
 
     showBallRemain();
     showScore();
+}
+
+void GameScene::setBall()
+{
+    if (m_balls->count() <= 0) {
+        return;
+    }
+    BallSprite* ball = dynamic_cast<BallSprite*>(m_balls->lastObject());
+    CCNode *bar = this->getChildByTag(kTagBar);
+	ball->setPosition( ccp(bar->getPositionX(), bar->getPositionY()+ bar->getContentSize().height) );
+	this->addChild(ball);
+
+    m_balls->removeLastObject();
 }
 
 void GameScene::showBallRemain()
@@ -273,6 +292,8 @@ void GameScene::onBallLost(CCNode* sender)
 {
     if (UserSettings::getSESetting())
         SimpleAudioEngine::sharedEngine()->playEffect(MP3_BALLLOST);
+
+    isBallActive = false;
     
     //奈落に落ちたボールを削除
     BallSprite *ball = dynamic_cast<BallSprite*>(sender);
@@ -288,6 +309,7 @@ void GameScene::onBallLost(CCNode* sender)
         this->gameOver();
         return;
     }
+    setBall();
 }
 
 bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
@@ -302,10 +324,11 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
     }
 
     //現在ボールが飛んでいなければボールを飛ばす
-    if (!this->getChildByTag(kTagBall)) {
-        pushBall(touch);
+    if (!isBallActive) {
         if (UserSettings::getSESetting())
             SimpleAudioEngine::sharedEngine()->playEffect(MP3_BALLPUSH);
+        isBallActive = true;
+        return true;
     }
 
 	CCPoint location = touch->getLocation();
@@ -317,7 +340,7 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
     //バーの横幅以内がタップされた場合のみタップイベントを有効にする
     bool b = false;
     CCRect rect = bar->boundingBox();
-    CCLOG("bar  getMaxX: %f,  getMidX: %f,  getMinX: %f",rect.getMaxX(),rect.getMidX(),rect.getMinX());
+//    CCLOG("bar  getMaxX: %f,  getMidX: %f,  getMinX: %f",rect.getMaxX(),rect.getMidX(),rect.getMinX());
     if (!rect.containsPoint(location))
     {
         b = true;
@@ -340,17 +363,31 @@ void GameScene::ccTouchEnded(CCTouch *touch, CCEvent* event)
 {
 }
 
-void GameScene::pushBall(CCTouch *touch)
+void GameScene::updateBall()
 {
-    if (m_balls->count() <= 0) {
+    if (!isBallActive) {
         return;
     }
-    BallSprite* ball = BallSprite::createWithBallScale(0.5);
-    //    CCSprite* projectile = CCSprite::createWithSpriteFrameName("Projectile.png");//テクスチャアトラスを使用
+    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
+    if (!ball) {
+        return;
+    }
 
-    CCNode *bar = this->getChildByTag(kTagBar);
-	ball->setPosition( ccp(bar->getPositionX(), bar->getPositionY()+ bar->getContentSize().height) );
-	this->addChild(ball);
+    CCPoint ballPoint = ball->getPosition();
+    float vx = ball->getVelocityX();
+    float vy = ball->getVelocityY();
+
+    // ボールの移動
+    ball->setPosition(ccp(ball->getPositionX() + vx, ball->getPositionY() + vy));
+
+    if( ballPoint.y < 0 )
+    {
+        //ユーザーがボールを奈落に落とした
+        onBallLost(ball);
+        return;
+    }
+    //壁との衝突判定
+    ball->bounceBall(_visibleSize);
 }
 
 void GameScene::moveBar(CCTouch* touch)
@@ -407,30 +444,6 @@ void GameScene::updateBlocks()
     blocksToDelete->release();
 }
 
-void GameScene::updateWalls()
-{
-    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
-    if (!ball) {
-        return;
-    }
-
-    CCPoint ballPoint = ball->getPosition();
-    float vx = ball->getVelocityX();
-    float vy = ball->getVelocityY();
-
-    // ボールの移動
-    ball->setPosition(ccp(ball->getPositionX() + vx, ball->getPositionY() + vy));
-
-    if( ballPoint.y < 0 )
-    {
-        //ユーザーがボールを奈落に落とした
-        onBallLost(ball);
-        return;
-    }
-    //衝突判定
-    ball->bounceBall(_visibleSize);
-}
-
 void GameScene::updateBar()
 {
     BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
@@ -460,6 +473,7 @@ void GameScene::win()
         SimpleAudioEngine::sharedEngine()->playEffect(MP3_CLEAR);
 
 	this->unschedule( schedule_selector(GameScene::updateGame) );
+    isBallActive = false;
 
     //ボールとバーのオブジェクトを取り除く
     BallSprite* ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
