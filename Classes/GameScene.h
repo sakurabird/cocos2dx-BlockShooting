@@ -95,11 +95,11 @@ private:
 
     void makeRetryButton();
 
-    void tapRetryButton(CCNode *node);
+    void onTapRetryButton(CCNode *node);
 
-    void makeCloseButton();
+    void makeHomeButton();
 
-    virtual void menuCloseCallback(cocos2d::CCObject* pSender);
+    void onTapHomeButton(CCNode *node);
 };
 
 #endif /* defined(__BrockShooting__GameScene__) */

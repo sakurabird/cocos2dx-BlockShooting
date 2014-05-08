@@ -43,8 +43,8 @@ bool BarSprite::initWithBarSize(float width, float height)
     }
 
     CCSprite::setTag(kTagBar);
-    CCLOG("bar.width: %f, height: %f",
-          CCSprite::getContentSize().width, CCSprite::getContentSize().height);
+//    CCLOG("bar.width: %f, height: %f",
+//          CCSprite::getContentSize().width, CCSprite::getContentSize().height);
 
     return true;
 }

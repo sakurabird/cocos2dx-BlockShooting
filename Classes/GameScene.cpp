@@ -21,7 +21,12 @@
 using namespace CocosDenshion;
 
 GameScene::GameScene()
+:m_blocks(NULL)
+,m_balls(NULL)
+,m_blocksDestroyed(0)
+,m_score(0)
 {
+    srand((unsigned int)time(NULL));
 }
 
 GameScene::~GameScene()
@@ -57,8 +62,6 @@ bool GameScene::init()
         return false;
     }
 
-    srand((unsigned int)time(NULL));
-
     setTouchEnabled(true);
     setTouchMode(kCCTouchesOneByOne);
 
@@ -83,12 +86,11 @@ bool GameScene::init()
     //ブロックを作成する
     makeBlock();
 
-    //スタートラベルの表示
     showStartLabel();
 
     makeRetryButton();
 
-    makeCloseButton();
+    makeHomeButton();
 
     //ゲームループ開始
 	this->schedule( schedule_selector(GameScene::updateGame) );
@@ -130,11 +132,6 @@ void GameScene::initForVariables()
     CCLOG("Hello visibleSize.width: %f, height: %f",_visibleSize.width,_visibleSize.height);
     CCLOG("Hello origin.x: %f, origin.y: %f",_origin.x,_origin.y);
 
-    m_blocks = NULL;
-    m_balls = NULL;
-    m_blocksDestroyed = 0;
-    m_score = 0;
-
     this->setBallRemain(BALL_REMAIN);
 }
 
@@ -144,7 +141,7 @@ void GameScene::createBalls()
 
     for (int i = 0; i < BALL_REMAIN; i++)
     {
-        BallSprite* ball = BallSprite::createWithBallScale(1);
+        BallSprite* ball = BallSprite::createWithBallScale(0.5);
         //    CCSprite* projectile = CCSprite::createWithSpriteFrameName("Projectile.png");//テクスチャアトラスを使用
         m_balls->addObject(ball);
     }
@@ -152,7 +149,7 @@ void GameScene::createBalls()
     //残りボール数
     CCLabelBMFont* label1 = CCLabelBMFont::create("Balls:", FONT_WHITE);
     label1->setScale(0.5);
-    label1->setPosition(GHelper::convI720toCC(_visibleSize.width  * 0.1, _visibleSize.height * 0.01));
+    label1->setPosition(GHelper::convI720toCC(_visibleSize.width  * 0.7, _visibleSize.height * 0.01));
     label1->setTag(kTagBallRemainLabel);
     this->addChild(label1);
 
@@ -304,7 +301,7 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
         this->removeChild(lavel, true);
     }
 
-    //現在ボールが飛んでいなければボールを出す
+    //現在ボールが飛んでいなければボールを飛ばす
     if (!this->getChildByTag(kTagBall)) {
         pushBall(touch);
         if (UserSettings::getSESetting())
@@ -317,8 +314,18 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
     if (!bar) {
         return false;
     }
-    //バーがタップされた場合のみタップイベントを有効にする
-    return bar->boundingBox().containsPoint(location);
+    //バーの横幅以内がタップされた場合のみタップイベントを有効にする
+    bool b = false;
+    CCRect rect = bar->boundingBox();
+    CCLOG("bar  getMaxX: %f,  getMidX: %f,  getMinX: %f",rect.getMaxX(),rect.getMidX(),rect.getMinX());
+    if (!rect.containsPoint(location))
+    {
+        b = true;
+    }else if (location.x >= rect.getMinX() && location.x <= rect.getMaxX())
+    {
+        b = true;
+    }
+    return b;
 
 }
 
@@ -335,7 +342,10 @@ void GameScene::ccTouchEnded(CCTouch *touch, CCEvent* event)
 
 void GameScene::pushBall(CCTouch *touch)
 {
-    BallSprite* ball = BallSprite::createWithBallScale(1);
+    if (m_balls->count() <= 0) {
+        return;
+    }
+    BallSprite* ball = BallSprite::createWithBallScale(0.5);
     //    CCSprite* projectile = CCSprite::createWithSpriteFrameName("Projectile.png");//テクスチャアトラスを使用
 
     CCNode *bar = this->getChildByTag(kTagBar);
@@ -494,16 +504,17 @@ void GameScene::gameOver()
 void GameScene::makeRetryButton()
 {
     //リトライボタンを作成する
-    CCLabelTTF* retryLabel = CCLabelTTF::create("Retry", "Arial", 50.0);
-    // tapRetryButton関数が呼ばれるようにする
-    CCMenuItemLabel* retryItem = CCMenuItemLabel::create(retryLabel, this, menu_selector(GameScene::tapRetryButton));
-    if (!retryItem) {
+    CCMenuItemImage *item = CCMenuItemImage::create(
+                                                          PNG_REFRESH,
+                                                          PNG_REFRESH,
+                                                          this,
+                                                          menu_selector(GameScene::onTapRetryButton));
+    if (!item) {
         return;
     }
-    retryItem->setPosition(GHelper::convI720toCC(_visibleSize.width * 0.7, 20));
-
+    item->setPosition(GHelper::convI720toCC(_visibleSize.width * 0.2, 20));
     //メニューを作成する
-    CCMenu* menu = CCMenu::create(retryItem, NULL);
+    CCMenu* menu = CCMenu::create(item, NULL);
     if (!menu) {
         return;
     }
@@ -513,7 +524,7 @@ void GameScene::makeRetryButton()
 }
 
 //リトライボタンタップ時の処理
-void GameScene::tapRetryButton(CCNode *node)
+void GameScene::onTapRetryButton(CCNode* node)
 {
     CCScene* gameScene = (CCScene*)GameScene::create();
     CCTransitionTurnOffTiles* tran = CCTransitionTurnOffTiles::create(1, gameScene);
@@ -521,13 +532,13 @@ void GameScene::tapRetryButton(CCNode *node)
 }
 
 
-void GameScene::makeCloseButton()
+void GameScene::makeHomeButton()
 {
-    CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
-                                                          "CloseNormal.png",
-                                                          "CloseSelected.png",
+    CCMenuItemImage *item = CCMenuItemImage::create(
+                                                          PNG_HOME,
+                                                          PNG_HOME,
                                                           this,
-                                                          menu_selector(GameScene::menuCloseCallback));
+                                                          menu_selector(GameScene::onTapHomeButton));
 
     //        CCSprite* closeNormal = CCSprite::createWithSpriteFrameName("CloseNormal.png");
     //        CCSprite* closeSelected = CCSprite::createWithSpriteFrameName("CloseSelected.png");
@@ -536,16 +547,16 @@ void GameScene::makeCloseButton()
     //                                                                this,
     //                                                                menu_selector(TopScene::menuCloseCallback));
 
-    if (!pCloseItem) {
+    if (!item) {
         return;
     }
-    pCloseItem->setPosition(GHelper::convI720toCC(_visibleSize.width * 0.9, 20));
-    CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
-    pMenu->setPosition(CCPointZero);
-    if (!pMenu) {
+    item->setPosition(GHelper::convI720toCC(_visibleSize.width * 0.1, 20));
+    CCMenu* menu = CCMenu::create(item, NULL);
+    menu->setPosition(CCPointZero);
+    if (!menu) {
         return;
     }
-    this->addChild(pMenu, 1);
+    this->addChild(menu, 1);
 }
 
 void GameScene::releaseObject()
@@ -563,17 +574,9 @@ void GameScene::releaseObject()
 	}
 }
 
-void GameScene::menuCloseCallback(CCObject* pSender)
+void GameScene::onTapHomeButton(CCNode* node)
 {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-	CCMessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
-
-#else
-    CCDirector::sharedDirector()->end();
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
-#endif
+    CCDirector::sharedDirector()->popScene();
 }
 
 void GameScene::registerWithTouchDispatcher()
@@ -585,6 +588,6 @@ void GameScene::registerWithTouchDispatcher()
 // Androidバックキーイベント
 void GameScene::keyBackClicked()
 {
-    CCDirector::sharedDirector()->end();
+    CCDirector::sharedDirector()->popScene();
 }
 

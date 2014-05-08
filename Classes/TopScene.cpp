@@ -117,7 +117,7 @@ void TopScene::tapStartButton()
 {
     CCScene* scene = (CCScene*)GameScene::create();
     CCTransitionSplitRows* tran = CCTransitionSplitRows::create(1, scene);
-    CCDirector::sharedDirector()->replaceScene(tran);
+    CCDirector::sharedDirector()->pushScene(tran);
 }
 
 void TopScene::tapSettingButton()
