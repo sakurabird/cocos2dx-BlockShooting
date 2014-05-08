@@ -37,9 +37,35 @@ BlockSprite* BlockSprite::createWithBlockSize(float width, float height, int num
 
 bool BlockSprite::initWithBlockSize(float width, float height, int number)
 {
-    if (!CCSprite::initWithFile(PNG_BLOCK, CCRectMake(0, 0, width, height))) {
+    CCString* fileName = NULL;
+    int n = rand() % 5;
+    switch (n) {
+        case 1:
+            fileName = CCString::create(PNG_BLOCK_BLUE);
+            break;
+        case 2:
+            fileName = CCString::create(PNG_BLOCK_GREEN);
+            break;
+        case 3:
+            fileName = CCString::create(PNG_BLOCK_RED);
+            break;
+        case 4:
+            fileName = CCString::create(PNG_BLOCK_VIOLET);
+            break;
+        case 5:
+            fileName = CCString::create(PNG_BLOCK_YELLOW);
+            break;
+
+        default:
+            fileName = CCString::create(PNG_BLOCK_BLUE);
+    }
+
+    if (!CCSprite::initWithFile(fileName->getCString(), CCRectMake(0, 0, width, height))) {
         return false;
     }
+//    if (!CCSprite::initWithFile(fileName->getCString())) {
+//        return false;
+//    }
 
     CCSprite::setTag(kTagBlock);
 

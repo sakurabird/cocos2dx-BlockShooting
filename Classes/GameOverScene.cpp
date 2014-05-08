@@ -104,11 +104,6 @@ bool GameOverLayer::init()
 void GameOverLayer::setResult(int score)
 {
     _label->setString("GAME OVER");
-//    if (score >= 5) {
-//        _label->setString("あなたの勝ちヽ(=´▽`=)ﾉ");
-//    } else {
-//        _label->setString("あなたの負け(´・ω・`)");
-//    }
 
     CCUserDefault* userDefault = CCUserDefault::sharedUserDefault();
     const char* highScoreKey = "highscore";

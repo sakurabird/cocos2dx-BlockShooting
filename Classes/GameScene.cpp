@@ -147,7 +147,7 @@ void GameScene::createBalls()
 
     for (int i = 0; i < BALL_REMAIN; i++)
     {
-        BallSprite* ball = BallSprite::createWithBallScale(0.5);
+        BallSprite* ball = BallSprite::createWithBallScale(0.7);
         //    CCSprite* projectile = CCSprite::createWithSpriteFrameName("Projectile.png");//テクスチャアトラスを使用
         m_balls->addObject(ball);
     }
@@ -243,7 +243,7 @@ void GameScene::makeBlock()
 	m_blocks = new CCArray;
 
     float width = _visibleSize.width / 16.0;
-    float height = width * 0.75;
+    float height = width * 0.3;
     float margin = (_visibleSize.width - (width * BLOCK_COLUMN)) / (BLOCK_COLUMN + 1);
 //    CCLOG("block.size: %f, margin: %f",width, margin);
 
@@ -251,7 +251,7 @@ void GameScene::makeBlock()
     BlockSprite *block = NULL;
 
     int number = 0;
-    int y = _visibleSize.height * 0.4;
+    int y = _visibleSize.height * 0.6;
 
     for (int i = 0; i < BLOCK_ROW; i++)
     {
@@ -267,11 +267,8 @@ void GameScene::makeBlock()
 
             x += block->getContentSize().width + margin;
         }
-        y -= block->getContentSize().height + margin * 2;
+        y -= block->getContentSize().height + margin;
     }
-
-    //残りボールがゼロでない時はバーの上にボールを表示する TODO
-
 }
 
 void GameScene::showBackground()
@@ -280,9 +277,7 @@ void GameScene::showBackground()
     int n = rand() % PNG_BG_MAX + 1;
     CCString* fileName = CCString::createWithFormat("bg/bg%d.png",n);
     m_background = CCSprite::create(fileName->getCString());
-    if (!m_background) {
-        return;
-    }
+    if (!m_background) return;
 
     m_background->setPosition(GHelper::convI720toCC(_visibleSize.width / 2, _visibleSize.height / 2));
     addChild(m_background, kZOrderBackground, kTagBackground);
@@ -333,10 +328,8 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
 
 	CCPoint location = touch->getLocation();
     CCSprite *bar = dynamic_cast<CCSprite*>(this->getChildByTag(kTagBar));
+    if (!bar) return false;
 
-    if (!bar) {
-        return false;
-    }
     //バーの横幅以内がタップされた場合のみタップイベントを有効にする
     bool b = false;
     CCRect rect = bar->boundingBox();
@@ -369,9 +362,7 @@ void GameScene::updateBall()
         return;
     }
     BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
-    if (!ball) {
-        return;
-    }
+    if (!ball) return;
 
     CCPoint ballPoint = ball->getPosition();
     float vx = ball->getVelocityX();
@@ -394,19 +385,15 @@ void GameScene::moveBar(CCTouch* touch)
 {
 	CCPoint location = touch->getLocation();
     CCSprite *bar = dynamic_cast<CCSprite*>(this->getChildByTag(kTagBar));
-    if (!bar) {
-        CCLog("moveBar null");
-        return;
-    }
+    if (!bar) return;
     bar->setPositionX(location.x);
 }
 
 void GameScene::updateBlocks()
 {
     BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
-    if (!ball) {
-        return;
-    }
+    if (!ball) return;
+
     CCRect ballRect = ball->boundingBox();
 
     CCObject* jt = NULL;
@@ -447,15 +434,12 @@ void GameScene::updateBlocks()
 void GameScene::updateBar()
 {
     BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
-    if (!ball) {
-        return;
-    }
+    if (!ball) return;
+
     CCRect ballRect = ball->boundingBox();
 
     BarSprite *bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
-    if (!bar) {
-        return;
-    }
+    if (!bar) return;
     CCRect barRect = bar->boundingBox();
 
     //衝突判定
@@ -523,18 +507,14 @@ void GameScene::makeRetryButton()
                                                           PNG_REFRESH,
                                                           this,
                                                           menu_selector(GameScene::onTapRetryButton));
-    if (!item) {
-        return;
-    }
+    if (!item) return;
     item->setPosition(GHelper::convI720toCC(_visibleSize.width * 0.2, 20));
     //メニューを作成する
     CCMenu* menu = CCMenu::create(item, NULL);
-    if (!menu) {
-        return;
-    }
+    if (!menu) return;
     //上でリトライボタンの位置を設定したためここはCCPointZeroとする必要がある
     menu->setPosition(CCPointZero);
-    this->addChild(menu);
+    this->addChild(menu, kZOrderTop, kTagRetry);
 }
 
 //リトライボタンタップ時の処理
@@ -561,16 +541,12 @@ void GameScene::makeHomeButton()
     //                                                                this,
     //                                                                menu_selector(TopScene::menuCloseCallback));
 
-    if (!item) {
-        return;
-    }
+    if (!item) return;
     item->setPosition(GHelper::convI720toCC(_visibleSize.width * 0.1, 20));
     CCMenu* menu = CCMenu::create(item, NULL);
     menu->setPosition(CCPointZero);
-    if (!menu) {
-        return;
-    }
-    this->addChild(menu, 1);
+    if (!menu) return;
+    this->addChild(menu, kZOrderTop, kTagHome);
 }
 
 void GameScene::releaseObject()
