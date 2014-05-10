@@ -55,6 +55,8 @@ bool LevelSelectScene::init()
         !SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
         SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MP3_BG, true);
 
+    makeBackButton();
+    
     makeLabel();
 
     return  true;
@@ -73,39 +75,50 @@ void LevelSelectScene::makeLabel()
     //Easyボタン
     CCLabelBMFont* startLabel1 = CCLabelBMFont::create("EASY", FONT_GREEN, 30);
     startLabel1->setScale(0.7);
-    CCMenuItemLabel* item1 = CCMenuItemLabel::create(startLabel1, this, menu_selector(LevelSelectScene::tapEasyButton));
+    CCMenuItemLabel* item1 = CCMenuItemLabel::create(startLabel1, this, menu_selector(LevelSelectScene::onTapEasyButton));
 
     //Normalボタン
     CCLabelBMFont* startLabel2 = CCLabelBMFont::create("NORMAL", FONT_YELLOW, 30);
     startLabel2->setScale(0.7);
-    CCMenuItemLabel* item2 = CCMenuItemLabel::create(startLabel2, this, menu_selector(LevelSelectScene::tapNormalButton));
+    CCMenuItemLabel* item2 = CCMenuItemLabel::create(startLabel2, this, menu_selector(LevelSelectScene::onTapNormalButton));
 
     //Hardボタン
     CCLabelBMFont* startLabel3 = CCLabelBMFont::create("HARD", FONT_BLUE, 30);
     startLabel3->setScale(0.7);
-    CCMenuItemLabel* item3 = CCMenuItemLabel::create(startLabel3, this, menu_selector(LevelSelectScene::tapHardButton));
+    CCMenuItemLabel* item3 = CCMenuItemLabel::create(startLabel3, this, menu_selector(LevelSelectScene::onTapHardButton));
 
-    //Backボタン
-    CCLabelBMFont* startLabel4 = CCLabelBMFont::create("Back", FONT_WHITE, 30);
-    startLabel4->setScale(0.7);
-    CCMenuItemLabel* item4 = CCMenuItemLabel::create(startLabel4, this, menu_selector(LevelSelectScene::onTapBackButton));
-
-    CCMenu* menu = CCMenu::create( item1, item2, item3, item4, NULL );
+    CCMenu* menu = CCMenu::create( item1, item2, item3, NULL );
     menu->alignItemsVerticallyWithPadding(30.0);
     addChild( menu );
 }
 
-void LevelSelectScene::tapEasyButton()
+void LevelSelectScene::makeBackButton()
+{
+    CCMenuItemImage *item = CCMenuItemImage::create(
+                                                    PNG_BACK,
+                                                    PNG_BACK,
+                                                    this,
+                                                    menu_selector(LevelSelectScene::onTapBackButton));
+
+    if (!item) return;
+    item->setPosition(GHelper::convI720toCC(30, 20));
+    CCMenu* menu = CCMenu::create(item, NULL);
+    menu->setPosition(CCPointZero);
+    if (!menu) return;
+    this->addChild(menu, kZOrderTop, kTagBack);
+}
+
+void LevelSelectScene::onTapEasyButton()
 {
     this->onLevelSelected(LEVEL_EASY);
 }
 
-void LevelSelectScene::tapNormalButton()
+void LevelSelectScene::onTapNormalButton()
 {
     this->onLevelSelected(LEVEL_NORMAL);
 }
 
-void LevelSelectScene::tapHardButton()
+void LevelSelectScene::onTapHardButton()
 {
     this->onLevelSelected(LEVEL_HARD);
 }

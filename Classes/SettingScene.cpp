@@ -57,7 +57,9 @@ bool SettingScene::init()
         SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MP3_BG, true);
 
     makeMusicButton();
+
     makeSEButton();
+
     makeBackButton();
 
     return  true;
@@ -114,14 +116,18 @@ void SettingScene::makeSEButton()
 
 void SettingScene::makeBackButton()
 {
-    //Backボタン
-    CCLabelBMFont* label = CCLabelBMFont::create("Back", FONT_VIOLET, 30);
-    label->setScale(0.5);
-    CCMenuItemLabel* item = CCMenuItemLabel::create(label, this, menu_selector(SettingScene::onTapReturnButton));
-    item->setPosition(ccp(_visibleSize.width * 0.8, _visibleSize.height * 0.25));
+    CCMenuItemImage *item = CCMenuItemImage::create(
+                                                    PNG_BACK,
+                                                    PNG_BACK,
+                                                    this,
+                                                    menu_selector(SettingScene::onTapBackButton));
+
+    if (!item) return;
+    item->setPosition(GHelper::convI720toCC(30, 20));
     CCMenu* menu = CCMenu::create(item, NULL);
     menu->setPosition(CCPointZero);
-    this->addChild(menu, kTagSEButtton);
+    if (!menu) return;
+    this->addChild(menu, kZOrderTop, kTagBack);
 }
 
 void SettingScene::onTapMusicOnOFFButton()
@@ -156,7 +162,7 @@ void SettingScene::onTapSEOnOFFButton()
     }
 }
 
-void SettingScene::onTapReturnButton()
+void SettingScene::onTapBackButton()
 {
     CCDirector::sharedDirector()->popScene();
 }

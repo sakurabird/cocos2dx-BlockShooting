@@ -91,13 +91,13 @@ private:
 
     void gameOver();
 
+    void makeBackButton();
+
+    void onTapBackButton();
+
     void makeRetryButton();
 
-    void onTapRetryButton(CCNode *node);
-
-    void makeHomeButton();
-
-    void onTapHomeButton(CCNode *node);
+    void onTapRetryButton();
 };
 
 #endif /* defined(__BrockShooting__GameScene__) */

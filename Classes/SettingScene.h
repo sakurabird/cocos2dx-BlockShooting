@@ -30,15 +30,17 @@ public:
 
 private:
 
-    void makeMusicButton();
-    void makeSEButton();
     void makeBackButton();
+
+    void onTapBackButton();
+
+    void makeMusicButton();
+
+    void makeSEButton();
 
 	void onTapMusicOnOFFButton();
 
     void onTapSEOnOFFButton();
-
-    void onTapReturnButton();
 };
 
 

@@ -88,9 +88,9 @@ bool GameScene::init()
 
     showStartLabel();
 
-    makeRetryButton();
+    makeBackButton();
 
-    makeHomeButton();
+    makeRetryButton();
 
     setBall();
 
@@ -520,16 +520,36 @@ void GameScene::gameOver()
     CCDirector::sharedDirector()->replaceScene(gameOverScene);
 }
 
+void GameScene::makeBackButton()
+{
+    CCMenuItemImage *item = CCMenuItemImage::create(
+                                                    PNG_BACK,
+                                                    PNG_BACK,
+                                                    this,
+                                                    menu_selector(GameScene::onTapBackButton));
+
+    if (!item) return;
+    item->setPosition(GHelper::convI720toCC(30, 20));
+    CCMenu* menu = CCMenu::create(item, NULL);
+    menu->setPosition(CCPointZero);
+    if (!menu) return;
+    this->addChild(menu, kZOrderTop, kTagBack);
+}
+
 void GameScene::makeRetryButton()
 {
     //リトライボタンを作成する
+    CCNode* obj = this->getChildByTag(kTagBack);
+    if (!obj) return;
+    CCLOG("obj getPositionX: %f, w: %f, h: %f",obj->getPositionX(),obj->getContentSize().width,obj->getContentSize().height);
+
     CCMenuItemImage *item = CCMenuItemImage::create(
                                                           PNG_REFRESH,
                                                           PNG_REFRESH,
                                                           this,
                                                           menu_selector(GameScene::onTapRetryButton));
     if (!item) return;
-    item->setPosition(GHelper::convI720toCC(_visibleSize.width * 0.2, 20));
+    item->setPosition(GHelper::convI720toCC(obj->getPositionX() + 100, 20));
     //メニューを作成する
     CCMenu* menu = CCMenu::create(item, NULL);
     if (!menu) return;
@@ -539,36 +559,13 @@ void GameScene::makeRetryButton()
 }
 
 //リトライボタンタップ時の処理
-void GameScene::onTapRetryButton(CCNode* node)
+void GameScene::onTapRetryButton()
 {
     CCScene* gameScene = (CCScene*)GameScene::create();
     CCTransitionTurnOffTiles* tran = CCTransitionTurnOffTiles::create(1, gameScene);
     CCDirector::sharedDirector()->replaceScene(tran);
 }
 
-
-void GameScene::makeHomeButton()
-{
-    CCMenuItemImage *item = CCMenuItemImage::create(
-                                                          PNG_HOME,
-                                                          PNG_HOME,
-                                                          this,
-                                                          menu_selector(GameScene::onTapHomeButton));
-
-    //        CCSprite* closeNormal = CCSprite::createWithSpriteFrameName("CloseNormal.png");
-    //        CCSprite* closeSelected = CCSprite::createWithSpriteFrameName("CloseSelected.png");
-    //        CCMenuItemSprite *pCloseItem = CCMenuItemSprite::create(closeNormal,
-    //                                                                closeSelected,
-    //                                                                this,
-    //                                                                menu_selector(TopScene::menuCloseCallback));
-
-    if (!item) return;
-    item->setPosition(GHelper::convI720toCC(_visibleSize.width * 0.1, 20));
-    CCMenu* menu = CCMenu::create(item, NULL);
-    menu->setPosition(CCPointZero);
-    if (!menu) return;
-    this->addChild(menu, kZOrderTop, kTagHome);
-}
 
 void GameScene::releaseObject()
 {
@@ -585,7 +582,7 @@ void GameScene::releaseObject()
 	}
 }
 
-void GameScene::onTapHomeButton(CCNode* node)
+void GameScene::onTapBackButton()
 {
     CCDirector::sharedDirector()->popScene();
 }
