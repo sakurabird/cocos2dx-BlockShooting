@@ -3,6 +3,7 @@
 //  nyangame
 //
 //  Created by sakura on 2014/04/20.
+//  cocos2d-xによるiPhoneAndroidプログラミングガイドより
 //
 //
 

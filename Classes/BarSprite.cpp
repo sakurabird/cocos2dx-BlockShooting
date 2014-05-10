@@ -1,5 +1,5 @@
 //
-//  Bar.cpp
+//  BarSprite.cpp
 //  BrockShooting
 //
 //  Created by sakura on 2014/04/21.

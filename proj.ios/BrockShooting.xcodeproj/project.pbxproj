@@ -668,9 +668,9 @@
 		21358651191E621A00040DD5 /* Marker Felt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Marker Felt.ttf"; sourceTree = "<group>"; };
 		2135866A191E63DA00040DD5 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = ../Classes/Utils.cpp; sourceTree = "<group>"; };
 		2135866B191E63DA00040DD5 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = ../Classes/Utils.h; sourceTree = "<group>"; };
+		2135866D191E882600040DD5 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = ../Classes/Config.h; sourceTree = "<group>"; };
 		214AB0E8191DFC8000F5BD74 /* LevelSelectScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelSelectScene.cpp; path = ../Classes/LevelSelectScene.cpp; sourceTree = "<group>"; };
 		214AB0E9191DFC8000F5BD74 /* LevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelSelectScene.h; path = ../Classes/LevelSelectScene.h; sourceTree = "<group>"; };
-		215A3B4119051358005D231B /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = ../../nyangame/Classes/Config.h; sourceTree = "<group>"; };
 		215A3B4219051BA6005D231B /* BallSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BallSprite.h; path = ../Classes/BallSprite.h; sourceTree = "<group>"; };
 		215A3B4B19054917005D231B /* BallSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BallSprite.cpp; path = ../Classes/BallSprite.cpp; sourceTree = "<group>"; };
 		215E23EC190B713A004138C3 /* bg */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bg; sourceTree = "<group>"; };
@@ -1356,11 +1356,11 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2135866D191E882600040DD5 /* Config.h */,
 				2130A3FE190C9DAC009E3286 /* CCPlaySE.cpp */,
 				2130A3FF190C9DAC009E3286 /* CCPlaySE.h */,
 				2133F2151905503C0033FD6A /* BarSprite.cpp */,
 				2133F2161905503C0033FD6A /* BarSprite.h */,
-				215A3B4119051358005D231B /* Config.h */,
 				21A5B7E918E9B32600241A7C /* TopScene.cpp */,
 				21A5B7EA18E9B32600241A7C /* GameOverScene.cpp */,
 				21A5B7EB18E9B32600241A7C /* GHelper.cpp */,
