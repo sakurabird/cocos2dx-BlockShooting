@@ -18,6 +18,7 @@
 #include "GameOverScene.h"
 #include "Animations.h"
 
+USING_NS_CC;
 using namespace CocosDenshion;
 
 bool isBallActive;

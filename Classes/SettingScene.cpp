@@ -13,6 +13,7 @@
 #include "GHelper.h"
 #include "SimpleAudioEngine.h"
 
+USING_NS_CC;
 using namespace CocosDenshion;
 
 SettingScene::~SettingScene()
@@ -156,6 +157,11 @@ void SettingScene::onTapSEOnOFFButton()
 }
 
 void SettingScene::onTapReturnButton()
+{
+    CCDirector::sharedDirector()->popScene();
+}
+
+void SettingScene::keyBackClicked()
 {
     CCDirector::sharedDirector()->popScene();
 }

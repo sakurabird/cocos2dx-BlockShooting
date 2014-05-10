@@ -12,16 +12,14 @@
 
 #include "cocos2d.h"
 
-USING_NS_CC;
-
 class Animation
 {
 public:
     // top画面
-    static CCFiniteTimeAction* topLavelAction();
+    static cocos2d::CCFiniteTimeAction* topLavelAction();
 
     // game画面
-    static CCFiniteTimeAction* gameClearAction();
+    static cocos2d::CCFiniteTimeAction* gameClearAction();
 
 
 //    static CCFiniteTimeAction* gameOverAnimation(CCObject* target, SEL_CallFunc selector);

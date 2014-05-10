@@ -11,8 +11,6 @@
 
 #include "cocos2d.h"
 
-USING_NS_CC;
-
 class SettingScene : public cocos2d::CCLayerColor
 {
 public:
@@ -25,8 +23,10 @@ public:
 
 	CREATE_FUNC(SettingScene);
 
-    CCSize _visibleSize;
+    cocos2d::CCSize _visibleSize;
 
+    //Androidのバックキー処理
+    virtual void keyBackClicked();
 
 private:
 

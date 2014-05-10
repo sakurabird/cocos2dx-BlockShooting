@@ -22,9 +22,12 @@ public:
 
 	static cocos2d::CCScene* scene();
 
+	CREATE_FUNC(TopScene);
+
 	virtual void menuCloseCallback(cocos2d::CCObject* pSender);
 
-	CREATE_FUNC(TopScene);
+    //Androidのバックキー処理
+    virtual void keyBackClicked();
 
 
 private:

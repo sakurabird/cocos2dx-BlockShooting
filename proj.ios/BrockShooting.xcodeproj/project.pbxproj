@@ -166,38 +166,39 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		21079E7D190D2B6E009E8E20 /* SettingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21079E7B190D2B6E009E8E20 /* SettingScene.cpp */; };
-		210E9B13191A2F360010EA31 /* fontBig2.png in Resources */ = {isa = PBXBuildFile; fileRef = 210E9B0F191A2F360010EA31 /* fontBig2.png */; };
-		210E9B14191A2F360010EA31 /* fontBig2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 210E9B10191A2F360010EA31 /* fontBig2.fnt */; };
-		210E9B15191A2F360010EA31 /* fontBig1.png in Resources */ = {isa = PBXBuildFile; fileRef = 210E9B11191A2F360010EA31 /* fontBig1.png */; };
-		210E9B16191A2F360010EA31 /* fontBig1.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 210E9B12191A2F360010EA31 /* fontBig1.fnt */; };
 		210E9B19191A306A0010EA31 /* Animations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210E9B17191A306A0010EA31 /* Animations.cpp */; };
 		211876171906405C00EFFC9B /* BlockSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211876151906405C00EFFC9B /* BlockSprite.cpp */; };
 		2118762B1906A06600EFFC9B /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211876291906A06600EFFC9B /* GameScene.cpp */; };
 		2130A400190C9DAC009E3286 /* CCPlaySE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130A3FE190C9DAC009E3286 /* CCPlaySE.cpp */; };
 		2133F2171905503C0033FD6A /* BarSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133F2151905503C0033FD6A /* BarSprite.cpp */; };
+		21358652191E621A00040DD5 /* arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2135863A191E621A00040DD5 /* arial.ttf */; };
+		21358653191E621A00040DD5 /* fontBig1.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 2135863B191E621A00040DD5 /* fontBig1.fnt */; };
+		21358654191E621A00040DD5 /* fontBig1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2135863C191E621A00040DD5 /* fontBig1.png */; };
+		21358655191E621A00040DD5 /* fontBig2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 2135863D191E621A00040DD5 /* fontBig2.fnt */; };
+		21358656191E621A00040DD5 /* fontBig2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2135863E191E621A00040DD5 /* fontBig2.png */; };
+		21358657191E621A00040DD5 /* fontBlue.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 2135863F191E621A00040DD5 /* fontBlue.fnt */; };
+		21358658191E621A00040DD5 /* fontBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 21358640191E621A00040DD5 /* fontBlue.png */; };
+		21358659191E621A00040DD5 /* fontGreen.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 21358641191E621A00040DD5 /* fontGreen.fnt */; };
+		2135865A191E621A00040DD5 /* fontGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 21358642191E621A00040DD5 /* fontGreen.png */; };
+		2135865B191E621A00040DD5 /* fontOrange.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 21358643191E621A00040DD5 /* fontOrange.fnt */; };
+		2135865C191E621A00040DD5 /* fontOrange.png in Resources */ = {isa = PBXBuildFile; fileRef = 21358644191E621A00040DD5 /* fontOrange.png */; };
+		2135865D191E621A00040DD5 /* fontRed.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 21358645191E621A00040DD5 /* fontRed.fnt */; };
+		2135865E191E621A00040DD5 /* fontRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 21358646191E621A00040DD5 /* fontRed.png */; };
+		2135865F191E621A00040DD5 /* fonttitle.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 21358647191E621A00040DD5 /* fonttitle.fnt */; };
+		21358660191E621A00040DD5 /* fonttitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 21358648191E621A00040DD5 /* fonttitle.png */; };
+		21358661191E621A00040DD5 /* fontTouch.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 21358649191E621A00040DD5 /* fontTouch.fnt */; };
+		21358662191E621A00040DD5 /* fontTouch.png in Resources */ = {isa = PBXBuildFile; fileRef = 2135864A191E621A00040DD5 /* fontTouch.png */; };
+		21358663191E621A00040DD5 /* fontViolet.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 2135864B191E621A00040DD5 /* fontViolet.fnt */; };
+		21358664191E621A00040DD5 /* fontViolet.png in Resources */ = {isa = PBXBuildFile; fileRef = 2135864C191E621A00040DD5 /* fontViolet.png */; };
+		21358665191E621A00040DD5 /* fontWhite.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 2135864D191E621A00040DD5 /* fontWhite.fnt */; };
+		21358666191E621A00040DD5 /* fontWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 2135864E191E621A00040DD5 /* fontWhite.png */; };
+		21358667191E621A00040DD5 /* fontYellow.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 2135864F191E621A00040DD5 /* fontYellow.fnt */; };
+		21358668191E621A00040DD5 /* fontYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 21358650191E621A00040DD5 /* fontYellow.png */; };
+		21358669191E621A00040DD5 /* Marker Felt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21358651191E621A00040DD5 /* Marker Felt.ttf */; };
+		214AB0EA191DFC8000F5BD74 /* LevelSelectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214AB0E8191DFC8000F5BD74 /* LevelSelectScene.cpp */; };
 		215A3B4E19054917005D231B /* BallSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A3B4B19054917005D231B /* BallSprite.cpp */; };
 		215E23ED190B713A004138C3 /* bg in Resources */ = {isa = PBXBuildFile; fileRef = 215E23EC190B713A004138C3 /* bg */; };
-		215E23F2190BB070004138C3 /* title.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 215E23F0190BB070004138C3 /* title.fnt */; };
-		215E23F3190BB070004138C3 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 215E23F1190BB070004138C3 /* title.png */; };
-		215E2402190BB6DD004138C3 /* fontBlue.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 215E23F4190BB6DD004138C3 /* fontBlue.fnt */; };
-		215E2403190BB6DD004138C3 /* fontBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 215E23F5190BB6DD004138C3 /* fontBlue.png */; };
-		215E2404190BB6DD004138C3 /* fontGreen.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 215E23F6190BB6DD004138C3 /* fontGreen.fnt */; };
-		215E2405190BB6DD004138C3 /* fontGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 215E23F7190BB6DD004138C3 /* fontGreen.png */; };
-		215E2406190BB6DD004138C3 /* fontOrange.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 215E23F8190BB6DD004138C3 /* fontOrange.fnt */; };
-		215E2407190BB6DD004138C3 /* fontOrange.png in Resources */ = {isa = PBXBuildFile; fileRef = 215E23F9190BB6DD004138C3 /* fontOrange.png */; };
-		215E2408190BB6DD004138C3 /* fontRed.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 215E23FA190BB6DD004138C3 /* fontRed.fnt */; };
-		215E2409190BB6DD004138C3 /* fontRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 215E23FB190BB6DD004138C3 /* fontRed.png */; };
-		215E240A190BB6DD004138C3 /* fontViolet.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 215E23FC190BB6DD004138C3 /* fontViolet.fnt */; };
-		215E240B190BB6DD004138C3 /* fontViolet.png in Resources */ = {isa = PBXBuildFile; fileRef = 215E23FD190BB6DD004138C3 /* fontViolet.png */; };
-		215E240C190BB6DD004138C3 /* fontWhite.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 215E23FE190BB6DD004138C3 /* fontWhite.fnt */; };
-		215E240D190BB6DD004138C3 /* fontWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 215E23FF190BB6DD004138C3 /* fontWhite.png */; };
-		215E240E190BB6DD004138C3 /* fontYellow.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 215E2400190BB6DD004138C3 /* fontYellow.fnt */; };
-		215E240F190BB6DD004138C3 /* fontYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 215E2401190BB6DD004138C3 /* fontYellow.png */; };
-		215E2412190BDC4C004138C3 /* fontTouch.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 215E2410190BDC4C004138C3 /* fontTouch.fnt */; };
-		215E2413190BDC4C004138C3 /* fontTouch.png in Resources */ = {isa = PBXBuildFile; fileRef = 215E2411190BDC4C004138C3 /* fontTouch.png */; };
 		215E241D190BE369004138C3 /* image in Resources */ = {isa = PBXBuildFile; fileRef = 215E241C190BE369004138C3 /* image */; };
-		21A5B7DC18E9B31400241A7C /* arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21A5B7CD18E9B31400241A7C /* arial.ttf */; };
-		21A5B7DD18E9B31400241A7C /* Marker Felt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21A5B7CE18E9B31400241A7C /* Marker Felt.ttf */; };
 		21A5B7DE18E9B31400241A7C /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 21A5B7D018E9B31400241A7C /* CloseNormal.png */; };
 		21A5B7DF18E9B31400241A7C /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 21A5B7D118E9B31400241A7C /* CloseSelected.png */; };
 		21A5B7E018E9B31400241A7C /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = 21A5B7D218E9B31400241A7C /* Player.png */; };
@@ -630,10 +631,6 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		21079E7B190D2B6E009E8E20 /* SettingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SettingScene.cpp; path = ../Classes/SettingScene.cpp; sourceTree = "<group>"; };
 		21079E7C190D2B6E009E8E20 /* SettingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingScene.h; path = ../Classes/SettingScene.h; sourceTree = "<group>"; };
-		210E9B0F191A2F360010EA31 /* fontBig2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontBig2.png; sourceTree = "<group>"; };
-		210E9B10191A2F360010EA31 /* fontBig2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontBig2.fnt; sourceTree = "<group>"; };
-		210E9B11191A2F360010EA31 /* fontBig1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontBig1.png; sourceTree = "<group>"; };
-		210E9B12191A2F360010EA31 /* fontBig1.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontBig1.fnt; sourceTree = "<group>"; };
 		210E9B17191A306A0010EA31 /* Animations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Animations.cpp; path = ../Classes/Animations.cpp; sourceTree = "<group>"; };
 		210E9B18191A306A0010EA31 /* Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Animations.h; path = ../Classes/Animations.h; sourceTree = "<group>"; };
 		211876151906405C00EFFC9B /* BlockSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BlockSprite.cpp; path = ../Classes/BlockSprite.cpp; sourceTree = "<group>"; };
@@ -644,31 +641,37 @@
 		2130A3FF190C9DAC009E3286 /* CCPlaySE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCPlaySE.h; path = ../Classes/CCPlaySE.h; sourceTree = "<group>"; };
 		2133F2151905503C0033FD6A /* BarSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BarSprite.cpp; path = ../Classes/BarSprite.cpp; sourceTree = "<group>"; };
 		2133F2161905503C0033FD6A /* BarSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarSprite.h; path = ../Classes/BarSprite.h; sourceTree = "<group>"; };
+		2135863A191E621A00040DD5 /* arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = arial.ttf; sourceTree = "<group>"; };
+		2135863B191E621A00040DD5 /* fontBig1.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontBig1.fnt; sourceTree = "<group>"; };
+		2135863C191E621A00040DD5 /* fontBig1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontBig1.png; sourceTree = "<group>"; };
+		2135863D191E621A00040DD5 /* fontBig2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontBig2.fnt; sourceTree = "<group>"; };
+		2135863E191E621A00040DD5 /* fontBig2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontBig2.png; sourceTree = "<group>"; };
+		2135863F191E621A00040DD5 /* fontBlue.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontBlue.fnt; sourceTree = "<group>"; };
+		21358640191E621A00040DD5 /* fontBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontBlue.png; sourceTree = "<group>"; };
+		21358641191E621A00040DD5 /* fontGreen.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontGreen.fnt; sourceTree = "<group>"; };
+		21358642191E621A00040DD5 /* fontGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontGreen.png; sourceTree = "<group>"; };
+		21358643191E621A00040DD5 /* fontOrange.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontOrange.fnt; sourceTree = "<group>"; };
+		21358644191E621A00040DD5 /* fontOrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontOrange.png; sourceTree = "<group>"; };
+		21358645191E621A00040DD5 /* fontRed.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontRed.fnt; sourceTree = "<group>"; };
+		21358646191E621A00040DD5 /* fontRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontRed.png; sourceTree = "<group>"; };
+		21358647191E621A00040DD5 /* fonttitle.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fonttitle.fnt; sourceTree = "<group>"; };
+		21358648191E621A00040DD5 /* fonttitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fonttitle.png; sourceTree = "<group>"; };
+		21358649191E621A00040DD5 /* fontTouch.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontTouch.fnt; sourceTree = "<group>"; };
+		2135864A191E621A00040DD5 /* fontTouch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontTouch.png; sourceTree = "<group>"; };
+		2135864B191E621A00040DD5 /* fontViolet.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontViolet.fnt; sourceTree = "<group>"; };
+		2135864C191E621A00040DD5 /* fontViolet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontViolet.png; sourceTree = "<group>"; };
+		2135864D191E621A00040DD5 /* fontWhite.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontWhite.fnt; sourceTree = "<group>"; };
+		2135864E191E621A00040DD5 /* fontWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontWhite.png; sourceTree = "<group>"; };
+		2135864F191E621A00040DD5 /* fontYellow.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontYellow.fnt; sourceTree = "<group>"; };
+		21358650191E621A00040DD5 /* fontYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontYellow.png; sourceTree = "<group>"; };
+		21358651191E621A00040DD5 /* Marker Felt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Marker Felt.ttf"; sourceTree = "<group>"; };
+		214AB0E8191DFC8000F5BD74 /* LevelSelectScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelSelectScene.cpp; path = ../Classes/LevelSelectScene.cpp; sourceTree = "<group>"; };
+		214AB0E9191DFC8000F5BD74 /* LevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelSelectScene.h; path = ../Classes/LevelSelectScene.h; sourceTree = "<group>"; };
 		215A3B4119051358005D231B /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = ../../nyangame/Classes/Config.h; sourceTree = "<group>"; };
 		215A3B4219051BA6005D231B /* BallSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BallSprite.h; path = ../Classes/BallSprite.h; sourceTree = "<group>"; };
 		215A3B4B19054917005D231B /* BallSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BallSprite.cpp; path = ../Classes/BallSprite.cpp; sourceTree = "<group>"; };
 		215E23EC190B713A004138C3 /* bg */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bg; sourceTree = "<group>"; };
-		215E23F0190BB070004138C3 /* title.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = title.fnt; sourceTree = "<group>"; };
-		215E23F1190BB070004138C3 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
-		215E23F4190BB6DD004138C3 /* fontBlue.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontBlue.fnt; sourceTree = "<group>"; };
-		215E23F5190BB6DD004138C3 /* fontBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontBlue.png; sourceTree = "<group>"; };
-		215E23F6190BB6DD004138C3 /* fontGreen.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontGreen.fnt; sourceTree = "<group>"; };
-		215E23F7190BB6DD004138C3 /* fontGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontGreen.png; sourceTree = "<group>"; };
-		215E23F8190BB6DD004138C3 /* fontOrange.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontOrange.fnt; sourceTree = "<group>"; };
-		215E23F9190BB6DD004138C3 /* fontOrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontOrange.png; sourceTree = "<group>"; };
-		215E23FA190BB6DD004138C3 /* fontRed.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontRed.fnt; sourceTree = "<group>"; };
-		215E23FB190BB6DD004138C3 /* fontRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontRed.png; sourceTree = "<group>"; };
-		215E23FC190BB6DD004138C3 /* fontViolet.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontViolet.fnt; sourceTree = "<group>"; };
-		215E23FD190BB6DD004138C3 /* fontViolet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontViolet.png; sourceTree = "<group>"; };
-		215E23FE190BB6DD004138C3 /* fontWhite.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontWhite.fnt; sourceTree = "<group>"; };
-		215E23FF190BB6DD004138C3 /* fontWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontWhite.png; sourceTree = "<group>"; };
-		215E2400190BB6DD004138C3 /* fontYellow.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontYellow.fnt; sourceTree = "<group>"; };
-		215E2401190BB6DD004138C3 /* fontYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontYellow.png; sourceTree = "<group>"; };
-		215E2410190BDC4C004138C3 /* fontTouch.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontTouch.fnt; sourceTree = "<group>"; };
-		215E2411190BDC4C004138C3 /* fontTouch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontTouch.png; sourceTree = "<group>"; };
 		215E241C190BE369004138C3 /* image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = image; sourceTree = "<group>"; };
-		21A5B7CD18E9B31400241A7C /* arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = arial.ttf; sourceTree = "<group>"; };
-		21A5B7CE18E9B31400241A7C /* Marker Felt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Marker Felt.ttf"; sourceTree = "<group>"; };
 		21A5B7D018E9B31400241A7C /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseNormal.png; sourceTree = "<group>"; };
 		21A5B7D118E9B31400241A7C /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseSelected.png; sourceTree = "<group>"; };
 		21A5B7D218E9B31400241A7C /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player.png; sourceTree = "<group>"; };
@@ -1376,6 +1379,8 @@
 				21B716D219198E7100BD8414 /* UserSettings.h */,
 				210E9B17191A306A0010EA31 /* Animations.cpp */,
 				210E9B18191A306A0010EA31 /* Animations.h */,
+				214AB0E8191DFC8000F5BD74 /* LevelSelectScene.cpp */,
+				214AB0E9191DFC8000F5BD74 /* LevelSelectScene.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1482,33 +1487,33 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
-		21A5B7CC18E9B31400241A7C /* fonts */ = {
+		21358639191E621A00040DD5 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
-				210E9B0F191A2F360010EA31 /* fontBig2.png */,
-				210E9B10191A2F360010EA31 /* fontBig2.fnt */,
-				210E9B11191A2F360010EA31 /* fontBig1.png */,
-				210E9B12191A2F360010EA31 /* fontBig1.fnt */,
-				215E2410190BDC4C004138C3 /* fontTouch.fnt */,
-				215E2411190BDC4C004138C3 /* fontTouch.png */,
-				215E23F4190BB6DD004138C3 /* fontBlue.fnt */,
-				215E23F5190BB6DD004138C3 /* fontBlue.png */,
-				215E23F6190BB6DD004138C3 /* fontGreen.fnt */,
-				215E23F7190BB6DD004138C3 /* fontGreen.png */,
-				215E23F8190BB6DD004138C3 /* fontOrange.fnt */,
-				215E23F9190BB6DD004138C3 /* fontOrange.png */,
-				215E23FA190BB6DD004138C3 /* fontRed.fnt */,
-				215E23FB190BB6DD004138C3 /* fontRed.png */,
-				215E23FC190BB6DD004138C3 /* fontViolet.fnt */,
-				215E23FD190BB6DD004138C3 /* fontViolet.png */,
-				215E23FE190BB6DD004138C3 /* fontWhite.fnt */,
-				215E23FF190BB6DD004138C3 /* fontWhite.png */,
-				215E2400190BB6DD004138C3 /* fontYellow.fnt */,
-				215E2401190BB6DD004138C3 /* fontYellow.png */,
-				215E23F0190BB070004138C3 /* title.fnt */,
-				215E23F1190BB070004138C3 /* title.png */,
-				21A5B7CD18E9B31400241A7C /* arial.ttf */,
-				21A5B7CE18E9B31400241A7C /* Marker Felt.ttf */,
+				2135863A191E621A00040DD5 /* arial.ttf */,
+				2135863B191E621A00040DD5 /* fontBig1.fnt */,
+				2135863C191E621A00040DD5 /* fontBig1.png */,
+				2135863D191E621A00040DD5 /* fontBig2.fnt */,
+				2135863E191E621A00040DD5 /* fontBig2.png */,
+				2135863F191E621A00040DD5 /* fontBlue.fnt */,
+				21358640191E621A00040DD5 /* fontBlue.png */,
+				21358641191E621A00040DD5 /* fontGreen.fnt */,
+				21358642191E621A00040DD5 /* fontGreen.png */,
+				21358643191E621A00040DD5 /* fontOrange.fnt */,
+				21358644191E621A00040DD5 /* fontOrange.png */,
+				21358645191E621A00040DD5 /* fontRed.fnt */,
+				21358646191E621A00040DD5 /* fontRed.png */,
+				21358647191E621A00040DD5 /* fonttitle.fnt */,
+				21358648191E621A00040DD5 /* fonttitle.png */,
+				21358649191E621A00040DD5 /* fontTouch.fnt */,
+				2135864A191E621A00040DD5 /* fontTouch.png */,
+				2135864B191E621A00040DD5 /* fontViolet.fnt */,
+				2135864C191E621A00040DD5 /* fontViolet.png */,
+				2135864D191E621A00040DD5 /* fontWhite.fnt */,
+				2135864E191E621A00040DD5 /* fontWhite.png */,
+				2135864F191E621A00040DD5 /* fontYellow.fnt */,
+				21358650191E621A00040DD5 /* fontYellow.png */,
+				21358651191E621A00040DD5 /* Marker Felt.ttf */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -1886,10 +1891,10 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				21358639191E621A00040DD5 /* fonts */,
 				21E50D241919ACFD006213BE /* sounds */,
 				215E241C190BE369004138C3 /* image */,
 				215E23EC190B713A004138C3 /* bg */,
-				21A5B7CC18E9B31400241A7C /* fonts */,
 				21A5B7CF18E9B31400241A7C /* hd */,
 				21A5B7D518E9B31400241A7C /* sd */,
 				D41A0AD0160F154A004552AE /* Default-568h@2x.png */,
@@ -1973,52 +1978,52 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2135865A191E621A00040DD5 /* fontGreen.png in Resources */,
+				21358664191E621A00040DD5 /* fontViolet.png in Resources */,
 				21E50D251919ACFD006213BE /* sounds in Resources */,
+				21358662191E621A00040DD5 /* fontTouch.png in Resources */,
 				7855E0E1153FEF240059DD9A /* Default.png in Resources */,
+				21358668191E621A00040DD5 /* fontYellow.png in Resources */,
 				D4EF949A15BD2D8B00D803EB /* Icon-57.png in Resources */,
-				215E2407190BB6DD004138C3 /* fontOrange.png in Resources */,
+				2135865F191E621A00040DD5 /* fonttitle.fnt in Resources */,
 				21A5B7E618E9B31400241A7C /* Player.png in Resources */,
-				215E2412190BDC4C004138C3 /* fontTouch.fnt in Resources */,
+				21358653191E621A00040DD5 /* fontBig1.fnt in Resources */,
+				21358659191E621A00040DD5 /* fontGreen.fnt in Resources */,
 				21A5B7DF18E9B31400241A7C /* CloseSelected.png in Resources */,
-				215E240A190BB6DD004138C3 /* fontViolet.fnt in Resources */,
+				21358661191E621A00040DD5 /* fontTouch.fnt in Resources */,
 				D4EF949C15BD2D8E00D803EB /* Icon-114.png in Resources */,
-				210E9B14191A2F360010EA31 /* fontBig2.fnt in Resources */,
-				215E240D190BB6DD004138C3 /* fontWhite.png in Resources */,
 				21A5B7DE18E9B31400241A7C /* CloseNormal.png in Resources */,
+				21358652191E621A00040DD5 /* arial.ttf in Resources */,
+				21358663191E621A00040DD5 /* fontViolet.fnt in Resources */,
 				D4EF949E15BD2D9600D803EB /* Icon-72.png in Resources */,
+				2135865C191E621A00040DD5 /* fontOrange.png in Resources */,
 				D4EF94A015BD2D9800D803EB /* Icon-144.png in Resources */,
-				210E9B13191A2F360010EA31 /* fontBig2.png in Resources */,
-				215E240C190BB6DD004138C3 /* fontWhite.fnt in Resources */,
-				215E240F190BB6DD004138C3 /* fontYellow.png in Resources */,
+				21358667191E621A00040DD5 /* fontYellow.fnt in Resources */,
 				D41A0AD1160F154A004552AE /* Default-568h@2x.png in Resources */,
-				215E2408190BB6DD004138C3 /* fontRed.fnt in Resources */,
 				D446FD6E16102124000ADA7B /* Default@2x.png in Resources */,
-				215E2405190BB6DD004138C3 /* fontGreen.png in Resources */,
-				215E2404190BB6DD004138C3 /* fontGreen.fnt in Resources */,
-				215E240B190BB6DD004138C3 /* fontViolet.png in Resources */,
-				215E2409190BB6DD004138C3 /* fontRed.png in Resources */,
-				215E2403190BB6DD004138C3 /* fontBlue.png in Resources */,
-				215E23F3190BB070004138C3 /* title.png in Resources */,
-				215E2406190BB6DD004138C3 /* fontOrange.fnt in Resources */,
+				21358654191E621A00040DD5 /* fontBig1.png in Resources */,
 				15A3D9961682F7F9002FB0C5 /* CMakeLists.txt in Resources */,
 				21A5B7E318E9B31400241A7C /* app.icf in Resources */,
 				21A5B7E018E9B31400241A7C /* Player.png in Resources */,
-				21A5B7DD18E9B31400241A7C /* Marker Felt.ttf in Resources */,
-				215E2402190BB6DD004138C3 /* fontBlue.fnt in Resources */,
 				21A5B7E218E9B31400241A7C /* Target.png in Resources */,
+				2135865E191E621A00040DD5 /* fontRed.png in Resources */,
 				215E23ED190B713A004138C3 /* bg in Resources */,
-				210E9B16191A2F360010EA31 /* fontBig1.fnt in Resources */,
-				215E2413190BDC4C004138C3 /* fontTouch.png in Resources */,
+				21358666191E621A00040DD5 /* fontWhite.png in Resources */,
 				215E241D190BE369004138C3 /* image in Resources */,
+				2135865D191E621A00040DD5 /* fontRed.fnt in Resources */,
 				21A5B7E118E9B31400241A7C /* Projectile.png in Resources */,
+				2135865B191E621A00040DD5 /* fontOrange.fnt in Resources */,
+				21358655191E621A00040DD5 /* fontBig2.fnt in Resources */,
+				21358665191E621A00040DD5 /* fontWhite.fnt in Resources */,
 				21A5B7E418E9B31400241A7C /* CloseNormal.png in Resources */,
 				21A5B7E718E9B31400241A7C /* Projectile.png in Resources */,
 				21A5B7E818E9B31400241A7C /* Target.png in Resources */,
-				215E23F2190BB070004138C3 /* title.fnt in Resources */,
-				21A5B7DC18E9B31400241A7C /* arial.ttf in Resources */,
+				21358658191E621A00040DD5 /* fontBlue.png in Resources */,
+				21358657191E621A00040DD5 /* fontBlue.fnt in Resources */,
+				21358669191E621A00040DD5 /* Marker Felt.ttf in Resources */,
+				21358656191E621A00040DD5 /* fontBig2.png in Resources */,
 				21A5B7E518E9B31400241A7C /* CloseSelected.png in Resources */,
-				210E9B15191A2F360010EA31 /* fontBig1.png in Resources */,
-				215E240E190BB6DD004138C3 /* fontYellow.fnt in Resources */,
+				21358660191E621A00040DD5 /* fonttitle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2056,6 +2061,7 @@
 				15A3D9131682F7D5002FB0C5 /* b2Fixture.cpp in Sources */,
 				15A3D9141682F7D5002FB0C5 /* b2Island.cpp in Sources */,
 				15A3D9151682F7D5002FB0C5 /* b2World.cpp in Sources */,
+				214AB0EA191DFC8000F5BD74 /* LevelSelectScene.cpp in Sources */,
 				15A3D9161682F7D5002FB0C5 /* b2WorldCallbacks.cpp in Sources */,
 				15A3D9171682F7D5002FB0C5 /* b2ChainAndCircleContact.cpp in Sources */,
 				15A3D9181682F7D5002FB0C5 /* b2ChainAndPolygonContact.cpp in Sources */,

@@ -12,7 +12,6 @@
 
 #include "cocos2d.h"
 
-USING_NS_CC;
 
 class UserSettings
 {
@@ -23,6 +22,9 @@ public:
 
     static bool getSESetting();
     static void setSESetting(bool onoff);
+
+    static int getLevelSetting();
+    static void setLevelSetting(int level);
 };
 
 #endif /* defined(__BrockShooting__UserSettings__) */

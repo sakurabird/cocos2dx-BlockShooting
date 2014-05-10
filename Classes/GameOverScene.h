@@ -4,9 +4,6 @@
 
 #include "cocos2d.h"
 
-USING_NS_CC;
-
-
 class GameOverLayer : public cocos2d::CCLayerColor
 {
 public:
@@ -20,6 +17,9 @@ public:
     CC_SYNTHESIZE_READONLY(cocos2d::CCLabelTTF*, _label2, Label2);
 
     void setResult(int score);
+
+    //Androidのバックキー処理
+    virtual void keyBackClicked();
 
 protected:
 

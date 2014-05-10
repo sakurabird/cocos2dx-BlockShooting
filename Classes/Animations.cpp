@@ -8,6 +8,7 @@
 
 #include "Animations.h"
 
+USING_NS_CC;
 
 CCFiniteTimeAction* Animation::topLavelAction()
 {

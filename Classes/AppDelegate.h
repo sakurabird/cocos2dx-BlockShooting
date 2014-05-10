@@ -3,8 +3,6 @@
 
 #include "cocos2d.h"
 
-USING_NS_CC;
-
 /**
 @brief    The cocos2d Application.
 

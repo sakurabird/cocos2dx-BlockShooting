@@ -4,22 +4,6 @@
 
 USING_NS_CC;
 
-bool GameOverScene::init()
-{
-	if( CCScene::init() )
-	{
-		this->_layer = GameOverLayer::create();
-		this->_layer->retain();
-		this->addChild(_layer);
-		
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
 GameOverScene::~GameOverScene()
 {
 	if (_layer)
@@ -29,6 +13,35 @@ GameOverScene::~GameOverScene()
 	}
 }
 
+GameOverLayer::~GameOverLayer()
+{
+	if (_label)
+	{
+		_label->release();
+		_label = NULL;
+	}
+	if (_label2)
+	{
+		_label2->release();
+		_label2 = NULL;
+	}
+}
+
+bool GameOverScene::init()
+{
+	if( CCScene::init() )
+	{
+		this->_layer = GameOverLayer::create();
+		this->_layer->retain();
+		this->addChild(_layer);
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
 bool GameOverLayer::init()
 {
@@ -143,16 +156,15 @@ void GameOverLayer::menuCloseCallback(CCObject* pSender)
 #endif
 }
 
-GameOverLayer::~GameOverLayer()
+void GameOverLayer::keyBackClicked()
 {
-	if (_label)
-	{
-		_label->release();
-		_label = NULL;
-	}
-	if (_label2)
-	{
-		_label2->release();
-		_label2 = NULL;
-	}
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+	CCMessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
+
+#else
+    CCDirector::sharedDirector()->end();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    exit(0);
+#endif
+#endif
 }

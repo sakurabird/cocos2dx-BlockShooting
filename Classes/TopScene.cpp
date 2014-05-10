@@ -2,7 +2,7 @@
 #include "Config.h"
 #include "UserSettings.h"
 #include "Animations.h"
-#include "GameScene.h"
+#include "LevelSelectScene.h"
 #include "SettingScene.h"
 #include "GameOverScene.h"
 #include "GHelper.h"
@@ -11,11 +11,11 @@
 USING_NS_CC;
 using namespace CocosDenshion;
 
-TopScene::~TopScene()
+TopScene::TopScene()
 {
 }
 
-TopScene::TopScene()
+TopScene::~TopScene()
 {
 }
 
@@ -115,7 +115,7 @@ void TopScene::makeLabel()
 
 void TopScene::tapStartButton()
 {
-    CCScene* scene = (CCScene*)GameScene::create();
+    CCScene* scene = (CCScene*)LevelSelectScene::create();
     CCTransitionSplitRows* tran = CCTransitionSplitRows::create(1, scene);
     CCDirector::sharedDirector()->pushScene(tran);
 }
@@ -138,3 +138,17 @@ void TopScene::menuCloseCallback(CCObject* pSender)
 #endif
 #endif
 }
+
+void TopScene::keyBackClicked()
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+	CCMessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
+
+#else
+    CCDirector::sharedDirector()->end();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    exit(0);
+#endif
+#endif
+}
+

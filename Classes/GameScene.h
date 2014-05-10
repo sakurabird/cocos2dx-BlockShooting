@@ -12,8 +12,6 @@
 
 #include "cocos2d.h"
 
-USING_NS_CC;
-
 // TODO CCSpriteBatchNode
 
 class GameScene : public cocos2d::CCLayerColor
@@ -22,8 +20,8 @@ public:
 	GameScene();
 	~GameScene();
 
-    CCSize _visibleSize;
-    CCPoint _origin;
+    cocos2d::CCSize _visibleSize;
+    cocos2d::CCPoint _origin;
 
 	virtual bool init();
 
@@ -31,9 +29,9 @@ public:
 
 	CREATE_FUNC(GameScene);
 
-    virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);
-    virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);
-    virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);
+    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
+    virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
+    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     virtual void registerWithTouchDispatcher();
 
     //Androidのバックキー処理
@@ -48,9 +46,9 @@ private:
 
     CC_SYNTHESIZE(int, m_score, Score);
 
-    CC_SYNTHESIZE(CCArray*, m_balls, Balls);
+    CC_SYNTHESIZE(cocos2d::CCArray*, m_balls, Balls);
 
-    CCArray *m_blocks;
+    cocos2d::CCArray *m_blocks;
 
     cocos2d::CCSprite *m_background;
 
@@ -79,7 +77,7 @@ private:
 
     void setBall();
 
-    void moveBar(CCTouch* touch);
+    void moveBar(cocos2d::CCTouch* touch);
 
     void updateBlocks();
 
