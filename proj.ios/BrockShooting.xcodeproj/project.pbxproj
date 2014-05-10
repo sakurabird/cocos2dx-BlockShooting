@@ -195,6 +195,7 @@
 		21358667191E621A00040DD5 /* fontYellow.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 2135864F191E621A00040DD5 /* fontYellow.fnt */; };
 		21358668191E621A00040DD5 /* fontYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 21358650191E621A00040DD5 /* fontYellow.png */; };
 		21358669191E621A00040DD5 /* Marker Felt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21358651191E621A00040DD5 /* Marker Felt.ttf */; };
+		2135866C191E63DA00040DD5 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2135866A191E63DA00040DD5 /* Utils.cpp */; };
 		214AB0EA191DFC8000F5BD74 /* LevelSelectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214AB0E8191DFC8000F5BD74 /* LevelSelectScene.cpp */; };
 		215A3B4E19054917005D231B /* BallSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A3B4B19054917005D231B /* BallSprite.cpp */; };
 		215E23ED190B713A004138C3 /* bg in Resources */ = {isa = PBXBuildFile; fileRef = 215E23EC190B713A004138C3 /* bg */; };
@@ -665,6 +666,8 @@
 		2135864F191E621A00040DD5 /* fontYellow.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontYellow.fnt; sourceTree = "<group>"; };
 		21358650191E621A00040DD5 /* fontYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fontYellow.png; sourceTree = "<group>"; };
 		21358651191E621A00040DD5 /* Marker Felt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Marker Felt.ttf"; sourceTree = "<group>"; };
+		2135866A191E63DA00040DD5 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = ../Classes/Utils.cpp; sourceTree = "<group>"; };
+		2135866B191E63DA00040DD5 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = ../Classes/Utils.h; sourceTree = "<group>"; };
 		214AB0E8191DFC8000F5BD74 /* LevelSelectScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelSelectScene.cpp; path = ../Classes/LevelSelectScene.cpp; sourceTree = "<group>"; };
 		214AB0E9191DFC8000F5BD74 /* LevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelSelectScene.h; path = ../Classes/LevelSelectScene.h; sourceTree = "<group>"; };
 		215A3B4119051358005D231B /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = ../../nyangame/Classes/Config.h; sourceTree = "<group>"; };
@@ -1381,6 +1384,8 @@
 				210E9B18191A306A0010EA31 /* Animations.h */,
 				214AB0E8191DFC8000F5BD74 /* LevelSelectScene.cpp */,
 				214AB0E9191DFC8000F5BD74 /* LevelSelectScene.h */,
+				2135866A191E63DA00040DD5 /* Utils.cpp */,
+				2135866B191E63DA00040DD5 /* Utils.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -2173,6 +2178,7 @@
 				15A3DAEB1682F8A6002FB0C5 /* CDAudioManager.m in Sources */,
 				15A3DAEC1682F8A6002FB0C5 /* CDOpenALSupport.m in Sources */,
 				15A3DAED1682F8A6002FB0C5 /* CocosDenshion.m in Sources */,
+				2135866C191E63DA00040DD5 /* Utils.cpp in Sources */,
 				15A3DAEE1682F8A6002FB0C5 /* SimpleAudioEngine.mm in Sources */,
 				2130A400190C9DAC009E3286 /* CCPlaySE.cpp in Sources */,
 				15A3DAEF1682F8A6002FB0C5 /* SimpleAudioEngine_objc.m in Sources */,
