@@ -44,7 +44,7 @@ void UserSettings::setSESetting(bool onoff)
 int UserSettings::getLevelSetting()
 {
     CCUserDefault* userDefault = CCUserDefault::sharedUserDefault();
-    return userDefault->getBoolForKey(levelKey, LEVEL_EASY);
+    return userDefault->getIntegerForKey(levelKey, LEVEL_EASY);
 }
 
 void UserSettings::setLevelSetting(int level)

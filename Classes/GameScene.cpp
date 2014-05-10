@@ -80,13 +80,10 @@ bool GameScene::init()
 
     showBackground();
 
-    //ボールを作成する
     createBalls();
 
-    // バーを作成する
     makeBar();
 
-    //ブロックを作成する
     makeBlock();
 
     showStartLabel();
@@ -97,7 +94,6 @@ bool GameScene::init()
 
     setBall();
 
-    //ゲームループ開始
 	this->schedule( schedule_selector(GameScene::updateGame) );
 
     return true;
@@ -123,10 +119,11 @@ void GameScene::updateGame(float dt)
 
 void GameScene::showStartLabel()
 {
-    CCLabelBMFont* startLabel = CCLabelBMFont::create("タッチしてスタート!", FONT_TOUCH);
+    CCLabelBMFont* startLabel = CCLabelBMFont::create("Touch to Start", FONT_TOUCH);
     startLabel->setPosition(ccp(_visibleSize.width * 0.5, _visibleSize.height * 0.5));
     startLabel->setTag(kTagStartLabel);
     this->addChild(startLabel);
+    startLabel->runAction(Animation::topLavelAction());
 }
 
 void GameScene::initForVariables()
@@ -153,21 +150,44 @@ void GameScene::createBalls()
         m_balls->addObject(ball);
     }
 
-    //残りボール数
-    CCLabelBMFont* label1 = CCLabelBMFont::create("Balls:", FONT_WHITE);
+    //レベル
+    CCString* levelString = NULL;
+    CCString* color = NULL;
+    switch (UserSettings::getLevelSetting()) {
+        case LEVEL_EASY:
+            levelString = CCString::create("Easy");
+            color = CCString::create(FONT_GREEN);
+            break;
+        case LEVEL_NORMAL:
+            levelString = CCString::create("Normal");
+            color = CCString::create(FONT_YELLOW);
+            break;
+        case LEVEL_HARD:
+            levelString = CCString::create("Hard");
+            color = CCString::create(FONT_BLUE);
+            break;
+    }
+    CCLabelBMFont* label1 = CCLabelBMFont::create(levelString->getCString(), color->getCString());
     label1->setScale(0.5);
     label1->setPosition(GHelper::convI720toCC(_visibleSize.width  * 0.7, _visibleSize.height * 0.01));
-    label1->setTag(kTagBallRemainLabel);
+    label1->setTag(kTagLevel);
     this->addChild(label1);
 
-
-    //スコア
-    CCLabelBMFont* label2 = CCLabelBMFont::create("Score:", FONT_WHITE);
+    //残りボール数
+    CCLabelBMFont* label2 = CCLabelBMFont::create("Balls:", FONT_WHITE);
     label2->setScale(0.5);
     label2->setPosition(label1->getPositionX(),
                         label1->getPositionY() - label1->getContentSize().height * 0.5);
-    label2->setTag(kTagScoreLabel);
+    label2->setTag(kTagBallRemainLabel);
     this->addChild(label2);
+
+    //スコア
+    CCLabelBMFont* label3 = CCLabelBMFont::create("Score:", FONT_WHITE);
+    label3->setScale(0.5);
+    label3->setPosition(label2->getPositionX(),
+                        label2->getPositionY() - label2->getContentSize().height * 0.5);
+    label3->setTag(kTagScoreLabel);
+    this->addChild(label3);
 
     showBallRemain();
     showScore();
