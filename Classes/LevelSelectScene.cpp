@@ -59,6 +59,8 @@ bool LevelSelectScene::init()
     
     makeLabel();
 
+    setKeypadEnabled(true);
+
     return  true;
 }
 
@@ -101,7 +103,8 @@ void LevelSelectScene::makeBackButton()
                                                     menu_selector(LevelSelectScene::onTapBackButton));
 
     if (!item) return;
-    item->setPosition(GHelper::convI720toCC(30, 20));
+    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    item->setPosition(GHelper::convI720toCC(20, visibleSize.height * 0.1));
     CCMenu* menu = CCMenu::create(item, NULL);
     menu->setPosition(CCPointZero);
     if (!menu) return;

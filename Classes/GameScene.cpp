@@ -169,7 +169,7 @@ void GameScene::createBalls()
     }
     CCLabelBMFont* label1 = CCLabelBMFont::create(levelString->getCString(), color->getCString());
     label1->setScale(0.5);
-    label1->setPosition(GHelper::convI720toCC(_visibleSize.width  * 0.7, _visibleSize.height * 0.01));
+    label1->setPosition(GHelper::convI720toCC(_visibleSize.width  * 0.7, _visibleSize.height * 0.1));
     label1->setTag(kTagLevel);
     this->addChild(label1);
 
@@ -254,7 +254,7 @@ void GameScene::makeBar()
 
     //        CCSprite* player = CCSprite::createWithSpriteFrameName("Player.png");//テクスチャアトラスを使用
 
-    bar->setPosition(GHelper::convI720toCC(_visibleSize.width / 2, _visibleSize.height * 0.85));
+    bar->setPosition(GHelper::convI720toCC(_visibleSize.width / 2, _visibleSize.height * 0.95));
     this->addChild(bar);
 }
 
@@ -529,7 +529,7 @@ void GameScene::makeBackButton()
                                                     menu_selector(GameScene::onTapBackButton));
 
     if (!item) return;
-    item->setPosition(GHelper::convI720toCC(30, 20));
+    item->setPosition(GHelper::convI720toCC(20, _visibleSize.height * 0.1));
     CCMenu* menu = CCMenu::create(item, NULL);
     menu->setPosition(CCPointZero);
     if (!menu) return;
@@ -539,9 +539,10 @@ void GameScene::makeBackButton()
 void GameScene::makeRetryButton()
 {
     //リトライボタンを作成する
-    CCNode* obj = this->getChildByTag(kTagBack);
-    if (!obj) return;
-    CCLOG("obj getPositionX: %f, w: %f, h: %f",obj->getPositionX(),obj->getContentSize().width,obj->getContentSize().height);
+//    CCNode* obj = this->getChildByTag(kTagBack);
+//    if (!obj) return;
+//    CCLOG("obj getPositionX: %f, PositionY: %f, w: %f, h: %f",obj->getPositionX(),
+//    		obj->getPositionY(), obj->getContentSize().width,obj->getContentSize().height);
 
     CCMenuItemImage *item = CCMenuItemImage::create(
                                                           PNG_REFRESH,
@@ -549,7 +550,8 @@ void GameScene::makeRetryButton()
                                                           this,
                                                           menu_selector(GameScene::onTapRetryButton));
     if (!item) return;
-    item->setPosition(GHelper::convI720toCC(obj->getPositionX() + 100, 20));
+//    item->setPosition(GHelper::convI720toCC(obj->getPositionX() + 100, obj->getPositionY()));
+    item->setPosition(GHelper::convI720toCC(100, _visibleSize.height * 0.1));
     //メニューを作成する
     CCMenu* menu = CCMenu::create(item, NULL);
     if (!menu) return;

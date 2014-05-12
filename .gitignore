@@ -23,3 +23,7 @@ local.properties
 
 temp/
 
+proj.android/obj/
+proj.android/obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/
+proj.android/libs/
+

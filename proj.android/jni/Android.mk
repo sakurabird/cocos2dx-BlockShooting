@@ -19,10 +19,9 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/UserSettings.cpp \
                    ../../Classes/Animations.cpp \
                    ../../Classes/LevelSelectScene.cpp \
-                   ../../Classes/Utils.cpp \
-                   ../../Classes/TopScene.cpp
+                   ../../Classes/Utils.cpp
 
-LOCAL_C_INCLUDES := ${shell find $(LOCAL_PATH)/../../Classes -type d}
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static

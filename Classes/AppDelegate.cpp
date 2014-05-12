@@ -51,7 +51,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 
     // turn on display FPS
-    pDirector->setDisplayStats(true);
+    pDirector->setDisplayStats(false);
 
     pDirector->setAnimationInterval(1.0 / 60);
 
