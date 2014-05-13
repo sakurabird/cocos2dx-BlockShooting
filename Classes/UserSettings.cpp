@@ -14,6 +14,8 @@ USING_NS_CC;
 const char* musicKey = "key_music";
 const char* soundEffectKey = "key_soundeffect";
 const char* levelKey = "key_level";
+const char* highScoreKey = "key_highScore";
+const char* scoreKey = "key_score";
 
 bool UserSettings::getMusicSetting()
 {
@@ -51,5 +53,32 @@ void UserSettings::setLevelSetting(int level)
 {
     CCUserDefault* userDefault = CCUserDefault::sharedUserDefault();
     userDefault->setIntegerForKey(levelKey, level);
+    userDefault->flush();
+}
+
+int UserSettings::getHighScore()
+{
+    CCUserDefault* userDefault = CCUserDefault::sharedUserDefault();
+    return userDefault->getIntegerForKey(highScoreKey, 0);
+}
+
+void UserSettings::setHighScore(int score)
+{
+    CCUserDefault* userDefault = CCUserDefault::sharedUserDefault();
+    userDefault->setIntegerForKey(highScoreKey, score);
+    userDefault->flush();
+}
+
+
+int UserSettings::getScore()
+{
+    CCUserDefault* userDefault = CCUserDefault::sharedUserDefault();
+    return userDefault->getIntegerForKey(scoreKey, 0);
+}
+
+void UserSettings::setScore(int score)
+{
+    CCUserDefault* userDefault = CCUserDefault::sharedUserDefault();
+    userDefault->setIntegerForKey(scoreKey, score);
     userDefault->flush();
 }

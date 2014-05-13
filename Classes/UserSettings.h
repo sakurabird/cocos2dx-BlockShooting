@@ -25,6 +25,12 @@ public:
 
     static int getLevelSetting();
     static void setLevelSetting(int level);
+
+    static int getHighScore();
+    static void setHighScore(int score);
+
+    static int getScore();
+    static void setScore(int score);
 };
 
 #endif /* defined(__BrockShooting__UserSettings__) */

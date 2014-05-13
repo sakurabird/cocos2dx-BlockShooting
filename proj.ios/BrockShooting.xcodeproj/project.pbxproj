@@ -668,7 +668,6 @@
 		21358651191E621A00040DD5 /* Marker Felt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Marker Felt.ttf"; sourceTree = "<group>"; };
 		2135866A191E63DA00040DD5 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = ../Classes/Utils.cpp; sourceTree = "<group>"; };
 		2135866B191E63DA00040DD5 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = ../Classes/Utils.h; sourceTree = "<group>"; };
-		2135866D191E882600040DD5 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = ../Classes/Config.h; sourceTree = "<group>"; };
 		214AB0E8191DFC8000F5BD74 /* LevelSelectScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelSelectScene.cpp; path = ../Classes/LevelSelectScene.cpp; sourceTree = "<group>"; };
 		214AB0E9191DFC8000F5BD74 /* LevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelSelectScene.h; path = ../Classes/LevelSelectScene.h; sourceTree = "<group>"; };
 		215A3B4219051BA6005D231B /* BallSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BallSprite.h; path = ../Classes/BallSprite.h; sourceTree = "<group>"; };
@@ -694,6 +693,7 @@
 		21A5B7EE18E9B32600241A7C /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOverScene.h; path = ../Classes/GameOverScene.h; sourceTree = "<group>"; };
 		21B716D119198E7100BD8414 /* UserSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UserSettings.cpp; path = ../Classes/UserSettings.cpp; sourceTree = "<group>"; };
 		21B716D219198E7100BD8414 /* UserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserSettings.h; path = ../Classes/UserSettings.h; sourceTree = "<group>"; };
+		21C8D7331922602B00E5E010 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = ../Classes/Config.h; sourceTree = "<group>"; };
 		21CE3F5E18FA5D0900D39B42 /* AppMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppMacros.h; path = ../Classes/AppMacros.h; sourceTree = "<group>"; };
 		21E50D241919ACFD006213BE /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1356,7 +1356,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2135866D191E882600040DD5 /* Config.h */,
+				21C8D7331922602B00E5E010 /* Config.h */,
 				2130A3FE190C9DAC009E3286 /* CCPlaySE.cpp */,
 				2130A3FF190C9DAC009E3286 /* CCPlaySE.h */,
 				2133F2151905503C0033FD6A /* BarSprite.cpp */,

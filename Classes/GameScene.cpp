@@ -517,12 +517,11 @@ void GameScene::gameOver()
 
 	this->unschedule( schedule_selector(GameScene::updateGame) );
 
-    GameOverScene *gameOverScene = GameOverScene::create();
-    GameOverLayer *gameOverLayer = gameOverScene->getLayer();
+    UserSettings::setScore(m_score);
 
-    gameOverLayer->setResult(m_blocksDestroyed);
-
-    CCDirector::sharedDirector()->replaceScene(gameOverScene);
+    CCScene* scene = (CCScene*)GameOverScene::create();
+    CCTransitionRotoZoom* tran = CCTransitionRotoZoom::create(3, scene);
+    CCDirector::sharedDirector()->replaceScene(tran);
 }
 
 void GameScene::makeBackButton()

@@ -83,6 +83,8 @@ enum kTag
     kTagHighScoreLabel,
     kTagMusicButtton,
     kTagSEButtton,
+    kTagGameOverScoreLavel,
+    kTagGameOverHighScoreLavel,
     kTagBaseBlock = 10000,
 };
 

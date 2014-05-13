@@ -1,155 +1,125 @@
 
 #include "GameOverScene.h"
-#include "GameScene.h"
+#include "TopScene.h"
+#include "Config.h"
+#include "UserSettings.h"
+#include "SimpleAudioEngine.h"
 #include "Utils.h"
+#include "Animations.h"
 
 USING_NS_CC;
+using namespace CocosDenshion;
+
+GameOverScene::GameOverScene()
+{
+}
 
 GameOverScene::~GameOverScene()
 {
-	if (_layer)
-	{
-		_layer->release();
-		_layer = NULL;
-	}
 }
 
-GameOverLayer::~GameOverLayer()
+CCScene* GameOverScene::scene()
 {
-	if (_label)
-	{
-		_label->release();
-		_label = NULL;
-	}
-	if (_label2)
-	{
-		_label2->release();
-		_label2 = NULL;
-	}
+    CCScene * scene = NULL;
+    do
+    {
+        scene = CCScene::create();
+        CC_BREAK_IF(! scene);
+
+        GameOverScene *layer = GameOverScene::create();
+        CC_BREAK_IF(! layer);
+
+        scene->addChild(layer);
+    } while (0);
+
+    return scene;
 }
+
 
 bool GameOverScene::init()
 {
-	if( CCScene::init() )
-	{
-		this->_layer = GameOverLayer::create();
-		this->_layer->retain();
-		this->addChild(_layer);
-
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-bool GameOverLayer::init()
-{
-    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-	bool bRet = false;
-	do
-	{
-        CC_BREAK_IF(! CCLayerColor::initWithColor( ccc4(255,255,255,255) ) );
-
-		this->_label = CCLabelTTF::create("","Artial", 30);
-        CC_BREAK_IF(! _label);
-		_label->retain();
-		_label->setColor( ccc3(0, 0, 0) );
-		_label->setPosition( ccp(winSize.width/2, winSize.height/2) );
-		this->addChild(_label);
-
-		this->_label2 = CCLabelTTF::create("","Artial", 20);
-        CC_BREAK_IF(! _label2);
-		_label2->retain();
-		_label2->setColor( ccc3(0, 0, 0) );
-		_label2->setPosition( ccp(winSize.width/2, winSize.height * 0.7) );
-		this->addChild(_label2);
-
-
-        CCLabelTTF* restartLabel = CCLabelTTF::create("Restart!", "Arial", 42.0);
-
-        CC_BREAK_IF(! restartLabel);
-        restartLabel->setColor(ccc3(255,192,203));
-        CCMenuItemLabel* restartItem = CCMenuItemLabel::create(restartLabel, this, menu_selector(GameOverLayer::gameOverDone));
-        restartItem->setPosition(ccp(winSize.width * 0.5, winSize.height * 0.1));
-
-        CCMenu* menu = CCMenu::create(restartItem, NULL);
-        menu->setPosition(CCPointZero);
-        this->addChild(menu);
-
-
-
-        CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
-                                                              "CloseNormal.png",
-                                                              "CloseSelected.png",
-                                                              this,
-                                                              menu_selector(GameOverLayer::menuCloseCallback));
-
-
-//        CCSprite* closeNormal = CCSprite::createWithSpriteFrameName("CloseNormal.png");
-//        CCSprite* closeSelected = CCSprite::createWithSpriteFrameName("CloseSelected.png");
-//        CCMenuItemSprite *pCloseItem = CCMenuItemSprite::create(closeNormal,
-//                                                                closeSelected,
-//                                                                this,
-//                                                                menu_selector(GameOverLayer::menuCloseCallback));
-
-        CC_BREAK_IF(! pCloseItem);
-
-        // Place the menu item bottom-right conner.
-        CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-        CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
-
-        pCloseItem->setPosition(ccp(origin.x + visibleSize.width - pCloseItem->getContentSize().width/2,origin.y + pCloseItem->getContentSize().height/2));
-
-        // Create a menu with the "close" menu item, it's an auto release object.
-        CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
-        pMenu->setPosition(CCPointZero);
-
-        this->addChild(pMenu, 1);
-
-
-        bRet = true;
-	} while (0);
-
-	return bRet;
-}
-
-void GameOverLayer::setResult(int score)
-{
-    _label->setString("GAME OVER");
-
-    CCUserDefault* userDefault = CCUserDefault::sharedUserDefault();
-    const char* highScoreKey = "highscore";
-
-    int highScore = userDefault->getIntegerForKey(highScoreKey, 0);
-    if (score != 0)
-    {
-        if (score > highScore)
-        {
-            // ハイスコアを更新する
-            highScore = score;
-            userDefault->setIntegerForKey(highScoreKey, highScore);
-            userDefault->flush();
-        }
+    if (!CCLayer::init()) {
+        return false;
     }
 
-    CCString* highScoreString = CCString::createWithFormat("スコア：%d　ハイスコア：%d", score,highScore);
-	_label2->setString(highScoreString->getCString());
+    if (!CCLayerColor::initWithColor( ccc4(0,0,0,0) )) {
+        return false;
+    }
+    // BGM再生
+    if (UserSettings::getMusicSetting() &&
+        !SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
+        SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MP3_BG, true);
 
+    makeLabel();
+
+    setKeypadEnabled(true);
+
+    return  true;
 }
 
-void GameOverLayer::gameOverDone()
+
+void GameOverScene::makeLabel()
 {
-	CCDirector::sharedDirector()->replaceScene( GameScene::scene() );
+    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+
+    //タイトル
+    CCLabelBMFont* title = CCLabelBMFont::create("GAME OVER", FONT_BIG2);
+    title->setScale(1.2);
+    title->setPosition( ccp(visibleSize.width / 2, visibleSize.height * 0.7));
+    this->addChild(title);
+
+    //スコア
+    CCLabelBMFont* scoreLabel1 = CCLabelBMFont::create("Score", FONT_BLUE);
+    scoreLabel1->setScale(0.4);
+    scoreLabel1->setPosition( ccp(visibleSize.width / 3, visibleSize.height * 0.5));
+    this->addChild(scoreLabel1);
+
+    CCLabelBMFont* scoreLabel2 = CCLabelBMFont::create("", FONT_WHITE);
+    scoreLabel2->setScale(0.4);
+    scoreLabel2->setPosition( ccp(scoreLabel1->getPositionX() + scoreLabel1->getContentSize().width, scoreLabel1->getPositionY()));
+    scoreLabel2->setString(ccsf("%d", UserSettings::getScore()));
+    this->addChild(scoreLabel2, kTagGameOverScoreLavel);
+
+
+    //ハイスコア
+    if (UserSettings::getScore() != 0)
+    {
+        if (UserSettings::getScore() > UserSettings::getHighScore())
+        {
+            // ハイスコアを更新する
+            UserSettings::setHighScore(UserSettings::getScore());
+        }
+    }
+    CCLabelBMFont* highScoreLabel1 = CCLabelBMFont::create("High Score", FONT_YELLOW);
+    highScoreLabel1->setScale(0.4);
+    highScoreLabel1->setPosition( ccp(scoreLabel1->getPositionX(), scoreLabel1->getPositionY() - 30));
+    this->addChild(highScoreLabel1);
+
+    CCLabelBMFont* highScoreLabel2 = CCLabelBMFont::create("", FONT_WHITE);
+    highScoreLabel2->setScale(0.4);
+    highScoreLabel2->setPosition( ccp(scoreLabel2->getPositionX(), highScoreLabel1->getPositionY()));
+    highScoreLabel2->setString(ccsf("%d", UserSettings::getHighScore()));
+    this->addChild(highScoreLabel2, kTagGameOverHighScoreLavel);
+
+    //OKボタン
+    CCLabelBMFont* okLabel = CCLabelBMFont::create("OK", FONT_ORANGE);
+    okLabel->setScale(1);
+    CCMenuItemLabel* item1 = CCMenuItemLabel::create(okLabel, this, menu_selector(GameOverScene::onTapOKButton));
+    item1->setPosition( ccp(visibleSize.width / 2, visibleSize.height * 0.2));
+    item1->runAction(Animation::topLavelAction());
+
+    CCMenu* menu = CCMenu::create( item1,  NULL );
+    menu->setPosition(CCPointZero);
+    this->addChild(menu);
 }
 
-void GameOverLayer::menuCloseCallback(CCObject* pSender)
+void GameOverScene::onTapOKButton()
 {
-    Utils::quit();
+    CCScene* scene = (CCScene*)TopScene::create();
+    CCDirector::sharedDirector()->replaceScene(scene);
 }
 
-void GameOverLayer::keyBackClicked()
+void GameOverScene::keyBackClicked()
 {
     Utils::quit();
 }
