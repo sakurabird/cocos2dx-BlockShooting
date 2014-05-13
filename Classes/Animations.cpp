@@ -37,3 +37,16 @@ CCFiniteTimeAction* Animation::gameClearAction()
 
     return CCSequence::create(delay1, scaleUp1, delay2, scaleDown1, scaleUp2, scaleDown2, delay3, scaleDown3, NULL);
 }
+
+
+CCFiniteTimeAction* Animation::retryButtonAction()
+{
+    CCDelayTime* delay1 = CCDelayTime::create(1);
+    CCScaleTo* scaleUp = CCScaleTo::create(0.1, 1.5);
+    CCDelayTime* delay2 = CCDelayTime::create(0.5);
+    CCScaleTo* scaleDown = CCScaleTo::create(0.3, 1);
+    CCSequence* seq = CCSequence::create(delay1, scaleUp, delay2, scaleDown, NULL);
+    CCRepeatForever* repeat = CCRepeatForever::create(seq);
+
+    return repeat;
+}

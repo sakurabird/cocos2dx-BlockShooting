@@ -20,6 +20,7 @@ public:
 
     // game画面
     static cocos2d::CCFiniteTimeAction* gameClearAction();
+    static cocos2d::CCFiniteTimeAction* retryButtonAction();
 
 
 //    static CCFiniteTimeAction* gameOverAnimation(CCObject* target, SEL_CallFunc selector);

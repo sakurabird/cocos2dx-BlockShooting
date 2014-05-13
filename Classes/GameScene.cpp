@@ -503,6 +503,11 @@ void GameScene::win()
     label->setPosition( ccp(_visibleSize.width / 2, _visibleSize.height * 0.5));
     label->runAction(Animation::gameClearAction());
     addChild(label, kZOrderLabel);
+
+
+    CCNode* button = this->getChildByTag(kTagRetry);
+    if (!button) return;
+    button->setVisible(true);
 }
 
 void GameScene::gameOver()
@@ -539,25 +544,21 @@ void GameScene::makeBackButton()
 void GameScene::makeRetryButton()
 {
     //リトライボタンを作成する
-//    CCNode* obj = this->getChildByTag(kTagBack);
-//    if (!obj) return;
-//    CCLOG("obj getPositionX: %f, PositionY: %f, w: %f, h: %f",obj->getPositionX(),
-//    		obj->getPositionY(), obj->getContentSize().width,obj->getContentSize().height);
-
     CCMenuItemImage *item = CCMenuItemImage::create(
                                                           PNG_REFRESH,
                                                           PNG_REFRESH,
                                                           this,
                                                           menu_selector(GameScene::onTapRetryButton));
     if (!item) return;
-//    item->setPosition(GHelper::convI720toCC(obj->getPositionX() + 100, obj->getPositionY()));
     item->setPosition(GHelper::convI720toCC(100, _visibleSize.height * 0.1));
+    item->runAction(Animation::retryButtonAction());
     //メニューを作成する
     CCMenu* menu = CCMenu::create(item, NULL);
     if (!menu) return;
-    //上でリトライボタンの位置を設定したためここはCCPointZeroとする必要がある
     menu->setPosition(CCPointZero);
     this->addChild(menu, kZOrderTop, kTagRetry);
+    menu->setVisible(false);
+
 }
 
 //リトライボタンタップ時の処理
@@ -566,6 +567,10 @@ void GameScene::onTapRetryButton()
     CCScene* gameScene = (CCScene*)GameScene::create();
     CCTransitionTurnOffTiles* tran = CCTransitionTurnOffTiles::create(1, gameScene);
     CCDirector::sharedDirector()->replaceScene(tran);
+
+    CCNode* button = this->getChildByTag(kTagRetry);
+    if (!button) return;
+    button->setVisible(false);
 }
 
 

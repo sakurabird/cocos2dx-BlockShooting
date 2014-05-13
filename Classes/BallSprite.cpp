@@ -8,6 +8,7 @@
 
 #include "BallSprite.h"
 #include "SimpleAudioEngine.h"
+#include "Config.h"
 #include "UserSettings.h"
 
 USING_NS_CC;
@@ -15,6 +16,7 @@ using namespace CocosDenshion;
 
 BallSprite::BallSprite()
 {
+    srand((unsigned int)time(NULL));
 }
 
 BallSprite::~BallSprite()
@@ -55,8 +57,9 @@ bool BallSprite::initWithBallScale(float scale)
 void BallSprite::initVelocity()
 {
     //ランダムで少し速度を変える
-    float vx = 18;
-    float vy = 15;
+	int level = UserSettings::getLevelSetting() * 2;
+    float vx = 7 + level;
+    float vy = 8 + level;
     if (rand() % 2 == 0){
         vx *= -1;
     }
@@ -82,6 +85,12 @@ void BallSprite::bounceBall(CCSize visibleSize)
 
     float vx = getVelocityX();
     float vy = getVelocityY();
+    float z = 0;
+    int v = rand();
+    if (v > 0) {
+        z = v * 0.01;
+    }
+    float friction = BALL_FRICTION + z;
 
     // 当たった時の処理、速度を入れ替える
     if(ballPoint.x > visibleSize.width - getContentSize().width / 2)
@@ -89,6 +98,7 @@ void BallSprite::bounceBall(CCSize visibleSize)
         if (UserSettings::getSESetting())
             SimpleAudioEngine::sharedEngine()->playEffect(MP3_BOUNDWALL);
         vx = vx * -1 * BALL_FRICTION;
+//        vx = vx * -1 * friction;
         setVelocityX(vx);
         setPositionX(visibleSize.width - getContentSize().width / 2 );
     }
@@ -97,6 +107,7 @@ void BallSprite::bounceBall(CCSize visibleSize)
         if (UserSettings::getSESetting())
             SimpleAudioEngine::sharedEngine()->playEffect(MP3_BOUNDWALL);
         vx = vx * -1 * BALL_FRICTION;
+//        vx = vx * -1 * friction;
         setVelocityX(vx);
         setPositionX(0);
     }
@@ -106,6 +117,7 @@ void BallSprite::bounceBall(CCSize visibleSize)
         if (UserSettings::getSESetting())
             SimpleAudioEngine::sharedEngine()->playEffect(MP3_BOUNDWALL);
         vy = vy * -1 * BALL_FRICTION;
+//        vy = vy * -1 * friction;
         setVelocityY(vy);
         setPositionY(visibleSize.height - getContentSize().height);
     }
