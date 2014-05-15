@@ -73,6 +73,12 @@
 #define BALL_REMAIN 3
 #define BALL_FRICTION 1.005
 
+#define ITEM1_RATE 0.2
+#define ITEM2_RATE 0.1
+#define ITEM3_RATE 0.1
+#define ITEM4_RATE 0.1
+#define ITEM5_RATE 0.04
+
 // TODO
 enum kTag
 {
@@ -86,6 +92,11 @@ enum kTag
     kTagBallRemainCount = 1007,
     kTagScoreLabel = 1008,
     kTagScore = 1009,
+    kTagItem1,
+    kTagItem2,
+    kTagItem3,
+    kTagItem4,
+    kTagItem5,
     kTagLevel,
     kTagBack,
     kTagRetry,

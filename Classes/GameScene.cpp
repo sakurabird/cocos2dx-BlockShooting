@@ -440,6 +440,8 @@ void GameScene::updateBlocks()
             //スコア加算
             m_score += 100;
             showScore();
+
+            makeItem(block);
         }
     }
 
@@ -453,6 +455,73 @@ void GameScene::updateBlocks()
         m_blocksDestroyed++;
     }
     blocksToDelete->release();
+}
+
+void GameScene::makeItem(CCSprite *block)
+{
+    BlockSprite *blockSprite = dynamic_cast<BlockSprite*>(block);
+    if (!blockSprite) return;
+
+    CCString* fileName = NULL;
+    double itemRate = 0;
+    kTag tag = kTagItem1;
+
+    switch (blockSprite->getBlockColor()) {
+        case kBlockColorBlue:
+            fileName = CCString::createWithFormat(PNG_P_BLUE);
+            itemRate = ITEM1_RATE;
+            tag = kTagItem1;
+            break;
+
+        case kBlockColorGreen:
+            fileName = CCString::createWithFormat(PNG_P_GREEN);
+            itemRate = ITEM2_RATE;
+            tag = kTagItem2;
+            break;
+
+        case kBlockColorRed:
+            fileName = CCString::createWithFormat(PNG_P_RED);
+            itemRate = ITEM3_RATE;
+            tag = kTagItem3;
+            break;
+
+        case kBlockColorViolet:
+            fileName = CCString::createWithFormat(PNG_P_VIOLET);
+            itemRate = ITEM4_RATE;
+            tag = kTagItem4;
+            break;
+
+        case kBlockColorYellow:
+            fileName = CCString::createWithFormat(PNG_P_YELLOW);
+            itemRate = ITEM5_RATE;
+            tag = kTagItem5;
+            break;
+
+        default:
+            return;
+            break;
+    }
+
+    if ( (double)rand()/RAND_MAX < itemRate ) {
+        CCSprite* item = CCSprite::create(fileName->getCString());
+        item->setPosition(ccp(blockSprite->getPositionX(),
+                              blockSprite->getPositionY() + blockSprite->getContentSize().height));
+        this->addChild(item, tag);
+
+        CCFiniteTimeAction* actionMove =
+        CCMoveTo::create( 3.0, ccp(blockSprite->getPositionX(), 0) );
+        CCFiniteTimeAction* actionMoveDone =
+        CCCallFuncN::create( this,
+                            callfuncN_selector(GameScene::itemMoveFinished));
+        item->runAction( CCSequence::create(actionMove,
+                                            actionMoveDone, NULL) );
+    }
+}
+
+void GameScene::itemMoveFinished(CCNode *sender)
+{
+    CCSprite *sprite = (CCSprite *)sender;
+    this->removeChild(sprite, true);
 }
 
 void GameScene::updateBar()

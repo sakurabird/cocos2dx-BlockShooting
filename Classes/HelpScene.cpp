@@ -106,7 +106,7 @@ void HelpScene::makeLabels()
     image3->setPosition( ccp(_visibleSize.width / 3.5, _visibleSize.height * 0.6));
     this->addChild(image3);
 
-    CCLabelBMFont* disc3 = CCLabelBMFont::create("Big Ball", FONT_WHITE);
+    CCLabelBMFont* disc3 = CCLabelBMFont::create("Multiple Ball", FONT_WHITE);
     disc3->setScale(0.5);
     disc3->setAnchorPoint(CCPointZero);
     disc3->setPosition( ccp(image3->getPositionX() + image3->getContentSize().width + 15,
@@ -119,7 +119,7 @@ void HelpScene::makeLabels()
     image4->setPosition( ccp(_visibleSize.width / 3.5, _visibleSize.height * 0.55));
     this->addChild(image4);
 
-    CCLabelBMFont* disc4 = CCLabelBMFont::create("Multiple Ball", FONT_WHITE);
+    CCLabelBMFont* disc4 = CCLabelBMFont::create("Bonus Score", FONT_WHITE);
     disc4->setScale(0.5);
     disc4->setAnchorPoint(CCPointZero);
     disc4->setPosition( ccp(image4->getPositionX() + image4->getContentSize().width + 15,

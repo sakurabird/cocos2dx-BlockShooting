@@ -98,6 +98,10 @@ private:
     void makeRetryButton();
 
     void onTapRetryButton();
+
+    void makeItem(cocos2d::CCSprite* block);
+
+    void itemMoveFinished(CCNode* sender);
 };
 
 #endif /* defined(__BrockShooting__GameScene__) */

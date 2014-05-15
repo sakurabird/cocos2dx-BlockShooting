@@ -24,9 +24,9 @@ protected:
 
     void initVelocity();
 
-    void bounceBall(cocos2d::CCSize visibleSize);
+    bool bounceBall(cocos2d::CCSize visibleSize);
 
-    void bounceBall(cocos2d::CCRect rect, kTag);
+    bool bounceBall(cocos2d::CCRect rect, kTag);
     
 public:
 

@@ -79,8 +79,9 @@ void BallSprite::initVelocity()
 }
 
 //壁に当たった時の処理
-void BallSprite::bounceBall(CCSize visibleSize)
+bool BallSprite::bounceBall(CCSize visibleSize)
 {
+    bool b = false;
     CCPoint ballPoint = getPosition();
 
     float vx = getVelocityX();
@@ -90,6 +91,7 @@ void BallSprite::bounceBall(CCSize visibleSize)
     if (v > 0) {
         z = v * 0.01;
     }
+    // TODO
     float friction = BALL_FRICTION + z;
 
     // 当たった時の処理、速度を入れ替える
@@ -101,6 +103,7 @@ void BallSprite::bounceBall(CCSize visibleSize)
 //        vx = vx * -1 * friction;
         setVelocityX(vx);
         setPositionX(visibleSize.width - getContentSize().width / 2 );
+        b = true;
     }
     else if( ballPoint.x < 0 )
     {
@@ -110,6 +113,7 @@ void BallSprite::bounceBall(CCSize visibleSize)
 //        vx = vx * -1 * friction;
         setVelocityX(vx);
         setPositionX(0);
+        b = true;
     }
 
     if( ballPoint.y > visibleSize.height - getContentSize().height /2 )
@@ -120,12 +124,15 @@ void BallSprite::bounceBall(CCSize visibleSize)
 //        vy = vy * -1 * friction;
         setVelocityY(vy);
         setPositionY(visibleSize.height - getContentSize().height);
+        b = true;
     }
+    return  b;
 }
 
 //バーやブロックに当たった時の処理
-void BallSprite::bounceBall(cocos2d::CCRect rect, kTag tag)
+bool BallSprite::bounceBall(cocos2d::CCRect rect, kTag tag)
 {
+    bool b = false;
     CCRect ballRect = boundingBox();
 
     float vx = getVelocityX();
@@ -148,6 +155,7 @@ void BallSprite::bounceBall(cocos2d::CCRect rect, kTag tag)
             }
         }
         vx = vx * -1 * BALL_FRICTION;
+        b = true;
     }
     if ( ballRect.getMaxY() < rect.getMinY() ||
         rect.getMaxY() < ballRect.getMaxY()) {
@@ -164,9 +172,12 @@ void BallSprite::bounceBall(cocos2d::CCRect rect, kTag tag)
             }
         }
         vy = vy * -1 * BALL_FRICTION;
+        b = true;
     }
 
     setVelocityX(vx);
     setVelocityY(vy);
     setPosition(ccp(getPositionX() + vx, getPositionY() + vy));
+
+    return b;
 }
