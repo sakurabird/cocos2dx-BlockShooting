@@ -169,6 +169,7 @@ void GameScene::createBalls()
     }
     CCLabelBMFont* label1 = CCLabelBMFont::create(levelString->getCString(), color->getCString());
     label1->setScale(0.5);
+    label1->setAnchorPoint(CCPointZero);
     label1->setPosition(GHelper::convI720toCC(_visibleSize.width  * 0.7, _visibleSize.height * 0.1));
     label1->setTag(kTagLevel);
     this->addChild(label1);
@@ -176,6 +177,7 @@ void GameScene::createBalls()
     //残りボール数
     CCLabelBMFont* label2 = CCLabelBMFont::create("Balls:", FONT_WHITE);
     label2->setScale(0.5);
+    label2->setAnchorPoint(CCPointZero);
     label2->setPosition(label1->getPositionX(),
                         label1->getPositionY() - label1->getContentSize().height * 0.5);
     label2->setTag(kTagBallRemainLabel);
@@ -184,6 +186,7 @@ void GameScene::createBalls()
     //スコア
     CCLabelBMFont* label3 = CCLabelBMFont::create("Score:", FONT_WHITE);
     label3->setScale(0.5);
+    label3->setAnchorPoint(CCPointZero);
     label3->setPosition(label2->getPositionX(),
                         label2->getPositionY() - label2->getContentSize().height * 0.5);
     label3->setTag(kTagScoreLabel);
@@ -219,7 +222,8 @@ void GameScene::showBallRemain()
     CCString* ballRemain = CCString::createWithFormat("%d", m_ballRemain);
     remain = CCLabelBMFont::create(ballRemain->getCString(), FONT_ORANGE);
     remain->setScale(0.5);
-    remain->setPosition(label->getPositionX() + label->getContentSize().width * 0.5,
+    remain->setAnchorPoint(CCPointZero);
+    remain->setPosition(label->getPositionX() + label->getContentSize().width * 0.5 + 5,
                         label->getPositionY());
     remain->setTag(kTagBallRemainCount);
     this->addChild(remain);
@@ -238,7 +242,8 @@ void GameScene::showScore()
     CCString* gameScore = CCString::createWithFormat("%d", getScore());
     score = CCLabelBMFont::create(gameScore->getCString(), FONT_ORANGE);
     score->setScale(0.5);
-    score->setPosition(label->getPositionX() + label->getContentSize().width * 0.5,
+    score->setAnchorPoint(CCPointZero);
+    score->setPosition(label->getPositionX() + label->getContentSize().width * 0.5 + 5,
                        label->getPositionY());
     score->setTag(kTagScore);
     this->addChild(score);
@@ -251,8 +256,6 @@ void GameScene::makeBar()
 //    CCLOG("bar.w: %f, height: %f",w,h);
 
     BarSprite* bar = BarSprite::createWithBarSize(w, h);
-
-    //        CCSprite* player = CCSprite::createWithSpriteFrameName("Player.png");//テクスチャアトラスを使用
 
     bar->setPosition(GHelper::convI720toCC(_visibleSize.width / 2, _visibleSize.height * 0.95));
     this->addChild(bar);
@@ -551,7 +554,7 @@ void GameScene::makeRetryButton()
     if (!item) return;
     item->setPosition(GHelper::convI720toCC(100, _visibleSize.height * 0.1));
     item->runAction(Animation::retryButtonAction());
-    //メニューを作成する
+
     CCMenu* menu = CCMenu::create(item, NULL);
     if (!menu) return;
     menu->setPosition(CCPointZero);

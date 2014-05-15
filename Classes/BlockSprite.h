@@ -12,9 +12,6 @@
 #include "cocos2d.h"
 #include "Config.h"
 
-#define BLOCK_COLUMN 12
-#define BLOCK_ROW 16
-
 class BlockSprite : public cocos2d::CCSprite
 {
 protected:

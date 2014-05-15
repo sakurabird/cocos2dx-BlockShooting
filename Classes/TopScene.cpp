@@ -4,6 +4,7 @@
 #include "Animations.h"
 #include "LevelSelectScene.h"
 #include "SettingScene.h"
+#include "HelpScene.h"
 #include "GameOverScene.h"
 #include "GHelper.h"
 #include "SimpleAudioEngine.h"
@@ -72,20 +73,25 @@ void TopScene::makeLabel()
     //Playボタン
     CCLabelBMFont* startLabel1 = CCLabelBMFont::create("Play", FONT_ORANGE, 30);
     startLabel1->setScale(0.7);
-    CCMenuItemLabel* item1 = CCMenuItemLabel::create(startLabel1, this, menu_selector(TopScene::tapStartButton));
+    CCMenuItemLabel* item1 = CCMenuItemLabel::create(startLabel1, this, menu_selector(TopScene::onTapStartButton));
     item1->runAction(Animation::topLavelAction());
 
     //Settingボタン
     CCLabelBMFont* startLabel2 = CCLabelBMFont::create("Setting", FONT_WHITE, 30);
     startLabel2->setScale(0.7);
-    CCMenuItemLabel* item2 = CCMenuItemLabel::create(startLabel2, this, menu_selector(TopScene::tapSettingButton));
+    CCMenuItemLabel* item2 = CCMenuItemLabel::create(startLabel2, this, menu_selector(TopScene::onTapSettingButton));
+
+    //Helpボタン
+    CCLabelBMFont* startLabel3 = CCLabelBMFont::create("Help", FONT_WHITE, 30);
+    startLabel3->setScale(0.7);
+    CCMenuItemLabel* item3 = CCMenuItemLabel::create(startLabel3, this, menu_selector(TopScene::onTapHelpButton));
 
     //Quitボタン
-    CCLabelBMFont* startLabel3 = CCLabelBMFont::create("Quit", FONT_WHITE, 30);
-    startLabel3->setScale(0.7);
-    CCMenuItemLabel* item3 = CCMenuItemLabel::create(startLabel3, this, menu_selector(TopScene::menuCloseCallback));
+    CCLabelBMFont* startLabel4 = CCLabelBMFont::create("Quit", FONT_WHITE, 30);
+    startLabel4->setScale(0.7);
+    CCMenuItemLabel* item4 = CCMenuItemLabel::create(startLabel4, this, menu_selector(TopScene::menuCloseCallback));
 
-    CCMenu* menu = CCMenu::create( item1, item2, item3, NULL );
+    CCMenu* menu = CCMenu::create( item1, item2, item3, item4, NULL );
     menu->alignItemsVerticallyWithPadding(30.0);
 
     // 画面表示時のアクション
@@ -117,16 +123,22 @@ void TopScene::makeLabel()
     addChild( menu );
 }
 
-void TopScene::tapStartButton()
+void TopScene::onTapStartButton()
 {
     CCScene* scene = (CCScene*)LevelSelectScene::create();
     CCTransitionSplitRows* tran = CCTransitionSplitRows::create(1, scene);
     CCDirector::sharedDirector()->pushScene(tran);
 }
 
-void TopScene::tapSettingButton()
+void TopScene::onTapSettingButton()
 {
     CCScene* scene = (CCScene*)SettingScene::create();
+    CCDirector::sharedDirector()->pushScene(scene);
+}
+
+void TopScene::onTapHelpButton()
+{
+    CCScene* scene = (CCScene*)HelpScene::create();
     CCDirector::sharedDirector()->pushScene(scene);
 }
 

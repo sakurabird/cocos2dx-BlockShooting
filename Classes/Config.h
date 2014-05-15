@@ -41,6 +41,11 @@
 #define PNG_HOME "image/home.png"
 #define PNG_REFRESH "image/refresh.png"
 #define PNG_BACK "image/back.png"
+#define PNG_P_BLUE "image/p_blue.png"
+#define PNG_P_GREEN "image/p_green.png"
+#define PNG_P_RED "image/p_red.png"
+#define PNG_P_VIOLET "image/p_violet.png"
+#define PNG_P_YELLOW "image/p_yellow.png"
 
 #define MP3_BG "sounds/bg.mp3"
 #define MP3_BALLPUSH "sounds/ballPush.mp3"
@@ -50,13 +55,23 @@
 #define MP3_BALLLOST "sounds/ballLost.mp3"
 #define MP3_CLEAR "sounds/clear.mp3"
 #define MP3_GAMEOVER "sounds/gameover.mp3"
-#define MP3_GETITEM "sounds/getItem.mp3"
+#define MP3_GETITEM1 "sounds/getItem1.mp3"
+#define MP3_GETITEM2 "sounds/getItem2.mp3"
+#define MP3_GETITEM3 "sounds/getItem3.mp3"
+#define MP3_GETITEM4 "sounds/getItem4.mp3"
+#define MP3_GETITEM5 "sounds/getItem5.mp3"
 
 #define PNG_BG_MAX 48
 
 #define LEVEL_EASY 1
 #define LEVEL_NORMAL 2
 #define LEVEL_HARD 3
+
+#define BLOCK_COLUMN 12
+#define BLOCK_ROW 16
+
+#define BALL_REMAIN 3
+#define BALL_FRICTION 1.005
 
 // TODO
 enum kTag

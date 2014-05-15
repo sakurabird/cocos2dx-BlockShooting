@@ -34,9 +34,11 @@ private:
 
     void makeLabel();
 
-	void tapStartButton();
+	void onTapStartButton();
 
-    void tapSettingButton();
+    void onTapSettingButton();
+
+    void onTapHelpButton();
 };
 
 #endif /* defined(__BrockShooting__TopScene__) */
