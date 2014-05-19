@@ -74,7 +74,7 @@ void TopScene::makeLabel()
     CCLabelBMFont* startLabel1 = CCLabelBMFont::create("Play", FONT_ORANGE, 30);
     startLabel1->setScale(0.7);
     CCMenuItemLabel* item1 = CCMenuItemLabel::create(startLabel1, this, menu_selector(TopScene::onTapStartButton));
-    item1->runAction(Animation::topLavelAction());
+    item1->runAction(Animation::topLabelAction());
 
     //Settingボタン
     CCLabelBMFont* startLabel2 = CCLabelBMFont::create("Setting", FONT_WHITE, 30);

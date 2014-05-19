@@ -41,19 +41,23 @@ protected:
 
 
 private:
-    //残りボール数をあらわす変数＆アクセサ
     CC_SYNTHESIZE(int, m_ballRemain, BallRemain);
+
+    CC_SYNTHESIZE(int, m_blocksDestroyed, BlocksDestroyed);
 
     CC_SYNTHESIZE(int, m_score, Score);
 
+    CC_SYNTHESIZE(cocos2d::CCSprite*, m_background, Background);
+
+    CC_SYNTHESIZE(cocos2d::CCArray*, m_blocks, Blocks);
+
     CC_SYNTHESIZE(cocos2d::CCArray*, m_balls, Balls);
 
-    cocos2d::CCArray *m_blocks;
-
-    cocos2d::CCSprite *m_background;
-
-	int m_blocksDestroyed;
-
+    CC_SYNTHESIZE(cocos2d::CCArray*, m_item1s, Item1s);
+    CC_SYNTHESIZE(cocos2d::CCArray*, m_item2s, Item2s);
+    CC_SYNTHESIZE(cocos2d::CCArray*, m_item3s, Item3s);
+    CC_SYNTHESIZE(cocos2d::CCArray*, m_item4s, Item4s);
+    CC_SYNTHESIZE(cocos2d::CCArray*, m_item5s, Item5s);
 
     void releaseObject();
 
@@ -84,7 +88,9 @@ private:
     void updateBall();
 
     void updateBar();
-    
+
+    void updateItems(cocos2d::CCRect barRect);
+
     void onBallLost(cocos2d::CCNode* sender);
     
     void win();
@@ -101,7 +107,15 @@ private:
 
     void makeItem(cocos2d::CCSprite* block);
 
-    void itemMoveFinished(CCNode* sender);
+    void makeItemGetLabel(cocos2d::CCString* string);
+
+    void cleanupNode(CCNode* sender);
+
+    void onGetItem1();
+    void onGetItem2();
+    void onGetItem3();
+    void onGetItem4();
+    void onGetItem5();
 };
 
 #endif /* defined(__BrockShooting__GameScene__) */

@@ -19,6 +19,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/UserSettings.cpp \
                    ../../Classes/Animations.cpp \
                    ../../Classes/LevelSelectScene.cpp \
+                   ../../Classes/HelpScene.cpp \
                    ../../Classes/Utils.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes

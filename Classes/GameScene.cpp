@@ -26,6 +26,12 @@ bool isBallActive;
 GameScene::GameScene()
 :m_blocks(NULL)
 ,m_balls(NULL)
+,m_background(NULL)
+,m_item1s(NULL)
+,m_item2s(NULL)
+,m_item3s(NULL)
+,m_item4s(NULL)
+,m_item5s(NULL)
 ,m_blocksDestroyed(0)
 ,m_score(0)
 {
@@ -36,7 +42,8 @@ GameScene::~GameScene()
 {
     CCLOG("~GameScene!");
 
-    releaseObject();
+	this->unschedule( schedule_selector(GameScene::updateGame) );
+//    releaseObject();
 }
 
 CCScene* GameScene::scene()
@@ -123,7 +130,7 @@ void GameScene::showStartLabel()
     startLabel->setPosition(ccp(_visibleSize.width * 0.5, _visibleSize.height * 0.5));
     startLabel->setTag(kTagStartLabel);
     this->addChild(startLabel);
-    startLabel->runAction(Animation::topLavelAction());
+    startLabel->runAction(Animation::topLabelAction());
 }
 
 void GameScene::initForVariables()
@@ -137,11 +144,24 @@ void GameScene::initForVariables()
     this->setBallRemain(BALL_REMAIN);
 
     isBallActive = false;
+
+    m_item1s = CCArray::create();
+    m_item1s->retain();
+    m_item2s = CCArray::create();
+    m_item2s->retain();
+    m_item3s = CCArray::create();
+    m_item3s->retain();
+    m_item4s = CCArray::create();
+    m_item4s->retain();
+    m_item5s = CCArray::create();
+    m_item5s->retain();
 }
 
 void GameScene::createBalls()
 {
-	m_balls = new CCArray;
+//	m_balls = new CCArray;
+    m_balls = CCArray::create();
+    m_balls->retain();
 
     for (int i = 0; i < BALL_REMAIN; i++)
     {
@@ -168,15 +188,15 @@ void GameScene::createBalls()
             break;
     }
     CCLabelBMFont* label1 = CCLabelBMFont::create(levelString->getCString(), color->getCString());
-    label1->setScale(0.5);
+    label1->setScale(0.4);
     label1->setAnchorPoint(CCPointZero);
-    label1->setPosition(GHelper::convI720toCC(_visibleSize.width  * 0.7, _visibleSize.height * 0.1));
+    label1->setPosition(GHelper::convI720toCC(_visibleSize.width  * 0.6, _visibleSize.height * 0.1));
     label1->setTag(kTagLevel);
     this->addChild(label1);
 
     //残りボール数
     CCLabelBMFont* label2 = CCLabelBMFont::create("Balls:", FONT_WHITE);
-    label2->setScale(0.5);
+    label2->setScale(0.4);
     label2->setAnchorPoint(CCPointZero);
     label2->setPosition(label1->getPositionX(),
                         label1->getPositionY() - label1->getContentSize().height * 0.5);
@@ -185,7 +205,7 @@ void GameScene::createBalls()
 
     //スコア
     CCLabelBMFont* label3 = CCLabelBMFont::create("Score:", FONT_WHITE);
-    label3->setScale(0.5);
+    label3->setScale(0.4);
     label3->setAnchorPoint(CCPointZero);
     label3->setPosition(label2->getPositionX(),
                         label2->getPositionY() - label2->getContentSize().height * 0.5);
@@ -219,9 +239,9 @@ void GameScene::showBallRemain()
 
     CCLabelBMFont* label = dynamic_cast<CCLabelBMFont*>(this->getChildByTag(kTagBallRemainLabel));
 
-    CCString* ballRemain = CCString::createWithFormat("%d", m_ballRemain);
+    CCString* ballRemain = CCString::createWithFormat("%d", getBallRemain());
     remain = CCLabelBMFont::create(ballRemain->getCString(), FONT_ORANGE);
-    remain->setScale(0.5);
+    remain->setScale(0.4);
     remain->setAnchorPoint(CCPointZero);
     remain->setPosition(label->getPositionX() + label->getContentSize().width * 0.5 + 5,
                         label->getPositionY());
@@ -241,7 +261,7 @@ void GameScene::showScore()
 
     CCString* gameScore = CCString::createWithFormat("%d", getScore());
     score = CCLabelBMFont::create(gameScore->getCString(), FONT_ORANGE);
-    score->setScale(0.5);
+    score->setScale(0.4);
     score->setAnchorPoint(CCPointZero);
     score->setPosition(label->getPositionX() + label->getContentSize().width * 0.5 + 5,
                        label->getPositionY());
@@ -300,6 +320,7 @@ void GameScene::showBackground()
     // 背景を生成
     int n = rand() % PNG_BG_MAX + 1;
     CCString* fileName = CCString::createWithFormat("bg/bg%d.png",n);
+    // TODO
     m_background = CCSprite::create(fileName->getCString());
     if (!m_background) return;
 
@@ -333,7 +354,7 @@ void GameScene::onBallLost(CCNode* sender)
 
 bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
 {
-    if (m_blocksDestroyed >= BLOCK_COLUMN * BLOCK_ROW) {
+    if (getBlocksDestroyed() >= BLOCK_COLUMN * BLOCK_ROW) {
         return false;
     }
 
@@ -441,6 +462,7 @@ void GameScene::updateBlocks()
             m_score += 100;
             showScore();
 
+            //確率に従ってアイテムを生成する
             makeItem(block);
         }
     }
@@ -502,26 +524,35 @@ void GameScene::makeItem(CCSprite *block)
             break;
     }
 
-    if ( (double)rand()/RAND_MAX < itemRate ) {
+    if ( (double)rand()/RAND_MAX < itemRate )
+    {
         CCSprite* item = CCSprite::create(fileName->getCString());
         item->setPosition(ccp(blockSprite->getPositionX(),
                               blockSprite->getPositionY() + blockSprite->getContentSize().height));
         this->addChild(item, tag);
+        item->runAction(Animation::getItemFallAction(block, this,
+                                                     callfunc_selector(GameScene::cleanupNode)));
 
-        CCFiniteTimeAction* actionMove =
-        CCMoveTo::create( 3.0, ccp(blockSprite->getPositionX(), 0) );
-        CCFiniteTimeAction* actionMoveDone =
-        CCCallFuncN::create( this,
-                            callfuncN_selector(GameScene::itemMoveFinished));
-        item->runAction( CCSequence::create(actionMove,
-                                            actionMoveDone, NULL) );
+        switch (tag) {
+            case kTagItem1:
+                m_item1s->addObject(item);
+                break;
+            case kTagItem2:
+                m_item2s->addObject(item);
+                break;
+            case kTagItem3:
+                m_item3s->addObject(item);
+                break;
+            case kTagItem4:
+                m_item4s->addObject(item);
+                break;
+            case kTagItem5:
+                m_item5s->addObject(item);
+                break;
+            default:
+                break;
+        }
     }
-}
-
-void GameScene::itemMoveFinished(CCNode *sender)
-{
-    CCSprite *sprite = (CCSprite *)sender;
-    this->removeChild(sprite, true);
 }
 
 void GameScene::updateBar()
@@ -541,6 +572,174 @@ void GameScene::updateBar()
         // ボールは跳ね返す
         ball->bounceBall(barRect, kTagBar);
     }
+
+    //　アイテムをゲットする処理
+    updateItems(barRect);
+}
+
+void GameScene::updateItems(cocos2d::CCRect barRect)
+{
+    CCObject* jt = NULL;
+    if (m_item1s != NULL && getItem1s()->count() > 0) {
+        CCARRAY_FOREACH(m_item1s, jt)
+        {
+            CCSprite* item = dynamic_cast<CCSprite*>(jt);
+            if (!item) {
+                CCLOG("log1");
+                break;
+            }
+            CCRect itemRect = item->boundingBox();
+            if (itemRect.intersectsRect(barRect))
+            {
+                this->removeChild(item, true);
+                m_item1s->removeObject(jt);
+                onGetItem1();
+            }
+        }
+    }
+
+    if (m_item2s != NULL && getItem2s()->count() > 0) {
+        CCARRAY_FOREACH(m_item2s, jt)
+        {
+            CCSprite* item = dynamic_cast<CCSprite*>(jt);
+            if (!item) {
+                CCLOG("log2");
+                break;
+            }
+            CCRect itemRect = item->boundingBox();
+            if (itemRect.intersectsRect(barRect))
+            {
+                this->removeChild(item, true);
+                m_item2s->removeObject(jt);
+                onGetItem2();
+            }
+        }
+    }
+
+    if (m_item3s != NULL && getItem3s()->count() > 0) {
+        CCARRAY_FOREACH(m_item3s, jt)
+        {
+            CCSprite* item = dynamic_cast<CCSprite*>(jt);
+            if (!item) {
+                CCLOG("log3");
+                break;
+            }
+            CCRect itemRect = item->boundingBox();
+            if (itemRect.intersectsRect(barRect))
+            {
+                this->removeChild(item, true);
+                m_item3s->removeObject(jt);
+                onGetItem3();
+            }
+        }
+    }
+
+    if (m_item4s != NULL && getItem4s()->count() > 0) {
+        CCARRAY_FOREACH(m_item4s, jt)
+        {
+            CCSprite* item = dynamic_cast<CCSprite*>(jt);
+            if (!item) {
+                CCLOG("log4");
+                break;
+            }
+            CCRect itemRect = item->boundingBox();
+            if (itemRect.intersectsRect(barRect))
+            {
+                this->removeChild(item, true);
+                m_item4s->removeObject(jt);
+                onGetItem4();
+            }
+        }
+    }
+
+    if (m_item5s != NULL && getItem5s()->count() > 0) {
+        CCARRAY_FOREACH(m_item5s, jt)
+        {
+            CCSprite* item = dynamic_cast<CCSprite*>(jt);
+            if (!item) {
+                CCLOG("log5");
+                break;
+            }
+            CCRect itemRect = item->boundingBox();
+            if (itemRect.intersectsRect(barRect))
+            {
+                this->removeChild(item, true);
+                m_item5s->removeObject(jt);
+                onGetItem5();
+            }
+        }
+    }
+
+}
+
+void GameScene::onGetItem1()
+{
+    CCString* str = CCString::create("speed up");
+    makeItemGetLabel(str);
+    //ボールの速度を早くする
+}
+
+void GameScene::onGetItem2()
+{
+    CCString* str = CCString::create("long bar");
+    makeItemGetLabel(str);
+    //バーの長さを長くする
+}
+
+void GameScene::onGetItem3()
+{
+    CCString* str = CCString::create("multiple balls");
+    makeItemGetLabel(str);
+    //ボールを追加する
+//    BallSprite* ball = BallSprite::createWithBallScale(0.7);
+//    CCNode *bar = this->getChildByTag(kTagBar);
+//	ball->setPosition( ccp(bar->getPositionX(), bar->getPositionY()+ bar->getContentSize().height) );
+//	this->addChild(ball);
+}
+
+void GameScene::onGetItem4()
+{
+    CCString* str = CCString::create("+5000");
+    makeItemGetLabel(str);
+    //ボーナススコアを加算する
+    m_score += 5000;
+}
+
+void GameScene::onGetItem5()
+{
+    CCString* str = CCString::create("+1 Ball!");
+    makeItemGetLabel(str);
+
+
+    CCSprite *bar = dynamic_cast<CCSprite*>(this->getChildByTag(kTagBar));
+//    CCParticleFireworks* p = CCParticleFireworks::create();
+//    CCParticleSun* p = CCParticleSun::create();
+    CCParticleMeteor* p = CCParticleMeteor::create();
+    p->setTexture( CCTextureCache::sharedTextureCache()->addImage(PNG_P_YELLOW) );
+	p->setDuration(0.07);
+	p->setSpeed(1000);
+    p->setAutoRemoveOnFinish(true);
+	p->setPosition(ccp(bar->getPositionX(), bar->getPositionY()));
+	// エフェクトの表示
+	this->addChild(p);
+
+    //残りボール数を加算する
+    BallSprite* ball = BallSprite::createWithBallScale(0.7);
+    m_balls->addObject(ball);
+    m_ballRemain++;
+    showBallRemain();
+}
+
+void GameScene::makeItemGetLabel(CCString *string)
+{
+    CCLabelBMFont* label = CCLabelBMFont::create(string->getCString(), FONT_WHITE);
+    label->setScale(0.2);
+    CCSprite *bar = dynamic_cast<CCSprite*>(this->getChildByTag(kTagBar));
+    label->setPosition(ccp(bar->getPositionX(), bar->getPositionY() + bar->getContentSize().height / 2));
+    label->setTag(kTagItemGetLabel);
+    label->runAction(Animation::getItemLabelAction(bar, this,
+                                                   callfunc_selector(GameScene::cleanupNode)));
+    this->addChild(label);
 }
 
 void GameScene::win()
@@ -565,9 +764,7 @@ void GameScene::win()
     this->addChild(emitter, kZOrderEmmit);
 
     emitter->setTexture( CCTextureCache::sharedTextureCache()->addImage(PNG_RECT1) );
-
     emitter->setAutoRemoveOnFinish(true);
-
     emitter->setPosition( ccp(_visibleSize.width / 2, _visibleSize.height / 2) );
 
     //クリアのラベル表示
@@ -589,7 +786,7 @@ void GameScene::gameOver()
 
 	this->unschedule( schedule_selector(GameScene::updateGame) );
 
-    UserSettings::setScore(m_score);
+    UserSettings::setScore(getScore());
 
     CCScene* scene = (CCScene*)GameOverScene::create();
     CCTransitionRotoZoom* tran = CCTransitionRotoZoom::create(3, scene);
@@ -644,20 +841,30 @@ void GameScene::onTapRetryButton()
     button->setVisible(false);
 }
 
-
-void GameScene::releaseObject()
+void GameScene::cleanupNode(CCNode *sender)
 {
-	if (m_blocks)
-	{
-		m_blocks->release();
-		m_blocks = NULL;
-	}
+    if (!sender) return;
 
-	if (m_balls)
-	{
-		m_balls->release();
-		m_balls = NULL;
-	}
+    switch (sender->getTag()) {
+        case kTagItem1:
+            m_item1s->removeLastObject();
+            break;
+        case kTagItem2:
+            m_item2s->removeLastObject();
+            break;
+        case kTagItem3:
+            m_item3s->removeLastObject();
+            break;
+        case kTagItem4:
+            m_item4s->removeLastObject();
+            break;
+        case kTagItem5:
+            m_item5s->removeLastObject();
+            break;
+        default:
+            break;
+    }
+    sender->removeFromParentAndCleanup(true);
 }
 
 void GameScene::onTapBackButton()

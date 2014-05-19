@@ -205,8 +205,8 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/TopScene.o: \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/component/CCComponentContainer.h \
  jni/../../Classes/Config.h jni/../../Classes/UserSettings.h \
  jni/../../Classes/Animations.h jni/../../Classes/LevelSelectScene.h \
- jni/../../Classes/SettingScene.h jni/../../Classes/GameOverScene.h \
- jni/../../Classes/GHelper.h \
+ jni/../../Classes/SettingScene.h jni/../../Classes/HelpScene.h \
+ jni/../../Classes/GameOverScene.h jni/../../Classes/GHelper.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/SimpleAudioEngine.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/Export.h \
  jni/../../Classes/Utils.h
@@ -628,6 +628,8 @@ jni/../../Classes/Animations.h:
 jni/../../Classes/LevelSelectScene.h:
 
 jni/../../Classes/SettingScene.h:
+
+jni/../../Classes/HelpScene.h:
 
 jni/../../Classes/GameOverScene.h:
 
