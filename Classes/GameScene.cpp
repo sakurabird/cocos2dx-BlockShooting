@@ -43,7 +43,6 @@ GameScene::~GameScene()
     CCLOG("~GameScene!");
 
 	this->unschedule( schedule_selector(GameScene::updateGame) );
-//    releaseObject();
 }
 
 CCScene* GameScene::scene()
@@ -171,23 +170,8 @@ void GameScene::createBalls()
     }
 
     //レベル
-    CCString* levelString = NULL;
-    CCString* color = NULL;
-    switch (UserSettings::getLevelSetting()) {
-        case LEVEL_EASY:
-            levelString = CCString::create("Easy");
-            color = CCString::create(FONT_GREEN);
-            break;
-        case LEVEL_NORMAL:
-            levelString = CCString::create("Normal");
-            color = CCString::create(FONT_YELLOW);
-            break;
-        case LEVEL_HARD:
-            levelString = CCString::create("Hard");
-            color = CCString::create(FONT_BLUE);
-            break;
-    }
-    CCLabelBMFont* label1 = CCLabelBMFont::create(levelString->getCString(), color->getCString());
+    CCString* levelString = CCString::createWithFormat("Level %d", UserSettings::getLevelSetting());
+    CCLabelBMFont* label1 = CCLabelBMFont::create(levelString->getCString(), FONT_GREEN);
     label1->setScale(0.4);
     label1->setAnchorPoint(CCPointZero);
     label1->setPosition(GHelper::convI720toCC(_visibleSize.width  * 0.6, _visibleSize.height * 0.1));
@@ -317,11 +301,7 @@ void GameScene::makeBlock()
 
 void GameScene::showBackground()
 {
-    // 背景を生成
-    int n = rand() % PNG_BG_MAX + 1;
-    CCString* fileName = CCString::createWithFormat("bg/bg%d.png",n);
-    // TODO
-    m_background = CCSprite::create(fileName->getCString());
+    m_background = CCSprite::create(PNG_BG);
     if (!m_background) return;
 
     m_background->setPosition(GHelper::convI720toCC(_visibleSize.width / 2, _visibleSize.height / 2));
@@ -844,6 +824,7 @@ void GameScene::onTapRetryButton()
 void GameScene::cleanupNode(CCNode *sender)
 {
     if (!sender) return;
+    if (!sender->getTag()) return;
 
     switch (sender->getTag()) {
         case kTagItem1:

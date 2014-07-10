@@ -7,6 +7,7 @@
 //
 
 #include "LevelSelectScene.h"
+#include "LevelMenuItemSprite.h"
 #include "Config.h"
 #include "UserSettings.h"
 #include "GameScene.h"
@@ -15,6 +16,10 @@
 
 USING_NS_CC;
 using namespace CocosDenshion;
+
+const char *activeFile[16] = {PNG_STAGE1_A,PNG_STAGE2_A,PNG_STAGE3_A,PNG_STAGE4_A,PNG_STAGE5_A,PNG_STAGE6_A,PNG_STAGE7_A,PNG_STAGE8_A,PNG_STAGE9_A,PNG_STAGE10_A,PNG_STAGE11_A,PNG_STAGE12_A,PNG_STAGE13_A,PNG_STAGE14_A,PNG_STAGE15_A,PNG_STAGE16_A};
+
+const char *inactiveFile[16] = {PNG_STAGE1_D,PNG_STAGE2_D,PNG_STAGE3_D,PNG_STAGE4_D,PNG_STAGE5_D,PNG_STAGE6_D,PNG_STAGE7_D,PNG_STAGE8_D,PNG_STAGE9_D,PNG_STAGE10_D,PNG_STAGE11_D,PNG_STAGE12_D,PNG_STAGE13_D,PNG_STAGE14_D,PNG_STAGE15_D,PNG_STAGE16_D};
 
 LevelSelectScene::LevelSelectScene()
 {
@@ -64,34 +69,47 @@ bool LevelSelectScene::init()
     return  true;
 }
 
+LevelMenuItemSprite* item_a[16];
+
 void LevelSelectScene::makeLabel()
 {
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
 
     //タイトル
     CCLabelBMFont* title = CCLabelBMFont::create("Select Level", FONT_RED);
-    title->setScale(1.0);
-    title->setPosition( ccp(visibleSize.width / 2, visibleSize.height * 0.8));
+    title->setScale(0.8);
+    title->setPosition(GHelper::convI720toCC(visibleSize.width / 2, visibleSize.height * 0.17));
     addChild(title);
 
-    //Easyボタン
-    CCLabelBMFont* startLabel1 = CCLabelBMFont::create("EASY", FONT_GREEN, 30);
-    startLabel1->setScale(0.7);
-    CCMenuItemLabel* item1 = CCMenuItemLabel::create(startLabel1, this, menu_selector(LevelSelectScene::onTapEasyButton));
+    //16個のラベルを作成
+    float height = title->getPositionY() + title->getContentSize().height / 2;
+    height = (height - 135) / 16;
 
-    //Normalボタン
-    CCLabelBMFont* startLabel2 = CCLabelBMFont::create("NORMAL", FONT_YELLOW, 30);
-    startLabel2->setScale(0.7);
-    CCMenuItemLabel* item2 = CCMenuItemLabel::create(startLabel2, this, menu_selector(LevelSelectScene::onTapNormalButton));
+    CCSprite *s = CCSprite::create(PNG_STAGE1_A);
+    float scaleY = height / s->getContentSize().height;
 
-    //Hardボタン
-    CCLabelBMFont* startLabel3 = CCLabelBMFont::create("HARD", FONT_BLUE, 30);
-    startLabel3->setScale(0.7);
-    CCMenuItemLabel* item3 = CCMenuItemLabel::create(startLabel3, this, menu_selector(LevelSelectScene::onTapHardButton));
+    for(int i = 0; i < 16; i++){
+        CCSprite *sp;
+        if (gLevelState[0][i] == 1) {
+            sp = CCSprite::create(activeFile[i]);
+        } else {
+            sp = CCSprite::create(inactiveFile[i]);
+        }
+        LevelMenuItemSprite *item = LevelMenuItemSprite::create(sp, sp, this, menu_selector(LevelSelectScene::onTapLevel));
+        if (!item) continue;
+        item->setting(i, scaleY);
+        item_a[i] = item;
+    }
 
-    CCMenu* menu = CCMenu::create( item1, item2, item3, NULL );
-    menu->alignItemsVerticallyWithPadding(30.0);
-    addChild( menu );
+    CCMenu* menu = CCMenu::create(
+                               item_a[0],item_a[1],item_a[2],item_a[3],
+                               item_a[4],item_a[5],item_a[6],item_a[7],
+                               item_a[8],item_a[9],item_a[10],item_a[11],
+                               item_a[12],item_a[13],item_a[14],item_a[15], NULL );
+    if (!menu) return;
+    menu->alignItemsVerticallyWithPadding(5.0);
+    menu->setPosition(GHelper::convI720toCC(visibleSize.width / 2, visibleSize.height * 0.63));
+    this->addChild( menu );
 }
 
 void LevelSelectScene::makeBackButton()
@@ -111,23 +129,12 @@ void LevelSelectScene::makeBackButton()
     this->addChild(menu, kZOrderTop, kTagBack);
 }
 
-void LevelSelectScene::onTapEasyButton()
+void LevelSelectScene::onTapLevel(CCObject *sender)
 {
-    this->onLevelSelected(LEVEL_EASY);
-}
-
-void LevelSelectScene::onTapNormalButton()
-{
-    this->onLevelSelected(LEVEL_NORMAL);
-}
-
-void LevelSelectScene::onTapHardButton()
-{
-    this->onLevelSelected(LEVEL_HARD);
-}
-
-void LevelSelectScene::onLevelSelected(int level)
-{
+    LevelMenuItemSprite *sprite = (LevelMenuItemSprite *)sender;
+    if (!sprite) return;
+    CCLOG("onTapLevel tag:%d",sprite->getTag());
+    int level = sprite->getTag();
     UserSettings::setLevelSetting(level);
     CCScene* scene = (CCScene*)GameScene::create();
     CCTransitionSplitRows* tran = CCTransitionSplitRows::create(1, scene);

@@ -11,7 +11,7 @@
 
 #define ccsf(...) CCString::createWithFormat(__VA_ARGS__)->getCString()
 
-
+// fonts
 #define FONT_WHITE "fonts/fontWhite.fnt"
 #define FONT_ORANGE "fonts/fontOrange.fnt"
 #define FONT_RED "fonts/fontRed.fnt"
@@ -25,6 +25,8 @@
 #define FONT_BIG2 "fonts/fontBig2.fnt"
 
 
+// images
+#define PNG_BG "image/bg.png"
 #define PNG_BALL "image/ball.png"
 #define PNG_BLOCK "image/block.png"
 #define PNG_BLOCK_BLUE "image/block_blue.png"
@@ -47,6 +49,40 @@
 #define PNG_P_VIOLET "image/p_violet.png"
 #define PNG_P_YELLOW "image/p_yellow.png"
 
+#define PNG_STAGE1_A "image/stage1_active.png"
+#define PNG_STAGE1_D "image/stage1_inactive.png"
+#define PNG_STAGE2_A "image/stage2_active.png"
+#define PNG_STAGE2_D "image/stage2_inactive.png"
+#define PNG_STAGE3_A "image/stage3_active.png"
+#define PNG_STAGE3_D "image/stage3_inactive.png"
+#define PNG_STAGE4_A "image/stage4_active.png"
+#define PNG_STAGE4_D "image/stage4_inactive.png"
+#define PNG_STAGE5_A "image/stage5_active.png"
+#define PNG_STAGE5_D "image/stage5_inactive.png"
+#define PNG_STAGE6_A "image/stage6_active.png"
+#define PNG_STAGE6_D "image/stage6_inactive.png"
+#define PNG_STAGE7_A "image/stage7_active.png"
+#define PNG_STAGE7_D "image/stage7_inactive.png"
+#define PNG_STAGE8_A "image/stage8_active.png"
+#define PNG_STAGE8_D "image/stage8_inactive.png"
+#define PNG_STAGE9_A "image/stage9_active.png"
+#define PNG_STAGE9_D "image/stage9_inactive.png"
+#define PNG_STAGE10_A "image/stage10_active.png"
+#define PNG_STAGE10_D "image/stage10_inactive.png"
+#define PNG_STAGE11_A "image/stage11_active.png"
+#define PNG_STAGE11_D "image/stage11_inactive.png"
+#define PNG_STAGE12_A "image/stage12_active.png"
+#define PNG_STAGE12_D "image/stage12_inactive.png"
+#define PNG_STAGE13_A "image/stage13_active.png"
+#define PNG_STAGE13_D "image/stage13_inactive.png"
+#define PNG_STAGE14_A "image/stage14_active.png"
+#define PNG_STAGE14_D "image/stage14_inactive.png"
+#define PNG_STAGE15_A "image/stage15_active.png"
+#define PNG_STAGE15_D "image/stage15_inactive.png"
+#define PNG_STAGE16_A "image/stage16_active.png"
+#define PNG_STAGE16_D "image/stage16_inactive.png"
+
+// sounds
 #define MP3_BG "sounds/bg.mp3"
 #define MP3_BALLPUSH "sounds/ballPush.mp3"
 #define MP3_BOUNDBAR "sounds/boundBar.mp3"
@@ -61,11 +97,10 @@
 #define MP3_GETITEM4 "sounds/getItem4.mp3"
 #define MP3_GETITEM5 "sounds/getItem5.mp3"
 
-#define PNG_BG_MAX 48
-
-#define LEVEL_EASY 1
-#define LEVEL_NORMAL 2
-#define LEVEL_HARD 3
+// constants
+//#define LEVEL_EASY 1
+//#define LEVEL_NORMAL 2
+//#define LEVEL_HARD 3
 
 #define BLOCK_COLUMN 12
 #define BLOCK_ROW 16
@@ -125,5 +160,8 @@ enum kZOrder
     kZOrderGameOver,
     kZOrderTop = 1,
 };
+
+// TODO
+extern int gLevelState[2][16];
 
 #endif

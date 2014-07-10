@@ -138,24 +138,6 @@ void HelpScene::makeLabels()
     disc5->setPosition( ccp(image5->getPositionX() + image5->getContentSize().width + 15,
                             image5->getPositionY() - image5->getContentSize().height / 2));
     this->addChild(disc5);
-
-    //クレジット
-    CCLabelBMFont* title2 = CCLabelBMFont::create("Credits", FONT_BLUE);
-    title2->setScale(0.7);
-    title2->setPosition( ccp(_visibleSize.width / 2, _visibleSize.height * 0.4));
-    this->addChild(title2);
-
-    CCLabelBMFont* disc6 = CCLabelBMFont::create("JEWEL SAVIOR FREE", FONT_WHITE);
-    disc6->setScale(0.5);
-    disc6->setPosition( ccp(_visibleSize.width / 2, _visibleSize.height * 0.3));
-    this->addChild(disc6);
-
-    CCLabelBMFont* disc7 = CCLabelBMFont::create("http://www.jewel-s.jp/", FONT_WHITE);
-    disc7->setScale(0.4);
-    disc7->setPosition( ccp(disc6->getPositionX(),
-                            disc6->getPositionY() - disc6->getContentSize().height));
-    this->addChild(disc7);
-
 }
 
 void HelpScene::makeBackButton()

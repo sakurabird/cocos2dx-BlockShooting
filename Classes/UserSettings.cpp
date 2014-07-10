@@ -11,6 +11,8 @@
 
 USING_NS_CC;
 
+int gLevelState[2][16];
+
 const char* musicKey = "key_music";
 const char* soundEffectKey = "key_soundeffect";
 const char* levelKey = "key_level";
@@ -46,7 +48,7 @@ void UserSettings::setSESetting(bool onoff)
 int UserSettings::getLevelSetting()
 {
     CCUserDefault* userDefault = CCUserDefault::sharedUserDefault();
-    return userDefault->getIntegerForKey(levelKey, LEVEL_EASY);
+    return userDefault->getIntegerForKey(levelKey, 0);
 }
 
 void UserSettings::setLevelSetting(int level)
@@ -55,6 +57,44 @@ void UserSettings::setLevelSetting(int level)
     userDefault->setIntegerForKey(levelKey, level);
     userDefault->flush();
 }
+
+// TODO
+void UserSettings::loadLevelState()
+{
+    CCUserDefault* userDefault = CCUserDefault::sharedUserDefault();
+//    CCLOG("UserSettings::loadLevelState");
+
+    char buff[256];
+    for(int i = 0; i < 16; i++){
+        sprintf(buff,"k_panel16_0_%02d",i);
+        gLevelState[0][i] = userDefault->getIntegerForKey(buff, 0);    //load
+//        CCLOG("gLevelState[0][%d]=%d", i, gLevelState[0][i]);
+
+        sprintf(buff,"k_panel16_1_%02d",i);
+        gLevelState[1][i] = userDefault->getIntegerForKey(buff, 0);    //load
+//        CCLOG("state[1][%d]=%d", i, gLevelState[1][i]);
+    }
+    gLevelState[0][0] = 1;
+}
+
+void UserSettings::setLevelState()
+{
+    CCLOG("UserSettings::setLevelState");
+    CCUserDefault* userDefault = CCUserDefault::sharedUserDefault();
+
+    char buff[256];
+    for(int i = 0; i < 16; i++){
+        sprintf(buff,"k_panel16_0_%02d",i);
+        userDefault->setIntegerForKey(buff, gLevelState[0][i]);   //save
+        CCLOG("gLevelState[%d]=%d", i, gLevelState[0][i]);
+
+        sprintf(buff,"k_panel16_1_%02d",i);
+        userDefault->setIntegerForKey(buff, gLevelState[1][i]);   //save
+        CCLOG("gLevelState[%d]=%d", i, gLevelState[1][i]);
+    }
+    userDefault->flush();
+}
+// TODO
 
 int UserSettings::getHighScore()
 {

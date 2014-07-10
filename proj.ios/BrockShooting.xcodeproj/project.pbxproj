@@ -189,6 +189,7 @@
 		21A5B7EF18E9B32600241A7C /* TopScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A5B7E918E9B32600241A7C /* TopScene.cpp */; };
 		21A5B7F018E9B32600241A7C /* GameOverScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A5B7EA18E9B32600241A7C /* GameOverScene.cpp */; };
 		21A5B7F118E9B32600241A7C /* GHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A5B7EB18E9B32600241A7C /* GHelper.cpp */; };
+		21B2DB12196E6FAF00F2D62E /* LevelMenuItemSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B2DB10196E6FAF00F2D62E /* LevelMenuItemSprite.cpp */; };
 		21B716D319198E7100BD8414 /* UserSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B716D119198E7100BD8414 /* UserSettings.cpp */; };
 		21E50D251919ACFD006213BE /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = 21E50D241919ACFD006213BE /* sounds */; };
 		21FBBEF41924673B00578C92 /* HelpScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FBBEF21924673B00578C92 /* HelpScene.cpp */; };
@@ -644,6 +645,8 @@
 		21A5B7EC18E9B32600241A7C /* GHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHelper.h; path = ../Classes/GHelper.h; sourceTree = "<group>"; };
 		21A5B7ED18E9B32600241A7C /* TopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopScene.h; path = ../Classes/TopScene.h; sourceTree = "<group>"; };
 		21A5B7EE18E9B32600241A7C /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOverScene.h; path = ../Classes/GameOverScene.h; sourceTree = "<group>"; };
+		21B2DB10196E6FAF00F2D62E /* LevelMenuItemSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelMenuItemSprite.cpp; path = ../Classes/LevelMenuItemSprite.cpp; sourceTree = "<group>"; };
+		21B2DB11196E6FAF00F2D62E /* LevelMenuItemSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelMenuItemSprite.h; path = ../Classes/LevelMenuItemSprite.h; sourceTree = "<group>"; };
 		21B716D119198E7100BD8414 /* UserSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UserSettings.cpp; path = ../Classes/UserSettings.cpp; sourceTree = "<group>"; };
 		21B716D219198E7100BD8414 /* UserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserSettings.h; path = ../Classes/UserSettings.h; sourceTree = "<group>"; };
 		21C8D7331922602B00E5E010 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = ../Classes/Config.h; sourceTree = "<group>"; };
@@ -1345,6 +1348,8 @@
 				2135866B191E63DA00040DD5 /* Utils.h */,
 				21FBBEF21924673B00578C92 /* HelpScene.cpp */,
 				21FBBEF31924673B00578C92 /* HelpScene.h */,
+				21B2DB10196E6FAF00F2D62E /* LevelMenuItemSprite.cpp */,
+				21B2DB11196E6FAF00F2D62E /* LevelMenuItemSprite.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -2153,6 +2158,7 @@
 				379BB9BD17F03F3700829B88 /* UIListView.cpp in Sources */,
 				379BB9BE17F03F3700829B88 /* UIPageView.cpp in Sources */,
 				379BB9BF17F03F3700829B88 /* UIScrollView.cpp in Sources */,
+				21B2DB12196E6FAF00F2D62E /* LevelMenuItemSprite.cpp in Sources */,
 				379BB9C017F03F3700829B88 /* UIButton.cpp in Sources */,
 				375BD50E1868454E0024609E /* CCActionEaseEx.cpp in Sources */,
 				379BB9C117F03F3700829B88 /* UICheckBox.cpp in Sources */,

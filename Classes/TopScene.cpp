@@ -52,6 +52,9 @@ bool TopScene::init()
         !SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
         SimpleAudioEngine::sharedEngine()->playBackgroundMusic(MP3_BG, true);
 
+    // global settings
+    UserSettings::loadLevelState();
+
     makeLabel();
 
     setKeypadEnabled(true);

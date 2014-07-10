@@ -23,6 +23,9 @@ public:
     static bool getSESetting();
     static void setSESetting(bool onoff);
 
+    static void loadLevelState();
+    static void setLevelState();
+
     static int getLevelSetting();
     static void setLevelSetting(int level);
 

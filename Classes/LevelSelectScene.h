@@ -31,17 +31,11 @@ private:
 
     void makeLabel();
 
-	void onLevelSelected(int level);
-
     void makeBackButton();
 
     void onTapBackButton();
 
-    void onTapEasyButton();
-
-    void onTapNormalButton();
-
-    void onTapHardButton();
+    void onTapLevel(CCObject *sender);
 };
 
 

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "422150458.430623"
+            timestampString = "426763603.421259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "848"
-            endingLineNumber = "848"
+            startingLineNumber = "829"
+            endingLineNumber = "829"
             landmarkName = "GameScene::cleanupNode(CCNode *sender)"
             landmarkType = "5">
          </BreakpointContent>
