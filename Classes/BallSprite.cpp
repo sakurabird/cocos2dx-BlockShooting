@@ -57,9 +57,9 @@ bool BallSprite::initWithBallScale(float scale)
 void BallSprite::initVelocity()
 {
     //ランダムで少し速度を変える
-	int level = UserSettings::getLevelSetting() * 2;
-    float vx = 7 + level;
-    float vy = 8 + level;
+	int level = UserSettings::getSelectedLevel() * 2;
+    float vx = 12 + level;
+    float vy = 18 + level;
     if (rand() % 2 == 0){
         vx *= -1;
     }

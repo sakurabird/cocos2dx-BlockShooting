@@ -90,7 +90,7 @@ void LevelSelectScene::makeLabel()
 
     for(int i = 0; i < 16; i++){
         CCSprite *sp;
-        if (gLevelState[0][i] == 1) {
+        if (g_LevelState[0][i] == 1) {
             sp = CCSprite::create(activeFile[i]);
         } else {
             sp = CCSprite::create(inactiveFile[i]);
@@ -135,9 +135,10 @@ void LevelSelectScene::onTapLevel(CCObject *sender)
     if (!sprite) return;
     CCLOG("onTapLevel tag:%d",sprite->getTag());
     int level = sprite->getTag();
-    UserSettings::setLevelSetting(level);
+    UserSettings::setSelectedLevel(level);
     CCScene* scene = (CCScene*)GameScene::create();
     CCTransitionSplitRows* tran = CCTransitionSplitRows::create(1, scene);
+    CCDirector::sharedDirector()->popScene();
     CCDirector::sharedDirector()->pushScene(tran);
 }
 

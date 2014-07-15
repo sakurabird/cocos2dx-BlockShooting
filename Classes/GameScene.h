@@ -67,7 +67,11 @@ private:
 
     void createBalls();
 
+    void createGameStateLabels();
+
     void showBackground();
+
+    void showFilter();
 
     void showStartLabel();
 

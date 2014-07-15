@@ -26,8 +26,8 @@ public:
     static void loadLevelState();
     static void setLevelState();
 
-    static int getLevelSetting();
-    static void setLevelSetting(int level);
+    static int getSelectedLevel();
+    static void setSelectedLevel(int level);
 
     static int getHighScore();
     static void setHighScore(int score);

@@ -56,7 +56,7 @@ void LevelMenuItemSprite::onTapThis(CCObject *sender)
     //メニューのどこかが押された
     LevelMenuItemSprite *sprite = (LevelMenuItemSprite *)sender;
     if (!sprite) return;
-    if (gLevelState[0][sprite->getTag()] != 1) {
+    if (g_LevelState[0][sprite->getTag()] != 1) {
         return;
     }
 

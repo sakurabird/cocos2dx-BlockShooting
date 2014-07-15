@@ -50,11 +50,10 @@ CCFiniteTimeAction* Animation::retryButtonAction()
     return repeat;
 }
 
-CCFiniteTimeAction* Animation::getItemFallAction(CCSprite* block, CCObject* target, SEL_CallFunc selector)
+CCFiniteTimeAction* Animation::getItemFallAction(CCSprite* block)
 {
     CCFiniteTimeAction* actionMove = CCMoveTo::create( 3.0, ccp(block->getPositionX(), 0) );
-    CCCallFunc* func = CCCallFunc::create(target, selector);
-    CCSequence* seq = CCSequence::create(actionMove, func, NULL);
+    CCSequence* seq = CCSequence::create(actionMove, NULL);
     return seq;
 }
 

@@ -23,6 +23,8 @@ using namespace CocosDenshion;
 
 bool isBallActive;
 
+int selectedLevel;
+
 GameScene::GameScene()
 :m_blocks(NULL)
 ,m_balls(NULL)
@@ -86,7 +88,11 @@ bool GameScene::init()
 
     showBackground();
 
+    showFilter();
+
     createBalls();
+
+    createGameStateLabels();
 
     makeBar();
 
@@ -168,9 +174,13 @@ void GameScene::createBalls()
         //    CCSprite* projectile = CCSprite::createWithSpriteFrameName("Projectile.png");//テクスチャアトラスを使用
         m_balls->addObject(ball);
     }
+}
 
+void GameScene::createGameStateLabels()
+{
     //レベル
-    CCString* levelString = CCString::createWithFormat("Level %d", UserSettings::getLevelSetting());
+    selectedLevel = UserSettings::getSelectedLevel();
+    CCString* levelString = CCString::createWithFormat("Level %d", selectedLevel + 1);
     CCLabelBMFont* label1 = CCLabelBMFont::create(levelString->getCString(), FONT_GREEN);
     label1->setScale(0.4);
     label1->setAnchorPoint(CCPointZero);
@@ -304,8 +314,42 @@ void GameScene::showBackground()
     m_background = CCSprite::create(PNG_BG);
     if (!m_background) return;
 
+    float h = m_background->getContentSize().height;
+    float sc = _visibleSize.height / h;
+    m_background->setScale(sc);
+
     m_background->setPosition(GHelper::convI720toCC(_visibleSize.width / 2, _visibleSize.height / 2));
     addChild(m_background, kZOrderBackground, kTagBackground);
+}
+
+void GameScene::showFilter()
+{
+    float cellWidth = _visibleSize.width / 4;
+    float cellHeight = _visibleSize.height /4;
+
+    float x = 0;
+    float y = _visibleSize.height;
+
+    CCDrawNode* node = CCDrawNode::create();
+    this->addChild(node);
+
+    ccColor4F color = ccc4f(0, 0, 0, 0.7);
+
+    CCLOG("showFilter");
+    int index = 0;
+    for(int i = 0; i < 4; i++){
+        x = 0;
+        for(int j = 0; j < 4; j++){
+            if (g_LevelState[0][index] != 1) {
+                CCPoint verts[] = {ccp(x, y), ccp(x + cellWidth, y), ccp(x + cellWidth, y - cellHeight), ccp(x , y - cellHeight)};
+                node->drawPolygon(verts, 4, color, 0, color);
+            }
+            x += cellWidth;
+            index++;
+        }
+        y -= cellHeight;
+    }
+
 }
 
 void GameScene::onBallLost(CCNode* sender)
@@ -510,8 +554,7 @@ void GameScene::makeItem(CCSprite *block)
         item->setPosition(ccp(blockSprite->getPositionX(),
                               blockSprite->getPositionY() + blockSprite->getContentSize().height));
         this->addChild(item, tag);
-        item->runAction(Animation::getItemFallAction(block, this,
-                                                     callfunc_selector(GameScene::cleanupNode)));
+        item->runAction(Animation::getItemFallAction(block));
 
         switch (tag) {
             case kTagItem1:
@@ -575,6 +618,11 @@ void GameScene::updateItems(cocos2d::CCRect barRect)
                 m_item1s->removeObject(jt);
                 onGetItem1();
             }
+            else if (itemRect.getMinY() < 0)
+            {
+                this->removeChild(item, true);
+                m_item1s->removeObject(jt);
+            }
         }
     }
 
@@ -592,6 +640,11 @@ void GameScene::updateItems(cocos2d::CCRect barRect)
                 this->removeChild(item, true);
                 m_item2s->removeObject(jt);
                 onGetItem2();
+            }
+            else if (itemRect.getMinY() < 0)
+            {
+                this->removeChild(item, true);
+                m_item2s->removeObject(jt);
             }
         }
     }
@@ -611,6 +664,11 @@ void GameScene::updateItems(cocos2d::CCRect barRect)
                 m_item3s->removeObject(jt);
                 onGetItem3();
             }
+            else if (itemRect.getMinY() < 0)
+            {
+                this->removeChild(item, true);
+                m_item3s->removeObject(jt);
+            }
         }
     }
 
@@ -629,6 +687,11 @@ void GameScene::updateItems(cocos2d::CCRect barRect)
                 m_item4s->removeObject(jt);
                 onGetItem4();
             }
+            else if (itemRect.getMinY() < 0)
+            {
+                this->removeChild(item, true);
+                m_item4s->removeObject(jt);
+            }
         }
     }
 
@@ -646,6 +709,11 @@ void GameScene::updateItems(cocos2d::CCRect barRect)
                 this->removeChild(item, true);
                 m_item5s->removeObject(jt);
                 onGetItem5();
+            }
+            else if (itemRect.getMinY() < 0)
+            {
+                this->removeChild(item, true);
+                m_item5s->removeObject(jt);
             }
         }
     }
@@ -692,8 +760,6 @@ void GameScene::onGetItem5()
 
 
     CCSprite *bar = dynamic_cast<CCSprite*>(this->getChildByTag(kTagBar));
-//    CCParticleFireworks* p = CCParticleFireworks::create();
-//    CCParticleSun* p = CCParticleSun::create();
     CCParticleMeteor* p = CCParticleMeteor::create();
     p->setTexture( CCTextureCache::sharedTextureCache()->addImage(PNG_P_YELLOW) );
 	p->setDuration(0.07);
@@ -730,6 +796,13 @@ void GameScene::win()
 
 	this->unschedule( schedule_selector(GameScene::updateGame) );
     isBallActive = false;
+
+    // 現在のレベルの一つ上をアンロック
+    if (selectedLevel < 16) {
+        selectedLevel++;
+    }
+    g_LevelState[0][selectedLevel] = 1;
+    UserSettings::setLevelState();
 
     //ボールとバーのオブジェクトを取り除く
     BallSprite* ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
@@ -823,28 +896,6 @@ void GameScene::onTapRetryButton()
 
 void GameScene::cleanupNode(CCNode *sender)
 {
-    if (!sender) return;
-    if (!sender->getTag()) return;
-
-    switch (sender->getTag()) {
-        case kTagItem1:
-            m_item1s->removeLastObject();
-            break;
-        case kTagItem2:
-            m_item2s->removeLastObject();
-            break;
-        case kTagItem3:
-            m_item3s->removeLastObject();
-            break;
-        case kTagItem4:
-            m_item4s->removeLastObject();
-            break;
-        case kTagItem5:
-            m_item5s->removeLastObject();
-            break;
-        default:
-            break;
-    }
     sender->removeFromParentAndCleanup(true);
 }
 

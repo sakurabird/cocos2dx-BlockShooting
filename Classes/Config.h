@@ -98,10 +98,6 @@
 #define MP3_GETITEM5 "sounds/getItem5.mp3"
 
 // constants
-//#define LEVEL_EASY 1
-//#define LEVEL_NORMAL 2
-//#define LEVEL_HARD 3
-
 #define BLOCK_COLUMN 12
 #define BLOCK_ROW 16
 
@@ -162,6 +158,6 @@ enum kZOrder
 };
 
 // TODO
-extern int gLevelState[2][16];
+extern int g_LevelState[2][16];
 
 #endif
