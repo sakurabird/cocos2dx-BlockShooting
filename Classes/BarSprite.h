@@ -24,6 +24,10 @@ public:
     static BarSprite* createWithBarSize(float width, float height);
 
     virtual bool initWithBarSize(float width, float height);
+
+    void setScaleLonger();
+
+    void setScaleRestore();
 };
 
 

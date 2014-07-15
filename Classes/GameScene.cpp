@@ -24,6 +24,9 @@ using namespace CocosDenshion;
 bool isBallActive;
 
 int selectedLevel;
+float item1Time = 0;
+float item2Time = 0;
+float item3Time = 0;
 
 GameScene::GameScene()
 :m_blocks(NULL)
@@ -42,9 +45,15 @@ GameScene::GameScene()
 
 GameScene::~GameScene()
 {
-    CCLOG("~GameScene!");
-
 	this->unschedule( schedule_selector(GameScene::updateGame) );
+    CC_SAFE_RELEASE(m_blocks);
+    CC_SAFE_RELEASE(m_balls);
+    CC_SAFE_RELEASE(m_background);
+    CC_SAFE_RELEASE(m_item1s);
+    CC_SAFE_RELEASE(m_item2s);
+    CC_SAFE_RELEASE(m_item3s);
+    CC_SAFE_RELEASE(m_item4s);
+    CC_SAFE_RELEASE(m_item5s);
 }
 
 CCScene* GameScene::scene()
@@ -127,6 +136,54 @@ void GameScene::updateGame(float dt)
 
     // バーの当たり判定
     updateBar();
+
+    // アイテムの当たり判定
+    updateItems();
+}
+
+void GameScene::item1Timer(float time)
+{
+    item1Time += time;
+
+    if (item1Time >= 10) {
+        if (m_item1s != NULL && getItem1s()->count() > 0) {
+            //速度を戻す
+            m_item1s->removeObjectAtIndex(0);
+            this->unschedule(schedule_selector(GameScene::item1Timer));
+            return;
+        }
+    }
+}
+void GameScene::item2Timer(float time)
+{
+    item2Time += time;
+
+    BarSprite *bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
+    if (!bar) return;
+    bar->setScaleLonger();
+
+    if (item2Time >= 10) {
+        if (m_item2s != NULL && getItem2s()->count() > 0) {
+            //バーの長さを戻す
+            bar->setScaleRestore();
+            m_item2s->removeObjectAtIndex(0);
+            this->unschedule(schedule_selector(GameScene::item2Timer));
+            return;
+        }
+    }
+}
+void GameScene::item3Timer(float time)
+{
+    item3Time += time;
+
+    if (item3Time >= 10) {
+        if (m_item3s != NULL && getItem3s()->count() > 0) {
+            //速度を戻す
+            m_item3s->removeObjectAtIndex(0);
+            this->unschedule(schedule_selector(GameScene::item3Timer));
+            return;
+        }
+    }
 }
 
 void GameScene::showStartLabel()
@@ -164,7 +221,6 @@ void GameScene::initForVariables()
 
 void GameScene::createBalls()
 {
-//	m_balls = new CCArray;
     m_balls = CCArray::create();
     m_balls->retain();
 
@@ -212,6 +268,7 @@ void GameScene::createGameStateLabels()
 
 void GameScene::setBall()
 {
+    //ボールをバー上に配置する
     if (m_balls->count() <= 0) {
         return;
     }
@@ -267,7 +324,6 @@ void GameScene::makeBar()
 {
     float w = _visibleSize.width / 4;
     float h = w / 6;
-//    CCLOG("bar.w: %f, height: %f",w,h);
 
     BarSprite* bar = BarSprite::createWithBarSize(w, h);
 
@@ -335,7 +391,6 @@ void GameScene::showFilter()
 
     ccColor4F color = ccc4f(0, 0, 0, 0.7);
 
-    CCLOG("showFilter");
     int index = 0;
     for(int i = 0; i < 4; i++){
         x = 0;
@@ -402,7 +457,6 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
     //バーの横幅以内がタップされた場合のみタップイベントを有効にする
     bool b = false;
     CCRect rect = bar->boundingBox();
-//    CCLOG("bar  getMaxX: %f,  getMidX: %f,  getMinX: %f",rect.getMaxX(),rect.getMidX(),rect.getMinX());
     if (!rect.containsPoint(location))
     {
         b = true;
@@ -486,7 +540,7 @@ void GameScene::updateBlocks()
             m_score += 100;
             showScore();
 
-            //確率に従ってアイテムを生成する
+            //確率に従ってボーナスアイテムを生成する
             makeItem(block);
         }
     }
@@ -503,8 +557,137 @@ void GameScene::updateBlocks()
     blocksToDelete->release();
 }
 
+void GameScene::updateBar()
+{
+    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
+    if (!ball) return;
+
+    CCRect ballRect = ball->boundingBox();
+
+    BarSprite *bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
+    if (!bar) return;
+    CCRect barRect = bar->boundingBox();
+
+    //衝突判定
+    if (ballRect.intersectsRect(barRect))
+    {
+        // ボールは跳ね返す
+        ball->bounceBall(barRect, kTagBar);
+    }
+}
+
+void GameScene::updateItems()
+{
+    // 落下してくるアイテムをバーで受け止めた場合の処理
+    BarSprite *bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
+    if (!bar) return;
+    CCRect barRect = bar->boundingBox();
+
+    CCObject* jt = NULL;
+    if (m_item1s != NULL && getItem1s()->count() > 0) {
+        CCARRAY_FOREACH(m_item1s, jt)
+        {
+            CCSprite* item = dynamic_cast<CCSprite*>(jt);
+            if (!item) break;
+            CCRect itemRect = item->boundingBox();
+            if (itemRect.intersectsRect(barRect))
+            {
+                this->removeChild(item, true);
+                m_item1s->removeObject(jt);
+                onGetItem1();
+            }
+            else if (itemRect.getMinY() < 0)
+            {
+                this->removeChild(item, true);
+                m_item1s->removeObject(jt);
+            }
+        }
+    }
+
+    if (m_item2s != NULL && getItem2s()->count() > 0) {
+        CCARRAY_FOREACH(m_item2s, jt)
+        {
+            CCSprite* item = dynamic_cast<CCSprite*>(jt);
+            if (!item) break;
+            CCRect itemRect = item->boundingBox();
+            if (itemRect.intersectsRect(barRect))
+            {
+                this->removeChild(item, true);
+                m_item2s->removeObject(jt);
+                onGetItem2();
+            }
+            else if (itemRect.getMinY() < 0)
+            {
+                this->removeChild(item, true);
+                m_item2s->removeObject(jt);
+            }
+        }
+    }
+
+    if (m_item3s != NULL && getItem3s()->count() > 0) {
+        CCARRAY_FOREACH(m_item3s, jt)
+        {
+            CCSprite* item = dynamic_cast<CCSprite*>(jt);
+            if (!item) break;
+            CCRect itemRect = item->boundingBox();
+            if (itemRect.intersectsRect(barRect))
+            {
+                this->removeChild(item, true);
+                m_item3s->removeObject(jt);
+                onGetItem3();
+            }
+            else if (itemRect.getMinY() < 0)
+            {
+                this->removeChild(item, true);
+                m_item3s->removeObject(jt);
+            }
+        }
+    }
+
+    if (m_item4s != NULL && getItem4s()->count() > 0) {
+        CCARRAY_FOREACH(m_item4s, jt)
+        {
+            CCSprite* item = dynamic_cast<CCSprite*>(jt);
+            if (!item) break;
+            CCRect itemRect = item->boundingBox();
+            if (itemRect.intersectsRect(barRect))
+            {
+                this->removeChild(item, true);
+                m_item4s->removeObject(jt);
+                onGetItem4();
+            }
+            else if (itemRect.getMinY() < 0)
+            {
+                this->removeChild(item, true);
+                m_item4s->removeObject(jt);
+            }
+        }
+    }
+
+    if (m_item5s != NULL && getItem5s()->count() > 0) {
+        CCARRAY_FOREACH(m_item5s, jt)
+        {
+            CCSprite* item = dynamic_cast<CCSprite*>(jt);
+            if (!item) break;
+            CCRect itemRect = item->boundingBox();
+            if (itemRect.intersectsRect(barRect))
+            {
+                this->removeChild(item, true);
+                m_item5s->removeObject(jt);
+                onGetItem5();
+            }
+            else if (itemRect.getMinY() < 0)
+            {
+                this->removeChild(item, true);
+                m_item5s->removeObject(jt);
+            }
+        }
+    }
+}
+
 void GameScene::makeItem(CCSprite *block)
 {
+    //ボーナスアイテム作成
     BlockSprite *blockSprite = dynamic_cast<BlockSprite*>(block);
     if (!blockSprite) return;
 
@@ -578,153 +761,12 @@ void GameScene::makeItem(CCSprite *block)
     }
 }
 
-void GameScene::updateBar()
-{
-    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
-    if (!ball) return;
-
-    CCRect ballRect = ball->boundingBox();
-
-    BarSprite *bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
-    if (!bar) return;
-    CCRect barRect = bar->boundingBox();
-
-    //衝突判定
-    if (ballRect.intersectsRect(barRect))
-    {
-        // ボールは跳ね返す
-        ball->bounceBall(barRect, kTagBar);
-    }
-
-    //　アイテムをゲットする処理
-    updateItems(barRect);
-}
-
-void GameScene::updateItems(cocos2d::CCRect barRect)
-{
-    CCObject* jt = NULL;
-    if (m_item1s != NULL && getItem1s()->count() > 0) {
-        CCARRAY_FOREACH(m_item1s, jt)
-        {
-            CCSprite* item = dynamic_cast<CCSprite*>(jt);
-            if (!item) {
-                CCLOG("log1");
-                break;
-            }
-            CCRect itemRect = item->boundingBox();
-            if (itemRect.intersectsRect(barRect))
-            {
-                this->removeChild(item, true);
-                m_item1s->removeObject(jt);
-                onGetItem1();
-            }
-            else if (itemRect.getMinY() < 0)
-            {
-                this->removeChild(item, true);
-                m_item1s->removeObject(jt);
-            }
-        }
-    }
-
-    if (m_item2s != NULL && getItem2s()->count() > 0) {
-        CCARRAY_FOREACH(m_item2s, jt)
-        {
-            CCSprite* item = dynamic_cast<CCSprite*>(jt);
-            if (!item) {
-                CCLOG("log2");
-                break;
-            }
-            CCRect itemRect = item->boundingBox();
-            if (itemRect.intersectsRect(barRect))
-            {
-                this->removeChild(item, true);
-                m_item2s->removeObject(jt);
-                onGetItem2();
-            }
-            else if (itemRect.getMinY() < 0)
-            {
-                this->removeChild(item, true);
-                m_item2s->removeObject(jt);
-            }
-        }
-    }
-
-    if (m_item3s != NULL && getItem3s()->count() > 0) {
-        CCARRAY_FOREACH(m_item3s, jt)
-        {
-            CCSprite* item = dynamic_cast<CCSprite*>(jt);
-            if (!item) {
-                CCLOG("log3");
-                break;
-            }
-            CCRect itemRect = item->boundingBox();
-            if (itemRect.intersectsRect(barRect))
-            {
-                this->removeChild(item, true);
-                m_item3s->removeObject(jt);
-                onGetItem3();
-            }
-            else if (itemRect.getMinY() < 0)
-            {
-                this->removeChild(item, true);
-                m_item3s->removeObject(jt);
-            }
-        }
-    }
-
-    if (m_item4s != NULL && getItem4s()->count() > 0) {
-        CCARRAY_FOREACH(m_item4s, jt)
-        {
-            CCSprite* item = dynamic_cast<CCSprite*>(jt);
-            if (!item) {
-                CCLOG("log4");
-                break;
-            }
-            CCRect itemRect = item->boundingBox();
-            if (itemRect.intersectsRect(barRect))
-            {
-                this->removeChild(item, true);
-                m_item4s->removeObject(jt);
-                onGetItem4();
-            }
-            else if (itemRect.getMinY() < 0)
-            {
-                this->removeChild(item, true);
-                m_item4s->removeObject(jt);
-            }
-        }
-    }
-
-    if (m_item5s != NULL && getItem5s()->count() > 0) {
-        CCARRAY_FOREACH(m_item5s, jt)
-        {
-            CCSprite* item = dynamic_cast<CCSprite*>(jt);
-            if (!item) {
-                CCLOG("log5");
-                break;
-            }
-            CCRect itemRect = item->boundingBox();
-            if (itemRect.intersectsRect(barRect))
-            {
-                this->removeChild(item, true);
-                m_item5s->removeObject(jt);
-                onGetItem5();
-            }
-            else if (itemRect.getMinY() < 0)
-            {
-                this->removeChild(item, true);
-                m_item5s->removeObject(jt);
-            }
-        }
-    }
-
-}
-
 void GameScene::onGetItem1()
 {
     CCString* str = CCString::create("speed up");
     makeItemGetLabel(str);
     //ボールの速度を早くする
+    this->schedule(schedule_selector(GameScene::item1Timer));
 }
 
 void GameScene::onGetItem2()
@@ -732,6 +774,7 @@ void GameScene::onGetItem2()
     CCString* str = CCString::create("long bar");
     makeItemGetLabel(str);
     //バーの長さを長くする
+    this->schedule(schedule_selector(GameScene::item2Timer));
 }
 
 void GameScene::onGetItem3()
@@ -739,6 +782,7 @@ void GameScene::onGetItem3()
     CCString* str = CCString::create("multiple balls");
     makeItemGetLabel(str);
     //ボールを追加する
+    this->schedule(schedule_selector(GameScene::item3Timer));
 //    BallSprite* ball = BallSprite::createWithBallScale(0.7);
 //    CCNode *bar = this->getChildByTag(kTagBar);
 //	ball->setPosition( ccp(bar->getPositionX(), bar->getPositionY()+ bar->getContentSize().height) );

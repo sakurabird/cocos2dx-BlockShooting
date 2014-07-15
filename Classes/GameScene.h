@@ -93,7 +93,7 @@ private:
 
     void updateBar();
 
-    void updateItems(cocos2d::CCRect barRect);
+    void updateItems();
 
     void onBallLost(cocos2d::CCNode* sender);
     
@@ -120,6 +120,10 @@ private:
     void onGetItem3();
     void onGetItem4();
     void onGetItem5();
+
+    void item1Timer(float time);
+    void item2Timer(float time);
+    void item3Timer(float time);
 };
 
 #endif /* defined(__BrockShooting__GameScene__) */

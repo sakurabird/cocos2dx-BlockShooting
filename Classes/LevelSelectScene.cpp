@@ -17,9 +17,17 @@
 USING_NS_CC;
 using namespace CocosDenshion;
 
-const char *activeFile[16] = {PNG_STAGE1_A,PNG_STAGE2_A,PNG_STAGE3_A,PNG_STAGE4_A,PNG_STAGE5_A,PNG_STAGE6_A,PNG_STAGE7_A,PNG_STAGE8_A,PNG_STAGE9_A,PNG_STAGE10_A,PNG_STAGE11_A,PNG_STAGE12_A,PNG_STAGE13_A,PNG_STAGE14_A,PNG_STAGE15_A,PNG_STAGE16_A};
+const char *activeFile[16] = {
+    PNG_STAGE1_A,PNG_STAGE2_A,PNG_STAGE3_A,PNG_STAGE4_A,
+    PNG_STAGE5_A,PNG_STAGE6_A,PNG_STAGE7_A,PNG_STAGE8_A,
+    PNG_STAGE9_A,PNG_STAGE10_A,PNG_STAGE11_A,PNG_STAGE12_A,
+    PNG_STAGE13_A,PNG_STAGE14_A,PNG_STAGE15_A,PNG_STAGE16_A};
 
-const char *inactiveFile[16] = {PNG_STAGE1_D,PNG_STAGE2_D,PNG_STAGE3_D,PNG_STAGE4_D,PNG_STAGE5_D,PNG_STAGE6_D,PNG_STAGE7_D,PNG_STAGE8_D,PNG_STAGE9_D,PNG_STAGE10_D,PNG_STAGE11_D,PNG_STAGE12_D,PNG_STAGE13_D,PNG_STAGE14_D,PNG_STAGE15_D,PNG_STAGE16_D};
+const char *inactiveFile[16] = {
+    PNG_STAGE1_D,PNG_STAGE2_D,PNG_STAGE3_D,PNG_STAGE4_D,
+    PNG_STAGE5_D,PNG_STAGE6_D,PNG_STAGE7_D,PNG_STAGE8_D,
+    PNG_STAGE9_D,PNG_STAGE10_D,PNG_STAGE11_D,PNG_STAGE12_D,
+    PNG_STAGE13_D,PNG_STAGE14_D,PNG_STAGE15_D,PNG_STAGE16_D};
 
 LevelSelectScene::LevelSelectScene()
 {
@@ -133,7 +141,6 @@ void LevelSelectScene::onTapLevel(CCObject *sender)
 {
     LevelMenuItemSprite *sprite = (LevelMenuItemSprite *)sender;
     if (!sprite) return;
-    CCLOG("onTapLevel tag:%d",sprite->getTag());
     int level = sprite->getTag();
     UserSettings::setSelectedLevel(level);
     CCScene* scene = (CCScene*)GameScene::create();

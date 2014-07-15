@@ -10,8 +10,11 @@
 
 USING_NS_CC;
 
+bool isScaled;
+
 BarSprite::BarSprite()
 {
+    isScaled = false;
 }
 
 BarSprite::~BarSprite()
@@ -34,7 +37,6 @@ BarSprite* BarSprite::createWithBarSize(float width, float height)
     }
 }
 
-
 bool BarSprite::initWithBarSize(float width, float height)
 {
 
@@ -47,4 +49,18 @@ bool BarSprite::initWithBarSize(float width, float height)
 //          CCSprite::getContentSize().width, CCSprite::getContentSize().height);
 
     return true;
+}
+
+void BarSprite::setScaleLonger()
+{
+    if (!isScaled) {
+        setScaleX(2.0);
+        isScaled = true;
+    }
+}
+
+void BarSprite::setScaleRestore()
+{
+    setScaleX(1.0);
+    isScaled = false;
 }
