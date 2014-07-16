@@ -59,7 +59,7 @@ void BarSprite::setScaleLonger()
     }
 }
 
-void BarSprite::setScaleRestore()
+void BarSprite::restoreScale()
 {
     setScaleX(1.0);
     isScaled = false;

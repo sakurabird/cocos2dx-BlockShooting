@@ -17,12 +17,12 @@
 #include "BlockSprite.h"
 #include "GameOverScene.h"
 #include "Animations.h"
+#include "TopScene.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
 
 bool isBallActive;
-
 int selectedLevel;
 float item1Time = 0;
 float item2Time = 0;
@@ -46,14 +46,14 @@ GameScene::GameScene()
 GameScene::~GameScene()
 {
 	this->unschedule( schedule_selector(GameScene::updateGame) );
-    CC_SAFE_RELEASE(m_blocks);
-    CC_SAFE_RELEASE(m_balls);
-    CC_SAFE_RELEASE(m_background);
-    CC_SAFE_RELEASE(m_item1s);
-    CC_SAFE_RELEASE(m_item2s);
-    CC_SAFE_RELEASE(m_item3s);
-    CC_SAFE_RELEASE(m_item4s);
-    CC_SAFE_RELEASE(m_item5s);
+//    CC_SAFE_RELEASE(m_blocks);
+//    CC_SAFE_RELEASE(m_balls);
+//    CC_SAFE_RELEASE(m_background);
+//    CC_SAFE_RELEASE(m_item1s);
+//    CC_SAFE_RELEASE(m_item2s);
+//    CC_SAFE_RELEASE(m_item3s);
+//    CC_SAFE_RELEASE(m_item4s);
+//    CC_SAFE_RELEASE(m_item5s);
 }
 
 CCScene* GameScene::scene()
@@ -143,53 +143,50 @@ void GameScene::updateGame(float dt)
 
 void GameScene::item1Timer(float time)
 {
-    item1Time += time;
+    item1Time -= time;
 
-    if (item1Time >= 10) {
-        if (m_item1s != NULL && getItem1s()->count() > 0) {
-            //速度を戻す
-            m_item1s->removeObjectAtIndex(0);
-            this->unschedule(schedule_selector(GameScene::item1Timer));
-            return;
-        }
+    if (item1Time <= 0) {
+        //速度を戻す
+        BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
+        if (!ball) return;
+        ball->addVelocity(ITEM1_VELOCITY * -1);
+        this->unschedule(schedule_selector(GameScene::item1Timer));
+        item1Time = 0;
+        return;
     }
 }
 void GameScene::item2Timer(float time)
 {
-    item2Time += time;
+    item2Time -= time;
 
     BarSprite *bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
     if (!bar) return;
     bar->setScaleLonger();
 
-    if (item2Time >= 10) {
-        if (m_item2s != NULL && getItem2s()->count() > 0) {
-            //バーの長さを戻す
-            bar->setScaleRestore();
-            m_item2s->removeObjectAtIndex(0);
-            this->unschedule(schedule_selector(GameScene::item2Timer));
-            return;
-        }
+    if (item2Time <= 0) {
+        //バーの長さを戻す
+        bar->restoreScale();
+        this->unschedule(schedule_selector(GameScene::item2Timer));
+        item2Time = 0;
+        return;
     }
 }
 void GameScene::item3Timer(float time)
 {
-    item3Time += time;
+    item3Time -= time;
 
-    if (item3Time >= 10) {
-        if (m_item3s != NULL && getItem3s()->count() > 0) {
-            //速度を戻す
-            m_item3s->removeObjectAtIndex(0);
-            this->unschedule(schedule_selector(GameScene::item3Timer));
-            return;
-        }
+    if (item3Time <= 0) {
+        //追加したボールを消す
+        this->unschedule(schedule_selector(GameScene::item3Timer));
+        item3Time = 0;
+        return;
     }
 }
 
 void GameScene::showStartLabel()
 {
     CCLabelBMFont* startLabel = CCLabelBMFont::create("Touch to Start", FONT_TOUCH);
-    startLabel->setPosition(ccp(_visibleSize.width * 0.5, _visibleSize.height * 0.5));
+    startLabel->setPosition(ccp(m_visibleSize.width * 0.5, m_visibleSize.height * 0.5));
     startLabel->setTag(kTagStartLabel);
     this->addChild(startLabel);
     startLabel->runAction(Animation::topLabelAction());
@@ -197,11 +194,8 @@ void GameScene::showStartLabel()
 
 void GameScene::initForVariables()
 {
-    _visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-    _origin = CCDirector::sharedDirector()->getVisibleOrigin();
-
-    CCLOG("Hello visibleSize.width: %f, height: %f",_visibleSize.width,_visibleSize.height);
-    CCLOG("Hello origin.x: %f, origin.y: %f",_origin.x,_origin.y);
+    m_visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    m_origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
     this->setBallRemain(BALL_REMAIN);
 
@@ -217,6 +211,10 @@ void GameScene::initForVariables()
     m_item4s->retain();
     m_item5s = CCArray::create();
     m_item5s->retain();
+
+    item1Time = 0;
+    item2Time = 0;
+    item3Time = 0;
 }
 
 void GameScene::createBalls()
@@ -240,7 +238,7 @@ void GameScene::createGameStateLabels()
     CCLabelBMFont* label1 = CCLabelBMFont::create(levelString->getCString(), FONT_GREEN);
     label1->setScale(0.4);
     label1->setAnchorPoint(CCPointZero);
-    label1->setPosition(GHelper::convI720toCC(_visibleSize.width  * 0.6, _visibleSize.height * 0.1));
+    label1->setPosition(GHelper::convI720toCC(m_visibleSize.width  * 0.6, m_visibleSize.height * 0.1));
     label1->setTag(kTagLevel);
     this->addChild(label1);
 
@@ -322,12 +320,12 @@ void GameScene::showScore()
 
 void GameScene::makeBar()
 {
-    float w = _visibleSize.width / 4;
+    float w = m_visibleSize.width / 4;
     float h = w / 6;
 
     BarSprite* bar = BarSprite::createWithBarSize(w, h);
 
-    bar->setPosition(GHelper::convI720toCC(_visibleSize.width / 2, _visibleSize.height * 0.95));
+    bar->setPosition(GHelper::convI720toCC(m_visibleSize.width / 2, m_visibleSize.height * 0.95));
     this->addChild(bar);
 }
 
@@ -336,16 +334,15 @@ void GameScene::makeBlock()
 {
 	m_blocks = new CCArray;
 
-    float width = _visibleSize.width / 16.0;
+    float width = m_visibleSize.width / 16.0;
     float height = width * 0.3;
-    float margin = (_visibleSize.width - (width * BLOCK_COLUMN)) / (BLOCK_COLUMN + 1);
+    float margin = (m_visibleSize.width - (width * BLOCK_COLUMN)) / (BLOCK_COLUMN + 1);
 //    CCLOG("block.size: %f, margin: %f",width, margin);
 
-    //    CCSprite *block = NULL;
     BlockSprite *block = NULL;
 
     int number = 0;
-    int y = _visibleSize.height * 0.6;
+    int y = m_visibleSize.height * 0.6;
 
     for (int i = 0; i < BLOCK_ROW; i++)
     {
@@ -371,20 +368,20 @@ void GameScene::showBackground()
     if (!m_background) return;
 
     float h = m_background->getContentSize().height;
-    float sc = _visibleSize.height / h;
+    float sc = m_visibleSize.height / h;
     m_background->setScale(sc);
 
-    m_background->setPosition(GHelper::convI720toCC(_visibleSize.width / 2, _visibleSize.height / 2));
+    m_background->setPosition(GHelper::convI720toCC(m_visibleSize.width / 2, m_visibleSize.height / 2));
     addChild(m_background, kZOrderBackground, kTagBackground);
 }
 
 void GameScene::showFilter()
 {
-    float cellWidth = _visibleSize.width / 4;
-    float cellHeight = _visibleSize.height /4;
+    float cellWidth = m_visibleSize.width / 4;
+    float cellHeight = m_visibleSize.height /4;
 
     float x = 0;
-    float y = _visibleSize.height;
+    float y = m_visibleSize.height;
 
     CCDrawNode* node = CCDrawNode::create();
     this->addChild(node);
@@ -492,7 +489,8 @@ void GameScene::updateBall()
     float vy = ball->getVelocityY();
 
     // ボールの移動
-    ball->setPosition(ccp(ball->getPositionX() + vx, ball->getPositionY() + vy));
+    ball->setPosition(ccp(ball->getPositionX() + vx,
+                          ball->getPositionY() + vy));
 
     if( ballPoint.y < 0 )
     {
@@ -501,7 +499,7 @@ void GameScene::updateBall()
         return;
     }
     //壁との衝突判定
-    ball->bounceBall(_visibleSize);
+    ball->bounceBall(m_visibleSize);
 }
 
 void GameScene::moveBar(CCTouch* touch)
@@ -596,7 +594,7 @@ void GameScene::updateItems()
                 m_item1s->removeObject(jt);
                 onGetItem1();
             }
-            else if (itemRect.getMinY() < 0)
+            else if (itemRect.getMinY() < 1)
             {
                 this->removeChild(item, true);
                 m_item1s->removeObject(jt);
@@ -616,7 +614,7 @@ void GameScene::updateItems()
                 m_item2s->removeObject(jt);
                 onGetItem2();
             }
-            else if (itemRect.getMinY() < 0)
+            else if (itemRect.getMinY() < 1)
             {
                 this->removeChild(item, true);
                 m_item2s->removeObject(jt);
@@ -636,7 +634,7 @@ void GameScene::updateItems()
                 m_item3s->removeObject(jt);
                 onGetItem3();
             }
-            else if (itemRect.getMinY() < 0)
+            else if (itemRect.getMinY() < 1)
             {
                 this->removeChild(item, true);
                 m_item3s->removeObject(jt);
@@ -766,6 +764,10 @@ void GameScene::onGetItem1()
     CCString* str = CCString::create("speed up");
     makeItemGetLabel(str);
     //ボールの速度を早くする
+    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
+    if (!ball) return;
+    ball->addVelocity(ITEM1_VELOCITY);
+    item1Time += ITEM_LIFE_SECONDS;
     this->schedule(schedule_selector(GameScene::item1Timer));
 }
 
@@ -774,6 +776,7 @@ void GameScene::onGetItem2()
     CCString* str = CCString::create("long bar");
     makeItemGetLabel(str);
     //バーの長さを長くする
+    item2Time += ITEM_LIFE_SECONDS;
     this->schedule(schedule_selector(GameScene::item2Timer));
 }
 
@@ -782,6 +785,7 @@ void GameScene::onGetItem3()
     CCString* str = CCString::create("multiple balls");
     makeItemGetLabel(str);
     //ボールを追加する
+    item3Time += ITEM_LIFE_SECONDS;
     this->schedule(schedule_selector(GameScene::item3Timer));
 //    BallSprite* ball = BallSprite::createWithBallScale(0.7);
 //    CCNode *bar = this->getChildByTag(kTagBar);
@@ -862,11 +866,11 @@ void GameScene::win()
 
     emitter->setTexture( CCTextureCache::sharedTextureCache()->addImage(PNG_RECT1) );
     emitter->setAutoRemoveOnFinish(true);
-    emitter->setPosition( ccp(_visibleSize.width / 2, _visibleSize.height / 2) );
+    emitter->setPosition( ccp(m_visibleSize.width / 2, m_visibleSize.height / 2) );
 
     //クリアのラベル表示
     CCLabelBMFont* label = CCLabelBMFont::create("CLEAR!", FONT_BIG1);
-    label->setPosition( ccp(_visibleSize.width / 2, _visibleSize.height * 0.5));
+    label->setPosition( ccp(m_visibleSize.width / 2, m_visibleSize.height * 0.5));
     label->runAction(Animation::gameClearAction());
     addChild(label, kZOrderLabel);
 
@@ -899,7 +903,7 @@ void GameScene::makeBackButton()
                                                     menu_selector(GameScene::onTapBackButton));
 
     if (!item) return;
-    item->setPosition(GHelper::convI720toCC(20, _visibleSize.height * 0.1));
+    item->setPosition(GHelper::convI720toCC(20, m_visibleSize.height * 0.1));
     CCMenu* menu = CCMenu::create(item, NULL);
     menu->setPosition(CCPointZero);
     if (!menu) return;
@@ -915,7 +919,7 @@ void GameScene::makeRetryButton()
                                                           this,
                                                           menu_selector(GameScene::onTapRetryButton));
     if (!item) return;
-    item->setPosition(GHelper::convI720toCC(100, _visibleSize.height * 0.1));
+    item->setPosition(GHelper::convI720toCC(100, m_visibleSize.height * 0.1));
     item->runAction(Animation::retryButtonAction());
 
     CCMenu* menu = CCMenu::create(item, NULL);
@@ -945,7 +949,9 @@ void GameScene::cleanupNode(CCNode *sender)
 
 void GameScene::onTapBackButton()
 {
-    CCDirector::sharedDirector()->popScene();
+    CCScene* scene = (CCScene*)TopScene::create();
+    CCTransitionSplitRows* tran = CCTransitionSplitRows::create(1, scene);
+    CCDirector::sharedDirector()->replaceScene(tran);
 }
 
 void GameScene::registerWithTouchDispatcher()
@@ -957,6 +963,8 @@ void GameScene::registerWithTouchDispatcher()
 // Androidバックキーイベント
 void GameScene::keyBackClicked()
 {
-    CCDirector::sharedDirector()->popScene();
+    CCScene* scene = (CCScene*)TopScene::create();
+    CCTransitionSplitRows* tran = CCTransitionSplitRows::create(1, scene);
+    CCDirector::sharedDirector()->replaceScene(tran);
 }
 

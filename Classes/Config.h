@@ -104,13 +104,14 @@
 #define BALL_REMAIN 3
 #define BALL_FRICTION 1.005
 
-#define ITEM1_RATE 0.08
+#define ITEM1_RATE 0.2
 #define ITEM2_RATE 0.1
 #define ITEM3_RATE 0.04
 #define ITEM4_RATE 0.04
 #define ITEM5_RATE 0.03
 
-#define ITEM_LIFE_SECONDS 30
+#define ITEM_LIFE_SECONDS 5
+#define ITEM1_VELOCITY 10
 
 // TODO
 enum kTag

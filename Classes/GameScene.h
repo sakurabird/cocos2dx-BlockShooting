@@ -20,8 +20,8 @@ public:
 	GameScene();
 	~GameScene();
 
-    cocos2d::CCSize _visibleSize;
-    cocos2d::CCPoint _origin;
+    cocos2d::CCSize m_visibleSize;
+    cocos2d::CCPoint m_origin;
 
 	virtual bool init();
 

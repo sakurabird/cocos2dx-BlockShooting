@@ -27,7 +27,7 @@ public:
 
     void setScaleLonger();
 
-    void setScaleRestore();
+    void restoreScale();
 };
 
 

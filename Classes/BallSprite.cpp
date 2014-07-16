@@ -58,8 +58,8 @@ void BallSprite::initVelocity()
 {
     //ランダムで少し速度を変える
 	int level = UserSettings::getSelectedLevel() * 2;
-    float vx = 12 + level;
-    float vy = 18 + level;
+    float vx = 10 + level;
+    float vy = 15 + level;
     if (rand() % 2 == 0){
         vx *= -1;
     }
@@ -180,4 +180,26 @@ bool BallSprite::bounceBall(cocos2d::CCRect rect, kTag tag)
     setPosition(ccp(getPositionX() + vx, getPositionY() + vy));
 
     return b;
+}
+
+//　速度を加算する
+void BallSprite::addVelocity(int velocity){
+
+    float vx = getVelocityX();
+    float vy = getVelocityY();
+
+    if (vx < 0) {
+        vx -= velocity;
+    }else{
+        vx += velocity;
+    }
+
+    if (vy < 0) {
+        vy -= velocity;
+    }else{
+        vy += velocity;
+    }
+
+    setVelocityX(vx);
+    setVelocityY(vy);
 }

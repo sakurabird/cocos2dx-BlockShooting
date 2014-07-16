@@ -36,6 +36,8 @@ public:
     static BallSprite* createWithBallScale(float size);
 
     virtual bool initWithBallScale(float scale);
+
+    void addVelocity(int velocity);
 };
 
 #endif /* defined(__BrockShooting__BallSprite__) */
