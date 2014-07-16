@@ -52,6 +52,7 @@ private:
     CC_SYNTHESIZE(cocos2d::CCArray*, m_blocks, Blocks);
 
     CC_SYNTHESIZE(cocos2d::CCArray*, m_balls, Balls);
+    CC_SYNTHESIZE(cocos2d::CCArray*, m_activeballs, ActiveBalls);
 
     CC_SYNTHESIZE(cocos2d::CCArray*, m_item1s, Item1s);
     CC_SYNTHESIZE(cocos2d::CCArray*, m_item2s, Item2s);
@@ -123,7 +124,7 @@ private:
 
     void item1Timer(float time);
     void item2Timer(float time);
-    void item3Timer(float time);
+    void cancelTimers();
 };
 
 #endif /* defined(__BrockShooting__GameScene__) */

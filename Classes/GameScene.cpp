@@ -22,15 +22,14 @@
 USING_NS_CC;
 using namespace CocosDenshion;
 
-bool isBallActive;
 int selectedLevel;
 float item1Time = 0;
 float item2Time = 0;
-float item3Time = 0;
 
 GameScene::GameScene()
 :m_blocks(NULL)
 ,m_balls(NULL)
+,m_activeballs(NULL)
 ,m_background(NULL)
 ,m_item1s(NULL)
 ,m_item2s(NULL)
@@ -46,6 +45,15 @@ GameScene::GameScene()
 GameScene::~GameScene()
 {
 	this->unschedule( schedule_selector(GameScene::updateGame) );
+//    m_blocks->release();
+//    m_balls->release();
+//    m_activeballs->release();
+//    m_background->release();
+//    m_item1s->release();
+//    m_item2s->release();
+//    m_item3s->release();
+//    m_item4s->release();
+//    m_item5s->release();
 //    CC_SAFE_RELEASE(m_blocks);
 //    CC_SAFE_RELEASE(m_balls);
 //    CC_SAFE_RELEASE(m_background);
@@ -141,48 +149,6 @@ void GameScene::updateGame(float dt)
     updateItems();
 }
 
-void GameScene::item1Timer(float time)
-{
-    item1Time -= time;
-
-    if (item1Time <= 0) {
-        //速度を戻す
-        BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
-        if (!ball) return;
-        ball->addVelocity(ITEM1_VELOCITY * -1);
-        this->unschedule(schedule_selector(GameScene::item1Timer));
-        item1Time = 0;
-        return;
-    }
-}
-void GameScene::item2Timer(float time)
-{
-    item2Time -= time;
-
-    BarSprite *bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
-    if (!bar) return;
-    bar->setScaleLonger();
-
-    if (item2Time <= 0) {
-        //バーの長さを戻す
-        bar->restoreScale();
-        this->unschedule(schedule_selector(GameScene::item2Timer));
-        item2Time = 0;
-        return;
-    }
-}
-void GameScene::item3Timer(float time)
-{
-    item3Time -= time;
-
-    if (item3Time <= 0) {
-        //追加したボールを消す
-        this->unschedule(schedule_selector(GameScene::item3Timer));
-        item3Time = 0;
-        return;
-    }
-}
-
 void GameScene::showStartLabel()
 {
     CCLabelBMFont* startLabel = CCLabelBMFont::create("Touch to Start", FONT_TOUCH);
@@ -199,8 +165,6 @@ void GameScene::initForVariables()
 
     this->setBallRemain(BALL_REMAIN);
 
-    isBallActive = false;
-
     m_item1s = CCArray::create();
     m_item1s->retain();
     m_item2s = CCArray::create();
@@ -214,13 +178,14 @@ void GameScene::initForVariables()
 
     item1Time = 0;
     item2Time = 0;
-    item3Time = 0;
 }
 
 void GameScene::createBalls()
 {
     m_balls = CCArray::create();
     m_balls->retain();
+    m_activeballs = CCArray::create();
+    m_activeballs->retain();
 
     for (int i = 0; i < BALL_REMAIN; i++)
     {
@@ -270,12 +235,13 @@ void GameScene::setBall()
     if (m_balls->count() <= 0) {
         return;
     }
-    BallSprite* ball = dynamic_cast<BallSprite*>(m_balls->lastObject());
+    BallSprite* ball = dynamic_cast<BallSprite*>(m_balls->objectAtIndex(0));
     CCNode *bar = this->getChildByTag(kTagBar);
 	ball->setPosition( ccp(bar->getPositionX(), bar->getPositionY()+ bar->getContentSize().height) );
 	this->addChild(ball);
 
-    m_balls->removeLastObject();
+    m_balls->removeObjectAtIndex(0);
+    m_activeballs->addObject(ball);
 }
 
 void GameScene::showBallRemain()
@@ -409,17 +375,19 @@ void GameScene::onBallLost(CCNode* sender)
     if (UserSettings::getSESetting())
         SimpleAudioEngine::sharedEngine()->playEffect(MP3_BALLLOST);
 
-    isBallActive = false;
-    
+    cancelTimers();
+
     //奈落に落ちたボールを削除
     BallSprite *ball = dynamic_cast<BallSprite*>(sender);
 	this->removeChild(ball, true);
+    m_activeballs->removeObject(ball);
 
     int remain = this->getBallRemain() - 1;
     this->setBallRemain(remain);
 
     showBallRemain();
 
+    CCLOG("ball remain:%d",m_ballRemain);
     //ゲームオーバー判定
     if (remain <= 0) {
         this->gameOver();
@@ -440,10 +408,9 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
     }
 
     //現在ボールが飛んでいなければボールを飛ばす
-    if (!isBallActive) {
+    if (m_activeballs->count() < 1) {
         if (UserSettings::getSESetting())
             SimpleAudioEngine::sharedEngine()->playEffect(MP3_BALLPUSH);
-        isBallActive = true;
         return true;
     }
 
@@ -478,28 +445,28 @@ void GameScene::ccTouchEnded(CCTouch *touch, CCEvent* event)
 
 void GameScene::updateBall()
 {
-    if (!isBallActive) {
-        return;
-    }
-    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
-    if (!ball) return;
-
-    CCPoint ballPoint = ball->getPosition();
-    float vx = ball->getVelocityX();
-    float vy = ball->getVelocityY();
-
-    // ボールの移動
-    ball->setPosition(ccp(ball->getPositionX() + vx,
-                          ball->getPositionY() + vy));
-
-    if( ballPoint.y < 0 )
+    for (int i = 0; i < m_activeballs->count(); i++)
     {
-        //ユーザーがボールを奈落に落とした
-        onBallLost(ball);
-        return;
+        BallSprite* ball = dynamic_cast<BallSprite*>(m_activeballs->objectAtIndex(i));
+        if (!ball) return;
+
+        CCPoint ballPoint = ball->getPosition();
+        float vx = ball->getVelocityX();
+        float vy = ball->getVelocityY();
+
+        // ボールの移動
+        ball->setPosition(ccp(ball->getPositionX() + vx,
+                              ball->getPositionY() + vy));
+
+        if( ballPoint.y < 0 )
+        {
+            //ユーザーがボールを奈落に落とした
+            onBallLost(ball);
+            return;
+        }
+        //壁との衝突判定
+        ball->bounceBall(m_visibleSize);
     }
-    //壁との衝突判定
-    ball->bounceBall(m_visibleSize);
 }
 
 void GameScene::moveBar(CCTouch* touch)
@@ -512,65 +479,71 @@ void GameScene::moveBar(CCTouch* touch)
 
 void GameScene::updateBlocks()
 {
-    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
-    if (!ball) return;
-
-    CCRect ballRect = ball->boundingBox();
-
-    CCObject* jt = NULL;
-    CCArray* blocksToDelete = new CCArray;
-
-    CCARRAY_FOREACH(m_blocks, jt)
+    for (int i = 0; i < m_activeballs->count(); i++)
     {
-        CCSprite* block = dynamic_cast<CCSprite*>(jt);
-        //            CCLOG("updateGame target.x: %f, target.y: %f, tag: %d",target->getContentSize().width, target->getContentSize().height, target->getTag());
-        CCRect blockRect = block->boundingBox();
+        BallSprite* ball = dynamic_cast<BallSprite*>(m_activeballs->objectAtIndex(i));
+        if (!ball) return;
 
-        //衝突判定
-        if (ballRect.intersectsRect(blockRect))
+        CCRect ballRect = ball->boundingBox();
+
+        CCObject* jt = NULL;
+        CCArray* blocksToDelete = new CCArray;
+
+        CCARRAY_FOREACH(m_blocks, jt)
         {
-            // ボールは跳ね返す
-            ball->bounceBall(blockRect, kTagBlock);
+            CCSprite* block = dynamic_cast<CCSprite*>(jt);
+            //            CCLOG("updateGame target.x: %f, target.y: %f, tag: %d",target->getContentSize().width, target->getContentSize().height, target->getTag());
+            CCRect blockRect = block->boundingBox();
 
-            blocksToDelete->addObject(block);
+            //衝突判定
+            if (ballRect.intersectsRect(blockRect))
+            {
+                // ボールは跳ね返す
+                ball->bounceBall(blockRect, kTagBlock);
 
-            //スコア加算
-            m_score += 100;
-            showScore();
+                blocksToDelete->addObject(block);
 
-            //確率に従ってボーナスアイテムを生成する
-            makeItem(block);
+                //スコア加算
+                m_score += 100;
+                showScore();
+
+                //確率に従ってボーナスアイテムを生成する
+                makeItem(block);
+            }
         }
-    }
 
-    // 当たったブロックを消す
-    CCARRAY_FOREACH(blocksToDelete, jt)
-    {
-        CCSprite *block = dynamic_cast<CCSprite*>(jt);
-        m_blocks->removeObject(block);
-        this->removeChild(block, true);
-
-        m_blocksDestroyed++;
+        // 当たったブロックを消す
+        CCARRAY_FOREACH(blocksToDelete, jt)
+        {
+            CCSprite *block = dynamic_cast<CCSprite*>(jt);
+            m_blocks->removeObject(block);
+            this->removeChild(block, true);
+            
+            m_blocksDestroyed++;
+        }
+        blocksToDelete->release();
     }
-    blocksToDelete->release();
 }
 
 void GameScene::updateBar()
 {
-    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
-    if (!ball) return;
-
-    CCRect ballRect = ball->boundingBox();
-
-    BarSprite *bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
-    if (!bar) return;
-    CCRect barRect = bar->boundingBox();
-
-    //衝突判定
-    if (ballRect.intersectsRect(barRect))
+    for (int i = 0; i < m_activeballs->count(); i++)
     {
-        // ボールは跳ね返す
-        ball->bounceBall(barRect, kTagBar);
+        BallSprite* ball = dynamic_cast<BallSprite*>(m_activeballs->objectAtIndex(i));
+        if (!ball) return;
+
+        CCRect ballRect = ball->boundingBox();
+
+        BarSprite *bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
+        if (!bar) return;
+        CCRect barRect = bar->boundingBox();
+
+        //衝突判定
+        if (ballRect.intersectsRect(barRect))
+        {
+            // ボールは跳ね返す
+            ball->bounceBall(barRect, kTagBar);
+        }
     }
 }
 
@@ -763,10 +736,14 @@ void GameScene::onGetItem1()
 {
     CCString* str = CCString::create("speed up");
     makeItemGetLabel(str);
+
     //ボールの速度を早くする
-    BallSprite *ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
-    if (!ball) return;
-    ball->addVelocity(ITEM1_VELOCITY);
+    for (int i = 0; i < m_activeballs->count(); i++)
+    {
+        BallSprite* ball = dynamic_cast<BallSprite*>(m_activeballs->objectAtIndex(i));
+        if (!ball) return;
+        ball->addVelocity(ITEM1_VELOCITY);
+    }
     item1Time += ITEM_LIFE_SECONDS;
     this->schedule(schedule_selector(GameScene::item1Timer));
 }
@@ -785,12 +762,12 @@ void GameScene::onGetItem3()
     CCString* str = CCString::create("multiple balls");
     makeItemGetLabel(str);
     //ボールを追加する
-    item3Time += ITEM_LIFE_SECONDS;
-    this->schedule(schedule_selector(GameScene::item3Timer));
-//    BallSprite* ball = BallSprite::createWithBallScale(0.7);
-//    CCNode *bar = this->getChildByTag(kTagBar);
-//	ball->setPosition( ccp(bar->getPositionX(), bar->getPositionY()+ bar->getContentSize().height) );
-//	this->addChild(ball);
+    BallSprite* ball = BallSprite::createWithBallScale(0.7);
+    CCNode *bar = this->getChildByTag(kTagBar);
+	ball->setPosition( ccp(bar->getPositionX(), bar->getPositionY()+ bar->getContentSize().height) );
+	this->addChild(ball);
+    m_activeballs->addObject(ball);
+    m_ballRemain++;
 }
 
 void GameScene::onGetItem4()
@@ -836,6 +813,48 @@ void GameScene::makeItemGetLabel(CCString *string)
     this->addChild(label);
 }
 
+void GameScene::item1Timer(float time)
+{
+    item1Time -= time;
+
+    if (item1Time <= 0) {
+        //速度を戻す
+        for (int i = 0; i < m_activeballs->count(); i++)
+        {
+            BallSprite* ball = dynamic_cast<BallSprite*>(m_activeballs->objectAtIndex(i));
+            if (!ball) return;
+            ball->addVelocity(ITEM1_VELOCITY * -1);
+        }
+        this->unschedule(schedule_selector(GameScene::item1Timer));
+        item1Time = 0;
+        return;
+    }
+}
+void GameScene::item2Timer(float time)
+{
+    item2Time -= time;
+
+    BarSprite *bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
+    if (!bar) return;
+    if (item2Time <= 0) {
+        //バーの長さを戻す
+        bar->restoreScale();
+        this->unschedule(schedule_selector(GameScene::item2Timer));
+        item2Time = 0;
+        return;
+    }
+
+    bar->setScaleLonger();
+}
+
+void GameScene::cancelTimers()
+{
+    this->unschedule(schedule_selector(GameScene::item1Timer));
+    this->unschedule(schedule_selector(GameScene::item2Timer));
+    item1Time = 0;
+    item2Time = 0;
+}
+
 void GameScene::win()
 {
     //クリア時の処理
@@ -843,7 +862,6 @@ void GameScene::win()
         SimpleAudioEngine::sharedEngine()->playEffect(MP3_CLEAR);
 
 	this->unschedule( schedule_selector(GameScene::updateGame) );
-    isBallActive = false;
 
     // 現在のレベルの一つ上をアンロック
     if (selectedLevel < 16) {
@@ -853,8 +871,12 @@ void GameScene::win()
     UserSettings::setLevelState();
 
     //ボールとバーのオブジェクトを取り除く
-    BallSprite* ball = dynamic_cast<BallSprite*>(this->getChildByTag(kTagBall));
-    this->removeChild(ball, true);
+    for (int i = 0; i < m_activeballs->count(); i++)
+    {
+        BallSprite* ball = dynamic_cast<BallSprite*>(m_activeballs->objectAtIndex(i));
+        if (!ball) break;
+        this->removeChild(ball, true);
+    }
 
     BarSprite* bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
     this->removeChild(bar, true);

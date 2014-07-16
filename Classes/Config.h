@@ -104,9 +104,9 @@
 #define BALL_REMAIN 3
 #define BALL_FRICTION 1.005
 
-#define ITEM1_RATE 0.2
-#define ITEM2_RATE 0.1
-#define ITEM3_RATE 0.04
+#define ITEM1_RATE 0.05
+#define ITEM2_RATE 0.5
+#define ITEM3_RATE 0.2
 #define ITEM4_RATE 0.04
 #define ITEM5_RATE 0.03
 
