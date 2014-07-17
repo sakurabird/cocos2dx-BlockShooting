@@ -25,6 +25,7 @@ using namespace CocosDenshion;
 int selectedLevel;
 float item1Time = 0;
 float item2Time = 0;
+bool isTouched;
 
 GameScene::GameScene()
 :m_blocks(NULL)
@@ -178,6 +179,8 @@ void GameScene::initForVariables()
 
     item1Time = 0;
     item2Time = 0;
+
+    isTouched = false;
 }
 
 void GameScene::createBalls()
@@ -387,7 +390,10 @@ void GameScene::onBallLost(CCNode* sender)
 
     showBallRemain();
 
-    CCLOG("ball remain:%d",m_ballRemain);
+    if (m_activeballs->count() == 0) {
+        isTouched = false;
+    }
+
     //ゲームオーバー判定
     if (remain <= 0) {
         this->gameOver();
@@ -408,9 +414,10 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
     }
 
     //現在ボールが飛んでいなければボールを飛ばす
-    if (m_activeballs->count() < 1) {
+    if (!isTouched) {
         if (UserSettings::getSESetting())
             SimpleAudioEngine::sharedEngine()->playEffect(MP3_BALLPUSH);
+        isTouched = true;
         return true;
     }
 
@@ -445,6 +452,10 @@ void GameScene::ccTouchEnded(CCTouch *touch, CCEvent* event)
 
 void GameScene::updateBall()
 {
+    if (!isTouched) {
+        return;
+    }
+
     for (int i = 0; i < m_activeballs->count(); i++)
     {
         BallSprite* ball = dynamic_cast<BallSprite*>(m_activeballs->objectAtIndex(i));
@@ -792,7 +803,7 @@ void GameScene::onGetItem5()
     p->setAutoRemoveOnFinish(true);
 	p->setPosition(ccp(bar->getPositionX(), bar->getPositionY()));
 	// エフェクトの表示
-	this->addChild(p);
+	this->addChild(p); 
 
     //残りボール数を加算する
     BallSprite* ball = BallSprite::createWithBallScale(0.7);
