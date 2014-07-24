@@ -17,7 +17,7 @@ void Utils::quit()
 	CCMessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
 
 #else
-    UserSettings::setLevelState();
+    UserSettings::saveLevelState();
     CCDirector::sharedDirector()->end();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);

@@ -12,7 +12,7 @@
 
 #include "cocos2d.h"
 
-class Animation
+class Animations
 {
 public:
     // top画面

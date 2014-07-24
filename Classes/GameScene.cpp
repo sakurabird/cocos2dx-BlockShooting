@@ -156,7 +156,7 @@ void GameScene::showStartLabel()
     startLabel->setPosition(ccp(m_visibleSize.width * 0.5, m_visibleSize.height * 0.5));
     startLabel->setTag(kTagStartLabel);
     this->addChild(startLabel);
-    startLabel->runAction(Animation::topLabelAction());
+    startLabel->runAction(Animations::topLabelAction());
 }
 
 void GameScene::initForVariables()
@@ -719,7 +719,7 @@ void GameScene::makeItem(CCSprite *block)
         item->setPosition(ccp(blockSprite->getPositionX(),
                               blockSprite->getPositionY() + blockSprite->getContentSize().height));
         this->addChild(item, tag);
-        item->runAction(Animation::getItemFallAction(block));
+        item->runAction(Animations::getItemFallAction(block));
 
         switch (tag) {
             case kTagItem1:
@@ -819,7 +819,7 @@ void GameScene::makeItemGetLabel(CCString *string)
     CCSprite *bar = dynamic_cast<CCSprite*>(this->getChildByTag(kTagBar));
     label->setPosition(ccp(bar->getPositionX(), bar->getPositionY() + bar->getContentSize().height / 2));
     label->setTag(kTagItemGetLabel);
-    label->runAction(Animation::getItemLabelAction(bar, this,
+    label->runAction(Animations::getItemLabelAction(bar, this,
                                                    callfunc_selector(GameScene::cleanupNode)));
     this->addChild(label);
 }
@@ -879,7 +879,7 @@ void GameScene::win()
         selectedLevel++;
     }
     g_LevelState[0][selectedLevel] = 1;
-    UserSettings::setLevelState();
+    UserSettings::saveLevelState();
 
     //ボールとバーのオブジェクトを取り除く
     for (int i = 0; i < m_activeballs->count(); i++)
@@ -904,7 +904,7 @@ void GameScene::win()
     //クリアのラベル表示
     CCLabelBMFont* label = CCLabelBMFont::create("CLEAR!", FONT_BIG1);
     label->setPosition( ccp(m_visibleSize.width / 2, m_visibleSize.height * 0.5));
-    label->runAction(Animation::gameClearAction());
+    label->runAction(Animations::gameClearAction());
     addChild(label, kZOrderLabel);
 
 
@@ -953,7 +953,7 @@ void GameScene::makeRetryButton()
                                                           menu_selector(GameScene::onTapRetryButton));
     if (!item) return;
     item->setPosition(GHelper::convI720toCC(100, m_visibleSize.height * 0.1));
-    item->runAction(Animation::retryButtonAction());
+    item->runAction(Animations::retryButtonAction());
 
     CCMenu* menu = CCMenu::create(item, NULL);
     if (!menu) return;

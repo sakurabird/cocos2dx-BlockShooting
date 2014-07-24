@@ -174,7 +174,7 @@
 		2135866C191E63DA00040DD5 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2135866A191E63DA00040DD5 /* Utils.cpp */; };
 		214AB0EA191DFC8000F5BD74 /* LevelSelectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214AB0E8191DFC8000F5BD74 /* LevelSelectScene.cpp */; };
 		215A3B4E19054917005D231B /* BallSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A3B4B19054917005D231B /* BallSprite.cpp */; };
-		215E23ED190B713A004138C3 /* bg in Resources */ = {isa = PBXBuildFile; fileRef = 215E23EC190B713A004138C3 /* bg */; };
+		218F2F4A19782B54006C4C0B /* SettingConfirm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218F2F4819782B54006C4C0B /* SettingConfirm.cpp */; };
 		21A5B7DE18E9B31400241A7C /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 21A5B7D018E9B31400241A7C /* CloseNormal.png */; };
 		21A5B7DF18E9B31400241A7C /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 21A5B7D118E9B31400241A7C /* CloseSelected.png */; };
 		21A5B7E018E9B31400241A7C /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = 21A5B7D218E9B31400241A7C /* Player.png */; };
@@ -191,6 +191,7 @@
 		21A5B7F118E9B32600241A7C /* GHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A5B7EB18E9B32600241A7C /* GHelper.cpp */; };
 		21B2DB12196E6FAF00F2D62E /* LevelMenuItemSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B2DB10196E6FAF00F2D62E /* LevelMenuItemSprite.cpp */; };
 		21B716D319198E7100BD8414 /* UserSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B716D119198E7100BD8414 /* UserSettings.cpp */; };
+		21C6461C197FFBED00A1F59B /* PopupLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C6461A197FFBED00A1F59B /* PopupLayer.cpp */; };
 		21E50D251919ACFD006213BE /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = 21E50D241919ACFD006213BE /* sounds */; };
 		21FBBEF41924673B00578C92 /* HelpScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FBBEF21924673B00578C92 /* HelpScene.cpp */; };
 		21FBBF2119246F2200578C92 /* image in Resources */ = {isa = PBXBuildFile; fileRef = 21FBBF2019246F2200578C92 /* image */; };
@@ -627,7 +628,8 @@
 		214AB0E9191DFC8000F5BD74 /* LevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelSelectScene.h; path = ../Classes/LevelSelectScene.h; sourceTree = "<group>"; };
 		215A3B4219051BA6005D231B /* BallSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BallSprite.h; path = ../Classes/BallSprite.h; sourceTree = "<group>"; };
 		215A3B4B19054917005D231B /* BallSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BallSprite.cpp; path = ../Classes/BallSprite.cpp; sourceTree = "<group>"; };
-		215E23EC190B713A004138C3 /* bg */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bg; sourceTree = "<group>"; };
+		218F2F4819782B54006C4C0B /* SettingConfirm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SettingConfirm.cpp; path = ../Classes/dialog/SettingConfirm.cpp; sourceTree = "<group>"; };
+		218F2F4919782B54006C4C0B /* SettingConfirm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingConfirm.h; path = ../Classes/dialog/SettingConfirm.h; sourceTree = "<group>"; };
 		21A5B7D018E9B31400241A7C /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseNormal.png; sourceTree = "<group>"; };
 		21A5B7D118E9B31400241A7C /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseSelected.png; sourceTree = "<group>"; };
 		21A5B7D218E9B31400241A7C /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player.png; sourceTree = "<group>"; };
@@ -649,6 +651,8 @@
 		21B2DB11196E6FAF00F2D62E /* LevelMenuItemSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelMenuItemSprite.h; path = ../Classes/LevelMenuItemSprite.h; sourceTree = "<group>"; };
 		21B716D119198E7100BD8414 /* UserSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UserSettings.cpp; path = ../Classes/UserSettings.cpp; sourceTree = "<group>"; };
 		21B716D219198E7100BD8414 /* UserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserSettings.h; path = ../Classes/UserSettings.h; sourceTree = "<group>"; };
+		21C6461A197FFBED00A1F59B /* PopupLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PopupLayer.cpp; path = ../Classes/PopupLayer.cpp; sourceTree = "<group>"; };
+		21C6461B197FFBED00A1F59B /* PopupLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopupLayer.h; path = ../Classes/PopupLayer.h; sourceTree = "<group>"; };
 		21C8D7331922602B00E5E010 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = ../Classes/Config.h; sourceTree = "<group>"; };
 		21CE3F5E18FA5D0900D39B42 /* AppMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppMacros.h; path = ../Classes/AppMacros.h; sourceTree = "<group>"; };
 		21E50D241919ACFD006213BE /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
@@ -1316,6 +1320,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				21C64619197FFBDB00A1F59B /* popup */,
 				21C8D7331922602B00E5E010 /* Config.h */,
 				2130A3FE190C9DAC009E3286 /* CCPlaySE.cpp */,
 				2130A3FF190C9DAC009E3286 /* CCPlaySE.h */,
@@ -1481,9 +1486,20 @@
 			path = sd;
 			sourceTree = "<group>";
 		};
+		21C64619197FFBDB00A1F59B /* popup */ = {
+			isa = PBXGroup;
+			children = (
+				21C6461A197FFBED00A1F59B /* PopupLayer.cpp */,
+				21C6461B197FFBED00A1F59B /* PopupLayer.h */,
+			);
+			name = popup;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				218F2F4819782B54006C4C0B /* SettingConfirm.cpp */,
+				218F2F4919782B54006C4C0B /* SettingConfirm.h */,
 				15A3D87E1682F7B3002FB0C5 /* cocos2dx.xcodeproj */,
 				15A3D8871682F7D5002FB0C5 /* Box2D */,
 				15A3D93A1682F7F9002FB0C5 /* chipmunk */,
@@ -1832,7 +1848,6 @@
 				21FBBF2219246FE000578C92 /* fonts */,
 				21FBBF2019246F2200578C92 /* image */,
 				21E50D241919ACFD006213BE /* sounds */,
-				215E23EC190B713A004138C3 /* bg */,
 				21A5B7CF18E9B31400241A7C /* hd */,
 				21A5B7D518E9B31400241A7C /* sd */,
 				D41A0AD0160F154A004552AE /* Default-568h@2x.png */,
@@ -1932,7 +1947,6 @@
 				21A5B7E318E9B31400241A7C /* app.icf in Resources */,
 				21A5B7E018E9B31400241A7C /* Player.png in Resources */,
 				21A5B7E218E9B31400241A7C /* Target.png in Resources */,
-				215E23ED190B713A004138C3 /* bg in Resources */,
 				21A5B7E118E9B31400241A7C /* Projectile.png in Resources */,
 				21FBBF2119246F2200578C92 /* image in Resources */,
 				21A5B7E418E9B31400241A7C /* CloseNormal.png in Resources */,
@@ -1996,6 +2010,7 @@
 				15A3D9241682F7D5002FB0C5 /* b2MouseJoint.cpp in Sources */,
 				15A3D9251682F7D5002FB0C5 /* b2PrismaticJoint.cpp in Sources */,
 				15A3D9261682F7D5002FB0C5 /* b2PulleyJoint.cpp in Sources */,
+				218F2F4A19782B54006C4C0B /* SettingConfirm.cpp in Sources */,
 				15A3D9271682F7D5002FB0C5 /* b2RevoluteJoint.cpp in Sources */,
 				15A3D9281682F7D5002FB0C5 /* b2RopeJoint.cpp in Sources */,
 				15A3D9291682F7D5002FB0C5 /* b2WeldJoint.cpp in Sources */,
@@ -2144,6 +2159,7 @@
 				379BB9AA17F03F3700829B88 /* CCTransformHelp.cpp in Sources */,
 				379BB9AB17F03F3700829B88 /* CCTweenFunction.cpp in Sources */,
 				379BB9AC17F03F3700829B88 /* CCUtilMath.cpp in Sources */,
+				21C6461C197FFBED00A1F59B /* PopupLayer.cpp in Sources */,
 				379BB9AD17F03F3700829B88 /* CCComAttribute.cpp in Sources */,
 				379BB9AE17F03F3700829B88 /* CCComAudio.cpp in Sources */,
 				379BB9AF17F03F3700829B88 /* CCComController.cpp in Sources */,

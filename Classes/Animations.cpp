@@ -10,7 +10,7 @@
 
 USING_NS_CC;
 
-CCFiniteTimeAction* Animation::topLabelAction()
+CCFiniteTimeAction* Animations::topLabelAction()
 {
     //Playボタンのアニメーション
     CCDelayTime* delay1 = CCDelayTime::create(2);
@@ -22,7 +22,7 @@ CCFiniteTimeAction* Animation::topLabelAction()
     return repeat;
 }
 
-CCFiniteTimeAction* Animation::gameClearAction()
+CCFiniteTimeAction* Animations::gameClearAction()
 {
     //Gameクリア時に表示するラベルのアニメーション
     CCDelayTime* delay1 = CCDelayTime::create(0.5);
@@ -38,7 +38,7 @@ CCFiniteTimeAction* Animation::gameClearAction()
     return CCSequence::create(delay1, scaleUp1, delay2, scaleDown1, scaleUp2, scaleDown2, delay3, scaleDown3, NULL);
 }
 
-CCFiniteTimeAction* Animation::retryButtonAction()
+CCFiniteTimeAction* Animations::retryButtonAction()
 {
     CCDelayTime* delay1 = CCDelayTime::create(1);
     CCScaleTo* scaleUp = CCScaleTo::create(0.1, 1.5);
@@ -50,14 +50,14 @@ CCFiniteTimeAction* Animation::retryButtonAction()
     return repeat;
 }
 
-CCFiniteTimeAction* Animation::getItemFallAction(CCSprite* block)
+CCFiniteTimeAction* Animations::getItemFallAction(CCSprite* block)
 {
     CCFiniteTimeAction* actionMove = CCMoveTo::create( 3.0, ccp(block->getPositionX(), 0) );
     CCSequence* seq = CCSequence::create(actionMove, NULL);
     return seq;
 }
 
-CCFiniteTimeAction* Animation::getItemLabelAction(CCSprite* bar, CCObject* target, SEL_CallFunc selector)
+CCFiniteTimeAction* Animations::getItemLabelAction(CCSprite* bar, CCObject* target, SEL_CallFunc selector)
 {
     CCScaleTo* scaleUp = CCScaleTo::create(0.1, 0.3);
     CCFiniteTimeAction* move = CCMoveTo::create(0.2, ccp(bar->getPositionX(), bar->getPositionY() + bar->getContentSize().height / 2  + 25) );

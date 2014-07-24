@@ -106,7 +106,7 @@ void GameOverScene::makeLabel()
     okLabel->setScale(1);
     CCMenuItemLabel* item1 = CCMenuItemLabel::create(okLabel, this, menu_selector(GameOverScene::onTapOKButton));
     item1->setPosition( ccp(visibleSize.width / 2, visibleSize.height * 0.2));
-    item1->runAction(Animation::topLabelAction());
+    item1->runAction(Animations::topLabelAction());
 
     CCMenu* menu = CCMenu::create( item1,  NULL );
     menu->setPosition(CCPointZero);

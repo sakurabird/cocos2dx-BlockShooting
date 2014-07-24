@@ -73,7 +73,7 @@ void UserSettings::loadLevelState()
     g_LevelState[0][0] = 1;
 }
 
-void UserSettings::setLevelState()
+void UserSettings::saveLevelState()
 {
     CCUserDefault* userDefault = CCUserDefault::sharedUserDefault();
 

@@ -30,17 +30,19 @@ public:
 
 private:
 
+    void makeLabels();
+
     void makeBackButton();
 
     void onTapBackButton();
 
-    void makeMusicButton();
-
-    void makeSEButton();
-
 	void onTapMusicOnOFFButton();
 
     void onTapSEOnOFFButton();
+
+    void onTapClearUserData();
+
+    void popupCallback(CCNode* sender);
 };
 
 

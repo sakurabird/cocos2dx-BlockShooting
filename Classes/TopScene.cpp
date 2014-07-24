@@ -1,7 +1,7 @@
 #include "TopScene.h"
+#include "Animations.h"
 #include "Config.h"
 #include "UserSettings.h"
-#include "Animations.h"
 #include "LevelSelectScene.h"
 #include "SettingScene.h"
 #include "HelpScene.h"
@@ -77,7 +77,8 @@ void TopScene::makeLabel()
     CCLabelBMFont* startLabel1 = CCLabelBMFont::create("Play", FONT_ORANGE, 30);
     startLabel1->setScale(0.7);
     CCMenuItemLabel* item1 = CCMenuItemLabel::create(startLabel1, this, menu_selector(TopScene::onTapStartButton));
-    item1->runAction(Animation::topLabelAction());
+    // TODO
+    item1->runAction(Animations::topLabelAction());
 
     //Settingボタン
     CCLabelBMFont* startLabel2 = CCLabelBMFont::create("Setting", FONT_WHITE, 30);

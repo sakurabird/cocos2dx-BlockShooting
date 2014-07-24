@@ -27,6 +27,9 @@
 
 // images
 #define PNG_BG "image/bg.png"
+#define PNG_POPUP_BG "image/popup_bg.png"
+#define PNG_OK "image/ok.png"
+#define PNG_CANCEL "image/cancel.png"
 #define PNG_BALL "image/ball.png"
 #define PNG_BLOCK "image/block.png"
 #define PNG_BLOCK_BLUE "image/block_blue.png"
@@ -36,10 +39,8 @@
 #define PNG_BLOCK_YELLOW "image/block_yellow.png"
 #define PNG_BAR "image/bar.png"
 #define PNG_RECT1 "image/rect1.png"
-#define PNG_MUSIC_ON "image/button_Music_On.png"
-#define PNG_MUSIC_OFF "image/button_Music_Off.png"
-#define PNG_SE_ON "image/button_SE_On.png"
-#define PNG_SE_OFF "image/button_SE_Off.png"
+#define PNG_ON "image/button_on.png"
+#define PNG_OFF "image/button_off.png"
 #define PNG_HOME "image/home.png"
 #define PNG_REFRESH "image/refresh.png"
 #define PNG_BACK "image/back.png"
@@ -142,8 +143,8 @@ enum kTag
     kTagGrayLabel,
     kTagGameOver,
     kTagHighScoreLabel,
-    kTagMusicButtton,
-    kTagSEButtton,
+//    kTagMusicButtton,
+//    kTagSEButtton,
     kTagGameOverScoreLavel,
     kTagGameOverHighScoreLavel,
     kTagBaseBlock = 10000,

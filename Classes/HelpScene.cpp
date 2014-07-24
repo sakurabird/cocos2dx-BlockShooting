@@ -160,11 +160,15 @@ void HelpScene::makeBackButton()
 
 void HelpScene::onTapBackButton()
 {
-    CCDirector::sharedDirector()->popScene();
+    CCScene* scene = (CCScene*)TopScene::create();
+    CCTransitionSplitRows* tran = CCTransitionSplitRows::create(1, scene);
+    CCDirector::sharedDirector()->replaceScene(tran);
 }
 
 void HelpScene::keyBackClicked()
 {
-    CCDirector::sharedDirector()->popScene();
+    CCScene* scene = (CCScene*)TopScene::create();
+    CCTransitionSplitRows* tran = CCTransitionSplitRows::create(1, scene);
+    CCDirector::sharedDirector()->replaceScene(tran);
 }
 

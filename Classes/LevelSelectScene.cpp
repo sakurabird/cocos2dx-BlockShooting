@@ -8,6 +8,7 @@
 
 #include "LevelSelectScene.h"
 #include "LevelMenuItemSprite.h"
+#include "TopScene.h"
 #include "Config.h"
 #include "UserSettings.h"
 #include "GameScene.h"
@@ -151,11 +152,15 @@ void LevelSelectScene::onTapLevel(CCObject *sender)
 
 void LevelSelectScene::onTapBackButton()
 {
-    CCDirector::sharedDirector()->popScene();
+    CCScene* scene = (CCScene*)TopScene::create();
+    CCTransitionSplitRows* tran = CCTransitionSplitRows::create(1, scene);
+    CCDirector::sharedDirector()->replaceScene(tran);
 }
 
 void LevelSelectScene::keyBackClicked()
 {
-    CCDirector::sharedDirector()->popScene();
+    CCScene* scene = (CCScene*)TopScene::create();
+    CCTransitionSplitRows* tran = CCTransitionSplitRows::create(1, scene);
+    CCDirector::sharedDirector()->replaceScene(tran);
 }
 

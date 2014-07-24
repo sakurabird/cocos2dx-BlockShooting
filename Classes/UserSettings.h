@@ -24,7 +24,7 @@ public:
     static void setSESetting(bool onoff);
 
     static void loadLevelState();
-    static void setLevelState();
+    static void saveLevelState();
 
     static int getSelectedLevel();
     static void setSelectedLevel(int level);
