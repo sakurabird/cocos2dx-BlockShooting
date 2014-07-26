@@ -1,6 +1,6 @@
 //
 //  TopScene.h
-//  BrocjShooting
+//  BrockShooting
 //
 //  Created by sakura on 2014/02/19.
 //

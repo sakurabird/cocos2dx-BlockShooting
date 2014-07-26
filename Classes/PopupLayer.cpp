@@ -109,7 +109,7 @@ bool PopupLayer::addButton(const char *normalImage, const char *selectedImage, c
 
 void PopupLayer::buttonCallback(cocos2d::CCObject *pSender){
     CCNode* node = dynamic_cast<CCNode*>(pSender);
-    CCLog("touch tag: %d", node->getTag());
+//    CCLog("touch tag: %d", node->getTag());
     if (m_callback && m_callbackListener){
         (m_callbackListener->*m_callback)(node);
     }
@@ -175,7 +175,5 @@ void PopupLayer::onEnter(){
 }
 
 void PopupLayer::onExit(){
-
-    CCLog("popup on exit.");
     CCLayer::onExit();
 }

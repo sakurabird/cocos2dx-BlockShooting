@@ -18,9 +18,12 @@
 #include "GameOverScene.h"
 #include "Animations.h"
 #include "TopScene.h"
+#include "GameClearPopup.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
+
+#define TEXT_SCALE 0.3
 
 int selectedLevel;
 float item1Time = 0;
@@ -46,23 +49,7 @@ GameScene::GameScene()
 GameScene::~GameScene()
 {
 	this->unschedule( schedule_selector(GameScene::updateGame) );
-//    m_blocks->release();
-//    m_balls->release();
-//    m_activeballs->release();
-//    m_background->release();
-//    m_item1s->release();
-//    m_item2s->release();
-//    m_item3s->release();
-//    m_item4s->release();
-//    m_item5s->release();
-//    CC_SAFE_RELEASE(m_blocks);
-//    CC_SAFE_RELEASE(m_balls);
 //    CC_SAFE_RELEASE(m_background);
-//    CC_SAFE_RELEASE(m_item1s);
-//    CC_SAFE_RELEASE(m_item2s);
-//    CC_SAFE_RELEASE(m_item3s);
-//    CC_SAFE_RELEASE(m_item4s);
-//    CC_SAFE_RELEASE(m_item5s);
 }
 
 CCScene* GameScene::scene()
@@ -153,7 +140,7 @@ void GameScene::updateGame(float dt)
 void GameScene::showStartLabel()
 {
     CCLabelBMFont* startLabel = CCLabelBMFont::create("Touch to Start", FONT_TOUCH);
-    startLabel->setPosition(ccp(m_visibleSize.width * 0.5, m_visibleSize.height * 0.5));
+    startLabel->setPosition(ccp(g_visibleSize.width * 0.5, g_visibleSize.height * 0.5));
     startLabel->setTag(kTagStartLabel);
     this->addChild(startLabel);
     startLabel->runAction(Animations::topLabelAction());
@@ -161,9 +148,6 @@ void GameScene::showStartLabel()
 
 void GameScene::initForVariables()
 {
-    m_visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-    m_origin = CCDirector::sharedDirector()->getVisibleOrigin();
-
     this->setBallRemain(BALL_REMAIN);
 
     m_item1s = CCArray::create();
@@ -200,19 +184,33 @@ void GameScene::createBalls()
 
 void GameScene::createGameStateLabels()
 {
+    //背景
+    float width = g_visibleSize.width / 3.5;
+    float height = 120;
+
+    float x = g_visibleSize.width - width;
+    float y = g_visibleSize.height;
+
+    CCDrawNode* node = CCDrawNode::create();
+    this->addChild(node);
+
+    ccColor4F color = ccc4f(0, 0, 0, 0.7);
+    CCPoint verts[] = {ccp(x, y), ccp(x + width, y), ccp(x + width, y - height), ccp(x , y - height)};
+    node->drawPolygon(verts, 4, color, 0, color);
+
     //レベル
     selectedLevel = UserSettings::getSelectedLevel();
     CCString* levelString = CCString::createWithFormat("Level %d", selectedLevel + 1);
     CCLabelBMFont* label1 = CCLabelBMFont::create(levelString->getCString(), FONT_GREEN);
-    label1->setScale(0.4);
+    label1->setScale(TEXT_SCALE);
     label1->setAnchorPoint(CCPointZero);
-    label1->setPosition(GHelper::convI720toCC(m_visibleSize.width  * 0.6, m_visibleSize.height * 0.1));
+    label1->setPosition(GHelper::convI720toCC(g_visibleSize.width  * 0.7, g_visibleSize.height * 0.09));
     label1->setTag(kTagLevel);
     this->addChild(label1);
 
     //残りボール数
     CCLabelBMFont* label2 = CCLabelBMFont::create("Balls:", FONT_WHITE);
-    label2->setScale(0.4);
+    label2->setScale(TEXT_SCALE);
     label2->setAnchorPoint(CCPointZero);
     label2->setPosition(label1->getPositionX(),
                         label1->getPositionY() - label1->getContentSize().height * 0.5);
@@ -221,7 +219,7 @@ void GameScene::createGameStateLabels()
 
     //スコア
     CCLabelBMFont* label3 = CCLabelBMFont::create("Score:", FONT_WHITE);
-    label3->setScale(0.4);
+    label3->setScale(TEXT_SCALE);
     label3->setAnchorPoint(CCPointZero);
     label3->setPosition(label2->getPositionX(),
                         label2->getPositionY() - label2->getContentSize().height * 0.5);
@@ -259,9 +257,9 @@ void GameScene::showBallRemain()
 
     CCString* ballRemain = CCString::createWithFormat("%d", getBallRemain());
     remain = CCLabelBMFont::create(ballRemain->getCString(), FONT_ORANGE);
-    remain->setScale(0.4);
+    remain->setScale(TEXT_SCALE);
     remain->setAnchorPoint(CCPointZero);
-    remain->setPosition(label->getPositionX() + label->getContentSize().width * 0.5 + 5,
+    remain->setPosition(label->getPositionX() + label->getContentSize().width * TEXT_SCALE + 10,
                         label->getPositionY());
     remain->setTag(kTagBallRemainCount);
     this->addChild(remain);
@@ -272,16 +270,16 @@ void GameScene::showScore()
     //スコア
     CCLabelBMFont* score = dynamic_cast<CCLabelBMFont*>(this->getChildByTag(kTagScore));
     if (score) {
-        this->removeChild(score);
+        score->removeFromParent();
     }
 
     CCLabelBMFont* label = dynamic_cast<CCLabelBMFont*>(this->getChildByTag(kTagScoreLabel));
 
     CCString* gameScore = CCString::createWithFormat("%d", getScore());
     score = CCLabelBMFont::create(gameScore->getCString(), FONT_ORANGE);
-    score->setScale(0.4);
+    score->setScale(TEXT_SCALE);
     score->setAnchorPoint(CCPointZero);
-    score->setPosition(label->getPositionX() + label->getContentSize().width * 0.5 + 5,
+    score->setPosition(label->getPositionX() + label->getContentSize().width * TEXT_SCALE + 10,
                        label->getPositionY());
     score->setTag(kTagScore);
     this->addChild(score);
@@ -289,12 +287,12 @@ void GameScene::showScore()
 
 void GameScene::makeBar()
 {
-    float w = m_visibleSize.width / 4;
+    float w = g_visibleSize.width / 4;
     float h = w / 6;
 
     BarSprite* bar = BarSprite::createWithBarSize(w, h);
 
-    bar->setPosition(GHelper::convI720toCC(m_visibleSize.width / 2, m_visibleSize.height * 0.95));
+    bar->setPosition(GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.95));
     this->addChild(bar);
 }
 
@@ -303,15 +301,15 @@ void GameScene::makeBlock()
 {
 	m_blocks = new CCArray;
 
-    float width = m_visibleSize.width / 16.0;
+    float width = g_visibleSize.width / 16.0;
     float height = width * 0.3;
-    float margin = (m_visibleSize.width - (width * BLOCK_COLUMN)) / (BLOCK_COLUMN + 1);
+    float margin = (g_visibleSize.width - (width * BLOCK_COLUMN)) / (BLOCK_COLUMN + 1);
 //    CCLOG("block.size: %f, margin: %f",width, margin);
 
     BlockSprite *block = NULL;
 
     int number = 0;
-    int y = m_visibleSize.height * 0.6;
+    int y = g_visibleSize.height * 0.6;
 
     for (int i = 0; i < BLOCK_ROW; i++)
     {
@@ -337,20 +335,20 @@ void GameScene::showBackground()
     if (!m_background) return;
 
     float h = m_background->getContentSize().height;
-    float sc = m_visibleSize.height / h;
+    float sc = g_visibleSize.height / h;
     m_background->setScale(sc);
 
-    m_background->setPosition(GHelper::convI720toCC(m_visibleSize.width / 2, m_visibleSize.height / 2));
+    m_background->setPosition(GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height / 2));
     addChild(m_background, kZOrderBackground, kTagBackground);
 }
 
 void GameScene::showFilter()
 {
-    float cellWidth = m_visibleSize.width / 4;
-    float cellHeight = m_visibleSize.height /4;
+    float cellWidth = g_visibleSize.width / 4;
+    float cellHeight = g_visibleSize.height /4;
 
     float x = 0;
-    float y = m_visibleSize.height;
+    float y = g_visibleSize.height;
 
     CCDrawNode* node = CCDrawNode::create();
     this->addChild(node);
@@ -370,7 +368,6 @@ void GameScene::showFilter()
         }
         y -= cellHeight;
     }
-
 }
 
 void GameScene::onBallLost(CCNode* sender)
@@ -476,7 +473,7 @@ void GameScene::updateBall()
             return;
         }
         //壁との衝突判定
-        ball->bounceBall(m_visibleSize);
+        ball->bounceBall(g_visibleSize);
     }
 }
 
@@ -716,6 +713,7 @@ void GameScene::makeItem(CCSprite *block)
     if ( (double)rand()/RAND_MAX < itemRate )
     {
         CCSprite* item = CCSprite::create(fileName->getCString());
+        item->setScale(0.2f);
         item->setPosition(ccp(blockSprite->getPositionX(),
                               blockSprite->getPositionY() + blockSprite->getContentSize().height));
         this->addChild(item, tag);
@@ -899,11 +897,11 @@ void GameScene::win()
 
     emitter->setTexture( CCTextureCache::sharedTextureCache()->addImage(PNG_RECT1) );
     emitter->setAutoRemoveOnFinish(true);
-    emitter->setPosition( ccp(m_visibleSize.width / 2, m_visibleSize.height / 2) );
+    emitter->setPosition( ccp(g_visibleSize.width / 2, g_visibleSize.height / 2) );
 
     //クリアのラベル表示
     CCLabelBMFont* label = CCLabelBMFont::create("CLEAR!", FONT_BIG1);
-    label->setPosition( ccp(m_visibleSize.width / 2, m_visibleSize.height * 0.5));
+    label->setPosition( ccp(g_visibleSize.width / 2, g_visibleSize.height * 0.5));
     label->runAction(Animations::gameClearAction());
     addChild(label, kZOrderLabel);
 
@@ -911,6 +909,18 @@ void GameScene::win()
     CCNode* button = this->getChildByTag(kTagRetry);
     if (!button) return;
     button->setVisible(true);
+
+    // ポップアップを表示して確認
+    GameClearPopup* pl = GameClearPopup::create();
+//    pl->setContentSize(CCSizeMake(_visibleSize.width * 0.7, 400));
+//    pl->setTitle("Delete", 35);
+//    pl->setContentText("Are you sure, you want to delete user data and restore default setting?",
+//                       30, 60, 250);
+//    pl->setCallbackFunc(this, callfuncN_selector(SettingScene::popupCallback));
+//    pl->addButton(PNG_OK, PNG_OK, "", 0);
+//    pl->addButton(PNG_CANCEL, PNG_CANCEL, "", 1);
+    this->addChild(pl);
+
 }
 
 void GameScene::gameOver()
@@ -936,7 +946,7 @@ void GameScene::makeBackButton()
                                                     menu_selector(GameScene::onTapBackButton));
 
     if (!item) return;
-    item->setPosition(GHelper::convI720toCC(20, m_visibleSize.height * 0.1));
+    item->setPosition(GHelper::convI720toCC(20, g_visibleSize.height * 0.1));
     CCMenu* menu = CCMenu::create(item, NULL);
     menu->setPosition(CCPointZero);
     if (!menu) return;
@@ -952,7 +962,7 @@ void GameScene::makeRetryButton()
                                                           this,
                                                           menu_selector(GameScene::onTapRetryButton));
     if (!item) return;
-    item->setPosition(GHelper::convI720toCC(100, m_visibleSize.height * 0.1));
+    item->setPosition(GHelper::convI720toCC(100, g_visibleSize.height * 0.1));
     item->runAction(Animations::retryButtonAction());
 
     CCMenu* menu = CCMenu::create(item, NULL);

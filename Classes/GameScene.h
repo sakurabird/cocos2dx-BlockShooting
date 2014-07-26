@@ -20,9 +20,6 @@ public:
 	GameScene();
 	~GameScene();
 
-    cocos2d::CCSize m_visibleSize;
-    cocos2d::CCPoint m_origin;
-
 	virtual bool init();
 
 	static cocos2d::CCScene* scene();
@@ -47,7 +44,7 @@ private:
 
     CC_SYNTHESIZE(int, m_score, Score);
 
-    CC_SYNTHESIZE(cocos2d::CCSprite*, m_background, Background);
+    CC_SYNTHESIZE_RETAIN(cocos2d::CCSprite*, m_background, Background);
 
     CC_SYNTHESIZE(cocos2d::CCArray*, m_blocks, Blocks);
 

@@ -28,6 +28,7 @@
 // images
 #define PNG_BG "image/bg.png"
 #define PNG_POPUP_BG "image/popup_bg.png"
+#define PNG_POPUP_BG2 "image/popup_bg2.png"
 #define PNG_OK "image/ok.png"
 #define PNG_CANCEL "image/cancel.png"
 #define PNG_BALL "image/ball.png"
@@ -161,7 +162,10 @@ enum kZOrder
     kZOrderTop = 1,
 };
 
-// TODO
+// レベルクリア状態
 extern int g_LevelState[2][16];
+
+extern cocos2d::CCSize g_visibleSize;
+
 
 #endif

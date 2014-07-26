@@ -60,18 +60,16 @@ bool GameOverScene::init()
 
 void GameOverScene::makeLabel()
 {
-    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-
     //タイトル
     CCLabelBMFont* title = CCLabelBMFont::create("GAME OVER", FONT_BIG2);
     title->setScale(1.2);
-    title->setPosition( ccp(visibleSize.width / 2, visibleSize.height * 0.7));
+    title->setPosition( ccp(g_visibleSize.width / 2, g_visibleSize.height * 0.7));
     this->addChild(title);
 
     //スコア
     CCLabelBMFont* scoreLabel1 = CCLabelBMFont::create("Score", FONT_BLUE);
     scoreLabel1->setScale(0.4);
-    scoreLabel1->setPosition( ccp(visibleSize.width / 3, visibleSize.height * 0.5));
+    scoreLabel1->setPosition( ccp(g_visibleSize.width / 3, g_visibleSize.height * 0.5));
     this->addChild(scoreLabel1);
 
     CCLabelBMFont* scoreLabel2 = CCLabelBMFont::create("", FONT_WHITE);
@@ -105,7 +103,7 @@ void GameOverScene::makeLabel()
     CCLabelBMFont* okLabel = CCLabelBMFont::create("OK", FONT_ORANGE);
     okLabel->setScale(1);
     CCMenuItemLabel* item1 = CCMenuItemLabel::create(okLabel, this, menu_selector(GameOverScene::onTapOKButton));
-    item1->setPosition( ccp(visibleSize.width / 2, visibleSize.height * 0.2));
+    item1->setPosition( ccp(g_visibleSize.width / 2, g_visibleSize.height * 0.2));
     item1->runAction(Animations::topLabelAction());
 
     CCMenu* menu = CCMenu::create( item1,  NULL );

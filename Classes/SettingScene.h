@@ -23,8 +23,6 @@ public:
 
 	CREATE_FUNC(SettingScene);
 
-    cocos2d::CCSize _visibleSize;
-
     //Androidのバックキー処理
     virtual void keyBackClicked();
 

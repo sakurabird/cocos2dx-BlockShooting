@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "AppMacros.h"
 #include "TopScene.h"
+#include "Config.h"
 #include "GHelper.h"
 #include "SimpleAudioEngine.h"
 
@@ -62,7 +63,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     //椋梨さんの作られたGHelper
     GHelper::init();
-    
+
     // run
     pDirector->runWithScene(pScene);
     

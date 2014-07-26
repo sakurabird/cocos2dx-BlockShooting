@@ -82,17 +82,15 @@ LevelMenuItemSprite* item_a[16];
 
 void LevelSelectScene::makeLabel()
 {
-    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-
     //タイトル
     CCLabelBMFont* title = CCLabelBMFont::create("Select Level", FONT_RED);
     title->setScale(0.8);
-    title->setPosition(GHelper::convI720toCC(visibleSize.width / 2, visibleSize.height * 0.17));
+    title->setPosition(GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.17));
     addChild(title);
 
     //16個のラベルを作成
     float height = title->getPositionY() + title->getContentSize().height / 2;
-    height = (height - 135) / 16;
+    height = (height - 300) / 16;
 
     CCSprite *s = CCSprite::create(PNG_STAGE1_A);
     float scaleY = height / s->getContentSize().height;
@@ -116,8 +114,8 @@ void LevelSelectScene::makeLabel()
                                item_a[8],item_a[9],item_a[10],item_a[11],
                                item_a[12],item_a[13],item_a[14],item_a[15], NULL );
     if (!menu) return;
-    menu->alignItemsVerticallyWithPadding(5.0);
-    menu->setPosition(GHelper::convI720toCC(visibleSize.width / 2, visibleSize.height * 0.63));
+    menu->alignItemsVerticallyWithPadding(10.0);
+    menu->setPosition(GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.63));
     this->addChild( menu );
 }
 
@@ -130,8 +128,7 @@ void LevelSelectScene::makeBackButton()
                                                     menu_selector(LevelSelectScene::onTapBackButton));
 
     if (!item) return;
-    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-    item->setPosition(GHelper::convI720toCC(20, visibleSize.height * 0.1));
+    item->setPosition(GHelper::convI720toCC(20, g_visibleSize.height * 0.1));
     CCMenu* menu = CCMenu::create(item, NULL);
     menu->setPosition(CCPointZero);
     if (!menu) return;

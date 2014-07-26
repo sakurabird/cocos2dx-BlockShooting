@@ -12,6 +12,7 @@
 
 USING_NS_CC;
 using namespace CocosDenshion;
+CCSize g_visibleSize;
 
 TopScene::TopScene()
 {
@@ -64,13 +65,13 @@ bool TopScene::init()
 
 void TopScene::makeLabel()
 {
-    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    g_visibleSize = CCDirector::sharedDirector()->getVisibleSize();
 
     //タイトル
 //    CCLabelBMFont* title = CCLabelBMFont::create("Block Shooting!", FONT_TITLE);
     CCLabelBMFont* title = CCLabelBMFont::create("Block Shooting!", FONT_GREEN);
     title->setScale(1.0);
-    title->setPosition( ccp(visibleSize.width / 2, visibleSize.height * 0.8));
+    title->setPosition( ccp(g_visibleSize.width / 2, g_visibleSize.height * 0.8));
     addChild(title);
 
     //Playボタン
