@@ -83,14 +83,14 @@ LevelMenuItemSprite* item_a[16];
 void LevelSelectScene::makeLabel()
 {
     //タイトル
-    CCLabelBMFont* title = CCLabelBMFont::create("Select Level", FONT_RED);
-    title->setScale(0.8);
+    CCLabelBMFont* title = CCLabelBMFont::create("Touch Stage", FONT_BLUE);
+    title->setScale(0.7);
     title->setPosition(GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.17));
     addChild(title);
 
     //16個のラベルを作成
     float height = title->getPositionY() + title->getContentSize().height / 2;
-    height = (height - 300) / 16;
+    height = (height - 350) / 16;
 
     CCSprite *s = CCSprite::create(PNG_STAGE1_A);
     float scaleY = height / s->getContentSize().height;
@@ -115,8 +115,32 @@ void LevelSelectScene::makeLabel()
                                item_a[12],item_a[13],item_a[14],item_a[15], NULL );
     if (!menu) return;
     menu->alignItemsVerticallyWithPadding(10.0);
-    menu->setPosition(GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.63));
+    menu->setPosition(GHelper::convI720toCC(g_visibleSize.width / 3, g_visibleSize.height * 0.65));
     this->addChild( menu );
+
+    CCLabelBMFont* t1 = CCLabelBMFont::create("Your Level", FONT_WHITE);
+    t1->setScale(0.3);
+    t1->setPosition(GHelper::convI720toCC(g_visibleSize.width / 3, g_visibleSize.height * 0.25));
+    addChild(t1);
+
+
+    CCLabelBMFont* t2 = CCLabelBMFont::create("High Score", FONT_WHITE);
+    t2->setScale(0.3);
+    t2->setPosition(GHelper::convI720toCC(g_visibleSize.width / 1.7, g_visibleSize.height * 0.25));
+    addChild(t2);
+
+
+    CCString* string;
+    CCLabelBMFont* sc;
+    float f = 0.25;
+    for(int i = 0; i < 16; i++){
+        string = CCString::createWithFormat("%d", g_LevelState[1][i]);
+        sc = CCLabelBMFont::create(string->getCString(), FONT_WHITE);
+        sc->setScale(0.25);
+        f += 0.047;
+        sc->setPosition(GHelper::convI720toCC(t2->getPositionX() - 20, g_visibleSize.height * f));
+        addChild(sc);
+    }
 }
 
 void LevelSelectScene::makeBackButton()

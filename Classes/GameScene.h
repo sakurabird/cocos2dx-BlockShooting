@@ -101,6 +101,8 @@ private:
 
     void gameOver();
 
+    void setResultScores();
+
     void makeBackButton();
 
     void onTapBackButton();

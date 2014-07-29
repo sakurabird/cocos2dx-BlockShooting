@@ -212,7 +212,6 @@ void SettingScene::popupCallback(CCNode *sender)
             g_LevelState[1][i] = 0;
         }
         UserSettings::saveLevelState();
-        sender->removeFromParent();
 
         CCScene* scene = (CCScene*)SettingScene::create();
         CCDirector::sharedDirector()->replaceScene(scene);

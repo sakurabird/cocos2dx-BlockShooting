@@ -872,6 +872,8 @@ void GameScene::win()
 
 	this->unschedule( schedule_selector(GameScene::updateGame) );
 
+    setResultScores();
+
     // 現在のレベルの一つ上をアンロック
     if (selectedLevel < 16) {
         selectedLevel++;
@@ -924,11 +926,21 @@ void GameScene::gameOver()
 
 	this->unschedule( schedule_selector(GameScene::updateGame) );
 
-    UserSettings::setScore(getScore());
+    setResultScores();
 
     CCScene* scene = (CCScene*)GameOverScene::create();
     CCTransitionRotoZoom* tran = CCTransitionRotoZoom::create(3, scene);
     CCDirector::sharedDirector()->replaceScene(tran);
+}
+
+void GameScene::setResultScores()
+{
+    UserSettings::setScore(getScore());
+    if (g_LevelState[1][selectedLevel] < getScore()) {
+        g_LevelState[1][selectedLevel] = getScore();
+        UserSettings::saveLevelState();
+    }
+    UserSettings::setHighScore(g_LevelState[1][selectedLevel]);
 }
 
 void GameScene::makeBackButton()

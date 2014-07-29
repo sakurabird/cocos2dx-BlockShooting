@@ -66,38 +66,30 @@ void GameOverScene::makeLabel()
     title->setPosition( ccp(g_visibleSize.width / 2, g_visibleSize.height * 0.7));
     this->addChild(title);
 
+    //レベル
+    CCString* string = CCString::createWithFormat("Level %d", UserSettings::getSelectedLevel() + 1);
+    CCLabelBMFont* lebelLabel = CCLabelBMFont::create(string->getCString(), FONT_BLUE);
+    lebelLabel->setScale(0.6);
+    lebelLabel->setAnchorPoint(ccp(0, 0));
+    lebelLabel->setPosition( ccp(g_visibleSize.width / 4, g_visibleSize.height * 0.55));
+    this->addChild(lebelLabel);
+
+
     //スコア
-    CCLabelBMFont* scoreLabel1 = CCLabelBMFont::create("Score", FONT_BLUE);
-    scoreLabel1->setScale(0.4);
-    scoreLabel1->setPosition( ccp(g_visibleSize.width / 3, g_visibleSize.height * 0.5));
+    string = CCString::createWithFormat("Score %d", UserSettings::getScore());
+    CCLabelBMFont* scoreLabel1 = CCLabelBMFont::create(string->getCString(), FONT_WHITE);
+    scoreLabel1->setScale(0.6);
+    scoreLabel1->setAnchorPoint(ccp(0, 0));
+    scoreLabel1->setPosition( ccp(g_visibleSize.width / 4, g_visibleSize.height * 0.5));
     this->addChild(scoreLabel1);
 
-    CCLabelBMFont* scoreLabel2 = CCLabelBMFont::create("", FONT_WHITE);
-    scoreLabel2->setScale(0.4);
-    scoreLabel2->setPosition( ccp(scoreLabel1->getPositionX() + scoreLabel1->getContentSize().width, scoreLabel1->getPositionY()));
-    scoreLabel2->setString(ccsf("%d", UserSettings::getScore()));
-    this->addChild(scoreLabel2, kTagGameOverScoreLavel);
-
-
     //ハイスコア
-    if (UserSettings::getScore() != 0)
-    {
-        if (UserSettings::getScore() > UserSettings::getHighScore())
-        {
-            // ハイスコアを更新する
-            UserSettings::setHighScore(UserSettings::getScore());
-        }
-    }
-    CCLabelBMFont* highScoreLabel1 = CCLabelBMFont::create("High Score", FONT_YELLOW);
-    highScoreLabel1->setScale(0.4);
-    highScoreLabel1->setPosition( ccp(scoreLabel1->getPositionX(), scoreLabel1->getPositionY() - 30));
+    string = CCString::createWithFormat("High Score %d", UserSettings::getHighScore());
+    CCLabelBMFont* highScoreLabel1 = CCLabelBMFont::create(string->getCString(), FONT_WHITE);
+    highScoreLabel1->setScale(0.6);
+    highScoreLabel1->setAnchorPoint(ccp(0, 0));
+    highScoreLabel1->setPosition( ccp(g_visibleSize.width / 4, g_visibleSize.height * 0.45));
     this->addChild(highScoreLabel1);
-
-    CCLabelBMFont* highScoreLabel2 = CCLabelBMFont::create("", FONT_WHITE);
-    highScoreLabel2->setScale(0.4);
-    highScoreLabel2->setPosition( ccp(scoreLabel2->getPositionX(), highScoreLabel1->getPositionY()));
-    highScoreLabel2->setString(ccsf("%d", UserSettings::getHighScore()));
-    this->addChild(highScoreLabel2, kTagGameOverHighScoreLavel);
 
     //OKボタン
     CCLabelBMFont* okLabel = CCLabelBMFont::create("OK", FONT_ORANGE);
