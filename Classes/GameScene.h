@@ -77,6 +77,8 @@ private:
 
     void showScore();
 
+    void showClearPopup(cocos2d::CCObject* sender);
+
     void makeBar();
 
     void makeBlock();

@@ -22,7 +22,7 @@ CCFiniteTimeAction* Animations::topLabelAction()
     return repeat;
 }
 
-CCFiniteTimeAction* Animations::gameClearAction()
+CCFiniteTimeAction* Animations::gameClearAction(CCObject* target, SEL_CallFunc selector)
 {
     //Gameクリア時に表示するラベルのアニメーション
     CCDelayTime* delay1 = CCDelayTime::create(0.5);
@@ -35,7 +35,9 @@ CCFiniteTimeAction* Animations::gameClearAction()
     CCDelayTime* delay3 = CCDelayTime::create(3.5);
     CCScaleTo* scaleDown3 = CCScaleTo::create(0.1, 0);
 
-    return CCSequence::create(delay1, scaleUp1, delay2, scaleDown1, scaleUp2, scaleDown2, delay3, scaleDown3, NULL);
+    CCCallFunc* func = CCCallFunc::create(target, selector);
+
+    return CCSequence::create(delay1, scaleUp1, delay2, scaleDown1, scaleUp2, scaleDown2, delay3, scaleDown3, func, NULL);
 }
 
 CCFiniteTimeAction* Animations::retryButtonAction()

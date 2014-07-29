@@ -19,11 +19,11 @@ public:
 
     virtual bool init();
     CREATE_FUNC(GameClearPopup);
-
-    virtual void registerWithTouchDispatcher(void);
+//
+//    virtual void registerWithTouchDispatcher(void);
     bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
 
-    virtual void onEnter();
+//    virtual void onEnter();
 //    static GameClearPopup
 //    * create(const char* backgroundImage);
 
@@ -42,11 +42,11 @@ private:
 	void onTapQuit();
 
 
-    CCObject* m_callbackListener;
-    cocos2d::SEL_CallFuncN m_callback;
-
-    CC_SYNTHESIZE_RETAIN(cocos2d::CCMenu*, m__pMenu, MenuButton);
-    CC_SYNTHESIZE_RETAIN(cocos2d::CCSprite*, m__sfBackGround, SpriteBackGround);
+//    CCObject* m_callbackListener;
+//    cocos2d::SEL_CallFuncN m_callback;
+//
+//    CC_SYNTHESIZE_RETAIN(cocos2d::CCMenu*, m__pMenu, MenuButton);
+//    CC_SYNTHESIZE_RETAIN(cocos2d::CCSprite*, m__sfBackGround, SpriteBackGround);
 //    CC_SYNTHESIZE_RETAIN(cocos2d::CCLabelTTF*, m__ltTitle, LabelTitle);
 //    CC_SYNTHESIZE_RETAIN(cocos2d::CCLabelTTF*, m__ltContentText, LabelContentText);
 

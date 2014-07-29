@@ -902,25 +902,19 @@ void GameScene::win()
     //クリアのラベル表示
     CCLabelBMFont* label = CCLabelBMFont::create("CLEAR!", FONT_BIG1);
     label->setPosition( ccp(g_visibleSize.width / 2, g_visibleSize.height * 0.5));
-    label->runAction(Animations::gameClearAction());
+    label->runAction(Animations::gameClearAction(this, callfunc_selector(GameScene::showClearPopup)));
     addChild(label, kZOrderLabel);
-
 
     CCNode* button = this->getChildByTag(kTagRetry);
     if (!button) return;
     button->setVisible(true);
+}
 
+void GameScene::showClearPopup(CCObject* sender)
+{
     // ポップアップを表示して確認
     GameClearPopup* pl = GameClearPopup::create();
-//    pl->setContentSize(CCSizeMake(_visibleSize.width * 0.7, 400));
-//    pl->setTitle("Delete", 35);
-//    pl->setContentText("Are you sure, you want to delete user data and restore default setting?",
-//                       30, 60, 250);
-//    pl->setCallbackFunc(this, callfuncN_selector(SettingScene::popupCallback));
-//    pl->addButton(PNG_OK, PNG_OK, "", 0);
-//    pl->addButton(PNG_CANCEL, PNG_CANCEL, "", 1);
     this->addChild(pl);
-
 }
 
 void GameScene::gameOver()

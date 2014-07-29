@@ -13,6 +13,7 @@
 #include "GHelper.h"
 #include "SimpleAudioEngine.h"
 #include "PopupLayer.h"
+#include "GameClearPopup.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
