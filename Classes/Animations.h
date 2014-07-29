@@ -16,6 +16,7 @@ class Animations
 {
 public:
     // top画面
+    static cocos2d::CCFiniteTimeAction* topMiniAnimation();
     static cocos2d::CCFiniteTimeAction* topLabelAction();
 
     // game画面
@@ -26,6 +27,8 @@ public:
     static cocos2d::CCFiniteTimeAction* getItemLabelAction(cocos2d::CCSprite* bar,
                                                            cocos2d::CCObject* target,
                                                            cocos2d::SEL_CallFunc selector);
+    static cocos2d::CCFiniteTimeAction* winMiniAnimation();
+    static cocos2d::CCFiniteTimeAction* gameoverMiniAnimation();
 };
 
 #endif /* defined(__BrockShooting__Animations__) */

@@ -49,7 +49,6 @@ GameScene::GameScene()
 GameScene::~GameScene()
 {
 	this->unschedule( schedule_selector(GameScene::updateGame) );
-//    CC_SAFE_RELEASE(m_background);
 }
 
 CCScene* GameScene::scene()
@@ -106,8 +105,6 @@ bool GameScene::init()
     showStartLabel();
 
     makeBackButton();
-
-    makeRetryButton();
 
     setBall();
 
@@ -743,6 +740,7 @@ void GameScene::makeItem(CCSprite *block)
 
 void GameScene::onGetItem1()
 {
+    m_score += 100;
     CCString* str = CCString::create("speed up");
     makeItemGetLabel(str);
 
@@ -759,6 +757,7 @@ void GameScene::onGetItem1()
 
 void GameScene::onGetItem2()
 {
+    m_score += 100;
     CCString* str = CCString::create("long bar");
     makeItemGetLabel(str);
     //バーの長さを長くする
@@ -768,6 +767,7 @@ void GameScene::onGetItem2()
 
 void GameScene::onGetItem3()
 {
+    m_score += 100;
     CCString* str = CCString::create("multiple balls");
     makeItemGetLabel(str);
     //ボールを追加する
@@ -781,6 +781,7 @@ void GameScene::onGetItem3()
 
 void GameScene::onGetItem4()
 {
+    m_score += 100;
     CCString* str = CCString::create("+5000");
     makeItemGetLabel(str);
     //ボーナススコアを加算する
@@ -789,6 +790,7 @@ void GameScene::onGetItem4()
 
 void GameScene::onGetItem5()
 {
+    m_score += 100;
     CCString* str = CCString::create("+1 Ball!");
     makeItemGetLabel(str);
 
@@ -906,10 +908,6 @@ void GameScene::win()
     label->setPosition( ccp(g_visibleSize.width / 2, g_visibleSize.height * 0.5));
     label->runAction(Animations::gameClearAction(this, callfunc_selector(GameScene::showClearPopup)));
     addChild(label, kZOrderLabel);
-
-    CCNode* button = this->getChildByTag(kTagRetry);
-    if (!button) return;
-    button->setVisible(true);
 }
 
 void GameScene::showClearPopup(CCObject* sender)
@@ -957,38 +955,6 @@ void GameScene::makeBackButton()
     menu->setPosition(CCPointZero);
     if (!menu) return;
     this->addChild(menu, kZOrderTop, kTagBack);
-}
-
-void GameScene::makeRetryButton()
-{
-    //リトライボタンを作成する
-    CCMenuItemImage *item = CCMenuItemImage::create(
-                                                          PNG_REFRESH,
-                                                          PNG_REFRESH,
-                                                          this,
-                                                          menu_selector(GameScene::onTapRetryButton));
-    if (!item) return;
-    item->setPosition(GHelper::convI720toCC(100, g_visibleSize.height * 0.1));
-    item->runAction(Animations::retryButtonAction());
-
-    CCMenu* menu = CCMenu::create(item, NULL);
-    if (!menu) return;
-    menu->setPosition(CCPointZero);
-    this->addChild(menu, kZOrderTop, kTagRetry);
-    menu->setVisible(false);
-
-}
-
-//リトライボタンタップ時の処理
-void GameScene::onTapRetryButton()
-{
-    CCScene* gameScene = (CCScene*)GameScene::create();
-    CCTransitionTurnOffTiles* tran = CCTransitionTurnOffTiles::create(1, gameScene);
-    CCDirector::sharedDirector()->replaceScene(tran);
-
-    CCNode* button = this->getChildByTag(kTagRetry);
-    if (!button) return;
-    button->setVisible(false);
 }
 
 void GameScene::cleanupNode(CCNode *sender)

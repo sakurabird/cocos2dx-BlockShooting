@@ -51,6 +51,19 @@
 #define PNG_P_VIOLET "image/p_violet.png"
 #define PNG_P_YELLOW "image/p_yellow.png"
 
+#define PNG_MINI1_1 "image/mini_anim1_1.png"
+#define PNG_MINI1_2 "image/mini_anim1_2.png"
+#define PNG_MINI1_3 "image/mini_anim1_3.png"
+#define PNG_MINI1_4 "image/mini_anim1_4.png"
+#define PNG_MINI2_1 "image/mini_anim2_1.png"
+#define PNG_MINI2_2 "image/mini_anim2_2.png"
+#define PNG_MINI2_3 "image/mini_anim2_3.png"
+#define PNG_MINI2_4 "image/mini_anim2_4.png"
+#define PNG_MINI3_1 "image/mini_anim3_1.png"
+#define PNG_MINI3_2 "image/mini_anim3_2.png"
+#define PNG_MINI3_3 "image/mini_anim3_3.png"
+#define PNG_MINI3_4 "image/mini_anim3_4.png"
+
 #define PNG_STAGE1_A "image/stage1_active.png"
 #define PNG_STAGE1_D "image/stage1_inactive.png"
 #define PNG_STAGE2_A "image/stage2_active.png"
@@ -136,14 +149,12 @@ enum kTag
     kTagItemGetLabel,
     kTagLevel,
     kTagBack,
-    kTagRetry,
     kTagRedLabel,
     kTagBlueLabel,
     kTagYellowLabel,
     kTagGreenLabel,
     kTagGrayLabel,
     kTagGameOver,
-    kTagWinBackSprite,
     kTagGameOverScoreLavel,
     kTagGameOverHighScoreLavel,
     kTagBaseBlock = 10000,

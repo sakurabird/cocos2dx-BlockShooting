@@ -7,8 +7,23 @@
 //
 
 #include "Animations.h"
+#include "Config.h"
 
 USING_NS_CC;
+
+CCFiniteTimeAction* Animations::topMiniAnimation()
+{
+    //top画面女の子のフレームアニメーション
+    CCAnimation * anim = CCAnimation::create();
+    anim->addSpriteFrameWithFileName(PNG_MINI1_1);
+    anim->addSpriteFrameWithFileName(PNG_MINI1_2);
+    anim->addSpriteFrameWithFileName(PNG_MINI1_3);
+    anim->addSpriteFrameWithFileName(PNG_MINI1_4);
+    anim->setLoops(-1);
+    anim->setDelayPerUnit(0.4f);
+    CCFiniteTimeAction* repeat = CCAnimate::create(anim);
+    return repeat;
+}
 
 CCFiniteTimeAction* Animations::topLabelAction()
 {
@@ -68,4 +83,30 @@ CCFiniteTimeAction* Animations::getItemLabelAction(CCSprite* bar, CCObject* targ
     CCCallFunc* func = CCCallFunc::create(target, selector);
     CCSequence* seq = CCSequence::create(scaleUp, move, delay1, scaleDown, func, NULL);
     return seq;
+}
+
+CCFiniteTimeAction* Animations::winMiniAnimation()
+{
+    CCAnimation * anim = CCAnimation::create();
+    anim->addSpriteFrameWithFileName(PNG_MINI2_1);
+    anim->addSpriteFrameWithFileName(PNG_MINI2_2);
+    anim->addSpriteFrameWithFileName(PNG_MINI2_3);
+    anim->addSpriteFrameWithFileName(PNG_MINI2_4);
+    anim->setLoops(-1);
+    anim->setDelayPerUnit(0.4f);
+    CCFiniteTimeAction* repeat = CCAnimate::create(anim);
+    return repeat;
+}
+
+CCFiniteTimeAction* Animations::gameoverMiniAnimation()
+{
+    CCAnimation * anim = CCAnimation::create();
+    anim->addSpriteFrameWithFileName(PNG_MINI3_1);
+    anim->addSpriteFrameWithFileName(PNG_MINI3_2);
+    anim->addSpriteFrameWithFileName(PNG_MINI3_3);
+    anim->addSpriteFrameWithFileName(PNG_MINI3_4);
+    anim->setLoops(-1);
+    anim->setDelayPerUnit(0.4f);
+    CCFiniteTimeAction* repeat = CCAnimate::create(anim);
+    return repeat;
 }

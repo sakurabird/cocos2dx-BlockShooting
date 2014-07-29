@@ -13,6 +13,7 @@
 #include "GameScene.h"
 #include "Utils.h"
 #include "UserSettings.h"
+#include "Animations.h"
 
 USING_NS_CC;
 
@@ -55,6 +56,12 @@ void GameClearPopup::makeLabels()
     title->setScale(0.6);
     title->setPosition( GHelper::convI720toCC(g_visibleSize.width * 0.5, g_visibleSize.height * 0.3));
     this->addChild(title);
+
+    //女の子
+    CCSprite *obj = CCSprite::create(PNG_MINI2_1);
+    obj->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.5, g_visibleSize.height * 0.35));
+    obj->runAction(Animations::winMiniAnimation());
+    this->addChild(obj);
 
     //Next Stage?
     CCLabelBMFont* disc1 = CCLabelBMFont::create("Next Stage?", FONT_GREEN);

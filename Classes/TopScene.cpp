@@ -48,6 +48,9 @@ bool TopScene::init()
     if (!CCLayerColor::initWithColor( ccc4(0,0,0,0) )) {
         return false;
     }
+
+    g_visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+
     // BGM再生
     if (UserSettings::getMusicSetting() &&
         !SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
@@ -65,13 +68,11 @@ bool TopScene::init()
 
 void TopScene::makeLabel()
 {
-    g_visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-
+    CCLOG("g_visibleSize w:%f h:%f", g_visibleSize.width, g_visibleSize.height);
     //タイトル
-//    CCLabelBMFont* title = CCLabelBMFont::create("Block Shooting!", FONT_TITLE);
     CCLabelBMFont* title = CCLabelBMFont::create("Block Shooting!", FONT_GREEN);
     title->setScale(1.0);
-    title->setPosition( ccp(g_visibleSize.width / 2, g_visibleSize.height * 0.8));
+    title->setPosition(ccp(g_visibleSize.width / 2, g_visibleSize.height * 0.8));
     addChild(title);
 
     //Playボタン
@@ -125,7 +126,13 @@ void TopScene::makeLabel()
         i++;
     }
 
-    addChild( menu );
+    this->addChild( menu );
+
+    //女の子のフレームアニメーション
+    CCSprite *obj = CCSprite::create(PNG_MINI1_1);
+    obj->setPosition(ccp(g_visibleSize.width  * 0.7, g_visibleSize.height * 0.2));
+    obj->runAction(Animations::topMiniAnimation());
+    this->addChild(obj);
 }
 
 void TopScene::onTapStartButton()

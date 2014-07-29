@@ -107,10 +107,6 @@ private:
 
     void onTapBackButton();
 
-    void makeRetryButton();
-
-    void onTapRetryButton();
-
     void makeItem(cocos2d::CCSprite* block);
 
     void makeItemGetLabel(cocos2d::CCString* string);

@@ -91,6 +91,12 @@ void GameOverScene::makeLabel()
     highScoreLabel1->setPosition( ccp(g_visibleSize.width / 4, g_visibleSize.height * 0.45));
     this->addChild(highScoreLabel1);
 
+    //女の子
+    CCSprite *obj = CCSprite::create(PNG_MINI3_1);
+    obj->setPosition( ccp(g_visibleSize.width / 1.5, g_visibleSize.height * 0.33));
+    obj->runAction(Animations::gameoverMiniAnimation());
+    this->addChild(obj);
+
     //OKボタン
     CCLabelBMFont* okLabel = CCLabelBMFont::create("OK", FONT_ORANGE);
     okLabel->setScale(1);
