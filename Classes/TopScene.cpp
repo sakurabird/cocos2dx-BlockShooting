@@ -45,7 +45,7 @@ bool TopScene::init()
         return false;
     }
 
-    if (!CCLayerColor::initWithColor( ccc4(0,0,0,0) )) {
+    if (!CCLayerColor::initWithColor( ccc4(47,47,47,255) )) {
         return false;
     }
 
@@ -77,24 +77,23 @@ void TopScene::makeLabel()
 
     //Playボタン
     CCLabelBMFont* startLabel1 = CCLabelBMFont::create("Play", FONT_ORANGE, 30);
-    startLabel1->setScale(0.7);
+    startLabel1->setScale(0.75);
     CCMenuItemLabel* item1 = CCMenuItemLabel::create(startLabel1, this, menu_selector(TopScene::onTapStartButton));
-    // TODO
     item1->runAction(Animations::topLabelAction());
 
     //Settingボタン
     CCLabelBMFont* startLabel2 = CCLabelBMFont::create("Setting", FONT_WHITE, 30);
-    startLabel2->setScale(0.7);
+    startLabel2->setScale(0.75);
     CCMenuItemLabel* item2 = CCMenuItemLabel::create(startLabel2, this, menu_selector(TopScene::onTapSettingButton));
 
     //Helpボタン
     CCLabelBMFont* startLabel3 = CCLabelBMFont::create("Help", FONT_WHITE, 30);
-    startLabel3->setScale(0.7);
+    startLabel3->setScale(0.75);
     CCMenuItemLabel* item3 = CCMenuItemLabel::create(startLabel3, this, menu_selector(TopScene::onTapHelpButton));
 
     //Quitボタン
     CCLabelBMFont* startLabel4 = CCLabelBMFont::create("Quit", FONT_WHITE, 30);
-    startLabel4->setScale(0.7);
+    startLabel4->setScale(0.75);
     CCMenuItemLabel* item4 = CCMenuItemLabel::create(startLabel4, this, menu_selector(TopScene::menuCloseCallback));
 
     CCMenu* menu = CCMenu::create( item1, item2, item3, item4, NULL );

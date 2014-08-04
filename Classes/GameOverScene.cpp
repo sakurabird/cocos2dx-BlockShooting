@@ -42,7 +42,7 @@ bool GameOverScene::init()
         return false;
     }
 
-    if (!CCLayerColor::initWithColor( ccc4(0,0,0,0) )) {
+    if (!CCLayerColor::initWithColor( ccc4(47,47,47,255) )) {
         return false;
     }
     // BGM再生

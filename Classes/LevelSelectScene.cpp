@@ -61,7 +61,7 @@ bool LevelSelectScene::init()
         return false;
     }
 
-    if (!CCLayerColor::initWithColor( ccc4(0,0,0,0) )) {
+    if (!CCLayerColor::initWithColor( ccc4(47,47,47,255) )) {
         return false;
     }
     // BGM再生
@@ -84,8 +84,8 @@ void LevelSelectScene::makeLabel()
 {
     //タイトル
     CCLabelBMFont* title = CCLabelBMFont::create("Touch Stage", FONT_BLUE);
-    title->setScale(0.7);
-    title->setPosition(GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.17));
+    title->setScale(0.8);
+    title->setPosition(GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.1));
     addChild(title);
 
     //16個のラベルを作成
@@ -114,31 +114,29 @@ void LevelSelectScene::makeLabel()
                                item_a[8],item_a[9],item_a[10],item_a[11],
                                item_a[12],item_a[13],item_a[14],item_a[15], NULL );
     if (!menu) return;
-    menu->alignItemsVerticallyWithPadding(10.0);
-    menu->setPosition(GHelper::convI720toCC(g_visibleSize.width / 3, g_visibleSize.height * 0.65));
+    menu->alignItemsVerticallyWithPadding(5.0);
+    menu->setPosition(GHelper::convI720toCC(g_visibleSize.width / 3, g_visibleSize.height * 0.5));
     this->addChild( menu );
 
     CCLabelBMFont* t1 = CCLabelBMFont::create("Your Level", FONT_WHITE);
-    t1->setScale(0.3);
-    t1->setPosition(GHelper::convI720toCC(g_visibleSize.width / 3, g_visibleSize.height * 0.25));
+    t1->setScale(0.33);
+    t1->setPosition(GHelper::convI720toCC(g_visibleSize.width / 3, g_visibleSize.height * 0.135));
     addChild(t1);
 
-
     CCLabelBMFont* t2 = CCLabelBMFont::create("High Score", FONT_WHITE);
-    t2->setScale(0.3);
-    t2->setPosition(GHelper::convI720toCC(g_visibleSize.width / 1.7, g_visibleSize.height * 0.25));
+    t2->setScale(0.33);
+    t2->setPosition(GHelper::convI720toCC(g_visibleSize.width / 1.7, g_visibleSize.height * 0.135));
     addChild(t2);
-
 
     CCString* string;
     CCLabelBMFont* sc;
-    float f = 0.25;
+    float f = 0.18;
     for(int i = 0; i < 16; i++){
         string = CCString::createWithFormat("%d", g_LevelState[1][i]);
         sc = CCLabelBMFont::create(string->getCString(), FONT_WHITE);
-        sc->setScale(0.25);
-        f += 0.047;
+        sc->setScale(0.28);
         sc->setPosition(GHelper::convI720toCC(t2->getPositionX() - 20, g_visibleSize.height * f));
+        f += 0.043;
         addChild(sc);
     }
 }
@@ -152,7 +150,7 @@ void LevelSelectScene::makeBackButton()
                                                     menu_selector(LevelSelectScene::onTapBackButton));
 
     if (!item) return;
-    item->setPosition(GHelper::convI720toCC(20, g_visibleSize.height * 0.1));
+    item->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.08, g_visibleSize.height * 0.1));
     CCMenu* menu = CCMenu::create(item, NULL);
     menu->setPosition(CCPointZero);
     if (!menu) return;

@@ -15,6 +15,8 @@ USING_NS_CC;
 using namespace CocosDenshion;
 
 BallSprite::BallSprite()
+:m_vx(0)
+,m_vy(0)
 {
     srand((unsigned int)time(NULL));
 }

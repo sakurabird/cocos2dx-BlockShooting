@@ -86,7 +86,7 @@ void GameClearPopup::makeLabels()
     CCMenu* menu = CCMenu::create( item1, item2, item3, item4, NULL );
     menu->setTouchPriority(-128);
     menu->alignItemsVerticallyWithPadding(1.0);
-    menu->setPosition(ccp(g_visibleSize.width / 1.5, g_visibleSize.height / 2));
+    menu->setPosition(ccp(g_visibleSize.width / 1.5, g_visibleSize.height / 2 - 50));
     this->addChild(menu);
 }
 

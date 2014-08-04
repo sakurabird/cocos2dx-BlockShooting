@@ -204,6 +204,7 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/LevelSelectScene.o: \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/data_support/uthash.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/component/CCComponent.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/component/CCComponentContainer.h \
+ jni/../../Classes/LevelMenuItemSprite.h jni/../../Classes/TopScene.h \
  jni/../../Classes/Config.h jni/../../Classes/UserSettings.h \
  jni/../../Classes/GameScene.h jni/../../Classes/GHelper.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/SimpleAudioEngine.h \
@@ -616,6 +617,10 @@ jni/../../Classes/LevelSelectScene.h:
 /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/component/CCComponent.h:
 
 /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/component/CCComponentContainer.h:
+
+jni/../../Classes/LevelMenuItemSprite.h:
+
+jni/../../Classes/TopScene.h:
 
 jni/../../Classes/Config.h:
 

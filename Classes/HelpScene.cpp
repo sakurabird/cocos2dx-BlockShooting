@@ -46,7 +46,7 @@ bool HelpScene::init()
         return false;
     }
 
-    if (!CCLayerColor::initWithColor( ccc4(0,0,0,0) )) {
+    if (!CCLayerColor::initWithColor( ccc4(47,47,47,255) )) {
         return false;
     }
 
@@ -66,19 +66,24 @@ bool HelpScene::init()
 
 void HelpScene::makeLabels()
 {
+    //Helpタイトル
+    CCLabelBMFont* title = CCLabelBMFont::create("Help", FONT_BLUE);
+    title->setScale(0.8);
+    title->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.1));
+    this->addChild(title);
 
     //item説明タイトル
-    CCLabelBMFont* title = CCLabelBMFont::create("Items", FONT_BLUE);
-    title->setScale(0.7);
-    title->setPosition( ccp(g_visibleSize.width / 2, g_visibleSize.height * 0.8));
-    this->addChild(title);
+    CCLabelBMFont* title2 = CCLabelBMFont::create("Items", FONT_GREEN);
+    title2->setScale(0.7);
+    title2->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.2));
+    this->addChild(title2);
 
     float itemScale = 0.2;
     //青
     CCSprite* image1 = CCSprite::create(PNG_P_BLUE);
     image1->setScale(itemScale);
     image1->setAnchorPoint(CCPointZero);
-    image1->setPosition( ccp(g_visibleSize.width / 4.0, g_visibleSize.height * 0.7));
+    image1->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.3));
     this->addChild(image1);
 
     CCLabelBMFont* disc1 = CCLabelBMFont::create("Quick Ball", FONT_WHITE);
@@ -92,7 +97,7 @@ void HelpScene::makeLabels()
     CCSprite* image2 = CCSprite::create(PNG_P_GREEN);
     image2->setScale(itemScale);
     image2->setAnchorPoint(CCPointZero);
-    image2->setPosition( ccp(g_visibleSize.width / 4.0, g_visibleSize.height * 0.65));
+    image2->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.35));
     this->addChild(image2);
 
     CCLabelBMFont* disc2 = CCLabelBMFont::create("Long Bar", FONT_WHITE);
@@ -106,7 +111,7 @@ void HelpScene::makeLabels()
     CCSprite* image3 = CCSprite::create(PNG_P_RED);
     image3->setScale(itemScale);
     image3->setAnchorPoint(CCPointZero);
-    image3->setPosition( ccp(g_visibleSize.width / 4.0, g_visibleSize.height * 0.6));
+    image3->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.4));
     this->addChild(image3);
 
     CCLabelBMFont* disc3 = CCLabelBMFont::create("Multiple Ball", FONT_WHITE);
@@ -120,7 +125,7 @@ void HelpScene::makeLabels()
     CCSprite* image4 = CCSprite::create(PNG_P_VIOLET);
     image4->setScale(itemScale);
     image4->setAnchorPoint(CCPointZero);
-    image4->setPosition( ccp(g_visibleSize.width / 4.0, g_visibleSize.height * 0.55));
+    image4->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.45));
     this->addChild(image4);
 
     CCLabelBMFont* disc4 = CCLabelBMFont::create("Bonus Score", FONT_WHITE);
@@ -134,7 +139,7 @@ void HelpScene::makeLabels()
     CCSprite* image5 = CCSprite::create(PNG_P_YELLOW);
     image5->setScale(itemScale);
     image5->setAnchorPoint(CCPointZero);
-    image5->setPosition( ccp(g_visibleSize.width / 4.0, g_visibleSize.height * 0.5));
+    image5->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.5));
     this->addChild(image5);
 
     CCLabelBMFont* disc5 = CCLabelBMFont::create("Add Ramain Ball", FONT_WHITE);
@@ -143,6 +148,17 @@ void HelpScene::makeLabels()
     disc5->setPosition( ccp(disc1->getPositionX(),
                             image5->getPositionY() - image5->getContentSize().height * itemScale / 2.5));
     this->addChild(disc5);
+
+    //Thanks to Terasurware
+    CCLabelBMFont* title3 = CCLabelBMFont::create("Thanks to...", FONT_GREEN);
+    title3->setScale(0.7);
+    title3->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.7));
+    this->addChild(title3);
+
+    CCLabelBMFont* disc6 = CCLabelBMFont::create("Terasurware", FONT_TOUCH);
+    disc6->setScale(1);
+    disc6->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2,  g_visibleSize.height * 0.8));
+    this->addChild(disc6);
 }
 
 void HelpScene::makeBackButton()
@@ -154,7 +170,7 @@ void HelpScene::makeBackButton()
                                                     menu_selector(HelpScene::onTapBackButton));
 
     if (!item) return;
-    item->setPosition(GHelper::convI720toCC(20, g_visibleSize.height * 0.1));
+    item->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.08, g_visibleSize.height * 0.1));
     CCMenu* menu = CCMenu::create(item, NULL);
     menu->setPosition(CCPointZero);
     if (!menu) return;

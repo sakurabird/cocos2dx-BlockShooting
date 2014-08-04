@@ -206,7 +206,243 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/SettingScene.o: \
  jni/../../Classes/TopScene.h jni/../../Classes/Config.h \
  jni/../../Classes/UserSettings.h jni/../../Classes/GHelper.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/SimpleAudioEngine.h \
- /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/Export.h
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/Export.h \
+ jni/../../Classes/PopupLayer.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/cocos-ext.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/ExtensionMacros.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBFileLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCNodeLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/CCInvocation.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/../../ExtensionMacros.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBReader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/ExtensionMacros.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBSequence.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBSequenceProperty.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBKeyframe.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControl.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCInvocation.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlUtils.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/../../ExtensionMacros.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBValue.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBMemberVariableAssigner.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBReader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBSelectorResolver.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCControlButtonLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCControlLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/CCControl.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/CCControlButton.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/CCControl.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/CCInvocation.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/CCScale9Sprite.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCControlLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCLabelBMFontLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCLabelTTFLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCLayerColorLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCLayerLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCLayerGradientLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCLayerLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCMenuItemImageLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCMenuItemLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCMenuItemLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCMenuLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCNodeLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCNodeLoaderLibrary.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCNodeLoaderListener.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCParticleSystemQuadLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCScale9SpriteLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCScale9SpriteLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/CCScale9Sprite.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCScrollViewLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCScrollView/CCScrollView.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCSpriteLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBAnimationManager.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBKeyframe.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBSequence.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBSequenceProperty.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBValue.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCData.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCNode+CCBRelativePositioning.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlExtensions.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCScale9Sprite.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControl.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlButton.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlColourPicker.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlHuePicker.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlSaturationBrightnessPicker.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlPotentiometer.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlSlider.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlStepper.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlSwitch.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCScrollView/CCScrollView.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCScrollView/CCTableView.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCScrollView/CCScrollView.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCScrollView/CCTableViewCell.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCScrollView/CCSorting.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCEditBox/CCEditBox.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCEditBox/../CCControlExtension/CCControlExtensions.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/network/HttpRequest.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/network/HttpResponse.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/network/HttpRequest.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/network/HttpClient.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/network/HttpResponse.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/CCArmature.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/CCArmatureDefine.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/CCBone.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/datas/CCDatas.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/datas/../utils/CCArmatureDefine.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/datas/../utils/CCTweenFunction.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/datas/../utils/CCArmatureDefine.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/animation/CCTween.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/animation/CCProcessBase.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/animation/../utils/CCArmatureDefine.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/animation/../datas/CCDatas.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/animation/../utils/CCTweenFunction.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCDecorativeDisplay.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/../utils/CCArmatureDefine.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCDisplayFactory.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/../datas/CCDatas.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/../physics/CCColliderDetector.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/../physics/../utils/CCArmatureDefine.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/../physics/../datas/CCDatas.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCDisplayManager.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/../display/CCDecorativeDisplay.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCBatchNode.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/animation/CCArmatureAnimation.h \
+ /Developer/android-ndk-r9c/sources/cxx-stl/gnu-libstdc++/4.6/include/queue \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/CCBone.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/animation/CCArmatureAnimation.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/datas/CCDatas.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCBatchNode.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCDecorativeDisplay.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCDisplayManager.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCSkin.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/../CCBone.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/physics/CCColliderDetector.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/CCArmatureDataManager.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/CCArmatureDefine.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../datas/CCDatas.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/CCDataReaderHelper.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../CCArmature.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/DictionaryHelper.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/rapidjson/document.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/rapidjson/reader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/rapidjson/rapidjson.h \
+ /Developer/android-ndk-r9c/sources/cxx-stl/gnu-libstdc++/4.6/include/cassert \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/rapidjson/internal/pow10.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/rapidjson/internal/stack.h \
+ /Developer/android-ndk-r9c/platforms/android-8/arch-arm/usr/include/setjmp.h \
+ /Developer/android-ndk-r9c/platforms/android-8/arch-arm/usr/include/machine/setjmp.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/rapidjson/internal/strfunc.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/rapidjson/document.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/CCTweenFunction.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/external_tool/sigslot.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Trigger/TriggerBase.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Trigger/ObjectFactory.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Trigger/TriggerObj.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Trigger/../Json/DictionaryHelper.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Trigger/TriggerMng.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Trigger/../Armature/CCArmature.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/CCComBase.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/../Trigger/ObjectFactory.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/../Json/DictionaryHelper.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/CCComAttribute.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/CCComBase.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/CCComAudio.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/CCComController.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/CCInputDelegate.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/CCComRender.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/CocosGUI.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../BaseClasses/UIWidget.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../BaseClasses/../Layouts/UILayoutDefine.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../BaseClasses/../Layouts/UILayoutParameter.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../BaseClasses/../Layouts/UILayoutDefine.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../Layouts/UILayout.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../Layouts/../BaseClasses/UIWidget.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UIButton.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/../BaseClasses/UIWidget.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UICheckBox.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UIImageView.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UILabel.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UILabelAtlas.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UILoadingBar.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIScrollView.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/../../Layouts/UILayout.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIScrollInterface.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/../../BaseClasses/UIWidget.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UISlider.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UITextField.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIListView.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIScrollView.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UILabelBMFont.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIPageView.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/UIHelper.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../../Reader/GUIReader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../../Reader/../GUI/BaseClasses/UIWidget.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../../Reader/../Json/rapidjson/document.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/UITouchGroup.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/CompatibleClasses.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UIButton.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UICheckBox.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UIImageView.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILabel.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILabelAtlas.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILabelBMFont.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILoadingBar.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UISlider.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UITextField.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../../Layouts/UILayout.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../ScrollWidget/UIListView.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../ScrollWidget/UIPageView.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../ScrollWidget/UIScrollView.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Json/DictionaryHelper.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Reader/SceneReader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Action/CCActionManager.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Action/CCActionObject.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Action/../Json/rapidjson/document.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/physics_nodes/CCPhysicsDebugNode.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/chipmunk.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/chipmunk_types.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpVect.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpBB.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpSpatialIndex.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpBody.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpShape.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpPolyShape.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpArbiter.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpConstraint.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpPinJoint.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpSlideJoint.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpPivotJoint.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpGrooveJoint.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpDampedSpring.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpDampedRotarySpring.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpRotaryLimitJoint.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpRatchetJoint.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpGearJoint.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpSimpleMotor.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpSpace.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/physics_nodes/CCPhysicsSprite.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/spine-cocos2dx.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/spine.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/Animation.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/AnimationState.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/AnimationStateData.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/SkeletonData.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/BoneData.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/SlotData.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/Skin.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/Attachment.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/Atlas.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/AtlasAttachmentLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/AttachmentLoader.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/Bone.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/RegionAttachment.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/Slot.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/Skeleton.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/SkeletonJson.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/CCSkeleton.h \
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/CCSkeletonAnimation.h \
+ jni/../../Classes/GameClearPopup.h
 
 jni/../../Classes/SettingScene.h:
 
@@ -627,3 +863,475 @@ jni/../../Classes/GHelper.h:
 /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/SimpleAudioEngine.h:
 
 /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/Export.h:
+
+jni/../../Classes/PopupLayer.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/cocos-ext.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/ExtensionMacros.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBFileLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCNodeLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/CCInvocation.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/../../ExtensionMacros.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBReader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/ExtensionMacros.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBSequence.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBSequenceProperty.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBKeyframe.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControl.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCInvocation.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlUtils.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/../../ExtensionMacros.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBValue.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBMemberVariableAssigner.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBReader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBSelectorResolver.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCControlButtonLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCControlLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/CCControl.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/CCControlButton.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/CCControl.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/CCInvocation.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/CCScale9Sprite.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCControlLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCLabelBMFontLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCLabelTTFLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCLayerColorLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCLayerLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCLayerGradientLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCLayerLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCMenuItemImageLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCMenuItemLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCMenuItemLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCMenuLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCNodeLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCNodeLoaderLibrary.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCNodeLoaderListener.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCParticleSystemQuadLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCScale9SpriteLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCScale9SpriteLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCControlExtension/CCScale9Sprite.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCScrollViewLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/../GUI/CCScrollView/CCScrollView.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCSpriteLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBAnimationManager.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBKeyframe.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBSequence.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBSequenceProperty.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCBValue.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCData.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CCBReader/CCNode+CCBRelativePositioning.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlExtensions.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCScale9Sprite.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControl.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlButton.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlColourPicker.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlHuePicker.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlSaturationBrightnessPicker.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlPotentiometer.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlSlider.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlStepper.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCControlExtension/CCControlSwitch.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCScrollView/CCScrollView.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCScrollView/CCTableView.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCScrollView/CCScrollView.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCScrollView/CCTableViewCell.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCScrollView/CCSorting.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCEditBox/CCEditBox.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/GUI/CCEditBox/../CCControlExtension/CCControlExtensions.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/network/HttpRequest.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/network/HttpResponse.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/network/HttpRequest.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/network/HttpClient.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/network/HttpResponse.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/CCArmature.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/CCArmatureDefine.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/CCBone.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/datas/CCDatas.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/datas/../utils/CCArmatureDefine.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/datas/../utils/CCTweenFunction.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/datas/../utils/CCArmatureDefine.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/animation/CCTween.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/animation/CCProcessBase.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/animation/../utils/CCArmatureDefine.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/animation/../datas/CCDatas.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/animation/../utils/CCTweenFunction.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCDecorativeDisplay.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/../utils/CCArmatureDefine.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCDisplayFactory.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/../datas/CCDatas.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/../physics/CCColliderDetector.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/../physics/../utils/CCArmatureDefine.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/../physics/../datas/CCDatas.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCDisplayManager.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/../display/CCDecorativeDisplay.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCBatchNode.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/animation/CCArmatureAnimation.h:
+
+/Developer/android-ndk-r9c/sources/cxx-stl/gnu-libstdc++/4.6/include/queue:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/CCBone.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/animation/CCArmatureAnimation.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/datas/CCDatas.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCBatchNode.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCDecorativeDisplay.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCDisplayManager.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/CCSkin.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/display/../CCBone.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/physics/CCColliderDetector.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/CCArmatureDataManager.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/CCArmatureDefine.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../datas/CCDatas.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/CCDataReaderHelper.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../CCArmature.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/DictionaryHelper.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/rapidjson/document.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/rapidjson/reader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/rapidjson/rapidjson.h:
+
+/Developer/android-ndk-r9c/sources/cxx-stl/gnu-libstdc++/4.6/include/cassert:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/rapidjson/internal/pow10.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/rapidjson/internal/stack.h:
+
+/Developer/android-ndk-r9c/platforms/android-8/arch-arm/usr/include/setjmp.h:
+
+/Developer/android-ndk-r9c/platforms/android-8/arch-arm/usr/include/machine/setjmp.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/rapidjson/internal/strfunc.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/../../Json/rapidjson/document.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/utils/CCTweenFunction.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Armature/external_tool/sigslot.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Trigger/TriggerBase.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Trigger/ObjectFactory.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Trigger/TriggerObj.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Trigger/../Json/DictionaryHelper.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Trigger/TriggerMng.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Trigger/../Armature/CCArmature.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/CCComBase.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/../Trigger/ObjectFactory.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/../Json/DictionaryHelper.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/CCComAttribute.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/CCComBase.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/CCComAudio.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/CCComController.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/CCInputDelegate.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Components/CCComRender.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/CocosGUI.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../BaseClasses/UIWidget.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../BaseClasses/../Layouts/UILayoutDefine.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../BaseClasses/../Layouts/UILayoutParameter.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../BaseClasses/../Layouts/UILayoutDefine.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../Layouts/UILayout.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../Layouts/../BaseClasses/UIWidget.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UIButton.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/../BaseClasses/UIWidget.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UICheckBox.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UIImageView.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UILabel.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UILabelAtlas.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UILoadingBar.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIScrollView.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/../../Layouts/UILayout.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIScrollInterface.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/../../BaseClasses/UIWidget.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UISlider.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UITextField.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIListView.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIScrollView.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/UILabelBMFont.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIPageView.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/UIHelper.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../../Reader/GUIReader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../../Reader/../GUI/BaseClasses/UIWidget.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../../Reader/../Json/rapidjson/document.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/UITouchGroup.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/CompatibleClasses.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UIButton.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UICheckBox.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UIImageView.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILabel.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILabelAtlas.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILabelBMFont.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILoadingBar.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UISlider.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UITextField.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../../Layouts/UILayout.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../ScrollWidget/UIListView.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../ScrollWidget/UIPageView.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../ScrollWidget/UIScrollView.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Json/DictionaryHelper.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Reader/SceneReader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Action/CCActionManager.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Action/CCActionObject.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/CocoStudio/Action/../Json/rapidjson/document.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/physics_nodes/CCPhysicsDebugNode.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/chipmunk.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/chipmunk_types.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpVect.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpBB.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpSpatialIndex.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpBody.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpShape.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpPolyShape.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpArbiter.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpConstraint.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpPinJoint.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpSlideJoint.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpPivotJoint.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpGrooveJoint.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpDampedSpring.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpDampedRotarySpring.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpRotaryLimitJoint.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpRatchetJoint.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpGearJoint.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/constraints/cpSimpleMotor.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../external/chipmunk/include/chipmunk/cpSpace.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/physics_nodes/CCPhysicsSprite.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/spine-cocos2dx.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/spine.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/Animation.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/AnimationState.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/AnimationStateData.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/SkeletonData.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/BoneData.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/SlotData.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/Skin.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/Attachment.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/Atlas.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/AtlasAttachmentLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/AttachmentLoader.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/Bone.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/RegionAttachment.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/Slot.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/Skeleton.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/SkeletonJson.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/CCSkeleton.h:
+
+/Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/CCSkeletonAnimation.h:
+
+jni/../../Classes/GameClearPopup.h:

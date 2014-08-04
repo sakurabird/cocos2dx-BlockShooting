@@ -7,19 +7,23 @@ LOCAL_MODULE := cocos2dcpp_shared
 LOCAL_MODULE_FILENAME := libcocos2dcpp
 
 LOCAL_SRC_FILES := hellocpp/main.cpp \
-                   ../../Classes/AppDelegate.cpp \
-                   ../../Classes/BarSprite.cpp \
-                   ../../Classes/TopScene.cpp \
-                   ../../Classes/GameOverScene.cpp \
-                   ../../Classes/GHelper.cpp \
-                   ../../Classes/BallSprite.cpp \
-                   ../../Classes/BlockSprite.cpp \
-                   ../../Classes/GameScene.cpp \
-                   ../../Classes/SettingScene.cpp \
-                   ../../Classes/UserSettings.cpp \
                    ../../Classes/Animations.cpp \
-                   ../../Classes/LevelSelectScene.cpp \
+                   ../../Classes/AppDelegate.cpp \
+                   ../../Classes/BallSprite.cpp \
+                   ../../Classes/BarSprite.cpp \
+                   ../../Classes/BlockSprite.cpp \
+                   ../../Classes/CCPlaySE.cpp \
+                   ../../Classes/GameClearPopup.cpp \
+                   ../../Classes/GameOverScene.cpp \
+                   ../../Classes/GameScene.cpp \
+                   ../../Classes/GHelper.cpp \
                    ../../Classes/HelpScene.cpp \
+                   ../../Classes/LevelMenuItemSprite.cpp \
+                   ../../Classes/LevelSelectScene.cpp \
+                   ../../Classes/PopupLayer.cpp \
+                   ../../Classes/SettingScene.cpp \
+                   ../../Classes/TopScene.cpp \
+                   ../../Classes/UserSettings.cpp \
                    ../../Classes/Utils.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes

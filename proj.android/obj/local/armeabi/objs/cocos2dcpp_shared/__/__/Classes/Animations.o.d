@@ -202,7 +202,8 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/Animations.o: \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/CCScheduler.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/data_support/uthash.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/component/CCComponent.h \
- /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/component/CCComponentContainer.h
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/component/CCComponentContainer.h \
+ jni/../../Classes/Config.h
 
 jni/../../Classes/Animations.h:
 
@@ -611,3 +612,5 @@ jni/../../Classes/Animations.h:
 /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/component/CCComponent.h:
 
 /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/component/CCComponentContainer.h:
+
+jni/../../Classes/Config.h:

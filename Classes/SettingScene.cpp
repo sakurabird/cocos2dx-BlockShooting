@@ -48,7 +48,7 @@ bool SettingScene::init()
         return false;
     }
 
-    if (!CCLayerColor::initWithColor( ccc4(0,0,0,0) )) {
+    if (!CCLayerColor::initWithColor( ccc4(47,47,47,255) )) {
         return false;
     }
 
@@ -70,15 +70,15 @@ void SettingScene::makeLabels()
 {
     //タイトル
     CCLabelBMFont* title = CCLabelBMFont::create("Setting", FONT_BLUE);
-    title->setScale(0.8);
-    title->setPosition( ccp(g_visibleSize.width / 2, g_visibleSize.height * 0.8));
+    title->setScale(0.9);
+    title->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.1));
     this->addChild(title);
 
     //BackGround Music on/off
     CCLabelBMFont* disc1 = CCLabelBMFont::create("Music", FONT_WHITE);
-    disc1->setScale(0.5);
+    disc1->setScale(0.6);
     disc1->setAnchorPoint(CCPointZero);
-    disc1->setPosition(ccp(g_visibleSize.width * 0.2, g_visibleSize.height * 0.65));
+    disc1->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.16, g_visibleSize.height * 0.35));
     this->addChild(disc1);
 
     CCString* fileName = NULL;
@@ -91,13 +91,13 @@ void SettingScene::makeLabels()
     }
 
     CCMenuItemImage* button1 = CCMenuItemImage::create(fileName->getCString(), fileName->getCString(), this, menu_selector(SettingScene::onTapMusicOnOFFButton));
-    button1->setScale(2);
-    button1->setPosition(ccp(g_visibleSize.width * 0.75,
+    button1->setScale(1);
+    button1->setPosition(ccp(g_visibleSize.width * 0.8,
                              disc1->getPositionY() + disc1->getContentSize().height / 3));
 
     //Sound Effect on/off
     CCLabelBMFont* disc2 = CCLabelBMFont::create("Sound Effect", FONT_WHITE);
-    disc2->setScale(0.5);
+    disc2->setScale(0.6);
     disc2->setAnchorPoint(CCPointZero);
     disc2->setPosition(ccp(disc1->getPositionX(),
                            disc1->getPositionY()  - 100));
@@ -109,23 +109,23 @@ void SettingScene::makeLabels()
     }else{
         fileName = CCString::create(PNG_ON);
     }
+
     CCMenuItemImage* button2 = CCMenuItemImage::create(fileName->getCString(), fileName->getCString(), this, menu_selector(SettingScene::onTapSEOnOFFButton));
-    button2->setScale(2);
-    button2->setPosition(ccp(g_visibleSize.width * 0.75,
+    button2->setScale(1);
+    button2->setPosition(ccp(g_visibleSize.width * 0.8,
                              disc2->getPositionY() + disc2->getContentSize().height / 3));
 
 
     //Clear User Data
     CCLabelBMFont* disc3 = CCLabelBMFont::create("Clear User Data", FONT_WHITE);
-    disc3->setScale(0.5);
+    disc3->setScale(0.6);
     disc3->setAnchorPoint(CCPointZero);
-    // TODO
     disc3->setPosition(disc1->getPositionX(), disc2->getPositionY()  - 100);
     this->addChild(disc3);
 
     CCMenuItemImage* button3 = CCMenuItemImage::create(PNG_ON, PNG_ON, this, menu_selector(SettingScene::onTapClearUserData));
-    button3->setScale(2);
-    button3->setPosition(ccp(g_visibleSize.width * 0.75,
+    button3->setScale(1);
+    button3->setPosition(ccp(g_visibleSize.width * 0.8,
                              disc3->getPositionY() + disc3->getContentSize().height / 3));
 
     CCMenu* menu = CCMenu::create(button1, button2, button3, NULL);
@@ -143,7 +143,7 @@ void SettingScene::makeBackButton()
                                                     menu_selector(SettingScene::onTapBackButton));
 
     if (!item) return;
-    item->setPosition(GHelper::convI720toCC(20, g_visibleSize.height * 0.1));
+    item->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.08, g_visibleSize.height * 0.1));
     CCMenu* menu = CCMenu::create(item, NULL);
     menu->setPosition(CCPointZero);
     if (!menu) return;

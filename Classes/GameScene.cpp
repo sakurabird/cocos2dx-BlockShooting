@@ -42,6 +42,7 @@ GameScene::GameScene()
 ,m_item5s(NULL)
 ,m_blocksDestroyed(0)
 ,m_score(0)
+,m_ballRemain(0)
 {
     srand((unsigned int)time(NULL));
 }
@@ -73,7 +74,7 @@ bool GameScene::init()
         return false;
     }
 
-    if (!CCLayerColor::initWithColor( ccc4(0,0,0,0) )) {
+    if (!CCLayerColor::initWithColor( ccc4(47,47,47,255) )) {
         return false;
     }
 
@@ -186,7 +187,7 @@ void GameScene::createGameStateLabels()
     float height = 120;
 
     float x = g_visibleSize.width - width;
-    float y = g_visibleSize.height;
+    float y = g_visibleSize.height - 120;
 
     CCDrawNode* node = CCDrawNode::create();
     this->addChild(node);
@@ -289,7 +290,7 @@ void GameScene::makeBar()
 
     BarSprite* bar = BarSprite::createWithBarSize(w, h);
 
-    bar->setPosition(GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.95));
+    bar->setPosition(GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.9));
     this->addChild(bar);
 }
 
@@ -306,7 +307,7 @@ void GameScene::makeBlock()
     BlockSprite *block = NULL;
 
     int number = 0;
-    int y = g_visibleSize.height * 0.6;
+    int y = g_visibleSize.height * 0.55;
 
     for (int i = 0; i < BLOCK_ROW; i++)
     {
@@ -950,7 +951,7 @@ void GameScene::makeBackButton()
                                                     menu_selector(GameScene::onTapBackButton));
 
     if (!item) return;
-    item->setPosition(GHelper::convI720toCC(20, g_visibleSize.height * 0.1));
+    item->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.08, g_visibleSize.height * 0.1));
     CCMenu* menu = CCMenu::create(item, NULL);
     menu->setPosition(CCPointZero);
     if (!menu) return;
