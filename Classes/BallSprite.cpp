@@ -60,8 +60,8 @@ void BallSprite::initVelocity()
 {
     //ランダムで少し速度を変える
 	int level = UserSettings::getSelectedLevel() * 2;
-    float vx = 10 + level;
-    float vy = 15 + level;
+    float vx = 7 + level;
+    float vy = 9 + level;
     if (rand() % 2 == 0){
         vx *= -1;
     }
