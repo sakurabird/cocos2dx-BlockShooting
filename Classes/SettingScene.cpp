@@ -48,7 +48,7 @@ bool SettingScene::init()
         return false;
     }
 
-    if (!CCLayerColor::initWithColor( ccc4(47,47,47,255) )) {
+    if (!CCLayerGradient::initWithColor( ccc4(254, 255, 255, 255), ccc4(160, 216, 239, 255))) {
         return false;
     }
 
@@ -69,14 +69,14 @@ bool SettingScene::init()
 void SettingScene::makeLabels()
 {
     //タイトル
-    CCLabelBMFont* title = CCLabelBMFont::create("Setting", FONT_BLUE);
-    title->setScale(0.9);
+    CCLabelBMFont* title = CCLabelBMFont::create("Setting", FONT_TITLE);
+    title->setScale(1.4);
     title->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.1));
     this->addChild(title);
 
     //BackGround Music on/off
-    CCLabelBMFont* disc1 = CCLabelBMFont::create("Music", FONT_WHITE);
-    disc1->setScale(0.6);
+    CCLabelBMFont* disc1 = CCLabelBMFont::create("Music", FONT_DISC1);
+    disc1->setScale(1.0);
     disc1->setAnchorPoint(CCPointZero);
     disc1->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.16, g_visibleSize.height * 0.35));
     this->addChild(disc1);
@@ -96,8 +96,8 @@ void SettingScene::makeLabels()
                              disc1->getPositionY() + disc1->getContentSize().height / 3));
 
     //Sound Effect on/off
-    CCLabelBMFont* disc2 = CCLabelBMFont::create("Sound Effect", FONT_WHITE);
-    disc2->setScale(0.6);
+    CCLabelBMFont* disc2 = CCLabelBMFont::create("Sound Effect", FONT_DISC1);
+    disc2->setScale(1.0);
     disc2->setAnchorPoint(CCPointZero);
     disc2->setPosition(ccp(disc1->getPositionX(),
                            disc1->getPositionY()  - 100));
@@ -117,8 +117,8 @@ void SettingScene::makeLabels()
 
 
     //Clear User Data
-    CCLabelBMFont* disc3 = CCLabelBMFont::create("Clear User Data", FONT_WHITE);
-    disc3->setScale(0.6);
+    CCLabelBMFont* disc3 = CCLabelBMFont::create("Clear User Data", FONT_DISC1);
+    disc3->setScale(1.0);
     disc3->setAnchorPoint(CCPointZero);
     disc3->setPosition(disc1->getPositionX(), disc2->getPositionY()  - 100);
     this->addChild(disc3);

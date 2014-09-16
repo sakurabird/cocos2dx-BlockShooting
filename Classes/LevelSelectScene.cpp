@@ -61,7 +61,7 @@ bool LevelSelectScene::init()
         return false;
     }
 
-    if (!CCLayerColor::initWithColor( ccc4(47,47,47,255) )) {
+    if (!CCLayerGradient::initWithColor( ccc4(254, 255, 255, 255), ccc4(160, 216, 239, 255))) {
         return false;
     }
     // BGM再生
@@ -83,8 +83,8 @@ LevelMenuItemSprite* item_a[16];
 void LevelSelectScene::makeLabel()
 {
     //タイトル
-    CCLabelBMFont* title = CCLabelBMFont::create("Touch Stage", FONT_BLUE);
-    title->setScale(0.8);
+    CCLabelBMFont* title = CCLabelBMFont::create("Touch Stage", FONT_TITLE);
+    title->setScale(1.3);
     title->setPosition(GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.1));
     addChild(title);
 

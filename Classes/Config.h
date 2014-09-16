@@ -12,6 +12,7 @@
 #define ccsf(...) CCString::createWithFormat(__VA_ARGS__)->getCString()
 
 // fonts
+#define FONT_DISC1 "fonts/fontDisc1.fnt"
 #define FONT_WHITE "fonts/fontWhite.fnt"
 #define FONT_ORANGE "fonts/fontOrange.fnt"
 #define FONT_RED "fonts/fontRed.fnt"
@@ -19,7 +20,7 @@
 #define FONT_BLUE "fonts/fontBlue.fnt"
 #define FONT_GREEN "fonts/fontGreen.fnt"
 #define FONT_YELLOW "fonts/fontYellow.fnt"
-#define FONT_TITLE "fonts/fonttitle.fnt"
+#define FONT_TITLE "fonts/title.fnt"
 #define FONT_TOUCH "fonts/fontTouch.fnt"
 #define FONT_BIG1 "fonts/fontBig1.fnt"
 #define FONT_BIG2 "fonts/fontBig2.fnt"

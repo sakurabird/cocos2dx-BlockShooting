@@ -11,7 +11,7 @@
 
 #include "cocos2d.h"
 
-class SettingScene : public cocos2d::CCLayerColor
+class SettingScene : public cocos2d::CCLayerGradient
 {
 public:
 	SettingScene();

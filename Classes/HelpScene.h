@@ -12,7 +12,7 @@
 
 #include "cocos2d.h"
 
-class HelpScene : public cocos2d::CCLayerColor
+class HelpScene : public cocos2d::CCLayerGradient
 {
 public:
 	HelpScene();

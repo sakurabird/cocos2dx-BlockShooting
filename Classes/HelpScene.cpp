@@ -46,7 +46,7 @@ bool HelpScene::init()
         return false;
     }
 
-    if (!CCLayerColor::initWithColor( ccc4(47,47,47,255) )) {
+    if (!CCLayerGradient::initWithColor( ccc4(254, 255, 255, 255), ccc4(160, 216, 239, 255))) {
         return false;
     }
 
@@ -67,14 +67,14 @@ bool HelpScene::init()
 void HelpScene::makeLabels()
 {
     //Helpタイトル
-    CCLabelBMFont* title = CCLabelBMFont::create("Help", FONT_BLUE);
-    title->setScale(0.8);
+    CCLabelBMFont* title = CCLabelBMFont::create("Help", FONT_TITLE);
+    title->setScale(1.5);
     title->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.1));
     this->addChild(title);
 
     //item説明タイトル
-    CCLabelBMFont* title2 = CCLabelBMFont::create("Items", FONT_GREEN);
-    title2->setScale(0.7);
+    CCLabelBMFont* title2 = CCLabelBMFont::create("Items", FONT_DISC1);
+    title2->setScale(1.2);
     title2->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.2));
     this->addChild(title2);
 
@@ -86,8 +86,8 @@ void HelpScene::makeLabels()
     image1->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.3));
     this->addChild(image1);
 
-    CCLabelBMFont* disc1 = CCLabelBMFont::create("Quick Ball", FONT_WHITE);
-    disc1->setScale(0.5);
+    CCLabelBMFont* disc1 = CCLabelBMFont::create("Quick Ball", FONT_DISC1);
+    disc1->setScale(1.0);
     disc1->setAnchorPoint(CCPointZero);
     disc1->setPosition( ccp(image1->getPositionX() + image1->getContentSize().width * itemScale + 30,
                             image1->getPositionY() - image1->getContentSize().height * itemScale / 2.5));
@@ -100,8 +100,8 @@ void HelpScene::makeLabels()
     image2->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.35));
     this->addChild(image2);
 
-    CCLabelBMFont* disc2 = CCLabelBMFont::create("Long Bar", FONT_WHITE);
-    disc2->setScale(0.5);
+    CCLabelBMFont* disc2 = CCLabelBMFont::create("Long Bar", FONT_DISC1);
+    disc2->setScale(1.0);
     disc2->setAnchorPoint(CCPointZero);
     disc2->setPosition( ccp(disc1->getPositionX(),
                             image2->getPositionY() - image2->getContentSize().height * itemScale / 2.5));
@@ -114,8 +114,8 @@ void HelpScene::makeLabels()
     image3->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.4));
     this->addChild(image3);
 
-    CCLabelBMFont* disc3 = CCLabelBMFont::create("Multiple Ball", FONT_WHITE);
-    disc3->setScale(0.5);
+    CCLabelBMFont* disc3 = CCLabelBMFont::create("Multiple Ball", FONT_DISC1);
+    disc3->setScale(1.0);
     disc3->setAnchorPoint(CCPointZero);
     disc3->setPosition( ccp(disc1->getPositionX(),
                             image3->getPositionY() - image3->getContentSize().height * itemScale / 2.5));
@@ -128,8 +128,8 @@ void HelpScene::makeLabels()
     image4->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.45));
     this->addChild(image4);
 
-    CCLabelBMFont* disc4 = CCLabelBMFont::create("Bonus Score", FONT_WHITE);
-    disc4->setScale(0.5);
+    CCLabelBMFont* disc4 = CCLabelBMFont::create("Bonus Score", FONT_DISC1);
+    disc4->setScale(1.0);
     disc4->setAnchorPoint(CCPointZero);
     disc4->setPosition( ccp(disc1->getPositionX(),
                             image4->getPositionY() - image4->getContentSize().height * itemScale / 2.5));
@@ -142,21 +142,21 @@ void HelpScene::makeLabels()
     image5->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.5));
     this->addChild(image5);
 
-    CCLabelBMFont* disc5 = CCLabelBMFont::create("Add Ramain Ball", FONT_WHITE);
-    disc5->setScale(0.5);
+    CCLabelBMFont* disc5 = CCLabelBMFont::create("Add Ramain Ball", FONT_DISC1);
+    disc5->setScale(1.0);
     disc5->setAnchorPoint(CCPointZero);
     disc5->setPosition( ccp(disc1->getPositionX(),
                             image5->getPositionY() - image5->getContentSize().height * itemScale / 2.5));
     this->addChild(disc5);
 
     //Thanks to Terasurware
-    CCLabelBMFont* title3 = CCLabelBMFont::create("Thanks to...", FONT_GREEN);
-    title3->setScale(0.7);
+    CCLabelBMFont* title3 = CCLabelBMFont::create("Thanks to...", FONT_DISC1);
+    title3->setScale(1.2);
     title3->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.7));
     this->addChild(title3);
 
-    CCLabelBMFont* disc6 = CCLabelBMFont::create("Terasurware", FONT_TOUCH);
-    disc6->setScale(1);
+    CCLabelBMFont* disc6 = CCLabelBMFont::create("Terasurware", FONT_DISC1);
+    disc6->setScale(1.2);
     disc6->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2,  g_visibleSize.height * 0.8));
     this->addChild(disc6);
 }

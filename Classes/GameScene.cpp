@@ -35,7 +35,7 @@ GameScene::GameScene() :
 				NULL), m_item2s(NULL), m_item3s(NULL), m_item4s(NULL), m_item5s(
 				NULL), m_blocksDestroyed(0), m_score(0), m_ballRemain(0) {
 	srand((unsigned int) time(NULL));
-	CCLog("sssssssssssstttttttttaaaaaaaaaaaaarrrrrrrrrttttttttttttt");
+	CCLog("GameScene start!");
 }
 
 GameScene::~GameScene() {
@@ -635,188 +635,6 @@ void GameScene::updateItems() {
 	}
 }
 
-//void GameScene::updateItems() {
-//	// 落下してくるアイテムをバーで受け止めた場合の処理
-//	BarSprite *bar = dynamic_cast<BarSprite*>(this->getChildByTag(kTagBar));
-//	if (!bar)
-//		return;
-//	CCRect barRect = bar->boundingBox();
-//
-//	CCArray* itemsToDelete = new CCArray;
-//
-//	CCObject* jt = NULL;
-//	CCLog("＊updateItems");
-//	if (m_item1s != NULL && getItem1s()->count() > 0) {
-//		CCLog("ーーupdateItems1-1");
-//		CCARRAY_FOREACH(m_item1s, jt) {
-//			CCLog("ーーupdateItems1-2");
-//			CCSprite* item = dynamic_cast<CCSprite*>(jt);
-//			if (!item)
-//				break;
-//			CCLog("ーーtag:%d",item->getTag());
-//			CCRect itemRect = item->boundingBox();
-//			if (itemRect.intersectsRect(barRect)) {
-//				itemsToDelete->addObject(item);
-//				CCLog("ーーupdateItems1-3");
-//				onGetItem1();
-//			} else if (itemRect.getMinY() < 10) {
-//				CCLog("ーーupdateItems1-4");
-//				itemsToDelete->addObject(item);
-//			}
-//		}
-//		CCLog("ーーupdateItems1-5");
-//	}
-//
-//	jt = NULL;
-//	if (m_item2s != NULL && getItem2s()->count() > 0) {
-//		CCLog("ーーupdateItems2-1");
-//		CCARRAY_FOREACH(m_item2s, jt) {
-//			CCLog("ーーupdateItems2-2");
-//			CCSprite* item = dynamic_cast<CCSprite*>(jt);
-//			if (!item)
-//				break;
-//			CCLog("ーーtag:%d",item->getTag());
-//			CCRect itemRect = item->boundingBox();
-//			if (itemRect.intersectsRect(barRect)) {
-//				itemsToDelete->addObject(item);
-//				CCLog("ーーupdateItems2-3");
-//				onGetItem2();
-//			} else if (itemRect.getMinY() < 10) {
-//				CCLog("ーーupdateItems2-4");
-//				itemsToDelete->addObject(item);
-//			}
-//		}
-//		CCLog("ーーupdateItems2-5");
-//	}
-//
-//	jt = NULL;
-//	if (m_item3s != NULL && getItem3s()->count() > 0) {
-//		CCLog("ーーupdateItems3-1");
-//		CCARRAY_FOREACH(m_item3s, jt) {
-//			CCLog("ーーupdateItems3-2");
-//			CCSprite* item = dynamic_cast<CCSprite*>(jt);
-//			if (!item)
-//				break;
-//			CCLog("ーーtag:%d",item->getTag());
-//			CCRect itemRect = item->boundingBox();
-//			if (itemRect.intersectsRect(barRect)) {
-//				itemsToDelete->addObject(item);
-//				CCLog("ーーupdateItems3-3");
-//				onGetItem3();
-//			} else if (itemRect.getMinY() < 10) {
-//				CCLog("ーーupdateItems3-4");
-//				itemsToDelete->addObject(item);
-//			}
-//		}
-//		CCLog("ーーupdateItems3-5");
-//	}
-//
-//	jt = NULL;
-//	if (m_item4s != NULL && getItem4s()->count() > 0) {
-//		CCLog("ーーupdateItems4-1");
-//		CCARRAY_FOREACH(m_item4s, jt) {
-//			CCLog("ーーupdateItems4-2");
-//			CCSprite* item = dynamic_cast<CCSprite*>(jt);
-//			if (!item)
-//				break;
-//			CCLog("ーーtag:%d",item->getTag());
-//			CCRect itemRect = item->boundingBox();
-//			if (itemRect.intersectsRect(barRect)) {
-//				itemsToDelete->addObject(item);
-//				CCLog("ーーupdateItems4-3");
-//				onGetItem4();
-//			} else if (itemRect.getMinY() < 10) {
-//				CCLog("ーーupdateItems4-4");
-//				itemsToDelete->addObject(item);
-//			}
-//		}
-//		CCLog("ーーupdateItems4-5");
-//	}
-//
-//	jt = NULL;
-//	if (m_item5s != NULL && getItem5s()->count() > 0) {
-//		CCLog("ーーupdateItems5-1");
-//		CCARRAY_FOREACH(m_item5s, jt) {
-//			CCLog("ーーupdateItems5-2");
-//			CCSprite* item = dynamic_cast<CCSprite*>(jt);
-//			if (!item)
-//				break;
-//			CCLog("ーーtag:%d",item->getTag());
-//			CCRect itemRect = item->boundingBox();
-//			if (itemRect.intersectsRect(barRect)) {
-//				itemsToDelete->addObject(item);
-//				CCLog("ーーupdateItems5-3");
-//				onGetItem5();
-//			} else if (itemRect.getMinY() < 10) {
-//				CCLog("ーーupdateItems5-4");
-//				itemsToDelete->addObject(item);
-//			}
-//		}
-//		CCLog("ーーupdateItems5-5");
-//	}
-//
-//	// バーでキャッチした、又は奈落に落ちたアイテムを消す
-//	CCLog("@@@itemsToDelete count: %d",itemsToDelete->count());
-//	jt = NULL;
-//	CCARRAY_FOREACH(itemsToDelete, jt) {
-//		CCNode *item = dynamic_cast<CCNode*>(jt);
-//		if (!item) {
-//			continue;
-//		}
-//
-//		CCLog("@@@remove@@@");
-////		CCLog("@@@remove2@@@");
-//
-//		switch (item->getTag()) {
-//		case kTagItem1:
-//			CCLog("@@@kTagItem1 tag:%d",item->getTag());
-//			CCLog("@@@indexOfObject():%d",m_item1s->indexOfObject(item));
-//			m_item1s->removeObject(item);
-//			CCLog("@@@kTagItem1-out");
-//			break;
-//		case kTagItem2:
-//			CCLog("@@@kTagItem2 tag:%d",item->getTag());
-//			CCLog("@@@indexOfObject():%d",m_item2s->indexOfObject(item));
-//			m_item2s->removeObject(item);
-//			CCLog("@@@kTagItem2-out");
-//			break;
-//		case kTagItem3:
-//			CCLog("@@@kTagItem3 tag:%d",item->getTag());
-//			CCLog("@@@indexOfObject():%d",m_item3s->indexOfObject(item));
-//			m_item3s->removeObject(item);
-//			CCLog("@@@kTagItem3-out");
-//			break;
-//		case kTagItem4:
-//			CCLog("@@@kTagItem4 tag:%d",item->getTag());
-//			CCLog("@@@indexOfObject():%d",m_item4s->indexOfObject(item));
-//			m_item4s->removeObject(item);
-//			CCLog("@@@kTagItem4-out");
-//			break;
-//		case kTagItem5:
-//			CCLog("@@@kTagItem5 tag:%d",item->getTag());
-//			CCLog("@@@indexOfObject():%d",m_item5s->indexOfObject(item));
-//			m_item5s->removeObject(item);
-//			CCLog("@@@kTagItem5-out");
-//			break;
-//		default:
-//			CCLog("@@@tag nasi %d",item->getTag());
-//			return;
-//			break;
-//		}
-//		int tag = item->getTag();
-//		CCLog("removeFromParent tag=%d",tag);
-//		item->removeFromParent();
-////		itemsToDelete->removeObject(item);
-//	}
-//
-//	CCLog("@@@updateItem-out");
-////	CCLog("@@@release1@@@");
-////	if (itemsToDelete->count() > 0) {
-////		itemsToDelete->release();
-////		CCLog("@@@release2@@@");
-////	}
-//}
-
 void GameScene::makeItem(CCSprite *block) {
 	//ボーナスアイテム作成
 	BlockSprite *blockSprite = dynamic_cast<BlockSprite*>(block);
@@ -830,31 +648,31 @@ void GameScene::makeItem(CCSprite *block) {
 	switch (blockSprite->getBlockColor()) {
 	case kBlockColorBlue:
 		fileName = CCString::createWithFormat(PNG_P_BLUE);
-		itemRate = ITEM1_RATE;
+		itemRate = ITEM1_RATE + (selectedLevel * 0.01);
 		tag = kTagItem1;
 		break;
 
 	case kBlockColorGreen:
 		fileName = CCString::createWithFormat(PNG_P_GREEN);
-		itemRate = ITEM2_RATE;
+		itemRate = ITEM2_RATE + (selectedLevel * 0.01);
 		tag = kTagItem2;
 		break;
 
 	case kBlockColorRed:
 		fileName = CCString::createWithFormat(PNG_P_RED);
-		itemRate = ITEM3_RATE;
+		itemRate = ITEM3_RATE + (selectedLevel * 0.01);
 		tag = kTagItem3;
 		break;
 
 	case kBlockColorViolet:
 		fileName = CCString::createWithFormat(PNG_P_VIOLET);
-		itemRate = ITEM4_RATE;
+		itemRate = ITEM4_RATE + (selectedLevel * 0.01);
 		tag = kTagItem4;
 		break;
 
 	case kBlockColorYellow:
 		fileName = CCString::createWithFormat(PNG_P_YELLOW);
-		itemRate = ITEM5_RATE;
+		itemRate = ITEM5_RATE + (selectedLevel * 0.01);
 		tag = kTagItem5;
 		break;
 
@@ -866,7 +684,7 @@ void GameScene::makeItem(CCSprite *block) {
 	if ((double) rand() / RAND_MAX < itemRate) {
 		CCSprite* item = CCSprite::create(fileName->getCString());
 		if (item) {
-			item->autorelease();
+//			item->autorelease();
 		}else{
 			CC_SAFE_DELETE(item);
 			return;
@@ -1032,6 +850,9 @@ void GameScene::win() {
 	if (UserSettings::getSESetting())
 		SimpleAudioEngine::sharedEngine()->playEffect(MP3_CLEAR);
 
+	// 残りボール数があるときスコアを加算する
+	m_score += m_ballRemain * 10000;
+
 	this->unschedule(schedule_selector(GameScene::updateGame));
 
 	setResultScores();
@@ -1086,6 +907,9 @@ void GameScene::gameOver() {
 	if (UserSettings::getSESetting())
 		SimpleAudioEngine::sharedEngine()->playEffect(MP3_GAMEOVER);
 
+	// 残りボール数があるときスコアを加算する
+	m_score += m_ballRemain * 10000;
+
 	this->unschedule(schedule_selector(GameScene::updateGame));
 
 	setResultScores();
@@ -1096,9 +920,11 @@ void GameScene::gameOver() {
 }
 
 void GameScene::setResultScores() {
-	UserSettings::setScore(getScore());
-	if (g_LevelState[1][selectedLevel] < getScore()) {
-		g_LevelState[1][selectedLevel] = getScore();
+	    CCLOG("# setResultScores # m_score: %d", m_score);
+
+	UserSettings::setScore(m_score);
+	if (g_LevelState[1][selectedLevel] < m_score) {
+		g_LevelState[1][selectedLevel] = m_score;
 		UserSettings::saveLevelState();
 	}
 	UserSettings::setHighScore(g_LevelState[1][selectedLevel]);

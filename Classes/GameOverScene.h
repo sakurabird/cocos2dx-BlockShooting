@@ -4,7 +4,7 @@
 
 #include "cocos2d.h"
 
-class GameOverScene : public cocos2d::CCLayerColor
+class GameOverScene : public cocos2d::CCLayerGradient
 {
 
 public:

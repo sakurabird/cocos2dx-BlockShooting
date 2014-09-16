@@ -96,6 +96,7 @@ int UserSettings::getHighScore()
 
 void UserSettings::setHighScore(int score)
 {
+    CCLOG("# setHighScore # score: %d", score);
     CCUserDefault* userDefault = CCUserDefault::sharedUserDefault();
     userDefault->setIntegerForKey(highScoreKey, score);
     userDefault->flush();
@@ -110,6 +111,7 @@ int UserSettings::getScore()
 
 void UserSettings::setScore(int score)
 {
+    CCLOG("# setScore # score: %d", score);
     CCUserDefault* userDefault = CCUserDefault::sharedUserDefault();
     userDefault->setIntegerForKey(scoreKey, score);
     userDefault->flush();

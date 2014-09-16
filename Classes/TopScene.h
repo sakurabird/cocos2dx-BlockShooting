@@ -12,7 +12,7 @@
 
 #include "cocos2d.h"
 
-class TopScene : public cocos2d::CCLayerColor
+class TopScene : public cocos2d::CCLayerGradient
 {
 public:
 	TopScene();

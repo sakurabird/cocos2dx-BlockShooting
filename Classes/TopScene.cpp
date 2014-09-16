@@ -45,7 +45,7 @@ bool TopScene::init()
         return false;
     }
 
-    if (!CCLayerColor::initWithColor( ccc4(47,47,47,255) )) {
+    if (!CCLayerGradient::initWithColor( ccc4(254, 255, 255, 255), ccc4(160, 216, 239, 255))) {
         return false;
     }
 
@@ -70,30 +70,30 @@ void TopScene::makeLabel()
 {
     CCLOG("g_visibleSize w:%f h:%f", g_visibleSize.width, g_visibleSize.height);
     //タイトル
-    CCLabelBMFont* title = CCLabelBMFont::create("Block Shooting!", FONT_GREEN);
-    title->setScale(1.0);
+    CCLabelBMFont* title = CCLabelBMFont::create("Block Shooting!", FONT_TITLE);
+    title->setScale(2.0);
     title->setPosition(ccp(g_visibleSize.width / 2, g_visibleSize.height * 0.8));
     addChild(title);
 
     //Playボタン
-    CCLabelBMFont* startLabel1 = CCLabelBMFont::create("Play", FONT_ORANGE, 30);
-    startLabel1->setScale(0.75);
+    CCLabelBMFont* startLabel1 = CCLabelBMFont::create("Play", FONT_DISC1);
+    startLabel1->setScale(1.7);
     CCMenuItemLabel* item1 = CCMenuItemLabel::create(startLabel1, this, menu_selector(TopScene::onTapStartButton));
     item1->runAction(Animations::topLabelAction());
 
     //Settingボタン
-    CCLabelBMFont* startLabel2 = CCLabelBMFont::create("Setting", FONT_WHITE, 30);
-    startLabel2->setScale(0.75);
+    CCLabelBMFont* startLabel2 = CCLabelBMFont::create("Setting", FONT_DISC1);
+    startLabel2->setScale(1.5);
     CCMenuItemLabel* item2 = CCMenuItemLabel::create(startLabel2, this, menu_selector(TopScene::onTapSettingButton));
 
     //Helpボタン
-    CCLabelBMFont* startLabel3 = CCLabelBMFont::create("Help", FONT_WHITE, 30);
-    startLabel3->setScale(0.75);
+    CCLabelBMFont* startLabel3 = CCLabelBMFont::create("Help", FONT_DISC1);
+    startLabel3->setScale(1.5);
     CCMenuItemLabel* item3 = CCMenuItemLabel::create(startLabel3, this, menu_selector(TopScene::onTapHelpButton));
 
     //Quitボタン
-    CCLabelBMFont* startLabel4 = CCLabelBMFont::create("Quit", FONT_WHITE, 30);
-    startLabel4->setScale(0.75);
+    CCLabelBMFont* startLabel4 = CCLabelBMFont::create("Quit", FONT_DISC1);
+    startLabel4->setScale(1.5);
     CCMenuItemLabel* item4 = CCMenuItemLabel::create(startLabel4, this, menu_selector(TopScene::menuCloseCallback));
 
     CCMenu* menu = CCMenu::create( item1, item2, item3, item4, NULL );
