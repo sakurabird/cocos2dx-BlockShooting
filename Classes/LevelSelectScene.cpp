@@ -115,28 +115,28 @@ void LevelSelectScene::makeLabel()
                                item_a[12],item_a[13],item_a[14],item_a[15], NULL );
     if (!menu) return;
     menu->alignItemsVerticallyWithPadding(5.0);
-    menu->setPosition(GHelper::convI720toCC(g_visibleSize.width / 3, g_visibleSize.height * 0.5));
+    menu->setPosition(GHelper::convI720toCC(g_visibleSize.width / 3, g_visibleSize.height * 0.55));
     this->addChild( menu );
 
-    CCLabelBMFont* t1 = CCLabelBMFont::create("Your Level", FONT_WHITE);
-    t1->setScale(0.33);
-    t1->setPosition(GHelper::convI720toCC(g_visibleSize.width / 3, g_visibleSize.height * 0.135));
+    CCLabelBMFont* t1 = CCLabelBMFont::create("Your Level", FONT_DISC1);
+    t1->setScale(0.8);
+    t1->setPosition(GHelper::convI720toCC(g_visibleSize.width / 3, g_visibleSize.height * 0.15));
     addChild(t1);
 
-    CCLabelBMFont* t2 = CCLabelBMFont::create("High Score", FONT_WHITE);
-    t2->setScale(0.33);
-    t2->setPosition(GHelper::convI720toCC(g_visibleSize.width / 1.7, g_visibleSize.height * 0.135));
+    CCLabelBMFont* t2 = CCLabelBMFont::create("High Score", FONT_DISC1);
+    t2->setScale(0.8);
+    t2->setPosition(GHelper::convI720toCC(g_visibleSize.width / 1.6, g_visibleSize.height * 0.15));
     addChild(t2);
 
     CCString* string;
     CCLabelBMFont* sc;
-    float f = 0.18;
+    float f = 0.21;
     for(int i = 0; i < 16; i++){
         string = CCString::createWithFormat("%d", g_LevelState[1][i]);
-        sc = CCLabelBMFont::create(string->getCString(), FONT_WHITE);
-        sc->setScale(0.28);
+        sc = CCLabelBMFont::create(string->getCString(), FONT_DISC1);
+        sc->setScale(0.9);
         sc->setPosition(GHelper::convI720toCC(t2->getPositionX() - 20, g_visibleSize.height * f));
-        f += 0.043;
+        f += 0.045;
         addChild(sc);
     }
 }
