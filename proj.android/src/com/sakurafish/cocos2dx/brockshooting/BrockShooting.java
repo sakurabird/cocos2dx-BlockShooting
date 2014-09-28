@@ -38,32 +38,42 @@ import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
 public class BrockShooting extends Cocos2dxActivity {
+    static final String TAG = "BrockShooting";
     // astrskアイコン型広告
     private static final String MEDIA_CODE1 = "ast01070cxqohj9y7qx0"; // Android上
     private static final String MEDIA_CODE2 = "ast01070is9b82p78dkl"; // Android下
     private IconLoader<Integer> _iconLoader = null;
     private IconLoader<Integer> _iconLoader2 = null;
+    private View mAsterView1, mAsterView2;
+
+    static {
+        System.loadLibrary("cocos2dcpp");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FrameLayout.LayoutParams adParams = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT);
-        adParams.gravity = (Gravity.TOP | Gravity.CENTER);
-        FrameLayout.LayoutParams adParams2 = new FrameLayout.LayoutParams(
-                LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT);
-        adParams2.gravity = (Gravity.BOTTOM | Gravity.CENTER);
+        Global.activity = this;
 
         // アスタ
-        View view = this.getLayoutInflater().inflate(R.layout.astrsk1, null);
-        addContentView(view, adParams);
-        setUpIconLoader();
-        View view2 = this.getLayoutInflater().inflate(R.layout.astrsk2, null);
-        addContentView(view2, adParams2);
-        setUpIconLoader2();
+        setUpAster();
+    }
 
+    private void setUpAster() {
+        FrameLayout.LayoutParams adParams = new FrameLayout.LayoutParams(
+                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        adParams.gravity = (Gravity.TOP | Gravity.CENTER);
+        FrameLayout.LayoutParams adParams2 = new FrameLayout.LayoutParams(
+                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        adParams2.gravity = (Gravity.BOTTOM | Gravity.CENTER);
+
+        mAsterView1 = this.getLayoutInflater().inflate(R.layout.astrsk1, null);
+        addContentView(mAsterView1, adParams);
+        setUpIconLoader();
+        mAsterView2 = this.getLayoutInflater().inflate(R.layout.astrsk2, null);
+        addContentView(mAsterView2, adParams2);
+        setUpIconLoader2();
     }
 
     @Override
@@ -75,13 +85,19 @@ public class BrockShooting extends Cocos2dxActivity {
         return glSurfaceView;
     }
 
-    static {
-        System.loadLibrary("cocos2dcpp");
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
+        startLoadingAstr();
+    }
+
+    @Override
+    public void onPause() {
+        super.onResume();
+        stopLoadingAstr();
+    }
+
+    private void startLoadingAstr() {
         if (_iconLoader != null) {
             _iconLoader.startLoading(); // start loading icon-AD
         }
@@ -90,9 +106,7 @@ public class BrockShooting extends Cocos2dxActivity {
         }
     }
 
-    @Override
-    public void onPause() {
-        super.onResume();
+    private void stopLoadingAstr() {
         if (_iconLoader != null) {
             _iconLoader.stopLoading(); // stop loading ad
         }
@@ -107,20 +121,14 @@ public class BrockShooting extends Cocos2dxActivity {
             return;
         }
         try {
-            // Create instance of IconLoader with mediaCode and Context
             _iconLoader = new IconLoader<Integer>(MEDIA_CODE1, this);
-            // Log.v(_LOG_TAG, "_iconLoader: " + _iconLoader);
 
-            // Retrieve ViewGroup object from content view
             ViewGroup vGrp = (ViewGroup) findViewById(R.id.iconCellLayout1);
-            // Log.v(_LOG_TAG, "vGrp: " + vGrp);
 
-            // Register children of viewGroup into iconLoader
             int i, c = vGrp.getChildCount();
             for (i = 0; i < c; i++)
             {
                 View view = vGrp.getChildAt(i);
-                // Log.v(_LOG_TAG, "View at " + i + ":" + view);
                 if (view instanceof IconCell) {
                     ((IconCell) view).addToIconLoader(_iconLoader);
                     ((IconCell) view).setTitleColor(0xffffffff);
@@ -141,20 +149,14 @@ public class BrockShooting extends Cocos2dxActivity {
             return;
         }
         try {
-            // Create instance of IconLoader with mediaCode and Context
             _iconLoader2 = new IconLoader<Integer>(MEDIA_CODE2, this);
-            // Log.v(_LOG_TAG, "_iconLoader2: " + _iconLoader2);
 
-            // Retrieve ViewGroup object from content view
             ViewGroup vGrp = (ViewGroup) findViewById(R.id.iconCellLayout2);
-            // Log.v(_LOG_TAG, "vGrp: " + vGrp);
 
-            // Register children of viewGroup into iconLoader
             int i, c = vGrp.getChildCount();
             for (i = 0; i < c; i++)
             {
                 View view = vGrp.getChildAt(i);
-                // Log.v(_LOG_TAG, "View at " + i + ":" + view);
                 if (view instanceof IconCell) {
                     ((IconCell) view).addToIconLoader(_iconLoader2);
                     ((IconCell) view).setTitleColor(0xffffffff);
@@ -168,4 +170,36 @@ public class BrockShooting extends Cocos2dxActivity {
         }
     }
 
+    public void showAd(int n) {
+        Utils.logDebug("showAd " + n);
+        switch (n) {
+            case 1:
+                showAstIcons(true);
+                break;
+            case 2:
+                showAstIcons(false);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    /**
+     * アスタ広告表示
+     */
+    private void showAstIcons(final boolean show) {
+        if (show) {
+            startLoadingAstr();
+        } else {
+            stopLoadingAstr();
+        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mAsterView1.setVisibility(show ? View.VISIBLE : View.GONE);
+                mAsterView2.setVisibility(show ? View.VISIBLE : View.GONE);
+            }
+        });
+    }
 }

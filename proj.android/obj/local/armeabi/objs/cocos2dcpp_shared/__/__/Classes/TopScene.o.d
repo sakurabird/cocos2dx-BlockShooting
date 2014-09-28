@@ -209,7 +209,7 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/TopScene.o: \
  jni/../../Classes/GameOverScene.h jni/../../Classes/GHelper.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/SimpleAudioEngine.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/Export.h \
- jni/../../Classes/Utils.h
+ jni/../../Classes/Utils.h jni/../../Classes/MyRenderer.h
 
 jni/../../Classes/TopScene.h:
 
@@ -640,3 +640,5 @@ jni/../../Classes/GHelper.h:
 /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/Export.h:
 
 jni/../../Classes/Utils.h:
+
+jni/../../Classes/MyRenderer.h:

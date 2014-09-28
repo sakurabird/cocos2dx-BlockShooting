@@ -19,6 +19,7 @@
 #include "Animations.h"
 #include "TopScene.h"
 #include "GameClearPopup.h"
+#include "MyRenderer.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -35,6 +36,7 @@ GameScene::GameScene() :
 				NULL), m_item2s(NULL), m_item3s(NULL), m_item4s(NULL), m_item5s(
 				NULL), m_blocksDestroyed(0), m_score(0), m_ballRemain(0) {
 	srand((unsigned int) time(NULL));
+	MyRenderer::showAd(2);	//astrOFF();
 	CCLog("GameScene start!");
 }
 

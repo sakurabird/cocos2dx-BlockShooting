@@ -12,12 +12,14 @@
 #include "UserSettings.h"
 #include "GHelper.h"
 #include "SimpleAudioEngine.h"
+#include "MyRenderer.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
 
 HelpScene::~HelpScene()
 {
+	MyRenderer::showAd(1);	//astrON();
 }
 
 HelpScene::HelpScene()
@@ -69,13 +71,13 @@ void HelpScene::makeLabels()
     //Helpタイトル
     CCLabelBMFont* title = CCLabelBMFont::create("Help", FONT_TITLE);
     title->setScale(1.5);
-    title->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.1));
+    title->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.2));
     this->addChild(title);
 
     //item説明タイトル
-    CCLabelBMFont* title2 = CCLabelBMFont::create("Items", FONT_DISC1);
-    title2->setScale(1.2);
-    title2->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.2));
+    CCLabelBMFont* title2 = CCLabelBMFont::create("Bonus Items", FONT_DISC1);
+    title2->setScale(1.1);
+    title2->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.25));
     this->addChild(title2);
 
     float itemScale = 0.2;
@@ -83,7 +85,7 @@ void HelpScene::makeLabels()
     CCSprite* image1 = CCSprite::create(PNG_P_BLUE);
     image1->setScale(itemScale);
     image1->setAnchorPoint(CCPointZero);
-    image1->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.3));
+    image1->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.35));
     this->addChild(image1);
 
     CCLabelBMFont* disc1 = CCLabelBMFont::create("Quick Ball", FONT_DISC1);
@@ -97,7 +99,7 @@ void HelpScene::makeLabels()
     CCSprite* image2 = CCSprite::create(PNG_P_GREEN);
     image2->setScale(itemScale);
     image2->setAnchorPoint(CCPointZero);
-    image2->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.35));
+    image2->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.4));
     this->addChild(image2);
 
     CCLabelBMFont* disc2 = CCLabelBMFont::create("Long Bar", FONT_DISC1);
@@ -111,7 +113,7 @@ void HelpScene::makeLabels()
     CCSprite* image3 = CCSprite::create(PNG_P_RED);
     image3->setScale(itemScale);
     image3->setAnchorPoint(CCPointZero);
-    image3->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.4));
+    image3->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.45));
     this->addChild(image3);
 
     CCLabelBMFont* disc3 = CCLabelBMFont::create("Multiple Ball", FONT_DISC1);
@@ -125,7 +127,7 @@ void HelpScene::makeLabels()
     CCSprite* image4 = CCSprite::create(PNG_P_VIOLET);
     image4->setScale(itemScale);
     image4->setAnchorPoint(CCPointZero);
-    image4->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.45));
+    image4->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.5));
     this->addChild(image4);
 
     CCLabelBMFont* disc4 = CCLabelBMFont::create("Bonus Score", FONT_DISC1);
@@ -139,7 +141,7 @@ void HelpScene::makeLabels()
     CCSprite* image5 = CCSprite::create(PNG_P_YELLOW);
     image5->setScale(itemScale);
     image5->setAnchorPoint(CCPointZero);
-    image5->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.5));
+    image5->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.55));
     this->addChild(image5);
 
     CCLabelBMFont* disc5 = CCLabelBMFont::create("Add Ramain Ball", FONT_DISC1);

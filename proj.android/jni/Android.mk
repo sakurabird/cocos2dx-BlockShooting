@@ -24,6 +24,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/SettingScene.cpp \
                    ../../Classes/TopScene.cpp \
                    ../../Classes/UserSettings.cpp \
+                   ../../Classes/MyRenderer.cpp \
                    ../../Classes/Utils.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes

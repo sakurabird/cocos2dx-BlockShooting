@@ -14,6 +14,7 @@
 #include "GameScene.h"
 #include "GHelper.h"
 #include "SimpleAudioEngine.h"
+#include "MyRenderer.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -32,6 +33,7 @@ const char *inactiveFile[16] = {
 
 LevelSelectScene::LevelSelectScene()
 {
+	MyRenderer::showAd(1);	//astrON();
 }
 
 LevelSelectScene::~LevelSelectScene()

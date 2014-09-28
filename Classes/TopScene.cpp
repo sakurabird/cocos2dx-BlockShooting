@@ -9,6 +9,7 @@
 #include "GHelper.h"
 #include "SimpleAudioEngine.h"
 #include "Utils.h"
+#include "MyRenderer.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -16,6 +17,7 @@ CCSize g_visibleSize;
 
 TopScene::TopScene()
 {
+	MyRenderer::showAd(1);	//astrON();
 }
 
 TopScene::~TopScene()

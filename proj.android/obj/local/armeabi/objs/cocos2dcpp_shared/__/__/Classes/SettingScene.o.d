@@ -442,7 +442,7 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/SettingScene.o: \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/SkeletonJson.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/CCSkeleton.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/CCSkeletonAnimation.h \
- jni/../../Classes/GameClearPopup.h
+ jni/../../Classes/GameClearPopup.h jni/../../Classes/MyRenderer.h
 
 jni/../../Classes/SettingScene.h:
 
@@ -1335,3 +1335,5 @@ jni/../../Classes/PopupLayer.h:
 /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../extensions/spine/CCSkeletonAnimation.h:
 
 jni/../../Classes/GameClearPopup.h:
+
+jni/../../Classes/MyRenderer.h:

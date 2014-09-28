@@ -208,7 +208,8 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/LevelSelectScene.o: \
  jni/../../Classes/Config.h jni/../../Classes/UserSettings.h \
  jni/../../Classes/GameScene.h jni/../../Classes/GHelper.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/SimpleAudioEngine.h \
- /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/Export.h
+ /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/Export.h \
+ jni/../../Classes/MyRenderer.h
 
 jni/../../Classes/LevelSelectScene.h:
 
@@ -633,3 +634,5 @@ jni/../../Classes/GHelper.h:
 /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/SimpleAudioEngine.h:
 
 /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/Export.h:
+
+jni/../../Classes/MyRenderer.h:

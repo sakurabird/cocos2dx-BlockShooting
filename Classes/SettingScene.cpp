@@ -14,12 +14,14 @@
 #include "SimpleAudioEngine.h"
 #include "PopupLayer.h"
 #include "GameClearPopup.h"
+#include "MyRenderer.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
 
 SettingScene::~SettingScene()
 {
+	MyRenderer::showAd(1);	//astrOFF();
 }
 
 SettingScene::SettingScene()
@@ -71,7 +73,7 @@ void SettingScene::makeLabels()
     //タイトル
     CCLabelBMFont* title = CCLabelBMFont::create("Setting", FONT_TITLE);
     title->setScale(1.4);
-    title->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.1));
+    title->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.2));
     this->addChild(title);
 
     //BackGround Music on/off

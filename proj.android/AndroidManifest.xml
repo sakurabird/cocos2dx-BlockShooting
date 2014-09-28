@@ -11,6 +11,8 @@
     <uses-feature android:glEsVersion="0x00020000" />
 
     <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name" >
         <activity
@@ -49,5 +51,6 @@
         android:smallScreens="true" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>
