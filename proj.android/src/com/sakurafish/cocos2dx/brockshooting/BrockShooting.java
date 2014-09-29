@@ -40,8 +40,8 @@ import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 public class BrockShooting extends Cocos2dxActivity {
     static final String TAG = "BrockShooting";
     // astrskアイコン型広告
-    private static final String MEDIA_CODE1 = "ast01070cxqohj9y7qx0"; // Android上
-    private static final String MEDIA_CODE2 = "ast01070is9b82p78dkl"; // Android下
+    private static final String MEDIA_CODE1 = "ast019423ynx6vly2vp7"; // Android上
+    private static final String MEDIA_CODE2 = "ast01942680qmshrnacr"; // Android下
     private IconLoader<Integer> _iconLoader = null;
     private IconLoader<Integer> _iconLoader2 = null;
     private View mAsterView1, mAsterView2;
