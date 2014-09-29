@@ -78,24 +78,24 @@ void TopScene::makeLabel()
     addChild(title);
 
     //Playボタン
-    CCLabelBMFont* startLabel1 = CCLabelBMFont::create("Play", FONT_DISC1);
-    startLabel1->setScale(1.7);
+    CCLabelBMFont* startLabel1 = CCLabelBMFont::create("Play", FONT_DISC2);
+    startLabel1->setScale(1.2);
     CCMenuItemLabel* item1 = CCMenuItemLabel::create(startLabel1, this, menu_selector(TopScene::onTapStartButton));
     item1->runAction(Animations::topLabelAction());
 
     //Settingボタン
-    CCLabelBMFont* startLabel2 = CCLabelBMFont::create("Setting", FONT_DISC1);
-    startLabel2->setScale(1.5);
+    CCLabelBMFont* startLabel2 = CCLabelBMFont::create("Setting", FONT_DISC2);
+    startLabel2->setScale(1);
     CCMenuItemLabel* item2 = CCMenuItemLabel::create(startLabel2, this, menu_selector(TopScene::onTapSettingButton));
 
     //Helpボタン
-    CCLabelBMFont* startLabel3 = CCLabelBMFont::create("Help", FONT_DISC1);
-    startLabel3->setScale(1.5);
+    CCLabelBMFont* startLabel3 = CCLabelBMFont::create("Help", FONT_DISC2);
+    startLabel3->setScale(1);
     CCMenuItemLabel* item3 = CCMenuItemLabel::create(startLabel3, this, menu_selector(TopScene::onTapHelpButton));
 
     //Quitボタン
-    CCLabelBMFont* startLabel4 = CCLabelBMFont::create("Quit", FONT_DISC1);
-    startLabel4->setScale(1.5);
+    CCLabelBMFont* startLabel4 = CCLabelBMFont::create("Quit", FONT_DISC2);
+    startLabel4->setScale(1);
     CCMenuItemLabel* item4 = CCMenuItemLabel::create(startLabel4, this, menu_selector(TopScene::menuCloseCallback));
 
     CCMenu* menu = CCMenu::create( item1, item2, item3, item4, NULL );
@@ -131,7 +131,7 @@ void TopScene::makeLabel()
 
     //女の子のフレームアニメーション
     CCSprite *obj = CCSprite::create(PNG_MINI1_1);
-    obj->setPosition(ccp(g_visibleSize.width  * 0.7, g_visibleSize.height * 0.2));
+    obj->setPosition(ccp(g_visibleSize.width  * 0.7, g_visibleSize.height * 0.3));
     obj->runAction(Animations::topMiniAnimation());
     this->addChild(obj);
 }

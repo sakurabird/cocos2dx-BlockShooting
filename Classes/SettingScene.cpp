@@ -145,7 +145,7 @@ void SettingScene::makeBackButton()
                                                     menu_selector(SettingScene::onTapBackButton));
 
     if (!item) return;
-    item->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.08, g_visibleSize.height * 0.1));
+    item->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.05, g_visibleSize.height * 0.2));
     CCMenu* menu = CCMenu::create(item, NULL);
     menu->setPosition(CCPointZero);
     if (!menu) return;

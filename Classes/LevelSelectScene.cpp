@@ -33,7 +33,7 @@ const char *inactiveFile[16] = {
 
 LevelSelectScene::LevelSelectScene()
 {
-	MyRenderer::showAd(1);	//astrON();
+	MyRenderer::showAd(2);	//astrON();
 }
 
 LevelSelectScene::~LevelSelectScene()
@@ -152,7 +152,7 @@ void LevelSelectScene::makeBackButton()
                                                     menu_selector(LevelSelectScene::onTapBackButton));
 
     if (!item) return;
-    item->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.08, g_visibleSize.height * 0.1));
+	item->setPosition(g_visibleSize.width * 0.09, g_visibleSize.height - 60);
     CCMenu* menu = CCMenu::create(item, NULL);
     menu->setPosition(CCPointZero);
     if (!menu) return;

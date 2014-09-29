@@ -152,14 +152,14 @@ void HelpScene::makeLabels()
     this->addChild(disc5);
 
     //Thanks to Terasurware
-    CCLabelBMFont* title3 = CCLabelBMFont::create("Thanks to...", FONT_DISC1);
+    CCLabelBMFont* title3 = CCLabelBMFont::create("Thanks to...", FONT_TITLE);
     title3->setScale(1.2);
-    title3->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.7));
+    title3->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.65));
     this->addChild(title3);
 
     CCLabelBMFont* disc6 = CCLabelBMFont::create("Terasurware", FONT_DISC1);
     disc6->setScale(1.2);
-    disc6->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2,  g_visibleSize.height * 0.8));
+    disc6->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2,  g_visibleSize.height * 0.7));
     this->addChild(disc6);
 }
 
@@ -172,7 +172,7 @@ void HelpScene::makeBackButton()
                                                     menu_selector(HelpScene::onTapBackButton));
 
     if (!item) return;
-    item->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.08, g_visibleSize.height * 0.1));
+    item->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.05, g_visibleSize.height * 0.2));
     CCMenu* menu = CCMenu::create(item, NULL);
     menu->setPosition(CCPointZero);
     if (!menu) return;

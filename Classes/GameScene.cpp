@@ -156,7 +156,7 @@ void GameScene::createBalls() {
 	m_activeballs->retain();
 
 	for (int i = 0; i < BALL_REMAIN; i++) {
-		BallSprite* ball = BallSprite::createWithBallScale(0.7);
+		BallSprite* ball = BallSprite::createWithBallScale(0.7, false);
 		//    CCSprite* projectile = CCSprite::createWithSpriteFrameName("Projectile.png");//テクスチャアトラスを使用
 		m_balls->addObject(ball);
 	}
@@ -164,16 +164,16 @@ void GameScene::createBalls() {
 
 void GameScene::createGameStateLabels() {
 	//背景
-	float width = g_visibleSize.width / 3.5;
-	float height = 120;
+	float width = g_visibleSize.width / 1.5;
+	float height = 100;
 
 	float x = g_visibleSize.width - width;
-	float y = g_visibleSize.height - 120;
+	float y = g_visibleSize.height;
 
 	CCDrawNode* node = CCDrawNode::create();
 	this->addChild(node);
 
-	ccColor4F color = ccc4f(0, 0, 0, 0.7);
+	ccColor4F color = ccc4f(0, 0, 0, 0.9);
 	CCPoint verts[] = { ccp(x, y), ccp(x + width, y),
 			ccp(x + width, y - height), ccp(x , y - height) };
 	node->drawPolygon(verts, 4, color, 0, color);
@@ -186,9 +186,9 @@ void GameScene::createGameStateLabels() {
 			FONT_GREEN);
 	label1->setScale(TEXT_SCALE);
 	label1->setAnchorPoint(CCPointZero);
-	label1->setPosition(
-			GHelper::convI720toCC(g_visibleSize.width * 0.7,
-					g_visibleSize.height * 0.09));
+//	label1->setPosition(
+//			GHelper::convI720toCC(g_visibleSize.width * 0.33, g_visibleSize.height * 0.035));
+	label1->setPosition(g_visibleSize.width * 0.38, g_visibleSize.height - height / 2.15);
 	label1->setTag(kTagLevel);
 	this->addChild(label1);
 
@@ -196,8 +196,10 @@ void GameScene::createGameStateLabels() {
 	CCLabelBMFont* label2 = CCLabelBMFont::create("Balls:", FONT_WHITE);
 	label2->setScale(TEXT_SCALE);
 	label2->setAnchorPoint(CCPointZero);
-	label2->setPosition(label1->getPositionX(),
-			label1->getPositionY() - label1->getContentSize().height * 0.5);
+	label2->setPosition(label1->getPositionX() * 1.7,
+			label1->getPositionY());
+//	label2->setPosition(label1->getPositionX(),
+//			label1->getPositionY() - label1->getContentSize().height * 0.5);
 	label2->setTag(kTagBallRemainLabel);
 	this->addChild(label2);
 
@@ -205,10 +207,27 @@ void GameScene::createGameStateLabels() {
 	CCLabelBMFont* label3 = CCLabelBMFont::create("Score:", FONT_WHITE);
 	label3->setScale(TEXT_SCALE);
 	label3->setAnchorPoint(CCPointZero);
-	label3->setPosition(label2->getPositionX(),
+	label3->setPosition(label1->getPositionX(),
 			label2->getPositionY() - label2->getContentSize().height * 0.5);
 	label3->setTag(kTagScoreLabel);
 	this->addChild(label3);
+
+	//ハイスコア
+	CCLabelBMFont* label4 = CCLabelBMFont::create("HighScore:", FONT_WHITE);
+	label4->setScale(TEXT_SCALE);
+	label4->setAnchorPoint(CCPointZero);
+	label4->setPosition(label2->getPositionX(),
+			label2->getPositionY() - label2->getContentSize().height * 0.5);
+	this->addChild(label4);
+
+	CCString* highScore = CCString::createWithFormat("%d", g_LevelState[1][selectedLevel]);
+	CCLabelBMFont* label5 = CCLabelBMFont::create(highScore->getCString(), FONT_ORANGE);
+	label5->setScale(TEXT_SCALE);
+	label5->setAnchorPoint(CCPointZero);
+	label5->setPosition(
+			label4->getPositionX() + label4->getContentSize().width * TEXT_SCALE
+					+ 10, label4->getPositionY());
+	this->addChild(label5);
 
 	showBallRemain();
 	showScore();
@@ -322,7 +341,11 @@ void GameScene::showBackground() {
 		return;
 
 	float h = m_background->getContentSize().height;
+    CCLOG("# showBackground # backpng h: %f", m_background->getContentSize().height);
 	float sc = g_visibleSize.height / h;
+    CCLOG("# showBackground # win.h: %f", CCDirector::sharedDirector()->getWinSize().height);
+    CCLOG("# showBackground # gamen.h: %f", g_visibleSize.height);
+    CCLOG("# showBackground # scale: %f", sc);
 	m_background->setScale(sc);
 
 	m_background->setPosition(
@@ -364,10 +387,19 @@ void GameScene::onBallLost(CCNode* sender) {
 	if (UserSettings::getSESetting())
 		SimpleAudioEngine::sharedEngine()->playEffect(MP3_BALLLOST);
 
+	BallSprite *ball = dynamic_cast<BallSprite*>(sender);
+	if (ball->getIsItem3()) {
+		this->removeChild(ball, true);
+		m_activeballs->removeObject(ball);
+		if (m_activeballs->count() == 0) {
+			isTouched = false;
+		}
+		return;
+	}
+
 	cancelTimers();
 
 	//奈落に落ちたボールを削除
-	BallSprite *ball = dynamic_cast<BallSprite*>(sender);
 	this->removeChild(ball, true);
 	m_activeballs->removeObject(ball);
 
@@ -753,13 +785,12 @@ void GameScene::onGetItem3() {
 	CCString* str = CCString::create("multiple balls");
 	makeItemGetLabel(str);
 	//ボールを追加する
-	BallSprite* ball = BallSprite::createWithBallScale(0.7);
+	BallSprite* ball = BallSprite::createWithBallScale(0.7, true);
 	CCNode *bar = this->getChildByTag(kTagBar);
 	ball->setPosition(
 			ccp(bar->getPositionX(), bar->getPositionY()+ bar->getContentSize().height));
 	this->addChild(ball);
 	m_activeballs->addObject(ball);
-	m_ballRemain++;
 }
 
 void GameScene::onGetItem4() {
@@ -786,7 +817,7 @@ void GameScene::onGetItem5() {
 	this->addChild(p);
 
 	//残りボール数を加算する
-	BallSprite* ball = BallSprite::createWithBallScale(0.7);
+	BallSprite* ball = BallSprite::createWithBallScale(0.7, false);
 	m_balls->addObject(ball);
 	m_ballRemain++;
 	showBallRemain();
@@ -938,9 +969,7 @@ void GameScene::makeBackButton() {
 
 	if (!item)
 		return;
-	item->setPosition(
-			GHelper::convI720toCC(g_visibleSize.width * 0.08,
-					g_visibleSize.height * 0.1));
+	item->setPosition(g_visibleSize.width * 0.09, g_visibleSize.height - 60);
 	CCMenu* menu = CCMenu::create(item, NULL);
 	menu->setPosition(CCPointZero);
 	if (!menu)

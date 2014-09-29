@@ -17,6 +17,7 @@ using namespace CocosDenshion;
 BallSprite::BallSprite()
 :m_vx(0)
 ,m_vy(0)
+,m_isItem3(false)
 {
     srand((unsigned int)time(NULL));
 }
@@ -25,12 +26,13 @@ BallSprite::~BallSprite()
 {
 }
 
-BallSprite* BallSprite::createWithBallScale(float scale)
+BallSprite* BallSprite::createWithBallScale(float scale, bool isItem3)
 {
     BallSprite *pRet = new BallSprite();
     if (pRet && pRet->initWithBallScale(scale))
     {
         pRet->autorelease();
+        pRet->setIsItem3(isItem3);
         return pRet;
     }
     else

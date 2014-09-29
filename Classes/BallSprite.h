@@ -22,6 +22,8 @@ protected:
     //y方向の速度をあらわす変数＆アクセサ
     CC_SYNTHESIZE(int, m_vy, VelocityY);
 
+    CC_SYNTHESIZE(bool, m_isItem3, IsItem3);
+
     void initVelocity();
 
     bool bounceBall(cocos2d::CCSize visibleSize);
@@ -33,7 +35,7 @@ public:
     BallSprite();
     virtual ~BallSprite();
 
-    static BallSprite* createWithBallScale(float size);
+    static BallSprite* createWithBallScale(float size, bool isItem3);
 
     virtual bool initWithBallScale(float scale);
 

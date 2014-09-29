@@ -13,6 +13,7 @@
 
 // fonts
 #define FONT_DISC1 "fonts/fontDisc1.fnt"
+#define FONT_DISC2 "fonts/fontDisc2.fnt"
 #define FONT_WHITE "fonts/fontWhite.fnt"
 #define FONT_ORANGE "fonts/fontOrange.fnt"
 #define FONT_RED "fonts/fontRed.fnt"
