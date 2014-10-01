@@ -91,13 +91,13 @@ void LevelSelectScene::makeLabel()
     addChild(title);
 
     CCLabelBMFont* t1 = CCLabelBMFont::create("Your Level", FONT_DISC1);
-    t1->setScale(0.8);
-    t1->setPosition(g_visibleSize.width / 3, title->getPositionY() - title->getContentSize().height / 2 - 25);
+    t1->setScale(0.9);
+    t1->setPosition(g_visibleSize.width / 3, title->getPositionY() - title->getContentSize().height / 2 - 30);
     addChild(t1);
 
     CCLabelBMFont* t2 = CCLabelBMFont::create("High Score", FONT_DISC1);
-    t2->setScale(0.8);
-    t2->setPosition(g_visibleSize.width / 1.6, t1->getPositionY());
+    t2->setScale(0.9);
+    t2->setPosition(g_visibleSize.width / 1.45, t1->getPositionY());
     addChild(t2);
 
     //16個のラベルを作成
@@ -107,6 +107,7 @@ void LevelSelectScene::makeLabel()
     CCSprite *s = CCSprite::create(PNG_STAGE1_A);
     float scaleY = height / s->getContentSize().height;
 
+    //レベル
     for(int i = 0; i < 16; i++){
         CCSprite *sp;
         if (g_LevelState[0][i] == 1) {
@@ -120,26 +121,40 @@ void LevelSelectScene::makeLabel()
         item_a[i] = item;
     }
 
-    CCMenu* menu = CCMenu::create(
-                               item_a[0],item_a[1],item_a[2],item_a[3],
-                               item_a[4],item_a[5],item_a[6],item_a[7],
-                               item_a[8],item_a[9],item_a[10],item_a[11],
-                               item_a[12],item_a[13],item_a[14],item_a[15], NULL );
-    if (!menu) return;
-    menu->alignItemsVerticallyWithPadding(5.0);
-    menu->setPosition(GHelper::convI720toCC(g_visibleSize.width / 3, g_visibleSize.height * 0.55));
-    this->addChild( menu );
-
+    //ハイスコア
     CCString* string;
-    CCLabelBMFont* sc;
+    CCLabelBMFont* sc[16];
     float f = 0.21;
     for(int i = 0; i < 16; i++){
         string = CCString::createWithFormat("%d", g_LevelState[1][i]);
-        sc = CCLabelBMFont::create(string->getCString(), FONT_DISC1);
-        sc->setScale(0.9);
-        sc->setPosition(GHelper::convI720toCC(t2->getPositionX() - 20, g_visibleSize.height * f));
-        f += 0.045;
-        addChild(sc);
+        sc[i] = CCLabelBMFont::create(string->getCString(), FONT_DISC1);
+    }
+
+    //配置する
+
+    int itemHeight = item_a[0]->getContentSize().height / 2 + 10;
+    for(int i = 0; i < 16; i++){
+    	if (i == 0) {
+    	    item_a[i]->setPosition(t1->getPositionX(), t1->getPositionY() - t1->getContentSize().height - 5);
+//    	    this->addChild(item_a[0]);
+            CCMenu* menu = CCMenu::create(item_a[i], NULL);
+            menu->setPosition(CCPointZero);
+            if (!menu) return;
+            this->addChild(menu);
+    	    sc[0]->setPosition(t2->getPositionX(), item_a[0]->getPositionY());
+    	    this->addChild(sc[0]);
+    	    continue;
+		}
+    	//ラベル
+        item_a[i]->setPosition(item_a[i - 1]->getPositionX(), item_a[i - 1]->getPositionY() - itemHeight);
+        CCMenu* menu = CCMenu::create(item_a[i], NULL);
+        menu->setPosition(CCPointZero);
+        if (!menu) return;
+        this->addChild(menu);
+
+        //ハイスコア
+        sc[i]->setPosition(t2->getPositionX(), item_a[i]->getPositionY());
+        this->addChild(sc[i]);
     }
 }
 
