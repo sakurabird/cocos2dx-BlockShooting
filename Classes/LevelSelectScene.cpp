@@ -104,16 +104,16 @@ void LevelSelectScene::makeLabel()
     float height = title->getPositionY() + title->getContentSize().height / 2;
     height = (height - 350) / 16;
 
-    CCSprite *s = CCSprite::create(PNG_STAGE1_A);
+    CCSprite* s = cocos2d::CCSprite::createWithSpriteFrameName(PNG_STAGE1_A);
     float scaleY = height / s->getContentSize().height;
 
     //レベル
     for(int i = 0; i < 16; i++){
         CCSprite *sp;
         if (g_LevelState[0][i] == 1) {
-            sp = CCSprite::create(activeFile[i]);
+            sp = CCSprite::createWithSpriteFrameName(activeFile[i]);
         } else {
-            sp = CCSprite::create(inactiveFile[i]);
+            sp = CCSprite::createWithSpriteFrameName(inactiveFile[i]);
         }
         LevelMenuItemSprite *item = LevelMenuItemSprite::create(sp, sp, this, menu_selector(LevelSelectScene::onTapLevel));
         if (!item) continue;
@@ -132,11 +132,10 @@ void LevelSelectScene::makeLabel()
 
     //配置する
 
-    int itemHeight = item_a[0]->getContentSize().height / 2 + 10;
+    int itemHeight = item_a[0]->getContentSize().height / 2 + 15;
     for(int i = 0; i < 16; i++){
     	if (i == 0) {
-    	    item_a[i]->setPosition(t1->getPositionX(), t1->getPositionY() - t1->getContentSize().height - 5);
-//    	    this->addChild(item_a[0]);
+    	    item_a[i]->setPosition(t1->getPositionX(), t1->getPositionY() - t1->getContentSize().height - 10);
             CCMenu* menu = CCMenu::create(item_a[i], NULL);
             menu->setPosition(CCPointZero);
             if (!menu) return;
@@ -221,11 +220,9 @@ void LevelSelectScene::makeLabel()
 
 void LevelSelectScene::makeBackButton()
 {
-    CCMenuItemImage *item = CCMenuItemImage::create(
-                                                    PNG_BACK,
-                                                    PNG_BACK,
-                                                    this,
-                                                    menu_selector(LevelSelectScene::onTapBackButton));
+	CCSprite* button = CCSprite::createWithSpriteFrameName(PNG_BACK);
+	CCMenuItemSprite *item = CCMenuItemSprite::create(
+			button, button, this, menu_selector(LevelSelectScene::onTapBackButton));
 
     if (!item) return;
 	item->setPosition(g_visibleSize.width * 0.09, g_visibleSize.height - 60);

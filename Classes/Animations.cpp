@@ -15,10 +15,15 @@ CCFiniteTimeAction* Animations::topMiniAnimation()
 {
     //top画面女の子のフレームアニメーション
     CCAnimation * anim = CCAnimation::create();
-    anim->addSpriteFrameWithFileName(PNG_MINI1_1);
-    anim->addSpriteFrameWithFileName(PNG_MINI1_2);
-    anim->addSpriteFrameWithFileName(PNG_MINI1_3);
-    anim->addSpriteFrameWithFileName(PNG_MINI1_4);
+
+    CCSpriteFrame* sprite =  CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(PNG_MINI1_1);
+    anim->addSpriteFrame(sprite);
+    sprite =  CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(PNG_MINI1_2);
+    anim->addSpriteFrame(sprite);
+    sprite =  CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(PNG_MINI1_3);
+    anim->addSpriteFrame(sprite);
+    sprite =  CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(PNG_MINI1_4);
+    anim->addSpriteFrame(sprite);
     anim->setLoops(-1);
     anim->setDelayPerUnit(0.4f);
     CCFiniteTimeAction* repeat = CCAnimate::create(anim);
@@ -88,10 +93,15 @@ CCFiniteTimeAction* Animations::getItemLabelAction(CCSprite* bar, CCObject* targ
 CCFiniteTimeAction* Animations::winMiniAnimation()
 {
     CCAnimation * anim = CCAnimation::create();
-    anim->addSpriteFrameWithFileName(PNG_MINI2_1);
-    anim->addSpriteFrameWithFileName(PNG_MINI2_2);
-    anim->addSpriteFrameWithFileName(PNG_MINI2_3);
-    anim->addSpriteFrameWithFileName(PNG_MINI2_4);
+
+    CCSpriteFrame* sprite =  CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(PNG_MINI2_1);
+    anim->addSpriteFrame(sprite);
+    sprite =  CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(PNG_MINI2_2);
+    anim->addSpriteFrame(sprite);
+    sprite =  CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(PNG_MINI2_3);
+    anim->addSpriteFrame(sprite);
+    sprite =  CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(PNG_MINI2_4);
+    anim->addSpriteFrame(sprite);
     anim->setLoops(-1);
     anim->setDelayPerUnit(0.4f);
     CCFiniteTimeAction* repeat = CCAnimate::create(anim);
@@ -101,10 +111,15 @@ CCFiniteTimeAction* Animations::winMiniAnimation()
 CCFiniteTimeAction* Animations::gameoverMiniAnimation()
 {
     CCAnimation * anim = CCAnimation::create();
-    anim->addSpriteFrameWithFileName(PNG_MINI3_1);
-    anim->addSpriteFrameWithFileName(PNG_MINI3_2);
-    anim->addSpriteFrameWithFileName(PNG_MINI3_3);
-    anim->addSpriteFrameWithFileName(PNG_MINI3_4);
+
+    CCSpriteFrame* sprite =  CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(PNG_MINI3_1);
+    anim->addSpriteFrame(sprite);
+    sprite =  CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(PNG_MINI3_2);
+    anim->addSpriteFrame(sprite);
+    sprite =  CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(PNG_MINI3_3);
+    anim->addSpriteFrame(sprite);
+    sprite =  CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(PNG_MINI3_4);
+    anim->addSpriteFrame(sprite);
     anim->setLoops(-1);
     anim->setDelayPerUnit(0.4f);
     CCFiniteTimeAction* repeat = CCAnimate::create(anim);

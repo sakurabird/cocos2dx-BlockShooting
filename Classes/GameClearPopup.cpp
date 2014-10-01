@@ -44,7 +44,7 @@ bool GameClearPopup::init()
 void GameClearPopup::makeLabels()
 {
     //背景
-    CCSprite* frame = CCSprite::create(PNG_POPUP_BG2);
+    CCSprite* frame = CCSprite::createWithSpriteFrameName(PNG_POPUP_BG2);
     frame->setScale(2.5f);
     frame->setPosition(GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height / 2));
     this->addChild(frame);
@@ -58,7 +58,7 @@ void GameClearPopup::makeLabels()
     this->addChild(title);
 
     //女の子
-    CCSprite *obj = CCSprite::create(PNG_MINI2_1);
+    CCSprite *obj = CCSprite::createWithSpriteFrameName(PNG_MINI2_1);
     obj->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.5, g_visibleSize.height * 0.35));
     obj->runAction(Animations::winMiniAnimation());
     this->addChild(obj);

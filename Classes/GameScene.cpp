@@ -332,7 +332,7 @@ void GameScene::makeBlock() {
 }
 
 void GameScene::showBackground() {
-	m_background = CCSprite::create(PNG_BG);
+	m_background = CCSprite::createWithSpriteFrameName(PNG_BG);
 	if (!m_background)
 		return;
 
@@ -712,7 +712,7 @@ void GameScene::makeItem(CCSprite *block) {
 	}
 
 	if ((double) rand() / RAND_MAX < itemRate) {
-		CCSprite* item = CCSprite::create(fileName->getCString());
+		CCSprite* item = CCSprite::createWithSpriteFrameName(fileName->getCString());
 		if (item) {
 //			item->autorelease();
 		}else{
@@ -960,8 +960,9 @@ void GameScene::setResultScores() {
 }
 
 void GameScene::makeBackButton() {
-	CCMenuItemImage *item = CCMenuItemImage::create(PNG_BACK, PNG_BACK, this,
-			menu_selector(GameScene::onTapBackButton));
+	CCSprite* button = CCSprite::createWithSpriteFrameName(PNG_BACK);
+	CCMenuItemSprite *item = CCMenuItemSprite::create(
+			button, button, this, menu_selector(GameScene::onTapBackButton));
 
 	if (!item)
 		return;

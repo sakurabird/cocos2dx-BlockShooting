@@ -92,7 +92,8 @@ void SettingScene::makeLabels()
         fileName = CCString::create(PNG_ON);
     }
 
-    CCMenuItemImage* button1 = CCMenuItemImage::create(fileName->getCString(), fileName->getCString(), this, menu_selector(SettingScene::onTapMusicOnOFFButton));
+    CCSprite* button = CCSprite::createWithSpriteFrameName(fileName->getCString());
+    CCMenuItemSprite* button1 = CCMenuItemSprite::create(button, button, this, menu_selector(SettingScene::onTapMusicOnOFFButton));
     button1->setScale(1);
     button1->setPosition(ccp(g_visibleSize.width * 0.8,
                              disc1->getPositionY() + disc1->getContentSize().height / 3));
@@ -112,7 +113,8 @@ void SettingScene::makeLabels()
         fileName = CCString::create(PNG_ON);
     }
 
-    CCMenuItemImage* button2 = CCMenuItemImage::create(fileName->getCString(), fileName->getCString(), this, menu_selector(SettingScene::onTapSEOnOFFButton));
+    button = CCSprite::createWithSpriteFrameName(fileName->getCString());
+    CCMenuItemSprite* button2 = CCMenuItemSprite::create(button, button, this, menu_selector(SettingScene::onTapSEOnOFFButton));
     button2->setScale(1);
     button2->setPosition(ccp(g_visibleSize.width * 0.8,
                              disc2->getPositionY() + disc2->getContentSize().height / 3));
@@ -125,7 +127,8 @@ void SettingScene::makeLabels()
     disc3->setPosition(disc1->getPositionX(), disc2->getPositionY()  - 100);
     this->addChild(disc3);
 
-    CCMenuItemImage* button3 = CCMenuItemImage::create(PNG_ON, PNG_ON, this, menu_selector(SettingScene::onTapClearUserData));
+    button = CCSprite::createWithSpriteFrameName(PNG_ON);
+    CCMenuItemSprite* button3 = CCMenuItemSprite::create(button, button, this, menu_selector(SettingScene::onTapClearUserData));
     button3->setScale(1);
     button3->setPosition(ccp(g_visibleSize.width * 0.8,
                              disc3->getPositionY() + disc3->getContentSize().height / 3));
@@ -138,11 +141,9 @@ void SettingScene::makeLabels()
 
 void SettingScene::makeBackButton()
 {
-    CCMenuItemImage *item = CCMenuItemImage::create(
-                                                    PNG_BACK,
-                                                    PNG_BACK,
-                                                    this,
-                                                    menu_selector(SettingScene::onTapBackButton));
+	CCSprite* button = CCSprite::createWithSpriteFrameName(PNG_BACK);
+	CCMenuItemSprite *item = CCMenuItemSprite::create(
+			button, button, this, menu_selector(SettingScene::onTapBackButton));
 
     if (!item) return;
     item->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.05, g_visibleSize.height * 0.2));

@@ -82,7 +82,7 @@ void HelpScene::makeLabels()
 
     float itemScale = 0.2;
     //青
-    CCSprite* image1 = CCSprite::create(PNG_P_BLUE);
+    CCSprite* image1 = CCSprite::createWithSpriteFrameName(PNG_P_BLUE);
     image1->setScale(itemScale);
     image1->setAnchorPoint(CCPointZero);
     image1->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.35));
@@ -96,7 +96,7 @@ void HelpScene::makeLabels()
     this->addChild(disc1);
 
     //緑
-    CCSprite* image2 = CCSprite::create(PNG_P_GREEN);
+    CCSprite* image2 = CCSprite::createWithSpriteFrameName(PNG_P_GREEN);
     image2->setScale(itemScale);
     image2->setAnchorPoint(CCPointZero);
     image2->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.4));
@@ -110,7 +110,7 @@ void HelpScene::makeLabels()
     this->addChild(disc2);
 
     //赤
-    CCSprite* image3 = CCSprite::create(PNG_P_RED);
+    CCSprite* image3 = CCSprite::createWithSpriteFrameName(PNG_P_RED);
     image3->setScale(itemScale);
     image3->setAnchorPoint(CCPointZero);
     image3->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.45));
@@ -124,7 +124,7 @@ void HelpScene::makeLabels()
     this->addChild(disc3);
 
     //紫
-    CCSprite* image4 = CCSprite::create(PNG_P_VIOLET);
+    CCSprite* image4 = CCSprite::createWithSpriteFrameName(PNG_P_VIOLET);
     image4->setScale(itemScale);
     image4->setAnchorPoint(CCPointZero);
     image4->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.5));
@@ -138,7 +138,7 @@ void HelpScene::makeLabels()
     this->addChild(disc4);
 
     //黃
-    CCSprite* image5 = CCSprite::create(PNG_P_YELLOW);
+    CCSprite* image5 = CCSprite::createWithSpriteFrameName(PNG_P_YELLOW);
     image5->setScale(itemScale);
     image5->setAnchorPoint(CCPointZero);
     image5->setPosition( GHelper::convI720toCC(g_visibleSize.width / 4.0, g_visibleSize.height * 0.55));
@@ -165,11 +165,9 @@ void HelpScene::makeLabels()
 
 void HelpScene::makeBackButton()
 {
-    CCMenuItemImage *item = CCMenuItemImage::create(
-                                                    PNG_BACK,
-                                                    PNG_BACK,
-                                                    this,
-                                                    menu_selector(HelpScene::onTapBackButton));
+	CCSprite* button = CCSprite::createWithSpriteFrameName(PNG_BACK);
+	CCMenuItemSprite *item = CCMenuItemSprite::create(
+			button, button, this, menu_selector(HelpScene::onTapBackButton));
 
     if (!item) return;
     item->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.05, g_visibleSize.height * 0.2));

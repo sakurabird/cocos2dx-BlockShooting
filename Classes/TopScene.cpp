@@ -89,7 +89,7 @@ void TopScene::makeLabel()
     CCMenuItemLabel* item2 = CCMenuItemLabel::create(startLabel2, this, menu_selector(TopScene::onTapSettingButton));
 
     //Helpボタン
-    CCLabelBMFont* startLabel3 = CCLabelBMFont::create("Help", FONT_DISC2);
+    CCLabelBMFont* startLabel3 = CCLabelBMFont::create("About", FONT_DISC2);
     startLabel3->setScale(1);
     CCMenuItemLabel* item3 = CCMenuItemLabel::create(startLabel3, this, menu_selector(TopScene::onTapHelpButton));
 
@@ -130,7 +130,7 @@ void TopScene::makeLabel()
     this->addChild( menu );
 
     //女の子のフレームアニメーション
-    CCSprite *obj = CCSprite::create(PNG_MINI1_1);
+    CCSprite* obj = cocos2d::CCSprite::createWithSpriteFrameName(PNG_MINI1_1);
     obj->setPosition(ccp(g_visibleSize.width  * 0.7, g_visibleSize.height * 0.3));
     obj->runAction(Animations::topMiniAnimation());
     this->addChild(obj);

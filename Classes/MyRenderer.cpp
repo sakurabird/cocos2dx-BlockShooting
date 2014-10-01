@@ -16,6 +16,7 @@
 
 USING_NS_CC;
 
+cocos2d::CCSpriteFrameCache *MyRenderer::cache;
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 

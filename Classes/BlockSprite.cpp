@@ -66,10 +66,12 @@ bool BlockSprite::initWithBlockSize(float width, float height, int number)
             setBlockColor(kBlockColorBlue);
     }
 
-    if (!CCSprite::initWithFile(fileName->getCString(), CCRectMake(0, 0, width, height))) {
+    if (!CCSprite::initWithSpriteFrameName(fileName->getCString())) {
+//    if (!CCSprite::initWithFile(fileName->getCString(), CCRectMake(0, 0, width, height))) {
         return false;
     }
 
+//    setScale
     CCSprite::setTag(kTagBlock);
 
     setNumber(number);

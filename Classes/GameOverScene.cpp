@@ -92,7 +92,7 @@ void GameOverScene::makeLabel()
     this->addChild(highScoreLabel1);
 
     //女の子
-    CCSprite *obj = CCSprite::create(PNG_MINI3_1);
+    CCSprite *obj = CCSprite::createWithSpriteFrameName(PNG_MINI3_1);
     obj->setPosition( ccp(g_visibleSize.width / 1.5, g_visibleSize.height * 0.33));
     obj->runAction(Animations::gameoverMiniAnimation());
     this->addChild(obj);

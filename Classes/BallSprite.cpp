@@ -45,7 +45,8 @@ BallSprite* BallSprite::createWithBallScale(float scale, bool isItem3)
 
 bool BallSprite::initWithBallScale(float scale)
 {
-    if (!CCSprite::initWithFile(PNG_BALL)) {
+    if (!CCSprite::initWithSpriteFrameName(PNG_BALL)) {
+//    if (!CCSprite::initWithFile(PNG_BALL)) {
         return false;
     }
 

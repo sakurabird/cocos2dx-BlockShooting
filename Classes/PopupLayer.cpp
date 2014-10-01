@@ -64,8 +64,8 @@ bool PopupLayer::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent
 
 PopupLayer* PopupLayer::create(const char *backgroundImage){
     PopupLayer* ml = PopupLayer::create();
-    ml->setSpriteBackGround(CCSprite::create(backgroundImage));
-    ml->setSprite9BackGround(CCScale9Sprite::create(backgroundImage));
+    ml->setSpriteBackGround(CCSprite::createWithSpriteFrameName(backgroundImage));
+    ml->setSprite9BackGround(CCScale9Sprite::createWithSpriteFrameName(backgroundImage));
     return ml;
 }
 
@@ -91,7 +91,10 @@ void PopupLayer::setCallbackFunc(cocos2d::CCObject *target, SEL_CallFuncN callfu
 
 bool PopupLayer::addButton(const char *normalImage, const char *selectedImage, const char *title, int tag){
     // 创建图片菜单按钮
-    CCMenuItemImage* menuImage = CCMenuItemImage::create(normalImage, selectedImage, this, menu_selector(PopupLayer::buttonCallback));
+    CCSprite* normal = CCSprite::createWithSpriteFrameName(normalImage);
+    CCSprite* selected = CCSprite::createWithSpriteFrameName(normalImage);
+
+    CCMenuItemSprite* menuImage = CCMenuItemSprite::create(normal, selected, this, menu_selector(PopupLayer::buttonCallback));
     menuImage->setScale(2.0f);
     menuImage->setTag(tag);
     menuImage->setPosition(CCPointZero);

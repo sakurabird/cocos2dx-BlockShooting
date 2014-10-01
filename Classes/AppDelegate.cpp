@@ -45,19 +45,16 @@ bool AppDelegate::applicationDidFinishLaunching() {
     //リソースディレクトリを指定
     CCFileUtils::sharedFileUtils()->setSearchPaths(searchPaths);
 
-
-    //テクスチャアトラスを使用する あとでやる
-//    CCSpriteFrameCache* frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
-//    frameCache->addSpriteFramesWithFile("simpleGame.plist");
-
+    CCSpriteFrameCache* cache = CCSpriteFrameCache::sharedSpriteFrameCache();
+    cache->addSpriteFramesWithFile(PLIST_MINI_ANIM);
+    cache->addSpriteFramesWithFile(PLIST_STAGE);
+    cache->addSpriteFramesWithFile(PLIST_DISP_PARTS);
+    cache->addSpriteFramesWithFile(PLIST_GAME_PARTS);
 
     // turn on display FPS
     pDirector->setDisplayStats(false);
 
     pDirector->setAnimationInterval(1.0 / 60);
-
-    // 画像が画面の高さにフィットして表示される設定
-//    pDirector->setContentScaleFactor(768.0f / pDirector->getWinSize().height);
 
     CCScene *pScene = TopScene::scene();
 
