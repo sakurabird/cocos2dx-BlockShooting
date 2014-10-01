@@ -54,11 +54,29 @@ void MyRenderer::showAd(int n){
     }
 }
 
+void MyRenderer::showAID(){
+    CCLOG("MyRenderer::showAID");
+    JniMethodInfo methodInfo;
+
+    if (JniHelper::getStaticMethodInfo(methodInfo
+                                       , CLASS_NAME
+                                       , "showAID"
+                                       , "()V"))
+    {
+        methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID);
+        methodInfo.env->DeleteLocalRef(methodInfo.classID);
+    }
+}
+
 #else
 //iPhone
 
 void MyRenderer::showAd(int n){
     
+}
+
+void MyRenderer::showAID(){
+
 }
 #endif
 
@@ -91,6 +109,7 @@ void MyRenderer::activate(int flag)
 
 void MyRenderer::end(){
     CCLOG("MyRenderer::end");
-
+	showAID();
 }
+
 

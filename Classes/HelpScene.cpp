@@ -69,7 +69,7 @@ bool HelpScene::init()
 void HelpScene::makeLabels()
 {
     //Helpタイトル
-    CCLabelBMFont* title = CCLabelBMFont::create("Help", FONT_TITLE);
+    CCLabelBMFont* title = CCLabelBMFont::create("About", FONT_TITLE);
     title->setScale(1.5);
     title->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.2));
     this->addChild(title);

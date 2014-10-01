@@ -25,12 +25,14 @@ THE SOFTWARE.
 package com.sakurafish.cocos2dx.brockshooting;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 
+import jp.live_aid.aid.AdController;
 import jp.maru.mrd.IconCell;
 import jp.maru.mrd.IconLoader;
 
@@ -46,9 +48,16 @@ public class BrockShooting extends Cocos2dxActivity {
     private IconLoader<Integer> _iconLoader2 = null;
     private View mAsterView1, mAsterView2;
 
+    // AID
+    private static final String AID_CODE = "com.sakurafish.c"; // 広告枠:(Android全画面)
+    private AdController mAidAdController; // AID
+
     static {
         System.loadLibrary("cocos2dcpp");
     }
+
+    // native
+    public static native void nativeEnd();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +67,37 @@ public class BrockShooting extends Cocos2dxActivity {
 
         // アスタ
         setUpAster();
+
+        // AID
+        if (mAidAdController == null) {
+            mAidAdController = new AdController(AID_CODE, this);
+            mAidAdController.setCreativeStyle(AdController.CreativeStyle.POPUP_IMAGE);// 画像ポップアップ型広告
+        }
+    }
+
+    @Override
+    public Cocos2dxGLSurfaceView onCreateView() {
+        Cocos2dxGLSurfaceView glSurfaceView = new Cocos2dxGLSurfaceView(this);
+        // BrockShooting should create stencil buffer
+        glSurfaceView.setEGLConfigChooser(5, 6, 5, 0, 16, 8);
+
+        return glSurfaceView;
+    }
+
+    @Override
+    protected void onResume() {
+        startLoadingAstr();
+        mAidAdController.startPreloading();
+
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        stopLoadingAstr();
+        mAidAdController.stopPreloading();
+
+        super.onPause();
     }
 
     private void setUpAster() {
@@ -74,27 +114,6 @@ public class BrockShooting extends Cocos2dxActivity {
         mAsterView2 = this.getLayoutInflater().inflate(R.layout.astrsk2, null);
         addContentView(mAsterView2, adParams2);
         setUpIconLoader2();
-    }
-
-    @Override
-    public Cocos2dxGLSurfaceView onCreateView() {
-        Cocos2dxGLSurfaceView glSurfaceView = new Cocos2dxGLSurfaceView(this);
-        // BrockShooting should create stencil buffer
-        glSurfaceView.setEGLConfigChooser(5, 6, 5, 0, 16, 8);
-
-        return glSurfaceView;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        startLoadingAstr();
-    }
-
-    @Override
-    public void onPause() {
-        super.onResume();
-        stopLoadingAstr();
     }
 
     private void startLoadingAstr() {
@@ -137,14 +156,12 @@ public class BrockShooting extends Cocos2dxActivity {
             _iconLoader.setRefreshInterval(15);
 
         } catch (Exception e) {
-            // Log.w(_LOG_TAG, "Exception in creation");
             e.printStackTrace();
         }
     }
 
     protected void setUpIconLoader2()
     {
-        // Log.w(_LOG_TAG, "setUpIconLoader2");
         if (_iconLoader2 != null) {
             return;
         }
@@ -165,7 +182,6 @@ public class BrockShooting extends Cocos2dxActivity {
             _iconLoader2.setRefreshInterval(15);
 
         } catch (Exception e) {
-            // Log.w(_LOG_TAG, "Exception in creation");
             e.printStackTrace();
         }
     }
@@ -199,6 +215,19 @@ public class BrockShooting extends Cocos2dxActivity {
             public void run() {
                 mAsterView1.setVisibility(show ? View.VISIBLE : View.GONE);
                 mAsterView2.setVisibility(show ? View.VISIBLE : View.GONE);
+            }
+        });
+    }
+
+    /**
+     * AID広告表示
+     */
+    public void showAID() {
+        Log.v(TAG, "showAID");
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mAidAdController.showDialog(AdController.DialogType.ON_EXIT); // AID
             }
         });
     }

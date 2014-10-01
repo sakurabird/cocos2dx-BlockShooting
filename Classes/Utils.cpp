@@ -8,6 +8,7 @@
 
 #include "Utils.h"
 #include "UserSettings.h"
+#include "MyRenderer.h"
 
 USING_NS_CC;
 
@@ -18,9 +19,10 @@ void Utils::quit()
 
 #else
     UserSettings::saveLevelState();
-    CCDirector::sharedDirector()->end();
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
+	MyRenderer::end();
+//    CCDirector::sharedDirector()->end();
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+//    exit(0);
+//#endif
 #endif
 }

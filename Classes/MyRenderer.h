@@ -28,8 +28,8 @@ class MyRenderer
 public:
 	static int endFlag;
 
-	static void disp_gameFeat();
 	static void showAd(int n);
+	static void showAID();
 
     static void init();
     static void init2();

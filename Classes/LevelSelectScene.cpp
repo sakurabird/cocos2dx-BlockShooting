@@ -87,8 +87,18 @@ void LevelSelectScene::makeLabel()
     //タイトル
     CCLabelBMFont* title = CCLabelBMFont::create("Touch Stage", FONT_TITLE);
     title->setScale(1.3);
-    title->setPosition(GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.1));
+    title->setPosition(g_visibleSize.width / 2, g_visibleSize.height - 80);
     addChild(title);
+
+    CCLabelBMFont* t1 = CCLabelBMFont::create("Your Level", FONT_DISC1);
+    t1->setScale(0.8);
+    t1->setPosition(g_visibleSize.width / 3, title->getPositionY() - title->getContentSize().height / 2 - 25);
+    addChild(t1);
+
+    CCLabelBMFont* t2 = CCLabelBMFont::create("High Score", FONT_DISC1);
+    t2->setScale(0.8);
+    t2->setPosition(g_visibleSize.width / 1.6, t1->getPositionY());
+    addChild(t2);
 
     //16個のラベルを作成
     float height = title->getPositionY() + title->getContentSize().height / 2;
@@ -120,16 +130,6 @@ void LevelSelectScene::makeLabel()
     menu->setPosition(GHelper::convI720toCC(g_visibleSize.width / 3, g_visibleSize.height * 0.55));
     this->addChild( menu );
 
-    CCLabelBMFont* t1 = CCLabelBMFont::create("Your Level", FONT_DISC1);
-    t1->setScale(0.8);
-    t1->setPosition(GHelper::convI720toCC(g_visibleSize.width / 3, g_visibleSize.height * 0.15));
-    addChild(t1);
-
-    CCLabelBMFont* t2 = CCLabelBMFont::create("High Score", FONT_DISC1);
-    t2->setScale(0.8);
-    t2->setPosition(GHelper::convI720toCC(g_visibleSize.width / 1.6, g_visibleSize.height * 0.15));
-    addChild(t2);
-
     CCString* string;
     CCLabelBMFont* sc;
     float f = 0.21;
@@ -142,6 +142,67 @@ void LevelSelectScene::makeLabel()
         addChild(sc);
     }
 }
+
+//void LevelSelectScene::makeLabel()
+//{
+//    //タイトル
+//    CCLabelBMFont* title = CCLabelBMFont::create("Touch Stage", FONT_TITLE);
+//    title->setScale(1.3);
+//    title->setPosition(GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height * 0.1));
+//    addChild(title);
+//
+//    //16個のラベルを作成
+//    float height = title->getPositionY() + title->getContentSize().height / 2;
+//    height = (height - 350) / 16;
+//
+//    CCSprite *s = CCSprite::create(PNG_STAGE1_A);
+//    float scaleY = height / s->getContentSize().height;
+//
+//    for(int i = 0; i < 16; i++){
+//        CCSprite *sp;
+//        if (g_LevelState[0][i] == 1) {
+//            sp = CCSprite::create(activeFile[i]);
+//        } else {
+//            sp = CCSprite::create(inactiveFile[i]);
+//        }
+//        LevelMenuItemSprite *item = LevelMenuItemSprite::create(sp, sp, this, menu_selector(LevelSelectScene::onTapLevel));
+//        if (!item) continue;
+//        item->setting(i, scaleY);
+//        item_a[i] = item;
+//    }
+//
+//    CCMenu* menu = CCMenu::create(
+//                               item_a[0],item_a[1],item_a[2],item_a[3],
+//                               item_a[4],item_a[5],item_a[6],item_a[7],
+//                               item_a[8],item_a[9],item_a[10],item_a[11],
+//                               item_a[12],item_a[13],item_a[14],item_a[15], NULL );
+//    if (!menu) return;
+//    menu->alignItemsVerticallyWithPadding(5.0);
+//    menu->setPosition(GHelper::convI720toCC(g_visibleSize.width / 3, g_visibleSize.height * 0.55));
+//    this->addChild( menu );
+//
+//    CCLabelBMFont* t1 = CCLabelBMFont::create("Your Level", FONT_DISC1);
+//    t1->setScale(0.8);
+//    t1->setPosition(GHelper::convI720toCC(g_visibleSize.width / 3, g_visibleSize.height * 0.15));
+//    addChild(t1);
+//
+//    CCLabelBMFont* t2 = CCLabelBMFont::create("High Score", FONT_DISC1);
+//    t2->setScale(0.8);
+//    t2->setPosition(GHelper::convI720toCC(g_visibleSize.width / 1.6, g_visibleSize.height * 0.15));
+//    addChild(t2);
+//
+//    CCString* string;
+//    CCLabelBMFont* sc;
+//    float f = 0.21;
+//    for(int i = 0; i < 16; i++){
+//        string = CCString::createWithFormat("%d", g_LevelState[1][i]);
+//        sc = CCLabelBMFont::create(string->getCString(), FONT_DISC1);
+//        sc->setScale(0.9);
+//        sc->setPosition(GHelper::convI720toCC(t2->getPositionX() - 20, g_visibleSize.height * f));
+//        f += 0.045;
+//        addChild(sc);
+//    }
+//}
 
 void LevelSelectScene::makeBackButton()
 {

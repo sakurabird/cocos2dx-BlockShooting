@@ -203,7 +203,7 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/Utils.o: \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/data_support/uthash.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/component/CCComponent.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/component/CCComponentContainer.h \
- jni/../../Classes/UserSettings.h
+ jni/../../Classes/UserSettings.h jni/../../Classes/MyRenderer.h
 
 jni/../../Classes/Utils.h:
 
@@ -614,3 +614,5 @@ jni/../../Classes/Utils.h:
 /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/component/CCComponentContainer.h:
 
 jni/../../Classes/UserSettings.h:
+
+jni/../../Classes/MyRenderer.h:

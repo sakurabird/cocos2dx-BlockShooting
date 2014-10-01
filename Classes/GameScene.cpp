@@ -186,8 +186,6 @@ void GameScene::createGameStateLabels() {
 			FONT_GREEN);
 	label1->setScale(TEXT_SCALE);
 	label1->setAnchorPoint(CCPointZero);
-//	label1->setPosition(
-//			GHelper::convI720toCC(g_visibleSize.width * 0.33, g_visibleSize.height * 0.035));
 	label1->setPosition(g_visibleSize.width * 0.38, g_visibleSize.height - height / 2.15);
 	label1->setTag(kTagLevel);
 	this->addChild(label1);
@@ -198,8 +196,6 @@ void GameScene::createGameStateLabels() {
 	label2->setAnchorPoint(CCPointZero);
 	label2->setPosition(label1->getPositionX() * 1.7,
 			label1->getPositionY());
-//	label2->setPosition(label1->getPositionX(),
-//			label1->getPositionY() - label1->getContentSize().height * 0.5);
 	label2->setTag(kTagBallRemainLabel);
 	this->addChild(label2);
 

@@ -10,4 +10,9 @@ public class CallFromCPP {
         Log.v(TAG, "showAd " + n);
         Global.activity.showAd(n);
     }
+
+    public static void showAID() {
+        Log.v(TAG, "showAID");
+        Global.activity.showAID();
+    }
 }
