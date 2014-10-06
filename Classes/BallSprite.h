@@ -37,7 +37,7 @@ public:
 
     static BallSprite* createWithBallScale(float size, bool isItem3);
 
-    virtual bool initWithBallScale(float scale);
+    virtual bool initWithBallScale(float scale, bool isItem3);
 
     void addVelocity(int velocity);
 };

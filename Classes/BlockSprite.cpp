@@ -21,6 +21,7 @@ BlockSprite::~BlockSprite()
 
 BlockSprite* BlockSprite::createWithBlockSize(float width, float height, int number)
 {
+
     BlockSprite *pRet = new BlockSprite();
     if (pRet && pRet->initWithBlockSize(width, height, number))
     {
@@ -33,7 +34,6 @@ BlockSprite* BlockSprite::createWithBlockSize(float width, float height, int num
         return NULL;
     }
 }
-
 
 bool BlockSprite::initWithBlockSize(float width, float height, int number)
 {
@@ -64,16 +64,16 @@ bool BlockSprite::initWithBlockSize(float width, float height, int number)
         default:
             fileName = CCString::create(PNG_BLOCK_BLUE);
             setBlockColor(kBlockColorBlue);
+            break;
     }
 
     if (!CCSprite::initWithSpriteFrameName(fileName->getCString())) {
-//    if (!CCSprite::initWithFile(fileName->getCString(), CCRectMake(0, 0, width, height))) {
         return false;
     }
-
-//    setScale
     CCSprite::setTag(kTagBlock);
 
+    setPosition(CCPointZero);
+    setContentSize(ccp(width, height));
     setNumber(number);
 
     return true;

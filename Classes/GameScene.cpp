@@ -156,8 +156,7 @@ void GameScene::createBalls() {
 	m_activeballs->retain();
 
 	for (int i = 0; i < BALL_REMAIN; i++) {
-		BallSprite* ball = BallSprite::createWithBallScale(0.7, false);
-		//    CCSprite* projectile = CCSprite::createWithSpriteFrameName("Projectile.png");//テクスチャアトラスを使用
+		BallSprite* ball = BallSprite::createWithBallScale(1, false);
 		m_balls->addObject(ball);
 	}
 }
@@ -236,8 +235,15 @@ void GameScene::setBall() {
 	}
 	BallSprite* ball = dynamic_cast<BallSprite*>(m_balls->objectAtIndex(0));
 	CCNode *bar = this->getChildByTag(kTagBar);
+//	CCRect rect = bar->boundingBox();
 	ball->setPosition(
-			ccp(bar->getPositionX(), bar->getPositionY()+ bar->getContentSize().height));
+			ccp(bar->getPositionX(), bar->getPositionY() + bar->getContentSize().height + 10));
+//    CCLOG("# setBall #bar.width: %f, height: %f",
+//          bar->getContentSize().width, bar->getContentSize().height);
+//    CCLOG("# setBall #bar position X: %f, Y: %f",
+//          bar->getPositionX(), bar->getPositionY());
+//	ball->setPosition(
+//			ccp(bar->getPositionX() + bar->getContentSize().width / 2, bar->getPositionY() + bar->getContentSize().height));
 	this->addChild(ball);
 
 	m_balls->removeObjectAtIndex(0);
@@ -291,12 +297,15 @@ void GameScene::showScore() {
 void GameScene::makeBar() {
 	float w = g_visibleSize.width / 4;
 	float h = w / 6;
+//    CCLOG("bar.size w: %f, h: %f",w, h);
 
 	BarSprite* bar = BarSprite::createWithBarSize(w, h);
 
+//	bar->setPosition(ccp(g_visibleSize.width / 2 - bar->getContentSize().width / 2, g_visibleSize.height * 0.13));
+//    CCLOG("# makebar # bar.pos X: %f, Y: %f",bar->getPositionX(), bar->getPositionY());
 	bar->setPosition(
 			GHelper::convI720toCC(g_visibleSize.width / 2,
-					g_visibleSize.height * 0.9));
+					g_visibleSize.height * 0.88));
 	this->addChild(bar);
 }
 
@@ -337,11 +346,7 @@ void GameScene::showBackground() {
 		return;
 
 	float h = m_background->getContentSize().height;
-    CCLOG("# showBackground # backpng h: %f", m_background->getContentSize().height);
 	float sc = g_visibleSize.height / h;
-    CCLOG("# showBackground # win.h: %f", CCDirector::sharedDirector()->getWinSize().height);
-    CCLOG("# showBackground # gamen.h: %f", g_visibleSize.height);
-    CCLOG("# showBackground # scale: %f", sc);
 	m_background->setScale(sc);
 
 	m_background->setPosition(
@@ -426,6 +431,7 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event) {
 		this->removeChild(lavel, true);
 	}
 
+//	CCLog("ccTouchBegan1");
 	//現在ボールが飛んでいなければボールを飛ばす
 	if (!isTouched) {
 		if (UserSettings::getSESetting())
@@ -476,8 +482,12 @@ void GameScene::updateBall() {
 		float vy = ball->getVelocityY();
 
 		// ボールの移動
+//	    CCLOG("# updateBall1 #ball position X: %f, Y: %f",
+//	          ball->getPositionX(), ball->getPositionY());
 		ball->setPosition(ccp(ball->getPositionX() + vx,
 				ball->getPositionY() + vy));
+//	    CCLOG("# updateBall2 #ball position X: %f, Y: %f",
+//	          ball->getPositionX(), ball->getPositionY());
 
 		if (ballPoint.y < 0) {
 			//ユーザーがボールを奈落に落とした
@@ -678,31 +688,31 @@ void GameScene::makeItem(CCSprite *block) {
 	switch (blockSprite->getBlockColor()) {
 	case kBlockColorBlue:
 		fileName = CCString::createWithFormat(PNG_P_BLUE);
-		itemRate = ITEM1_RATE + (selectedLevel * 0.01);
+		itemRate = ITEM1_RATE + (selectedLevel * 0.005);
 		tag = kTagItem1;
 		break;
 
 	case kBlockColorGreen:
 		fileName = CCString::createWithFormat(PNG_P_GREEN);
-		itemRate = ITEM2_RATE + (selectedLevel * 0.01);
+		itemRate = ITEM2_RATE + (selectedLevel * 0.005);
 		tag = kTagItem2;
 		break;
 
 	case kBlockColorRed:
 		fileName = CCString::createWithFormat(PNG_P_RED);
-		itemRate = ITEM3_RATE + (selectedLevel * 0.01);
+		itemRate = ITEM3_RATE + (selectedLevel * 0.005);
 		tag = kTagItem3;
 		break;
 
 	case kBlockColorViolet:
 		fileName = CCString::createWithFormat(PNG_P_VIOLET);
-		itemRate = ITEM4_RATE + (selectedLevel * 0.01);
+		itemRate = ITEM4_RATE + (selectedLevel * 0.005);
 		tag = kTagItem4;
 		break;
 
 	case kBlockColorYellow:
 		fileName = CCString::createWithFormat(PNG_P_YELLOW);
-		itemRate = ITEM5_RATE + (selectedLevel * 0.01);
+		itemRate = ITEM5_RATE + (selectedLevel * 0.005);
 		tag = kTagItem5;
 		break;
 
@@ -751,7 +761,7 @@ void GameScene::makeItem(CCSprite *block) {
 }
 
 void GameScene::onGetItem1() {
-	m_score += 100;
+	m_score += 500;
 	CCString* str = CCString::create("speed up");
 	makeItemGetLabel(str);
 
@@ -781,7 +791,7 @@ void GameScene::onGetItem3() {
 	CCString* str = CCString::create("multiple balls");
 	makeItemGetLabel(str);
 	//ボールを追加する
-	BallSprite* ball = BallSprite::createWithBallScale(0.7, true);
+	BallSprite* ball = BallSprite::createWithBallScale(1, true);
 	CCNode *bar = this->getChildByTag(kTagBar);
 	ball->setPosition(
 			ccp(bar->getPositionX(), bar->getPositionY()+ bar->getContentSize().height));
@@ -791,10 +801,10 @@ void GameScene::onGetItem3() {
 
 void GameScene::onGetItem4() {
 	m_score += 100;
-	CCString* str = CCString::create("+5000");
+	CCString* str = CCString::create("+10000");
 	makeItemGetLabel(str);
 	//ボーナススコアを加算する
-	m_score += 5000;
+	m_score += 10000;
 }
 
 void GameScene::onGetItem5() {
@@ -804,7 +814,7 @@ void GameScene::onGetItem5() {
 
 	CCSprite *bar = dynamic_cast<CCSprite*>(this->getChildByTag(kTagBar));
 	CCParticleMeteor* p = CCParticleMeteor::create();
-	p->setTexture(CCTextureCache::sharedTextureCache()->addImage(PNG_P_YELLOW));
+	p->setTexture(CCTextureCache::sharedTextureCache()->addImage(PNG_RECT1));
 	p->setDuration(0.07);
 	p->setSpeed(1000);
 	p->setAutoRemoveOnFinish(true);
@@ -813,7 +823,7 @@ void GameScene::onGetItem5() {
 	this->addChild(p);
 
 	//残りボール数を加算する
-	BallSprite* ball = BallSprite::createWithBallScale(0.7, false);
+	BallSprite* ball = BallSprite::createWithBallScale(1, false);
 	m_balls->addObject(ball);
 	m_ballRemain++;
 	showBallRemain();
@@ -880,14 +890,15 @@ void GameScene::win() {
 		SimpleAudioEngine::sharedEngine()->playEffect(MP3_CLEAR);
 
 	// 残りボール数があるときスコアを加算する
-	m_score += m_ballRemain * 10000;
+	int ballScore = m_ballRemain * 10000;
+	m_score += ballScore;
 
 	this->unschedule(schedule_selector(GameScene::updateGame));
 
 	setResultScores();
 
 	// 現在のレベルの一つ上をアンロック
-	if (selectedLevel < 16) {
+	if (selectedLevel < 15) {
 		selectedLevel++;
 	}
 	g_LevelState[0][selectedLevel] = 1;
@@ -917,13 +928,32 @@ void GameScene::win() {
 			ccp(g_visibleSize.width / 2, g_visibleSize.height / 2));
 
 	//クリアのラベル表示
-	CCLabelBMFont* label = CCLabelBMFont::create("CLEAR!", FONT_BIG1);
+    CCString *lb = NULL;
+	if (selectedLevel >= 15) {
+		lb = CCString::create("ALL CLEAR★");
+	} else {
+		lb = CCString::create("CLEAR!");
+	}
+	CCLabelBMFont* label = CCLabelBMFont::create(lb->getCString(), FONT_BIG1);
 	label->setPosition(
 			ccp(g_visibleSize.width / 2, g_visibleSize.height * 0.5));
 	label->runAction(
 			Animations::gameClearAction(this,
 					callfunc_selector(GameScene::showClearPopup)));
 	addChild(label, kZOrderLabel);
+
+	//残りボール数のプラススコアラベル
+	if (ballScore > 0) {
+		CCString* s = CCString::createWithFormat("remain ball +%d", ballScore);
+		CCLabelBMFont* lb = CCLabelBMFont::create(s->getCString(), FONT_WHITE);
+		lb->setScale(0.3);
+		CCNode *n = this->getChildByTag(kTagScore);
+		lb->setPosition(ccp(n->getPositionX(), n->getPositionY()));
+		lb->runAction(Animations::gameAddingScoreAction());
+		this->addChild(lb);
+	}
+
+	showScore();
 }
 
 void GameScene::showClearPopup(CCObject* sender) {
@@ -949,7 +979,7 @@ void GameScene::gameOver() {
 }
 
 void GameScene::setResultScores() {
-	    CCLOG("# setResultScores # m_score: %d", m_score);
+//	    CCLOG("# setResultScores # m_score: %d", m_score);
 
 	UserSettings::setScore(m_score);
 	if (g_LevelState[1][selectedLevel] < m_score) {

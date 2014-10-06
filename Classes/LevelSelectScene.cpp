@@ -101,8 +101,8 @@ void LevelSelectScene::makeLabel()
     addChild(t2);
 
     //16個のラベルを作成
-    float height = title->getPositionY() + title->getContentSize().height / 2;
-    height = (height - 350) / 16;
+    float height = t1->getPositionY() + t1->getContentSize().height / 2;
+    height = (height - 200) / 17;
 
     CCSprite* s = cocos2d::CCSprite::createWithSpriteFrameName(PNG_STAGE1_A);
     float scaleY = height / s->getContentSize().height;
@@ -132,10 +132,10 @@ void LevelSelectScene::makeLabel()
 
     //配置する
 
-    int itemHeight = item_a[0]->getContentSize().height / 2 + 15;
+    int itemHeight = item_a[0]->getContentSize().height / 2 + 10;
     for(int i = 0; i < 16; i++){
     	if (i == 0) {
-    	    item_a[i]->setPosition(t1->getPositionX(), t1->getPositionY() - t1->getContentSize().height - 10);
+    	    item_a[i]->setPosition(t1->getPositionX(), t1->getPositionY() - t1->getContentSize().height);
             CCMenu* menu = CCMenu::create(item_a[i], NULL);
             menu->setPosition(CCPointZero);
             if (!menu) return;

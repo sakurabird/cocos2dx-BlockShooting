@@ -49,10 +49,14 @@ void GameClearPopup::makeLabels()
     frame->setPosition(GHelper::convI720toCC(g_visibleSize.width / 2, g_visibleSize.height / 2));
     this->addChild(frame);
 
-    CCLOG("frame y:%f", frame->getPositionY());
-
     //タイトル
-    CCLabelBMFont* title = CCLabelBMFont::create("You Win!", FONT_YELLOW);
+    CCString *s = NULL;
+    if (UserSettings::getSelectedLevel() >= 15) {
+    	s = CCString::create("All Clear!");
+	} else {
+		s = CCString::create("You Win!");
+	}
+    CCLabelBMFont* title = CCLabelBMFont::create(s->getCString(), FONT_YELLOW);
     title->setScale(0.6);
     title->setPosition( GHelper::convI720toCC(g_visibleSize.width * 0.5, g_visibleSize.height * 0.3));
     this->addChild(title);
@@ -64,7 +68,12 @@ void GameClearPopup::makeLabels()
     this->addChild(obj);
 
     //Next Stage?
-    CCLabelBMFont* disc1 = CCLabelBMFont::create("Next Stage?", FONT_GREEN);
+    if (UserSettings::getSelectedLevel() >= 15) {
+    	s = CCString::create("");
+	} else {
+		s = CCString::create("Next Stage?");
+	}
+    CCLabelBMFont* disc1 = CCLabelBMFont::create(s->getCString(), FONT_GREEN);
     disc1->setScale(0.5);
     CCMenuItemLabel* item1 = CCMenuItemLabel::create(disc1, this, menu_selector(GameClearPopup::onTapNextStage));
 
@@ -93,8 +102,8 @@ void GameClearPopup::makeLabels()
 void GameClearPopup::onTapNextStage(){
 
     int level = UserSettings::getSelectedLevel();
-    if (level >= 16) {
-        level = 16;
+    if (level >= 15) {
+        return;
     }else{
         level++;
     }

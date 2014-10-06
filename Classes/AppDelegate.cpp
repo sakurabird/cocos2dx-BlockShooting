@@ -50,6 +50,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     cache->addSpriteFramesWithFile(PLIST_STAGE);
     cache->addSpriteFramesWithFile(PLIST_DISP_PARTS);
     cache->addSpriteFramesWithFile(PLIST_GAME_PARTS);
+    cache->addSpriteFramesWithFile(PLIST_GAME_PARTS2);
 
     // turn on display FPS
     pDirector->setDisplayStats(false);

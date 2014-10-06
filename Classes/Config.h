@@ -32,6 +32,7 @@
 #define PLIST_STAGE "image/stage.plist"
 #define PLIST_DISP_PARTS "image/disp_parts.plist"
 #define PLIST_GAME_PARTS "image/game_parts.plist"
+#define PLIST_GAME_PARTS2 "image/game_parts2.plist"
 
 #define PNG_POPUP_BG "popup_bg.png"
 #define PNG_POPUP_BG2 "popup_bg2.png"
@@ -42,20 +43,21 @@
 #define PNG_BACK "back.png"
 
 #define PNG_BG "bg.png"
-#define PNG_BALL "ball.png"
 #define PNG_BLOCK "block.png"
 #define PNG_BLOCK_BLUE "block_blue.png"
 #define PNG_BLOCK_GREEN "block_green.png"
 #define PNG_BLOCK_RED "block_red.png"
 #define PNG_BLOCK_VIOLET "block_violet.png"
 #define PNG_BLOCK_YELLOW "block_yellow.png"
-#define PNG_BAR "bar.png"
-#define PNG_RECT1 "rect1.png"
 #define PNG_P_BLUE "p_blue.png"
 #define PNG_P_GREEN "p_green.png"
 #define PNG_P_RED "p_red.png"
 #define PNG_P_VIOLET "p_violet.png"
 #define PNG_P_YELLOW "p_yellow.png"
+#define PNG_BALL1 "image/ball1.png"
+#define PNG_BALL2 "image/ball2.png"
+#define PNG_BAR "image/bar2.png"
+#define PNG_RECT1 "image/rect1.png"
 
 #define PNG_MINI1_1 "mini_anim1_1.png"
 #define PNG_MINI1_2 "mini_anim1_2.png"
@@ -125,7 +127,7 @@
 #define BALL_REMAIN 3
 #define BALL_FRICTION 1.005
 
-#define ITEM1_RATE 0.05
+#define ITEM1_RATE 0.01
 #define ITEM2_RATE 0.06
 #define ITEM3_RATE 0.04
 #define ITEM4_RATE 0.04

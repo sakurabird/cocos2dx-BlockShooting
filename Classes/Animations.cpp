@@ -60,6 +60,19 @@ CCFiniteTimeAction* Animations::gameClearAction(CCObject* target, SEL_CallFunc s
     return CCSequence::create(delay1, scaleUp1, delay2, scaleDown1, scaleUp2, scaleDown2, delay3, scaleDown3, func, NULL);
 }
 
+CCFiniteTimeAction* Animations::gameAddingScoreAction()
+{
+    //Gameクリア時に残りボールがあった時に表示するラベルのアニメーション
+    CCDelayTime* delay1 = CCDelayTime::create(0.5);
+    CCScaleTo* scaleUp1 = CCScaleTo::create(0.2, 1.0);
+    CCDelayTime* delay2 = CCDelayTime::create(0.2);
+    CCScaleTo* scaleDown1 = CCScaleTo::create(0.2, 0.8);
+    CCDelayTime* delay3 = CCDelayTime::create(2.5);
+    CCScaleTo* scaleDown2 = CCScaleTo::create(0.7, 0);
+
+    return CCSequence::create(delay1, scaleUp1, delay2, scaleDown1, delay3, scaleDown2, NULL);
+}
+
 CCFiniteTimeAction* Animations::retryButtonAction()
 {
     CCDelayTime* delay1 = CCDelayTime::create(1);
@@ -79,7 +92,7 @@ CCFiniteTimeAction* Animations::getItemFallAction(CCSprite* block)
     return seq;
 }
 
-CCFiniteTimeAction* Animations::getItemLabelAction(CCSprite* bar, CCObject* target, SEL_CallFunc selector)
+CCFiniteTimeAction* Animations::getItemLabelAction(CCNode* bar, CCObject* target, SEL_CallFunc selector)
 {
     CCScaleTo* scaleUp = CCScaleTo::create(0.1, 0.3);
     CCFiniteTimeAction* move = CCMoveTo::create(0.2, ccp(bar->getPositionX(), bar->getPositionY() + bar->getContentSize().height / 2  + 25) );

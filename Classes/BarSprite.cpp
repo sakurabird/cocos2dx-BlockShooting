@@ -40,15 +40,22 @@ BarSprite* BarSprite::createWithBarSize(float width, float height)
 bool BarSprite::initWithBarSize(float width, float height)
 {
 
-//    if (!CCSprite::initWithFile(PNG_BAR, CCRectMake(0, 0, width, height))) {
-    if (!CCSprite::initWithSpriteFrameName(PNG_BAR)) {
+    if (!CCSprite::initWithFile(PNG_BAR, CCRectMake(0, 0, width, height))) {
+//    if (!CCSprite::initWithSpriteFrameName(PNG_BAR)) {
         return false;
     }
 
-//    setScale()
     setTag(kTagBar);
-//    CCLOG("bar.width: %f, height: %f",
-//          CCSprite::getContentSize().width, CCSprite::getContentSize().height);
+//    float scaleX = width / getContentSize().width;
+//    float scaleY = height / getContentSize().height;
+//    setScaleX(scaleX);
+//    setScaleY(scaleY);
+//    setAnchorPoint(ccp(0, 0));
+//    setPosition(CCPointZero);
+//    setContentSize(ccp(width, height));
+
+    CCLOG("bar.width: %f, height: %f",
+          getContentSize().width, getContentSize().height);
 
     return true;
 }

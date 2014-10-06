@@ -29,10 +29,9 @@ BallSprite::~BallSprite()
 BallSprite* BallSprite::createWithBallScale(float scale, bool isItem3)
 {
     BallSprite *pRet = new BallSprite();
-    if (pRet && pRet->initWithBallScale(scale))
+    if (pRet && pRet->initWithBallScale(scale, isItem3))
     {
         pRet->autorelease();
-        pRet->setIsItem3(isItem3);
         return pRet;
     }
     else
@@ -43,16 +42,23 @@ BallSprite* BallSprite::createWithBallScale(float scale, bool isItem3)
 }
 
 
-bool BallSprite::initWithBallScale(float scale)
+bool BallSprite::initWithBallScale(float scale, bool isItem3)
 {
-    if (!CCSprite::initWithSpriteFrameName(PNG_BALL)) {
-//    if (!CCSprite::initWithFile(PNG_BALL)) {
+	CCString* fileName = NULL;
+	if (!isItem3) {
+		fileName = CCString::createWithFormat(PNG_BALL1);
+	} else {
+		fileName = CCString::createWithFormat(PNG_BALL2);
+	}
+//    if (!CCSprite::initWithSpriteFrameName(PNG_BALL)) {
+    if (!CCSprite::initWithFile(fileName->getCString())) {
         return false;
     }
+    setIsItem3(isItem3);
 
-    CCSprite::setTag(kTagBall);
-
-    CCSprite::setScale(scale);
+    setTag(kTagBall);
+    setScale(scale);
+    setPosition(CCPointZero);
 
     initVelocity();
 
@@ -62,9 +68,9 @@ bool BallSprite::initWithBallScale(float scale)
 void BallSprite::initVelocity()
 {
     //ランダムで少し速度を変える
-	int level = UserSettings::getSelectedLevel() * 2;
-    float vx = 7 + level;
-    float vy = 9 + level;
+	float level = UserSettings::getSelectedLevel() * 1.3;
+    float vx = 5 + level;
+    float vy = 7 + level;
     if (rand() % 2 == 0){
         vx *= -1;
     }
@@ -86,6 +92,8 @@ void BallSprite::initVelocity()
 //壁に当たった時の処理
 bool BallSprite::bounceBall(CCSize visibleSize)
 {
+//    CCLOG("# BallSprite::bounceBall #visibleSize w: %f, h: %f",
+//          visibleSize.width, visibleSize.height);
     bool b = false;
     CCPoint ballPoint = getPosition();
 
