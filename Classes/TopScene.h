@@ -39,6 +39,8 @@ private:
     void onTapSettingButton();
 
     void onTapHelpButton();
+
+    void onTapGirlButton();
 };
 
 #endif /* defined(__BrockShooting__TopScene__) */

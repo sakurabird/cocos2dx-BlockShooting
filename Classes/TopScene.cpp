@@ -5,7 +5,7 @@
 #include "LevelSelectScene.h"
 #include "SettingScene.h"
 #include "HelpScene.h"
-#include "GameOverScene.h"
+#include "GirlImageScene.h"
 #include "GHelper.h"
 #include "SimpleAudioEngine.h"
 #include "Utils.h"
@@ -130,10 +130,15 @@ void TopScene::makeLabel()
     this->addChild( menu );
 
     //女の子のフレームアニメーション
-    CCSprite* obj = cocos2d::CCSprite::createWithSpriteFrameName(PNG_MINI1_1);
-    obj->setPosition(ccp(g_visibleSize.width  * 0.7, g_visibleSize.height * 0.3));
-    obj->runAction(Animations::topMiniAnimation());
-    this->addChild(obj);
+    CCSprite* girl = cocos2d::CCSprite::createWithSpriteFrameName(PNG_MINI1_1);
+    girl->runAction(Animations::topMiniAnimation());
+	CCMenuItemSprite *item = CCMenuItemSprite::create(
+			girl, girl, this, menu_selector(TopScene::onTapGirlButton));
+    item->setPosition(ccp(g_visibleSize.width  * 0.7, g_visibleSize.height * 0.3));
+	CCMenu* girlMenu = CCMenu::create(item, NULL);
+	girlMenu->setPosition(CCPointZero);
+
+    this->addChild(girlMenu);
 }
 
 void TopScene::onTapStartButton()
@@ -153,6 +158,13 @@ void TopScene::onTapHelpButton()
 {
     CCScene* scene = (CCScene*)HelpScene::create();
     CCDirector::sharedDirector()->pushScene(scene);
+}
+
+void TopScene::onTapGirlButton()
+{
+    CCScene* scene = (CCScene*)GirlImageScene::create();
+    CCTransitionSplitRows* tran = CCTransitionSplitRows::create(1, scene);
+    CCDirector::sharedDirector()->pushScene(tran);
 }
 
 void TopScene::menuCloseCallback(CCObject* pSender)

@@ -17,6 +17,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/GameOverScene.cpp \
                    ../../Classes/GameScene.cpp \
                    ../../Classes/GHelper.cpp \
+                   ../../Classes/GirlImageScene.cpp \
                    ../../Classes/HelpScene.cpp \
                    ../../Classes/LevelMenuItemSprite.cpp \
                    ../../Classes/LevelSelectScene.cpp \

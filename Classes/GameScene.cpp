@@ -20,6 +20,7 @@
 #include "TopScene.h"
 #include "GameClearPopup.h"
 #include "MyRenderer.h"
+#include "Utils.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -32,7 +33,7 @@ float item2Time = 0;
 bool isTouched;
 
 GameScene::GameScene() :
-		m_blocks(NULL), m_balls(NULL), m_activeballs(NULL), m_background(NULL), m_item1s(
+		m_blocks(NULL), m_balls(NULL), m_activeballs(NULL), m_item1s(
 				NULL), m_item2s(NULL), m_item3s(NULL), m_item4s(NULL), m_item5s(
 				NULL), m_blocksDestroyed(0), m_score(0), m_ballRemain(0) {
 	srand((unsigned int) time(NULL));
@@ -80,9 +81,8 @@ bool GameScene::init() {
 
 	initForVariables();
 
-	showBackground();
-
-	showFilter();
+	Utils::setGirlBackground(this);
+	Utils::setGirlFilter(this);
 
 	createBalls();
 
@@ -94,7 +94,7 @@ bool GameScene::init() {
 
 	showStartLabel();
 
-	makeBackButton();
+	Utils::createBackButton(this, menu_selector(GameScene::onTapBackButton), 0.1, 0.95);
 
 	setBall();
 
@@ -337,50 +337,6 @@ void GameScene::makeBlock() {
 			x += block->getContentSize().width + margin;
 		}
 		y -= block->getContentSize().height + margin;
-	}
-}
-
-void GameScene::showBackground() {
-	m_background = CCSprite::createWithSpriteFrameName(PNG_BG);
-	if (!m_background)
-		return;
-
-	float h = m_background->getContentSize().height;
-	float sc = g_visibleSize.height / h;
-	m_background->setScale(sc);
-
-	m_background->setPosition(
-			GHelper::convI720toCC(g_visibleSize.width / 2,
-					g_visibleSize.height / 2));
-	addChild(m_background, kZOrderBackground, kTagBackground);
-}
-
-void GameScene::showFilter() {
-	float cellWidth = g_visibleSize.width / 4;
-	float cellHeight = g_visibleSize.height / 4;
-
-	float x = 0;
-	float y = g_visibleSize.height;
-
-	CCDrawNode* node = CCDrawNode::create();
-	this->addChild(node);
-
-	ccColor4F color = ccc4f(0, 0, 0, 0.7);
-
-	int index = 0;
-	for (int i = 0; i < 4; i++) {
-		x = 0;
-		for (int j = 0; j < 4; j++) {
-			if (g_LevelState[0][index] != 1) {
-				CCPoint verts[] = { ccp(x, y), ccp(x + cellWidth, y),
-						ccp(x + cellWidth, y - cellHeight),
-						ccp(x , y - cellHeight) };
-				node->drawPolygon(verts, 4, color, 0, color);
-			}
-			x += cellWidth;
-			index++;
-		}
-		y -= cellHeight;
 	}
 }
 
@@ -987,21 +943,6 @@ void GameScene::setResultScores() {
 		UserSettings::saveLevelState();
 	}
 	UserSettings::setHighScore(g_LevelState[1][selectedLevel]);
-}
-
-void GameScene::makeBackButton() {
-	CCSprite* button = CCSprite::createWithSpriteFrameName(PNG_BACK);
-	CCMenuItemSprite *item = CCMenuItemSprite::create(
-			button, button, this, menu_selector(GameScene::onTapBackButton));
-
-	if (!item)
-		return;
-	item->setPosition(g_visibleSize.width * 0.09, g_visibleSize.height - 60);
-	CCMenu* menu = CCMenu::create(item, NULL);
-	menu->setPosition(CCPointZero);
-	if (!menu)
-		return;
-	this->addChild(menu, kZOrderTop, kTagBack);
 }
 
 void GameScene::cleanupNode(CCNode *sender) {

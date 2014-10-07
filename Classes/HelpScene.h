@@ -31,8 +31,6 @@ private:
 
     void makeLabels();
 
-    void makeBackButton();
-
     void onTapBackButton();
 };
 

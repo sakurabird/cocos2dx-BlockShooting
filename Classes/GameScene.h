@@ -12,8 +12,6 @@
 
 #include "cocos2d.h"
 
-// TODO CCSpriteBatchNode
-
 class GameScene : public cocos2d::CCLayerColor
 {
 public:
@@ -44,8 +42,6 @@ private:
 
     CC_SYNTHESIZE(int, m_score, Score);
 
-    CC_SYNTHESIZE_RETAIN(cocos2d::CCSprite*, m_background, Background);
-
     CC_SYNTHESIZE(cocos2d::CCArray*, m_blocks, Blocks);
 
     CC_SYNTHESIZE(cocos2d::CCArray*, m_balls, Balls);
@@ -66,10 +62,6 @@ private:
     void createBalls();
 
     void createGameStateLabels();
-
-    void showBackground();
-
-    void showFilter();
 
     void showStartLabel();
 
@@ -102,8 +94,6 @@ private:
     void gameOver();
 
     void setResultScores();
-
-    void makeBackButton();
 
     void onTapBackButton();
 

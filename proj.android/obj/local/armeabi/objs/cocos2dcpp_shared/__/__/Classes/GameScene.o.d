@@ -211,7 +211,8 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/GameScene.o: \
  jni/../../Classes/Config.h jni/../../Classes/BarSprite.h \
  jni/../../Classes/BlockSprite.h jni/../../Classes/GameOverScene.h \
  jni/../../Classes/Animations.h jni/../../Classes/TopScene.h \
- jni/../../Classes/GameClearPopup.h jni/../../Classes/MyRenderer.h
+ jni/../../Classes/GameClearPopup.h jni/../../Classes/MyRenderer.h \
+ jni/../../Classes/Utils.h
 
 jni/../../Classes/GameScene.h:
 
@@ -650,3 +651,5 @@ jni/../../Classes/TopScene.h:
 jni/../../Classes/GameClearPopup.h:
 
 jni/../../Classes/MyRenderer.h:
+
+jni/../../Classes/Utils.h:

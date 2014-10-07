@@ -15,6 +15,11 @@
 class Utils
 {
 public:
+    static void setGirlBackground(cocos2d::CCLayer* target);
+    static void setGirlFilter(cocos2d::CCLayer* target);
+
+    static void createBackButton(cocos2d::CCLayer* target, cocos2d::SEL_MenuHandler selector,
+    		float rate_x, float rate_y);
 
     static void quit();
 };

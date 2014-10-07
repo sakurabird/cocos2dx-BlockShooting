@@ -11,6 +11,7 @@
 #include "Config.h"
 #include "UserSettings.h"
 #include "GHelper.h"
+#include "Utils.h"
 #include "SimpleAudioEngine.h"
 #include "PopupLayer.h"
 #include "GameClearPopup.h"
@@ -61,7 +62,7 @@ bool SettingScene::init()
 
     makeLabels();
 
-    makeBackButton();
+	Utils::createBackButton(this, menu_selector(SettingScene::onTapBackButton), 0.1, 0.8);
 
     setKeypadEnabled(true);
 
@@ -136,21 +137,6 @@ void SettingScene::makeLabels()
     CCMenu* menu = CCMenu::create(button1, button2, button3, NULL);
     menu->setPosition(CCPointZero);
     this->addChild(menu);
-}
-
-
-void SettingScene::makeBackButton()
-{
-	CCSprite* button = CCSprite::createWithSpriteFrameName(PNG_BACK);
-	CCMenuItemSprite *item = CCMenuItemSprite::create(
-			button, button, this, menu_selector(SettingScene::onTapBackButton));
-
-    if (!item) return;
-    item->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.05, g_visibleSize.height * 0.2));
-    CCMenu* menu = CCMenu::create(item, NULL);
-    menu->setPosition(CCPointZero);
-    if (!menu) return;
-    this->addChild(menu, kZOrderTop, kTagBack);
 }
 
 void SettingScene::onTapMusicOnOFFButton()

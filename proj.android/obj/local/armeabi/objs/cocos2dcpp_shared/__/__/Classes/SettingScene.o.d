@@ -205,6 +205,7 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/SettingScene.o: \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../cocos2dx/support/component/CCComponentContainer.h \
  jni/../../Classes/TopScene.h jni/../../Classes/Config.h \
  jni/../../Classes/UserSettings.h jni/../../Classes/GHelper.h \
+ jni/../../Classes/Utils.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/SimpleAudioEngine.h \
  /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/Export.h \
  jni/../../Classes/PopupLayer.h \
@@ -859,6 +860,8 @@ jni/../../Classes/Config.h:
 jni/../../Classes/UserSettings.h:
 
 jni/../../Classes/GHelper.h:
+
+jni/../../Classes/Utils.h:
 
 /Developer/cocos2d-x-2.2.2/projects/BrockShooting/proj.android/../../../CocosDenshion/android/../include/SimpleAudioEngine.h:
 

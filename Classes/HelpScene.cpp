@@ -11,6 +11,7 @@
 #include "Config.h"
 #include "UserSettings.h"
 #include "GHelper.h"
+#include "Utils.h"
 #include "SimpleAudioEngine.h"
 #include "MyRenderer.h"
 
@@ -59,7 +60,7 @@ bool HelpScene::init()
 
     makeLabels();
 
-    makeBackButton();
+	Utils::createBackButton(this, menu_selector(HelpScene::onTapBackButton), 0.1, 0.8);
 
     setKeypadEnabled(true);
 
@@ -162,21 +163,6 @@ void HelpScene::makeLabels()
     disc6->setPosition( GHelper::convI720toCC(g_visibleSize.width / 2,  g_visibleSize.height * 0.7));
     this->addChild(disc6);
 }
-
-void HelpScene::makeBackButton()
-{
-	CCSprite* button = CCSprite::createWithSpriteFrameName(PNG_BACK);
-	CCMenuItemSprite *item = CCMenuItemSprite::create(
-			button, button, this, menu_selector(HelpScene::onTapBackButton));
-
-    if (!item) return;
-    item->setPosition(GHelper::convI720toCC(g_visibleSize.width * 0.05, g_visibleSize.height * 0.2));
-    CCMenu* menu = CCMenu::create(item, NULL);
-    menu->setPosition(CCPointZero);
-    if (!menu) return;
-    this->addChild(menu, kZOrderTop, kTagBack);
-}
-
 
 void HelpScene::onTapBackButton()
 {

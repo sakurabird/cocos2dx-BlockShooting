@@ -31,8 +31,6 @@ private:
 
     void makeLabel();
 
-    void makeBackButton();
-
     void onTapBackButton();
 
     void onTapLevel(CCObject *sender);
