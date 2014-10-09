@@ -17,9 +17,11 @@
  * 
  */
 
-package com.sakurafish.cocos2dx.brockshooting;
+package com.sakurafish.cocos2dx.brockshooting.utils;
 
 import android.util.Log;
+
+import com.sakurafish.cocos2dx.brockshooting.BuildConfig;
 
 /**
  * @author sakura

@@ -32,6 +32,10 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 
+import com.sakurafish.cocos2dx.brockshooting.utils.BrockShootingUtils;
+import com.sakurafish.cocos2dx.brockshooting.utils.Utils;
+
+import io.fiverocks.android.FiveRocks;
 import jp.live_aid.aid.AdController;
 import jp.maru.mrd.IconCell;
 import jp.maru.mrd.IconLoader;
@@ -51,6 +55,10 @@ public class BrockShooting extends Cocos2dxActivity {
     // AID
     private static final String AID_CODE = "com.sakurafish.c"; // 広告枠:(Android全画面)
     private AdController mAidAdController; // AID
+
+    // 5Rocks
+    public static final String FiveRocks_AppId = "5434efca333a38817a000001";
+    public static final String FiveRocks_AppKey = "Oxy0MvWT6ibAVg_NSQCt";
 
     static {
         System.loadLibrary("cocos2dcpp");
@@ -73,6 +81,10 @@ public class BrockShooting extends Cocos2dxActivity {
             mAidAdController = new AdController(AID_CODE, this);
             mAidAdController.setCreativeStyle(AdController.CreativeStyle.POPUP_IMAGE);// 画像ポップアップ型広告
         }
+
+        // 5Rocks
+        FiveRocks.init(this, FiveRocks_AppId, FiveRocks_AppKey);
+        FiveRocks.setUserId(BrockShootingUtils.getUUID());
     }
 
     @Override
@@ -82,6 +94,18 @@ public class BrockShooting extends Cocos2dxActivity {
         glSurfaceView.setEGLConfigChooser(5, 6, 5, 0, 16, 8);
 
         return glSurfaceView;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FiveRocks.onActivityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        FiveRocks.onActivityStop(this);
+        super.onStop();
     }
 
     @Override

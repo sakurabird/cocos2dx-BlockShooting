@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C8C05DA9-3F5C-4473-AEDD-5D5D7AC1DF92</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BrockShooting</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4FFF0FE8F994771F1DB0C5A8A1118C3ECC14FA80</key>
+		<string>https://github.com/sakurabird/cocos2dx-BlockShooting-alpha.git</string>
+		<key>8C43D65310F733D339C71C028DDE53E021F4103E</key>
+		<string>bitbucket.org:sakura_bird1/cocos2dx-blockshooting.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>proj.ios/BrockShooting.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4FFF0FE8F994771F1DB0C5A8A1118C3ECC14FA80</key>
+		<string>../../..Classes/</string>
+		<key>8C43D65310F733D339C71C028DDE53E021F4103E</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>bitbucket.org:sakura_bird1/cocos2dx-blockshooting.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8C43D65310F733D339C71C028DDE53E021F4103E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8C43D65310F733D339C71C028DDE53E021F4103E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BrockShooting</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4FFF0FE8F994771F1DB0C5A8A1118C3ECC14FA80</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Classes</string>
+		</dict>
+	</array>
+</dict>
+</plist>
