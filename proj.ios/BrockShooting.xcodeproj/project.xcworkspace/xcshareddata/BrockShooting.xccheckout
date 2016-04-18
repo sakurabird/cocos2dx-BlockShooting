@@ -20,7 +20,7 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>4FFF0FE8F994771F1DB0C5A8A1118C3ECC14FA80</key>
-		<string>../../..Classes/</string>
+		<string>../../..Classes</string>
 		<key>8C43D65310F733D339C71C028DDE53E021F4103E</key>
 		<string>../../..</string>
 	</dict>
@@ -46,7 +46,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>4FFF0FE8F994771F1DB0C5A8A1118C3ECC14FA80</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Classes</string>
+			<string>BrockShootingClasses</string>
 		</dict>
 	</array>
 </dict>
